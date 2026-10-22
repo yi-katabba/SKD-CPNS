@@ -1276,10 +1276,7 @@ input:checked+.slider:before{transform:translateX(22px);}
   font-size:16px;font-weight:800;letter-spacing:-.2px;
   padding:24px 18px 12px;
 }
-#homePage .section-title::before{
-  content:'';width:4px;height:18px;border-radius:4px;
-  background:linear-gradient(180deg,#42A5F5,#1565C0);
-}
+#homePage .section-title::before{display:none;}
 
 /* ---- Menu utama ---- */
 #homePage .menu-grid{gap:12px;padding:0 16px;}
@@ -1298,29 +1295,32 @@ input:checked+.slider:before{transform:translateX(22px);}
 #homePage .menu-item:nth-child(6){--ac:#3949AB;--ac-l:#7986CB;--ac-bg:#E8EAF6;}
 #homePage .menu-item:nth-child(7){--ac:#C62828;--ac-l:#EF5350;--ac-bg:#FFEBEE;}
 #homePage .menu-item:nth-child(8){--ac:#00838F;--ac-l:#26C6DA;--ac-bg:#E0F7FA;}
-#homePage .menu-item::after{
-  content:'';position:absolute;right:-30px;top:-30px;
-  width:100px;height:100px;border-radius:50%;
-  background:var(--ac-bg);pointer-events:none;z-index:0;
+#homePage .menu-item::after{display:none;}
+#homePage .menu-item{
+  min-height:0;padding:0;justify-content:space-between;border-radius:22px;
+  background:linear-gradient(180deg,var(--ac-bg) 0%,#fff 62%);
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
 }
-#homePage .menu-item-left{position:relative;z-index:1;width:100%;gap:4px;}
+#homePage .menu-item-left{position:relative;z-index:1;width:100%;gap:2px;padding:14px 14px 12px;flex:1;}
 #homePage .menu-icon-wrap{
-  width:48px;height:48px;border-radius:15px;margin-bottom:10px;
+  width:46px;height:46px;border-radius:14px;margin-bottom:10px;
   background:linear-gradient(135deg,var(--ac),var(--ac-l));
   color:#fff;
-  box-shadow:0 6px 12px -4px rgba(0,0,0,.25);
-  box-shadow:0 8px 14px -6px color-mix(in srgb,var(--ac) 70%,transparent);
+  box-shadow:0 8px 14px -6px rgba(0,0,0,.35);
+  box-shadow:0 8px 14px -6px color-mix(in srgb,var(--ac) 75%,transparent);
 }
 #homePage .menu-icon-wrap svg{width:24px;height:24px;}
-#homePage .menu-item-name{font-size:calc(14.5px * var(--fs-scale-umum));font-weight:800;letter-spacing:-.1px;}
-#homePage .menu-item-desc{font-size:calc(11.5px * var(--fs-scale-umum));line-height:1.45;color:#64748b;}
+#homePage .menu-item-name{font-size:calc(15px * var(--fs-scale-umum));font-weight:800;letter-spacing:-.2px;color:var(--dark);}
+#homePage .menu-item-desc{font-size:calc(11.5px * var(--fs-scale-umum));line-height:1.45;color:#64748b;font-weight:600;}
 #homePage .menu-chevron{
-  position:absolute;top:12px;right:12px;z-index:2;
-  width:26px;height:26px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
+  position:static;z-index:1;width:100%;height:auto;border-radius:0;box-shadow:none;
+  display:flex;align-items:center;justify-content:space-between;
   background:#fff;color:var(--ac);
-  box-shadow:0 2px 8px rgba(0,0,0,.1);
+  border-top:1px dashed #E2E8F0;padding:10px 14px 11px;
+  font-size:12.5px;font-weight:800;
 }
+#homePage .menu-chevron::before{content:'Buka';}
+#homePage .menu-item:nth-child(5) .menu-chevron{color:#B7791F;}
 #homePage .menu-chevron svg{width:12px;height:12px;}
 
 /* =====================================================================
@@ -1421,79 +1421,75 @@ input:checked+.slider:before{transform:translateX(22px);}
    ===================================================================== */
 #quizCepatPage{--q-pad:0;}
 .qc-intro{
-  display:flex;align-items:center;gap:14px;
-  margin:16px 0 6px;padding:16px;border-radius:22px;
-  background:linear-gradient(135deg,#0B3D91 0%,#1565C0 55%,#2196F3 100%);
-  box-shadow:0 14px 28px -12px rgba(13,71,161,.65),inset 0 1px 0 rgba(255,255,255,.2);
-  position:relative;overflow:hidden;color:#fff;
-}
-.qc-intro::after{
-  content:'';position:absolute;right:-34px;top:-44px;width:150px;height:150px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 70%);
-  pointer-events:none;
+  display:flex;align-items:center;gap:12px;
+  margin:16px 0 0;padding:10px 12px;border-radius:18px;
+  background:#fff;border:1px solid #E6ECF8;
+  box-shadow:0 8px 20px -14px rgba(21,101,192,.5);color:var(--dark);
 }
 .qc-intro-ic{
-  width:50px;height:50px;border-radius:16px;flex-shrink:0;
+  width:38px;height:38px;border-radius:12px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#FFD54F;
-  position:relative;z-index:1;
+  background:#FFF3E0;color:#EF6C00;
 }
-.qc-intro-ic svg{width:26px;height:26px;}
-.qc-intro-txt{display:flex;flex-direction:column;gap:3px;position:relative;z-index:1;}
-.qc-intro-txt b{font-size:16px;font-weight:800;letter-spacing:-.2px;}
-.qc-intro-txt span{font-size:12px;line-height:1.45;color:rgba(255,255,255,.88);}
+.qc-intro-ic svg{width:20px;height:20px;}
+.qc-intro-txt{display:flex;flex-direction:column;gap:2px;}
+.qc-intro-txt b{font-size:calc(13px * var(--fs-scale-umum));font-weight:800;color:var(--dark);}
+.qc-intro-txt span{font-size:calc(11px * var(--fs-scale-umum));line-height:1.4;color:#64748b;font-weight:600;}
 
-#quizCepatGrid{padding-top:10px;}
+#quizCepatGrid{padding-top:0;}
+#quizCepatGrid::before{
+  content:'Pilih Kategori';display:flex;align-items:center;gap:9px;
+  font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);
+  padding:16px 2px 12px;
+}
 #quizCepatPage .qc-cat-card{
   --ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;
-  position:relative;background:#fff;border-radius:22px;
+  position:relative;background:#fff;border-radius:22px;overflow:hidden;
   border:1px solid #E6ECF8;margin-bottom:14px;
   box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
 }
 #quizCepatPage .qc-cat-card.tiu{--ac:#D84315;--ac-l:#FF8A65;--ac-bg:#FBE9E7;}
 #quizCepatPage .qc-cat-card.tkp{--ac:#00796B;--ac-l:#4DB6AC;--ac-bg:#E0F2F1;}
-#quizCepatPage .qc-cat-card::after{
-  content:'';position:absolute;right:-34px;top:-34px;width:120px;height:120px;border-radius:50%;
-  background:var(--ac-bg);pointer-events:none;z-index:0;
-}
+#quizCepatPage .qc-cat-card::after{display:none;}
 #quizCepatPage .qc-cat-header,
 #quizCepatPage .qc-cat-header.twk,
 #quizCepatPage .qc-cat-header.tiu,
 #quizCepatPage .qc-cat-header.tkp{
-  background:none;color:var(--dark);
-  padding:16px 14px 12px;gap:14px;position:relative;z-index:1;
+  background:linear-gradient(180deg,var(--ac-bg) 0%,#fff 100%);
+  color:var(--dark);padding:14px 14px 10px;gap:12px;
 }
 #quizCepatPage .qc-cat-icon{
-  width:58px;height:58px;border-radius:18px;flex-shrink:0;
+  width:46px;height:46px;border-radius:14px;flex-shrink:0;
   background:linear-gradient(135deg,var(--ac),var(--ac-l));color:#fff;
-  box-shadow:0 8px 14px -6px rgba(0,0,0,.3);
-  box-shadow:0 10px 16px -8px color-mix(in srgb,var(--ac) 75%,transparent);
+  box-shadow:0 8px 14px -6px rgba(0,0,0,.35);
+  box-shadow:0 8px 14px -6px color-mix(in srgb,var(--ac) 75%,transparent);
 }
-#quizCepatPage .qc-cat-icon svg{width:32px;height:32px;}
+#quizCepatPage .qc-cat-icon svg{width:26px;height:26px;}
 #quizCepatPage .qc-cat-info{flex:1;min-width:0;}
-#quizCepatPage .qc-cat-info .qc-cat-title{display:flex;flex-direction:column;margin-bottom:5px;}
-#quizCepatPage .qc-cat-title b{font-size:20px;font-weight:900;letter-spacing:.3px;color:var(--ac);line-height:1.1;}
-#quizCepatPage .qc-cat-title small{font-size:12px;font-weight:700;color:#475569;margin-top:2px;}
-#quizCepatPage .qc-cat-sub{font-size:11.5px;font-weight:600;color:#64748b;opacity:1;}
-#quizCepatPage .qc-cat-go{
-  width:28px;height:28px;border-radius:50%;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  background:#fff;color:var(--ac);font-size:20px;font-weight:700;line-height:1;padding-bottom:2px;
-  box-shadow:0 2px 8px rgba(0,0,0,.12);
+#quizCepatPage .qc-cat-info .qc-cat-title{display:flex;flex-direction:column;gap:2px;margin-bottom:0;}
+#quizCepatPage .qc-cat-title b{font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);line-height:1.2;}
+#quizCepatPage .qc-cat-title small{font-size:11.5px;font-weight:600;color:#64748b;margin-top:0;}
+#quizCepatPage .qc-pill{
+  white-space:nowrap;flex-shrink:0;font-size:11px;padding:5px 11px;
+  background:#fff;border:1px solid color-mix(in srgb,var(--ac) 30%,#fff);color:var(--ac);
 }
-#quizCepatPage .qc-cat-stats{
-  background:#fff;border-top:1px dashed #E2E8F0;
-  padding:11px 14px 14px;gap:8px;align-items:center;position:relative;z-index:1;
+#quizCepatPage .qci-badges{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 14px 12px;
 }
-#quizCepatPage .qc-rekor-lbl{font-size:11.5px;font-weight:800;color:#64748b;margin-right:2px;}
-#quizCepatPage .qc-stat-pill{
-  background:var(--ac-bg);color:var(--ac);opacity:1;
-  border:1px solid color-mix(in srgb,var(--ac) 18%,transparent);
-  font-size:11.5px;font-weight:800;padding:4px 11px;
+#quizCepatPage .qci-foot-row{display:flex;align-items:center;justify-content:space-between;}
+#quizCepatPage .qci-total-label{font-size:12px;font-weight:600;color:#64748b;}
+#quizCepatPage .qci-go{font-size:12.5px;font-weight:800;}
+#quizCepatPage .qc-badges .qci-badge{
+  text-align:center;padding:6px 2px;border-radius:10px;
+  font-size:11px;font-weight:800;letter-spacing:.1px;white-space:nowrap;
+  background:var(--ac-bg);border:1px solid color-mix(in srgb,var(--ac) 22%,#fff);color:var(--ac);
 }
-#quizCepatPage .qc-stat-pill.empty{
-  background:#F8FAFC;color:#94A3B8;border:1px dashed #CBD5E1;opacity:1 !important;font-weight:700;
+#quizCepatPage .qc-badges .qci-badge.belum{background:#F8FAFC;border-color:#E2E8F0;color:#94A3B8;}
+#quizCepatPage .qc-cat-foot{
+  display:block;padding:12px 14px 12px;background:#fff;border-top:1px dashed #E2E8F0;
 }
+#quizCepatPage .qc-cat-foot .qci-foot-row{margin-bottom:0;}
+#quizCepatPage .qc-cat-foot .qci-go{color:var(--ac);}
 
 /* ---- Halaman konfirmasi ---- */
 #quizCepatConfirmPage{--ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;}
@@ -4054,14 +4050,17 @@ function renderQuizCepatGrid(){
   const grid=document.getElementById('quizCepatGrid');let html='';
   ['twk','tiu','tkp'].forEach(cat=>{
     const c=QC_CATS[cat];const soalArr=getQCSoal(cat);const totalSesi=getQCTotalSesi(cat);
-    const bests=[1,3,5,10].map(m=>{const b=getQCBestScore(cat,m);return b>0?`<span class="qc-stat-pill">⏱️${m}m: ${b}</span>`:'';}).filter(x=>x).join('');
+    const bests=[1,3,5,10].map(m=>{const b=getQCBestScore(cat,m);return b>0?`<span class="qci-badge qc-badge">${m}m: ${b}</span>`:`<span class="qci-badge belum">${m}m: -</span>`;}).join('');
     html+=`<div class="qc-cat-card ${cat}" onclick="playSound('menu');pilihanQC('${cat}')">
       <div class="qc-cat-header ${cat}">
         <div class="qc-cat-icon" data-icon="${c.icon}"></div>
-        <div class="qc-cat-info"><div class="qc-cat-title"><b>${c.name}</b><small>${c.fullName}</small></div><div class="qc-cat-sub">${soalArr.length} soal tersedia · ${totalSesi} sesi</div></div>
-        <span class="qc-cat-go">›</span>
+        <div class="qc-cat-info"><div class="qc-cat-title"><b>${c.name}</b><small>${c.fullName}</small></div></div>
+        <span class="status-pill qc-pill">${soalArr.length} soal</span>
       </div>
-      <div class="qc-cat-stats"><span class="qc-rekor-lbl">🏆 Rekor</span>${bests||'<span class="qc-stat-pill empty">Belum ada rekor</span>'}</div>
+      <div class="qci-badges qc-badges">${bests}</div>
+      <div class="qc-cat-foot">
+        <div class="qci-foot-row"><div><span class="qci-total-label">🏆 Rekor per durasi · ${totalSesi} sesi</span></div><span class="qci-go">Mulai ›</span></div>
+      </div>
     </div>`;
   });
   grid.innerHTML=html;
