@@ -32,12 +32,21 @@ jobs:
       - name: Cek secrets signing
         env:
           KS: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KSP: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KA: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KP: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          if [ -z "$KS" ]; then
-            echo "::error::Secret ANDROID_KEYSTORE_BASE64 belum diisi. Lihat README-ANDROID.md (langkah signing). Tanpa kunci tetap, APK baru tidak bisa menimpa versi lama."
+          missing=""
+          [ -z "$KS" ]  && missing="$missing ANDROID_KEYSTORE_BASE64"
+          [ -z "$KSP" ] && missing="$missing ANDROID_KEYSTORE_PASSWORD"
+          [ -z "$KA" ]  && missing="$missing ANDROID_KEY_ALIAS"
+          [ -z "$KP" ]  && missing="$missing ANDROID_KEY_PASSWORD"
+          if [ -n "$missing" ]; then
+            echo "::error::Secret belum terbaca di repo ini ($GITHUB_REPOSITORY):$missing. Pastikan dibuat di Settings > Secrets and variables > Actions > Repository secrets (bukan Variables / Environment), dengan nama persis sama."
             exit 1
           fi
           echo "$KS" | base64 -d > "$RUNNER_TEMP/release.jks"
+          echo "Keystore OK: $(wc -c < "$RUNNER_TEMP/release.jks") bytes"
 
       - name: Install dependencies
         run: npm install
