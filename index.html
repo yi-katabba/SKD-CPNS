@@ -469,7 +469,11 @@ input:checked+.slider:before{transform:translateX(22px);}
 .att-st.pass{background:#E0F2F1;color:#00695C;}.att-st.fail{background:#FFEBEE;color:#C62828;}
 .att-more{width:100%;margin-top:8px;padding:9px;border:1.5px solid var(--border);background:#fff;border-radius:10px;font-size:12px;font-weight:700;color:var(--blue);cursor:pointer;font-family:inherit;}
 /* ===== Backup ===== */
-.bk-card{padding:14px 16px;}
+.bk-hero{background:linear-gradient(135deg,#0D47A1,#1976D2);border-radius:18px;padding:18px;text-align:center;margin-bottom:12px;box-shadow:0 6px 20px rgba(21,101,192,.25);}
+.bk-hero-ic{font-size:30px;margin-bottom:4px;}
+.bk-hero-t{font-size:16px;font-weight:800;color:#fff;margin-bottom:6px;}
+.bk-hero-s{font-size:12px;color:rgba(255,255,255,.92);line-height:1.5;}
+.bk-hero-last{display:inline-block;margin-top:10px;background:rgba(255,255,255,.2);color:#fff;font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:20px;}
 .bk-title{font-size:14px;font-weight:800;color:var(--dark);margin-bottom:6px;}
 .bk-note{font-size:12px;color:#475569;line-height:1.5;margin:0 0 6px;}
 .bk-last{font-size:11.5px;color:#64748B;font-weight:600;margin:0 0 10px;}
@@ -1141,6 +1145,403 @@ input:checked+.slider:before{transform:translateX(22px);}
 .evalListTitle,#evalListTitle{display:flex;align-items:center;gap:6px;}
 .statsHistoryHead,.statsBarsHead,.statsQCHead{display:flex;align-items:center;gap:6px;}
 
+/* =====================================================================
+   HOME REDESIGN (hanya tampilan statis — tanpa animasi/transition baru).
+   Animasi langit header, donut, dan efek tekan tombol tidak diubah.
+   ===================================================================== */
+
+/* ---- Header (area animasi langit tetap utuh) ---- */
+#homePage .top-header{padding:54px 20px 88px;}
+#homePage .avatar{
+  width:52px;height:52px;
+  border:2.5px solid rgba(255,255,255,.75);
+  box-shadow:0 4px 14px rgba(0,0,0,.28);
+}
+#homePage .level-badge{
+  bottom:-8px;font-size:9.5px;letter-spacing:.3px;
+  padding:2px 8px;box-shadow:0 2px 6px rgba(0,0,0,.28);
+}
+#homePage .greeting-text{padding-left:2px;}
+#homePage .greeting-text .gday{
+  font-size:calc(12.5px * var(--fs-scale-umum));color:rgba(255,255,255,.92);
+  text-shadow:0 1px 4px rgba(0,0,0,.45);
+}
+#homePage .greeting-text .gname{
+  font-size:calc(20px * var(--fs-scale-umum));letter-spacing:-.2px;
+  text-shadow:0 1px 6px rgba(0,0,0,.45);
+}
+#homePage .greeting-text .gmotto{
+  font-size:calc(11.5px * var(--fs-scale-umum));color:rgba(255,255,255,.85);margin-top:2px;
+  text-shadow:0 1px 4px rgba(0,0,0,.45);
+}
+#homePage .notif-btn{
+  width:44px;height:44px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.35);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 4px 14px rgba(0,0,0,.22);
+}
+#homePage .notif-dot{top:9px;right:10px;border-color:#fff;}
+
+/* ---- Kartu progres (hero) ---- */
+#homePage .hero-card-wrap{margin-top:-60px;}
+#homePage .hero-card{
+  background:linear-gradient(135deg,#0B3D91 0%,#1565C0 48%,#2196F3 100%);
+  border-radius:24px;padding:22px 20px;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 14px 32px -10px rgba(13,71,161,.65),inset 0 1px 0 rgba(255,255,255,.2);
+}
+#homePage .hero-card::before{
+  right:-40px;top:-50px;width:190px;height:190px;
+  background:radial-gradient(circle,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 70%);
+}
+#homePage .hero-card::after{
+  content:'';position:absolute;left:0;bottom:0;width:60%;height:55%;
+  background-image:radial-gradient(rgba(255,255,255,.16) 1.2px,transparent 1.5px);
+  background-size:14px 14px;
+  -webkit-mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  pointer-events:none;z-index:1;
+}
+#homePage .hero-label span{
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);
+  padding:4px 12px;font-size:11.5px;letter-spacing:.2px;color:#fff;
+}
+#homePage .hero-count{font-size:13px;margin-bottom:12px;color:rgba(255,255,255,.92);}
+#homePage .hero-count strong{font-size:34px;line-height:1;letter-spacing:-1px;margin-right:2px;}
+#homePage .hero-progbar{
+  height:10px;margin-bottom:16px;
+  background:rgba(8,32,86,.35);box-shadow:inset 0 1px 3px rgba(0,0,0,.3);
+}
+#homePage .hero-progbar-fill{
+  background:linear-gradient(90deg,#4DD0E1,#B2EBF2);
+  box-shadow:0 0 10px rgba(128,222,234,.85);
+}
+#homePage .btn-lanjut{
+  padding:10px 18px 10px 10px;font-size:13.5px;
+  box-shadow:0 8px 18px -6px rgba(0,0,0,.4);
+}
+#homePage .btn-lanjut .play-icon{
+  width:28px;height:28px;box-shadow:0 3px 8px rgba(21,101,192,.4);
+}
+#homePage .donut-wrap{width:92px;height:92px;}
+#homePage .donut-wrap svg{width:92px;height:92px;}
+#homePage .donut-bg{stroke:rgba(255,255,255,.2);}
+#homePage .donut-fill{stroke:#80DEEA;filter:drop-shadow(0 0 4px rgba(128,222,234,.7));}
+#homePage .donut-center::before{
+  content:'';position:absolute;inset:15px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);
+}
+#homePage .donut-pct,#homePage .donut-lbl{position:relative;}
+#homePage .donut-pct{font-size:20px;letter-spacing:-.5px;}
+#homePage .donut-lbl{font-size:9.5px;}
+#homePage .building-img{font-size:64px;right:10px;bottom:-8px;opacity:.12;}
+
+/* ---- Kartu statistik ---- */
+#homePage .stats-row{gap:10px;padding:18px 16px 0;}
+#homePage .stat-card{
+  border-radius:18px;padding:14px 6px 12px;
+  border:1px solid #E6ECF8;
+  box-shadow:0 8px 20px -12px rgba(21,101,192,.4);
+}
+#homePage .stat-card .s-icon{width:40px;height:40px;border-radius:13px;margin-bottom:9px;}
+#homePage .stat-card .s-icon.blue{background:linear-gradient(135deg,#E3F2FD,#BBDEFB);}
+#homePage .stat-card .s-icon.green{background:linear-gradient(135deg,#E0F2F1,#B2DFDB);}
+#homePage .stat-card .s-icon.yellow{background:linear-gradient(135deg,#FFF8E1,#FFE9A8);}
+#homePage .stat-card .s-val{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:2px;}
+#homePage .stat-card .s-lbl{font-size:10.5px;color:#64748b;letter-spacing:.1px;}
+
+/* ---- Streak + kutipan ---- */
+#homePage .streak-section{padding:14px 16px 0;}
+#homePage .streak-card{
+  border-radius:20px;padding:14px;gap:14px;
+  border:1px solid #E6ECF8;
+  box-shadow:0 8px 20px -12px rgba(21,101,192,.4);
+}
+#homePage .streak-left{
+  background:linear-gradient(160deg,#FF9800 0%,#F57C00 45%,#E65100 100%);
+  border-radius:16px;min-width:92px;padding:14px 14px 12px;
+  box-shadow:0 10px 18px -8px rgba(230,81,0,.7),inset 0 1px 0 rgba(255,255,255,.3);
+}
+#homePage .streak-left .streak-num{font-size:30px;letter-spacing:-1px;}
+#homePage .streak-right{
+  border-left:3px solid #FFE0B2;padding:2px 0 2px 14px;
+}
+#homePage .quote-text{font-size:calc(13px * var(--fs-scale-umum));color:#334155;line-height:1.6;margin-bottom:8px;}
+#homePage .quote-author{color:#EF6C00;font-weight:800;letter-spacing:.2px;}
+
+/* ---- Judul seksi ---- */
+#homePage .section-title{
+  display:flex;align-items:center;gap:9px;
+  font-size:16px;font-weight:800;letter-spacing:-.2px;
+  padding:24px 18px 12px;
+}
+#homePage .section-title::before{
+  content:'';width:4px;height:18px;border-radius:4px;
+  background:linear-gradient(180deg,#42A5F5,#1565C0);
+}
+
+/* ---- Menu utama ---- */
+#homePage .menu-grid{gap:12px;padding:0 16px;}
+#homePage .menu-item{
+  --ac:#1565C0;--ac-l:#42A5F5;--ac-bg:#E3F2FD;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;
+  min-height:156px;padding:16px 14px;border-radius:22px;
+  border:1px solid #E6ECF8;
+  box-shadow:0 10px 22px -14px rgba(21,101,192,.55);
+}
+#homePage .menu-item:nth-child(2){--ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;}
+#homePage .menu-item:nth-child(3){--ac:#EF6C00;--ac-l:#FFB74D;--ac-bg:#FFF3E0;}
+#homePage .menu-item:nth-child(4){--ac:#00796B;--ac-l:#4DB6AC;--ac-bg:#E0F2F1;}
+#homePage .menu-item:nth-child(5){--ac:#F9A825;--ac-l:#FFCA28;--ac-bg:#FFF8E1;}
+#homePage .menu-item:nth-child(6){--ac:#3949AB;--ac-l:#7986CB;--ac-bg:#E8EAF6;}
+#homePage .menu-item:nth-child(7){--ac:#C62828;--ac-l:#EF5350;--ac-bg:#FFEBEE;}
+#homePage .menu-item:nth-child(8){--ac:#00838F;--ac-l:#26C6DA;--ac-bg:#E0F7FA;}
+#homePage .menu-item::after{
+  content:'';position:absolute;right:-30px;top:-30px;
+  width:100px;height:100px;border-radius:50%;
+  background:var(--ac-bg);pointer-events:none;z-index:0;
+}
+#homePage .menu-item-left{position:relative;z-index:1;width:100%;gap:4px;}
+#homePage .menu-icon-wrap{
+  width:48px;height:48px;border-radius:15px;margin-bottom:10px;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  color:#fff;
+  box-shadow:0 6px 12px -4px rgba(0,0,0,.25);
+  box-shadow:0 8px 14px -6px color-mix(in srgb,var(--ac) 70%,transparent);
+}
+#homePage .menu-icon-wrap svg{width:24px;height:24px;}
+#homePage .menu-item-name{font-size:calc(14.5px * var(--fs-scale-umum));font-weight:800;letter-spacing:-.1px;}
+#homePage .menu-item-desc{font-size:calc(11.5px * var(--fs-scale-umum));line-height:1.45;color:#64748b;}
+#homePage .menu-chevron{
+  position:absolute;top:12px;right:12px;z-index:2;
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;color:var(--ac);
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+#homePage .menu-chevron svg{width:12px;height:12px;}
+
+/* =====================================================================
+   PILIH LATIHAN SKD — redesign statis (tanpa animasi/transition baru).
+   Hanya berlaku di #quizlistPage.
+   ===================================================================== */
+#quizlistPage .review-entry-row{gap:10px;margin-bottom:6px;}
+#quizlistPage .review-entry-card{
+  border-radius:18px;padding:10px 12px;column-gap:10px;
+  border:1px solid #E6ECF8;
+  box-shadow:0 8px 20px -14px rgba(21,101,192,.5);
+}
+#quizlistPage .review-entry-icon{
+  width:38px;height:38px;border-radius:12px;font-size:18px;
+  background:#FFEBEE;
+}
+#quizlistPage .review-entry-card:nth-child(2) .review-entry-icon{background:#FFF3E0;}
+#quizlistPage .review-entry-label{font-size:calc(13px * var(--fs-scale-umum));font-weight:800;}
+#quizlistPage .review-entry-count{
+  font-size:calc(11px * var(--fs-scale-umum));color:#C62828;
+}
+#quizlistPage .review-entry-card:nth-child(2) .review-entry-count{color:#EF6C00;}
+
+#quizListContainer::before{
+  content:'Paket Latihan';display:flex;align-items:center;gap:9px;
+  font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);
+  padding:16px 2px 12px;
+}
+#quizListContainer::after{display:none;}
+
+#quizlistPage .quiz-card-item{
+  --ac:#1565C0;--ac-l:#42A5F5;--ac-bg:#E3F2FD;
+  position:relative;border-radius:22px;margin-bottom:14px;
+  border:1px solid #E6ECF8;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+}
+#quizlistPage .quiz-card-item.is-done{--ac:#00796B;--ac-l:#26A69A;--ac-bg:#E0F2F1;}
+#quizlistPage .qci-header{
+  background:linear-gradient(180deg,var(--ac-bg) 0%,#fff 100%);
+  color:var(--dark);padding:14px 14px 10px;gap:10px;
+}
+#quizlistPage .qci-header-left{gap:12px;min-width:0;}
+#quizlistPage .qci-no{
+  width:46px;height:46px;border-radius:14px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:21px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  box-shadow:0 8px 14px -6px rgba(0,0,0,.35);
+  box-shadow:0 8px 14px -6px color-mix(in srgb,var(--ac) 75%,transparent);
+}
+#quizlistPage .qci-title{display:flex;flex-direction:column;gap:2px;min-width:0;}
+#quizlistPage .qci-title b{font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);}
+#quizlistPage .qci-title small{font-size:11.5px;font-weight:600;color:#64748b;}
+#quizlistPage .status-pill{white-space:nowrap;flex-shrink:0;font-size:11px;padding:5px 11px;}
+#quizlistPage .status-pill.done{background:#fff;border:1px solid #B2DFDB;color:#00695C;}
+#quizlistPage .status-pill.pending{background:#fff;border:1px solid #FFCDD2;color:#C62828;}
+
+#quizlistPage .qci-badges{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  padding:0 14px 12px;justify-content:stretch;flex-wrap:nowrap;
+}
+#quizlistPage .qci-badge{
+  text-align:center;padding:6px 4px;border-radius:10px;
+  font-size:11px;font-weight:800;letter-spacing:.1px;
+  background:#F8FAFC;border:1px solid #E2E8F0;color:#64748b;
+}
+#quizlistPage .qci-badge.twk{background:#F3E5F5;border-color:#E1BEE7;color:#6A1B9A;}
+#quizlistPage .qci-badge.tiu{background:#FFF3E0;border-color:#FFE0B2;color:#BF360C;}
+#quizlistPage .qci-badge.tkp{background:#E0F2F1;border-color:#B2DFDB;color:#00695C;}
+#quizlistPage .qci-badge.belum{background:#F8FAFC;border-color:#E2E8F0;color:#94A3B8;}
+
+#quizlistPage .qci-footer{
+  display:block;padding:12px 14px 14px;background:#fff;
+  border-top:1px dashed #E2E8F0;
+}
+#quizlistPage .qci-foot-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
+#quizlistPage .qci-total-label{font-size:12px;font-weight:600;color:#64748b;}
+#quizlistPage .qci-total-val{font-size:13px;font-weight:800;margin-left:4px;}
+#quizlistPage .qci-go{font-size:12.5px;font-weight:800;color:var(--ac);}
+#quizlistPage .qci-bar{height:7px;border-radius:7px;background:#EEF2F9;overflow:hidden;}
+#quizlistPage .qci-bar-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--ac),var(--ac-l));}
+
+#quizlistPage .btn-eval{
+  background:var(--ac-bg);color:var(--ac);
+  font-size:13px;font-weight:800;padding:12px;
+  border-top:1px solid #E6ECF8;
+}
+
+#quizlistPage .btn-reset{
+  background:#FFF5F5;color:#C62828;
+  border:1px solid #FFCDD2;border-radius:16px;
+  font-size:13.5px;margin-top:10px;
+}
+
+/* =====================================================================
+   KUIS CEPAT — redesign statis (tanpa animasi/transition baru).
+   Hanya berlaku di halaman pilih kategori & konfirmasi.
+   ===================================================================== */
+#quizCepatPage{--q-pad:0;}
+.qc-intro{
+  display:flex;align-items:center;gap:14px;
+  margin:16px 0 6px;padding:16px;border-radius:22px;
+  background:linear-gradient(135deg,#0B3D91 0%,#1565C0 55%,#2196F3 100%);
+  box-shadow:0 14px 28px -12px rgba(13,71,161,.65),inset 0 1px 0 rgba(255,255,255,.2);
+  position:relative;overflow:hidden;color:#fff;
+}
+.qc-intro::after{
+  content:'';position:absolute;right:-34px;top:-44px;width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 70%);
+  pointer-events:none;
+}
+.qc-intro-ic{
+  width:50px;height:50px;border-radius:16px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#FFD54F;
+  position:relative;z-index:1;
+}
+.qc-intro-ic svg{width:26px;height:26px;}
+.qc-intro-txt{display:flex;flex-direction:column;gap:3px;position:relative;z-index:1;}
+.qc-intro-txt b{font-size:16px;font-weight:800;letter-spacing:-.2px;}
+.qc-intro-txt span{font-size:12px;line-height:1.45;color:rgba(255,255,255,.88);}
+
+#quizCepatGrid{padding-top:10px;}
+#quizCepatPage .qc-cat-card{
+  --ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;
+  position:relative;background:#fff;border-radius:22px;
+  border:1px solid #E6ECF8;margin-bottom:14px;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+}
+#quizCepatPage .qc-cat-card.tiu{--ac:#D84315;--ac-l:#FF8A65;--ac-bg:#FBE9E7;}
+#quizCepatPage .qc-cat-card.tkp{--ac:#00796B;--ac-l:#4DB6AC;--ac-bg:#E0F2F1;}
+#quizCepatPage .qc-cat-card::after{
+  content:'';position:absolute;right:-34px;top:-34px;width:120px;height:120px;border-radius:50%;
+  background:var(--ac-bg);pointer-events:none;z-index:0;
+}
+#quizCepatPage .qc-cat-header,
+#quizCepatPage .qc-cat-header.twk,
+#quizCepatPage .qc-cat-header.tiu,
+#quizCepatPage .qc-cat-header.tkp{
+  background:none;color:var(--dark);
+  padding:16px 14px 12px;gap:14px;position:relative;z-index:1;
+}
+#quizCepatPage .qc-cat-icon{
+  width:58px;height:58px;border-radius:18px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));color:#fff;
+  box-shadow:0 8px 14px -6px rgba(0,0,0,.3);
+  box-shadow:0 10px 16px -8px color-mix(in srgb,var(--ac) 75%,transparent);
+}
+#quizCepatPage .qc-cat-icon svg{width:32px;height:32px;}
+#quizCepatPage .qc-cat-info{flex:1;min-width:0;}
+#quizCepatPage .qc-cat-info .qc-cat-title{display:flex;flex-direction:column;margin-bottom:5px;}
+#quizCepatPage .qc-cat-title b{font-size:20px;font-weight:900;letter-spacing:.3px;color:var(--ac);line-height:1.1;}
+#quizCepatPage .qc-cat-title small{font-size:12px;font-weight:700;color:#475569;margin-top:2px;}
+#quizCepatPage .qc-cat-sub{font-size:11.5px;font-weight:600;color:#64748b;opacity:1;}
+#quizCepatPage .qc-cat-go{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;color:var(--ac);font-size:20px;font-weight:700;line-height:1;padding-bottom:2px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+#quizCepatPage .qc-cat-stats{
+  background:#fff;border-top:1px dashed #E2E8F0;
+  padding:11px 14px 14px;gap:8px;align-items:center;position:relative;z-index:1;
+}
+#quizCepatPage .qc-rekor-lbl{font-size:11.5px;font-weight:800;color:#64748b;margin-right:2px;}
+#quizCepatPage .qc-stat-pill{
+  background:var(--ac-bg);color:var(--ac);opacity:1;
+  border:1px solid color-mix(in srgb,var(--ac) 18%,transparent);
+  font-size:11.5px;font-weight:800;padding:4px 11px;
+}
+#quizCepatPage .qc-stat-pill.empty{
+  background:#F8FAFC;color:#94A3B8;border:1px dashed #CBD5E1;opacity:1 !important;font-weight:700;
+}
+
+/* ---- Halaman konfirmasi ---- */
+#quizCepatConfirmPage{--ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;}
+#quizCepatConfirmPage[data-cat="tiu"]{--ac:#D84315;--ac-l:#FF8A65;--ac-bg:#FBE9E7;}
+#quizCepatConfirmPage[data-cat="tkp"]{--ac:#00796B;--ac-l:#4DB6AC;--ac-bg:#E0F2F1;}
+#quizCepatConfirmPage .qc-confirm-card{
+  border-radius:26px;padding:26px 20px 22px;
+  background:linear-gradient(180deg,var(--ac-bg) 0,#fff 190px);
+  border:1px solid #E6ECF8;
+  box-shadow:0 16px 32px -18px rgba(21,101,192,.6);
+}
+#quizCepatConfirmPage .qc-confirm-icon{
+  width:88px;height:88px;border-radius:28px;margin:0 auto 14px;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));color:#fff;
+  box-shadow:0 14px 22px -10px rgba(0,0,0,.35);
+  box-shadow:0 16px 24px -12px color-mix(in srgb,var(--ac) 80%,transparent);
+}
+#quizCepatConfirmPage .qc-confirm-icon svg{width:50px;height:50px;}
+#quizCepatConfirmPage .qc-confirm-title{font-size:23px;letter-spacing:-.3px;}
+#quizCepatConfirmPage .qc-confirm-sub{font-size:13.5px;margin-bottom:16px;padding:0 6px;}
+#quizCepatConfirmPage .qc-info-pill{
+  background:#fff;border:1px solid #E2E8F0;font-weight:700;padding:6px 13px;
+}
+#quizCepatConfirmPage .qc-confirm-card > p{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:13px !important;color:#475569 !important;margin:2px 0 0 !important;
+}
+#quizCepatConfirmPage .qc-timer-grid{gap:10px;margin:12px 0 22px;}
+#quizCepatConfirmPage .qc-timer-btn{
+  border:2px solid #E2E8F0;border-radius:16px;background:#fff;
+  padding:13px 4px 11px;font-size:11.5px;font-weight:700;color:#64748b;
+  box-shadow:0 6px 12px -10px rgba(21,101,192,.5);
+}
+#quizCepatConfirmPage .qc-timer-btn .t-num{font-size:24px;font-weight:900;color:var(--dark);line-height:1.1;}
+#quizCepatConfirmPage .qc-timer-btn.selected{
+  border-color:var(--ac);background:var(--ac-bg);color:var(--ac);
+  box-shadow:0 10px 16px -10px rgba(0,0,0,.35);
+  box-shadow:0 10px 16px -10px color-mix(in srgb,var(--ac) 85%,transparent);
+}
+#quizCepatConfirmPage .qc-timer-btn.selected .t-num{color:var(--ac);}
+#quizCepatConfirmPage .btn-mulai-qc{
+  padding:16px;border-radius:18px;font-size:17px;font-weight:800;letter-spacing:.2px;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  box-shadow:0 14px 22px -10px rgba(0,0,0,.4);
+  box-shadow:0 14px 22px -10px color-mix(in srgb,var(--ac) 85%,transparent);
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:0;
+}
+
 </style>
 </head>
 <body>
@@ -1389,7 +1790,7 @@ input:checked+.slider:before{transform:translateX(22px);}
       <div class="pf-card pf-menu">
         <div class="pf-row" onclick="playSound('menu');goTo('statistikPage')"><span class="pf-row-l"><span class="pf-ic"><span data-icon="icon_menu_statistik"></span></span> Statistik Lengkap</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
         <div class="pf-row" onclick="playSound('menu');goTo('pengaturanPage')"><span class="pf-row-l"><span class="pf-ic">⚙️</span> Pengaturan Sistem</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
-        <div class="pf-row" onclick="playSound('menu');goTo('pengaturanPage')"><span class="pf-row-l"><span class="pf-ic">💾</span> Backup &amp; Pulihkan Progres</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
+        <div class="pf-row" onclick="playSound('menu');goTo('backupPage')"><span class="pf-row-l"><span class="pf-ic">💾</span> Backup &amp; Pulihkan Progres</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
         <div class="pf-row" onclick="playSound('back');showGantiUsernameModal()"><span class="pf-row-l"><span class="pf-ic"><span data-icon="icon_akun_nama"></span></span> Ganti Username</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
         <div class="pf-row" onclick="playSound('back');showGantiPasswordModal()"><span class="pf-row-l"><span class="pf-ic">🔑</span> Ganti Password</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
       </div>
@@ -1455,18 +1856,47 @@ input:checked+.slider:before{transform:translateX(22px);}
           </label>
         </div>
       </div>
-      <div class="akun-info-card bk-card" style="margin-bottom:12px;">
-        <div class="bk-title">💾 Backup &amp; Pulihkan Progres</div>
-        <p class="bk-note">Progres tersimpan di perangkat ini saja. Kalau cache dibersihkan, aplikasi di-uninstall, atau ganti HP, data bisa hilang. Simpan backup secara berkala.</p>
-        <p class="bk-last" id="bkLast">Backup terakhir: belum pernah</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- =========== BACKUP & PULIHKAN PAGE =========== -->
+<div id="backupPage" class="page">
+  <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+      <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('akunPage')"></button>
+      <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;">💾 Backup &amp; Pulihkan</h2>
+    </div>
+    <div style="height:54px;"></div>
+    <div class="akun-wrap">
+      <div class="bk-hero">
+        <div class="bk-hero-ic">💾</div>
+        <div class="bk-hero-t">Amankan progres belajarmu</div>
+        <div class="bk-hero-s">Progres hanya tersimpan di perangkat ini. Kalau cache dibersihkan, aplikasi di-uninstall, atau ganti HP, data bisa hilang.</div>
+        <div class="bk-hero-last" id="bkLast">Backup terakhir: belum pernah</div>
+      </div>
+
+      <div class="pf-card">
+        <div class="pf-card-title">1. Cadangkan</div>
+        <p class="bk-note">Simpan salinan progres ke file, atau salin sebagai kode teks yang bisa ditempel ke catatan / chat.</p>
         <div class="bk-btns">
           <button type="button" class="bk-btn primary" onclick="playSound('menu');exportProgressFile()">Simpan File</button>
           <button type="button" class="bk-btn" onclick="playSound('menu');copyProgressCode()">Salin Kode</button>
         </div>
-        <button type="button" class="bk-btn" style="width:100%;margin-top:8px;" onclick="playSound('menu');openRestoreModal()">Pulihkan dari Backup</button>
+      </div>
+
+      <div class="pf-card">
+        <div class="pf-card-title">2. Pulihkan</div>
+        <p class="bk-note">Di HP baru atau setelah data hilang: tempel kode backup atau pilih file backup. Progres di perangkat ini akan diganti.</p>
+        <button type="button" class="bk-btn" style="width:100%;" onclick="playSound('menu');openRestoreModal()">Pulihkan dari Backup</button>
+      </div>
+
+      <div class="pf-card">
+        <div class="pf-card-title">Yang ikut dibackup</div>
+        <p class="bk-note" style="margin:0;">Skor dan riwayat percobaan, data evaluasi, soal salah, bookmark, pencapaian, rekor Kuis Cepat, streak belajar, dan pengaturan. Akun dan password tidak ikut.</p>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -1825,7 +2255,13 @@ input:checked+.slider:before{transform:translateX(22px);}
     
     <!-- KONTEN -->
     <div style="padding:0 16px;">
-      <p style="color:var(--gray);font-size:13px;margin-bottom:16px;">Jawab soal sebanyak mungkin dalam waktu terbatas. Pilih kategori:</p>
+      <div class="qc-intro">
+        <div class="qc-intro-ic" data-icon="icon_menu_kuis"></div>
+        <div class="qc-intro-txt">
+          <b>Adu cepat, asah ketepatan</b>
+          <span>Jawab soal sebanyak mungkin dalam waktu terbatas. Pilih kategori:</span>
+        </div>
+      </div>
       <div id="quizCepatGrid"></div>
     </div>
     
@@ -2013,7 +2449,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     <h3>Pulihkan Progres</h3>
     <p style="margin-bottom:10px;">Tempel kode backup di bawah, atau pilih file backup (.json). Progres di perangkat ini akan diganti dengan isi backup.</p>
     <textarea id="restoreText" class="bk-text" rows="5" placeholder="SKDBACKUP1:..." spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
-    <input type="file" id="restoreFile" accept=".json,application/json,text/plain" style="display:none;" onchange="restoreFromFileInput(this)">
+    <input type="file" id="restoreFile" accept="*/*" style="display:none;" onchange="restoreFromFileInput(this)">
     <button type="button" class="bk-btn" style="width:100%;margin:8px 0 12px;" onclick="document.getElementById('restoreFile').click()">Pilih File Backup…</button>
     <div class="modal-btns">
       <button class="btn-modal-danger" onclick="restoreProgress()">Pulihkan</button>
@@ -2474,7 +2910,7 @@ const PAGE_PARENT={
   tentangPage:'homePage',pencapaianPage:'homePage',quizCepatPage:'homePage',
   quizCepatConfirmPage:'quizCepatPage',quizCepatResultPage:'quizCepatPage',quizCepatPlayPage:'quizCepatPage',
   akunPage:'homePage',resultPage:'quizlistPage',
-  evaluasiListPage:'quizlistPage',pengaturanPage:'akunPage',
+  evaluasiListPage:'quizlistPage',pengaturanPage:'akunPage',backupPage:'akunPage',
 };
 function getLoggedInUser(){return localStorage.getItem(SESSION_KEY)||null;}
 function setLoggedInUser(u){localStorage.setItem(SESSION_KEY,u);}
@@ -2885,7 +3321,7 @@ function updateNavHighlight(pageId){
 // ========== PAGE SYSTEM ==========
 const PAGES=['homePage','quizlistPage','materiPage','materiContentPage','statistikPage','simulasiPage',
   'petunjukPage','tentangPage','quizPage','resultPage','evaluasiListPage','pencapaianPage',
-  'quizCepatPage','quizCepatConfirmPage','quizCepatPlayPage','quizCepatResultPage','akunPage','loginPage','reviewPage','pengaturanPage'];
+  'quizCepatPage','quizCepatConfirmPage','quizCepatPlayPage','quizCepatResultPage','akunPage','loginPage','reviewPage','pengaturanPage','backupPage'];
 const PAGES_WITH_SIDEBAR=['quizPage'];
 let currentPage='loginPage';
 
@@ -2951,7 +3387,8 @@ function goTo(pageId){
   if(pageId==='pencapaianPage')refreshPencapaian();
   if(pageId==='quizCepatPage')renderQuizCepatGrid();
   if(pageId==='akunPage')refreshAkunPage();
-  if(pageId==='pengaturanPage'){syncSoundToggle();refreshBackupInfo();}
+  if(pageId==='pengaturanPage')syncSoundToggle();
+  if(pageId==='backupPage')refreshBackupInfo();
   history.pushState({page:pageId},'','');
 }
 
@@ -2979,6 +3416,7 @@ function navigateBack_(){
   if(parent==='quizCepatPage')renderQuizCepatGrid();
   if(parent==='akunPage')refreshAkunPage();
   if(parent==='pengaturanPage')syncSoundToggle();
+  if(parent==='backupPage')refreshBackupInfo();
   return 'navigated';
 }
 window.addEventListener('popstate',function(e){
@@ -3050,6 +3488,10 @@ async function cekUpdateAplikasi_(){
 }
 setTimeout(cekUpdateAplikasi_, 3000);
 
+// Ambang kelulusan SKD. Harus dideklarasikan SEBELUM initApp() karena refreshHomeStats()
+// -> getBadgeStats() memakainya saat aplikasi dibuka ulang (kalau tidak: ReferenceError/TDZ).
+const PASSING={TWK:65,TIU:80,TKP:166};
+
 // ========== INIT ==========
 (function initApp(){
   const user = getLoggedInUser();
@@ -3059,7 +3501,7 @@ setTimeout(cekUpdateAplikasi_, 3000);
       'quizlistPage','simulasiPage','pencapaianPage','statistikPage',
       'materiPage','materiContentPage','quizCepatPage','quizCepatConfirmPage',
       'quizCepatResultPage','akunPage','petunjukPage','tentangPage',
-      'resultPage','evaluasiListPage','pengaturanPage'
+      'resultPage','evaluasiListPage','pengaturanPage','backupPage'
     ];
     const restorable = PAGES.filter(p =>
       !NON_RESTORABLE.includes(p) && !FORCE_HOME_ON_REFRESH.includes(p)
@@ -3361,7 +3803,6 @@ let reviewMode=null;      // null | 'wrong' | 'bookmark' — sesi latihan ulang 
 let lastReviewMode=null,lastReviewKat=null;  // dipakai tombol "Ulangi" di halaman hasil
 let currentReviewTab='wrong';
 const PREFIXES=['A','B','C','D','E'];
-const PASSING={TWK:65,TIU:80,TKP:166};
 
 // ========== BANK SOAL SALAH & BOOKMARK ==========
 const WRONG_KEY='skd_wrongBank';
@@ -3614,12 +4055,13 @@ function renderQuizCepatGrid(){
   ['twk','tiu','tkp'].forEach(cat=>{
     const c=QC_CATS[cat];const soalArr=getQCSoal(cat);const totalSesi=getQCTotalSesi(cat);
     const bests=[1,3,5,10].map(m=>{const b=getQCBestScore(cat,m);return b>0?`<span class="qc-stat-pill">⏱️${m}m: ${b}</span>`:'';}).filter(x=>x).join('');
-    html+=`<div class="qc-cat-card" onclick="playSound('menu');pilihanQC('${cat}')">
+    html+=`<div class="qc-cat-card ${cat}" onclick="playSound('menu');pilihanQC('${cat}')">
       <div class="qc-cat-header ${cat}">
         <div class="qc-cat-icon" data-icon="${c.icon}"></div>
-        <div class="qc-cat-info"><div class="qc-cat-title">${c.name} — ${c.fullName}</div><div class="qc-cat-sub">${soalArr.length} soal tersedia · ${totalSesi} sesi</div></div>
+        <div class="qc-cat-info"><div class="qc-cat-title"><b>${c.name}</b><small>${c.fullName}</small></div><div class="qc-cat-sub">${soalArr.length} soal tersedia · ${totalSesi} sesi</div></div>
+        <span class="qc-cat-go">›</span>
       </div>
-      <div class="qc-cat-stats">${bests||'<span class="qc-stat-pill" style="opacity:.7;">Belum ada rekor</span>'}</div>
+      <div class="qc-cat-stats"><span class="qc-rekor-lbl">🏆 Rekor</span>${bests||'<span class="qc-stat-pill empty">Belum ada rekor</span>'}</div>
     </div>`;
   });
   grid.innerHTML=html;
@@ -3627,6 +4069,7 @@ function renderQuizCepatGrid(){
 }
 function pilihanQC(cat){
   qcState.cat=cat;qcState.timerMenit=1;
+  const _qcp=document.getElementById('quizCepatConfirmPage');if(_qcp)_qcp.dataset.cat=cat;
   const c=QC_CATS[cat];const soalArr=getQCSoal(cat);
   document.getElementById('qcConfirmIcon').innerHTML=IMAGES[c.icon];
   document.getElementById('qcConfirmTitle').textContent=`Kuis Cepat ${c.name}`;
@@ -3874,13 +4317,15 @@ function refreshQuizList(){
     const done=twk&&tiu&&tkp;
     const tot=done?((parseInt(twk)||0)+(parseInt(tiu)||0)+(parseInt(tkp)||0)):0;
     const mTWK=bank.twk.length*5,mTIU=bank.tiu.length*5,mTKP=bank.tkp.length*5,mTot=mTWK+mTIU+mTKP;
-    const badges=done?`<span class="qci-badge twk">TWK:${twk}/${mTWK}</span><span class="qci-badge tiu">TIU:${tiu}/${mTIU}</span><span class="qci-badge tkp">TKP:${tkp}/${mTKP}</span>`:`<span class="qci-badge belum">-</span><span class="qci-badge belum">-</span><span class="qci-badge belum">-</span>`;
-    c.innerHTML+=`<div class="quiz-card-item">
+    const badges=done?`<span class="qci-badge twk">TWK:${twk}/${mTWK}</span><span class="qci-badge tiu">TIU:${tiu}/${mTIU}</span><span class="qci-badge tkp">TKP:${tkp}/${mTKP}</span>`:`<span class="qci-badge belum">TWK: -</span><span class="qci-badge belum">TIU: -</span><span class="qci-badge belum">TKP: -</span>`;
+    const pctBar=mTot>0?Math.round(tot/mTot*100):0;
+    c.innerHTML+=`<div class="quiz-card-item${done?' is-done':''}">
       <div onclick="playSound('start');startQuiz(${m.id})">
-        <div class="qci-header"><div class="qci-header-left"><span class="ic-sm" style="display:inline-flex;">${IMAGES[m.icon]}</span><span>${m.name} (${total} soal)</span></div><div class="qci-badges">${badges}</div></div>
+        <div class="qci-header"><div class="qci-header-left"><span class="qci-no">${m.id}</span><span class="qci-title"><b>${m.name}</b><small>${total} soal · TWK, TIU, TKP</small></span></div><span class="status-pill ${done?'done':'pending'}">${done?'✅ Selesai':'⏳ Belum'}</span></div>
+        <div class="qci-badges">${badges}</div>
         <div class="qci-footer">
-          <div><span class="qci-total-label">Total Skor:</span> <span class="qci-total-val ${done?'done':''}">${tot} / ${mTot}</span></div>
-          <span class="status-pill ${done?'done':'pending'}">${done?'✅ Selesai':'⏳ Belum'}</span>
+          <div class="qci-foot-row"><div><span class="qci-total-label">Total Skor</span> <span class="qci-total-val ${done?'done':''}">${tot} / ${mTot}</span></div><span class="qci-go">${done?'Ulangi':'Mulai'} ›</span></div>
+          <div class="qci-bar"><div class="qci-bar-fill" style="width:${pctBar}%"></div></div>
         </div>
       </div>
       ${done?`<button class="btn-eval" onclick="event.stopPropagation();playSound('menu');showEvaluasiFromList(${m.id})">📋 Lihat Evaluasi & Pembahasan →</button>`:''}
@@ -4367,6 +4812,23 @@ async function exportProgressFile(){
   const o=bkBuild();
   if(Object.keys(o.data).length===0){alert('Belum ada progres untuk dibackup.');return;}
   const name=`skd-cpns-backup-${bkStamp()}.json`,text=JSON.stringify(o);
+  // APK: simpan langsung ke folder Download/SKD CPNS (jembatan native MediaStore, tanpa izin tambahan)
+  try{
+    if(window.SkdFiles&&typeof window.SkdFiles.saveToDownloads==='function'){
+      const res=String(window.SkdFiles.saveToDownloads(name,text)||'');
+      if(res.indexOf('OK:')===0){bkMarkDone();alert('✅ Backup tersimpan di:\n'+res.slice(3)+'\n\nBuka aplikasi File / Download, lalu cari folder "SKD CPNS".');return;}
+    }
+  }catch(e){}
+  // Cadangan: tulis ke cache lalu buka menu bagikan Android -> pengguna memilih tujuan (Drive, File, WhatsApp, dll)
+  try{
+    const cap=window.Capacitor,pl=cap&&cap.Plugins;
+    if(cap&&cap.isNativePlatform&&cap.isNativePlatform()&&pl&&pl.Filesystem&&pl.Share){
+      await pl.Filesystem.writeFile({path:name,data:text,directory:'CACHE',encoding:'utf8'});
+      const r=await pl.Filesystem.getUri({path:name,directory:'CACHE'});
+      await pl.Share.share({title:'Backup SKD CPNS',text:'Backup progres SKD CPNS',url:r.uri,dialogTitle:'Simpan atau kirim backup'});
+      bkMarkDone();return;
+    }
+  }catch(e){if(e&&/cancel/i.test(String(e.message||e)))return;}
   try{
     const file=new File([text],name,{type:'application/json'});
     if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Backup SKD CPNS'});bkMarkDone();return;}
@@ -4375,7 +4837,7 @@ async function exportProgressFile(){
     const url=URL.createObjectURL(new Blob([text],{type:'application/json'}));
     const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
     setTimeout(()=>URL.revokeObjectURL(url),4000);bkMarkDone();
-    alert('✅ Backup dibuat: '+name+'\n\nKalau file tidak muncul di perangkatmu, pakai tombol "Salin Kode".');
+    alert('✅ Backup dibuat: '+name+'\n\nFile tersimpan di folder Download/Unduhan browser. Kalau tidak muncul, pakai tombol "Salin Kode".');
   }catch(e){alert('⚠️ Gagal membuat file. Coba tombol "Salin Kode".');}
 }
 async function copyProgressCode(){
