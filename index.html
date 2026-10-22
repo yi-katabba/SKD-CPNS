@@ -478,6 +478,56 @@ input:checked+.slider:before{transform:translateX(22px);}
 .bk-btn.primary{background:var(--blue);border-color:var(--blue);color:#fff;}
 .bk-btn:active{transform:scale(.98);}
 .bk-text{width:100%;box-sizing:border-box;border:1.5px solid var(--border);border-radius:10px;padding:8px 10px;font-size:11.5px;font-family:monospace;resize:vertical;color:var(--dark);background:#fff;}
+/* ========== PROFIL (redesign) ========== */
+.pf-hero{background:linear-gradient(135deg,#0D47A1,#1976D2 60%,#42A5F5);border-radius:20px;padding:18px 18px 16px;text-align:center;margin-bottom:12px;box-shadow:0 6px 20px rgba(21,101,192,.28);}
+.pf-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#fff;border:3px solid rgba(255,255,255,.6);box-shadow:0 3px 10px rgba(0,0,0,.18);text-transform:uppercase;}
+.pf-name{font-size:19px;font-weight:800;color:#fff;margin-bottom:6px;word-break:break-word;}
+.pf-rank{display:inline-block;background:rgba(255,255,255,.2);color:#fff;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:800;}
+.pf-rankbar{height:7px;border-radius:6px;background:rgba(255,255,255,.25);margin:12px 6px 6px;overflow:hidden;}
+.pf-rankfill{height:100%;width:0;border-radius:6px;background:#fff;transition:width .5s;}
+.pf-ranknote{font-size:11px;color:rgba(255,255,255,.9);font-weight:600;min-height:14px;}
+.pf-card{background:#fff;border-radius:16px;padding:14px 16px;box-shadow:var(--shadow);margin-bottom:12px;}
+.pf-card-title{font-size:13px;font-weight:800;color:var(--dark);margin-bottom:10px;}
+.pf-streak-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.pf-streak-main{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--dark);font-weight:700;}
+.pf-streak-main b{font-size:24px;font-weight:800;color:#E65100;line-height:1;}
+.pf-flame{display:inline-flex;font-size:22px;color:#F57C00;filter:grayscale(1);opacity:.5;}
+.pf-flame.on{filter:none;opacity:1;}
+.pf-flame svg{width:24px;height:24px;}
+.pf-streak-best{font-size:11px;font-weight:700;color:#64748B;background:var(--bg);padding:4px 10px;border-radius:20px;}
+.pf-week{display:flex;justify-content:space-between;gap:4px;margin:12px 0 8px;}
+.pf-day{flex:1;text-align:center;font-size:10px;font-weight:700;color:#94A3B8;}
+.pf-dot{width:26px;height:26px;border-radius:50%;margin:0 auto 3px;background:var(--bg);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;}
+.pf-day.on .pf-dot{background:#F57C00;border-color:#F57C00;}
+.pf-day.today .pf-dot{box-shadow:0 0 0 2px #fff,0 0 0 3.5px #1976D2;}
+.pf-day.today{color:var(--blue);}
+.pf-streak-note{font-size:11.5px;color:#64748B;line-height:1.4;}
+.pf-ready-bar{position:relative;height:12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);}
+.pf-ready-fill{height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,#42A5F5,#1565C0);transition:width .5s;}
+.pf-ready-fill.ok{background:linear-gradient(90deg,#26A69A,#00796B);}
+.pf-ready-mark{position:absolute;top:-4px;bottom:-4px;width:2px;background:#F57C00;border-radius:1px;}
+.pf-ready-info{display:flex;justify-content:space-between;gap:8px;margin-top:8px;font-size:11.5px;color:#475569;font-weight:600;}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.pf-tile{background:#fff;border-radius:14px;padding:12px 6px;text-align:center;box-shadow:var(--shadow);border:1px solid var(--border);}
+.pf-tile.tap{cursor:pointer;}.pf-tile.tap:active{transform:scale(.96);}
+.pf-tile-val{font-size:19px;font-weight:800;color:var(--blue);line-height:1.1;}
+.pf-tile-lbl{font-size:10.5px;color:#64748B;font-weight:700;margin-top:4px;}
+.pf-ach{cursor:pointer;}.pf-ach:active{transform:scale(.99);}
+.pf-ach-count{font-size:12px;color:var(--blue);font-weight:800;}
+.pf-ach-bar{height:8px;border-radius:6px;background:var(--bg);border:1px solid var(--border);overflow:hidden;}
+.pf-ach-fill{height:100%;width:0;background:linear-gradient(90deg,#FFB300,#F57C00);border-radius:6px;}
+.pf-ach-icons{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;min-height:30px;}
+.pf-ach-icons span{width:32px;height:32px;border-radius:10px;background:#FFF8E1;color:#B26A00;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.pf-ach-icons svg{width:18px;height:18px;}
+.pf-ach-icons .none{width:auto;background:none;font-size:11.5px;color:#94A3B8;font-weight:600;}
+.pf-menu{padding:4px 16px;}
+.pf-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.pf-row:last-child{border-bottom:none;}
+.pf-row:active{opacity:.6;}
+.pf-row-l{display:flex;align-items:center;gap:10px;font-size:calc(13px * var(--fs-scale-umum));font-weight:700;color:var(--dark);}
+.pf-row-l svg{flex-shrink:0;}
+.pf-ic{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;}
+.pf-ic svg{width:20px !important;height:20px !important;}
 /* ========== IKON EMOJI -> SVG ========== */
 .emo{display:inline-flex;align-items:center;vertical-align:-0.18em;line-height:1;}
 .emo svg{width:1.1em;height:1.1em;display:block;flex-shrink:0;}
@@ -1298,26 +1348,52 @@ input:checked+.slider:before{transform:translateX(22px);}
     
     <!-- KONTEN -->
     <div class="akun-wrap">
-      <div class="akun-hero">
-        <div class="akun-avatar-big" data-icon="icon_profil"></div>
-        <div class="akun-name" id="akunUsername">—</div>
-        <span class="akun-badge-pill">✅ Pejuang CPNS</span>
+      <div class="pf-hero">
+        <div class="pf-avatar" id="pfAvatar">?</div>
+        <div class="pf-name" id="akunUsername">—</div>
+        <span class="pf-rank" id="pfRank">🌱 Pemula</span>
+        <div class="pf-rankbar"><div class="pf-rankfill" id="pfRankFill"></div></div>
+        <div class="pf-ranknote" id="pfRankNote"></div>
       </div>
-      <div class="akun-info-card">
-        <div class="akun-row"><span class="akun-row-left"><span data-icon="icon_akun_nama"></span> Username</span><span class="akun-row-val" id="akunUsernameInfo">—</span></div>
-        <div class="akun-row"><span class="akun-row-left"><span data-icon="icon_akun_skor"></span> Skor Terbaik</span><span class="akun-row-val" id="akunBestScore">—</span></div>
-        <div class="akun-row"><span class="akun-row-left"><span data-icon="icon_akun_paket"></span> Paket Selesai</span><span class="akun-row-val" id="akunPaketDone">0 / 5</span></div>
-        <div class="akun-row"><span class="akun-row-left"><span data-icon="icon_akun_lulus"></span> Total Lulus PG</span><span class="akun-row-val" id="akunLulus">0</span></div>
-        <div class="akun-row"><span class="akun-row-left"><span data-icon="icon_akun_qc"></span> Sesi Quiz Cepat</span><span class="akun-row-val" id="akunQCSesi">0</span></div>
-      </div>
-      <div class="akun-info-card" style="margin-bottom:12px;padding:0;">
-        <div class="akun-row" style="padding:14px 16px;cursor:pointer;" onclick="playSound('menu');goTo('pengaturanPage')">
-          <span class="akun-row-left">⚙️ Pengaturan Sistem</span>
-          <span class="menu-chevron" data-icon="icon_chevron"></span>
+
+      <div class="pf-card pf-streak">
+        <div class="pf-streak-top">
+          <div class="pf-streak-main"><span class="pf-flame" id="pfFlame">🔥</span><span><b id="pfStreak">0</b> hari beruntun</span></div>
+          <span class="pf-streak-best" id="pfStreakBest">Terbaik: 0 hari</span>
         </div>
+        <div class="pf-week" id="pfWeek"></div>
+        <div class="pf-streak-note" id="pfStreakNote"></div>
       </div>
-      <button class="btn-logout" style="background:var(--gray-light);color:var(--dark);margin-bottom:10px;" onclick="playSound('back');showGantiUsernameModal()"><span data-icon="icon_akun_nama"></span> Ganti Username</button>
-      <button class="btn-logout" style="background:var(--gray-light);color:var(--dark);margin-bottom:10px;" onclick="playSound('back');showGantiPasswordModal()"><span data-icon="icon_akun_nama"></span> Ganti Password</button>
+
+      <div class="pf-card">
+        <div class="pf-card-title">Kesiapan Ujian</div>
+        <div class="pf-ready-bar"><div class="pf-ready-fill" id="pfReadyFill"></div><div class="pf-ready-mark" id="pfReadyMark"></div></div>
+        <div class="pf-ready-info"><span id="pfReadyLeft">Belum ada skor</span><span id="pfReadyRight"></span></div>
+      </div>
+
+      <div class="pf-grid">
+        <div class="pf-tile"><div class="pf-tile-val" id="pfBest">-</div><div class="pf-tile-lbl">Skor Terbaik</div></div>
+        <div class="pf-tile"><div class="pf-tile-val" id="pfDone">0/5</div><div class="pf-tile-lbl">Paket Selesai</div></div>
+        <div class="pf-tile"><div class="pf-tile-val" id="pfLulus">0</div><div class="pf-tile-lbl">Lulus PG</div></div>
+        <div class="pf-tile"><div class="pf-tile-val" id="pfQC">0</div><div class="pf-tile-lbl">Sesi Kuis Cepat</div></div>
+        <div class="pf-tile tap" onclick="playSound('menu');openReviewPage('wrong')"><div class="pf-tile-val" id="pfWrong">0</div><div class="pf-tile-lbl">Soal Salah</div></div>
+        <div class="pf-tile tap" onclick="playSound('menu');openReviewPage('bookmark')"><div class="pf-tile-val" id="pfBm">0</div><div class="pf-tile-lbl">Bookmark</div></div>
+      </div>
+
+      <div class="pf-card pf-ach" onclick="playSound('menu');goTo('pencapaianPage')">
+        <div class="pf-card-title" style="display:flex;justify-content:space-between;align-items:center;"><span>Pencapaian</span><span class="pf-ach-count" id="pfAchCount">0/0</span></div>
+        <div class="pf-ach-bar"><div class="pf-ach-fill" id="pfAchFill"></div></div>
+        <div class="pf-ach-icons" id="pfAchIcons"></div>
+      </div>
+
+      <div class="pf-card pf-menu">
+        <div class="pf-row" onclick="playSound('menu');goTo('statistikPage')"><span class="pf-row-l"><span class="pf-ic"><span data-icon="icon_menu_statistik"></span></span> Statistik Lengkap</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
+        <div class="pf-row" onclick="playSound('menu');goTo('pengaturanPage')"><span class="pf-row-l"><span class="pf-ic">⚙️</span> Pengaturan Sistem</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
+        <div class="pf-row" onclick="playSound('menu');goTo('pengaturanPage')"><span class="pf-row-l"><span class="pf-ic">💾</span> Backup &amp; Pulihkan Progres</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
+        <div class="pf-row" onclick="playSound('back');showGantiUsernameModal()"><span class="pf-row-l"><span class="pf-ic"><span data-icon="icon_akun_nama"></span></span> Ganti Username</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
+        <div class="pf-row" onclick="playSound('back');showGantiPasswordModal()"><span class="pf-row-l"><span class="pf-ic">🔑</span> Ganti Password</span><span class="menu-chevron" data-icon="icon_chevron"></span></div>
+      </div>
+
       <button class="btn-logout" onclick="playSound('back');showLogoutModal()"><span data-icon="icon_akun_logout"></span> Logout dari User Ini</button>
       <button class="btn-logout" style="background:var(--gray-light);color:var(--dark);margin-top:10px;" onclick="playSound('back');showExitAppModal()">🚪 Keluar dari Aplikasi</button>
     </div>
@@ -3066,21 +3142,93 @@ function refreshHomeStats(){
 }
 
 // =========== Refresh Akun Page =================
+// ---- Streak belajar harian ----
+const STUDY_KEY='skd_studyDays';
+function dayKey(d){d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function getStudyDays(){try{const a=JSON.parse(localStorage.getItem(STUDY_KEY)||'[]');return Array.isArray(a)?a:[];}catch(e){return [];}}
+function markStudyToday(){
+  try{const a=getStudyDays(),k=dayKey();if(a.indexOf(k)>=0)return;a.push(k);while(a.length>400)a.shift();localStorage.setItem(STUDY_KEY,JSON.stringify(a));}catch(e){}
+}
+// Hari belajar = hari yang tercatat + hari dari riwayat percobaan lama (supaya data lama ikut terhitung)
+function studyDaySet(){
+  const set=new Set(getStudyDays());
+  try{getAllAttempts().forEach(x=>{if(x.t)set.add(dayKey(new Date(x.t)));});}catch(e){}
+  return set;
+}
+function calcStreak(set){
+  set=set||studyDaySet();
+  let cur=0;const d=new Date();
+  if(!set.has(dayKey(d)))d.setDate(d.getDate()-1);   // streak belum putus selama hari ini belum lewat
+  while(set.has(dayKey(d))){cur++;d.setDate(d.getDate()-1);}
+  let best=0,run=0,prev=null;
+  Array.from(set).sort().forEach(k=>{const dt=new Date(k+'T00:00:00');run=(prev&&Math.round((dt-prev)/86400000)===1)?run+1:1;if(run>best)best=run;prev=dt;});
+  return{cur,best};
+}
+// ---- Peringkat ----
+const PF_RANKS=[
+  {n:'Pemula',ic:'🌱'},
+  {n:'Pelajar',ic:'📘',v:s=>s.done,t:1,hint:'Selesaikan 1 paket latihan'},
+  {n:'Pejuang',ic:'⚔️',v:s=>s.done,t:3,hint:'Selesaikan 3 paket latihan'},
+  {n:'Kandidat',ic:'🎯',v:s=>s.lulus,t:1,hint:'Lulus passing grade di 1 paket'},
+  {n:'Siap Ujian',ic:'🏆',v:s=>s.lulus,t:3,hint:'Lulus passing grade di 3 paket'}
+];
+function pfRankFor(st){
+  let idx=0;
+  for(let i=1;i<PF_RANKS.length;i++){if(PF_RANKS[i].v(st)>=PF_RANKS[i].t)idx=i;else break;}
+  return idx;
+}
+function pfColor(name){let h=0;for(let i=0;i<name.length;i++)h=(h*31+name.charCodeAt(i))%360;return `linear-gradient(135deg,hsl(${h},65%,48%),hsl(${(h+40)%360},70%,38%))`;}
 function refreshAkunPage(){
   const u=getLoggedInUser()||'—';
-  const setEl=(id,val)=>{const e=document.getElementById(id);if(e)e.textContent=val;};
-  setEl('akunUsername',u);setEl('akunUsernameInfo',u);
-  let best=[],done=0,lulus=0;
+  const $=id=>document.getElementById(id);
+  const setEl=(id,val)=>{const e=$(id);if(e)e.textContent=val;};
+  setEl('akunUsername',u);
+  const av=$('pfAvatar');if(av){av.textContent=(u&&u!=='—')?Array.from(u)[0].toUpperCase():'?';av.style.background=pfColor(u);}
+  let best=0,done=0,lulus=0;
   for(let i=1;i<=5;i++){
-    const twk=localStorage.getItem(`skorTWK_latihan${i}`);
-    const tiu=localStorage.getItem(`skorTIU_latihan${i}`);
-    const tkp=localStorage.getItem(`skorTKP_latihan${i}`);
-    if(twk&&tiu&&tkp){done++;const t=parseInt(twk)||0,u2=parseInt(tiu)||0,k=parseInt(tkp)||0;best.push(t+u2+k);if(t>=PASSING.TWK&&u2>=PASSING.TIU&&k>=PASSING.TKP)lulus++;}
+    const twk=localStorage.getItem(`skorTWK_latihan${i}`),tiu=localStorage.getItem(`skorTIU_latihan${i}`),tkp=localStorage.getItem(`skorTKP_latihan${i}`);
+    if(twk&&tiu&&tkp){done++;const t=parseInt(twk)||0,x=parseInt(tiu)||0,k=parseInt(tkp)||0;if(t+x+k>best)best=t+x+k;if(t>=PASSING.TWK&&x>=PASSING.TIU&&k>=PASSING.TKP)lulus++;}
   }
-  setEl('akunBestScore',best.length>0?Math.max(...best)+' / 550':'Belum ada');
-  setEl('akunPaketDone',done+' / 5');setEl('akunLulus',lulus+' paket');
-  const qcSesi=['twk','tiu','tkp'].reduce((s,c)=>s+getQCTotalSesi(c),0);
-  setEl('akunQCSesi',qcSesi+' sesi');syncSoundToggle();
+  const st={done,lulus};
+  // peringkat + progres ke peringkat berikutnya
+  const ri=pfRankFor(st),rk=PF_RANKS[ri],nx=PF_RANKS[ri+1];
+  setEl('pfRank',`${rk.ic} ${rk.n}`);
+  const rf=$('pfRankFill');
+  if(nx){const v=Math.min(nx.v(st),nx.t);if(rf)rf.style.width=Math.round(v/nx.t*100)+'%';setEl('pfRankNote',`Menuju ${nx.n}: ${nx.hint} (${v}/${nx.t})`);}
+  else{if(rf)rf.style.width='100%';setEl('pfRankNote','Peringkat tertinggi tercapai. Pertahankan!');}
+  // streak
+  const set=studyDaySet(),sk=calcStreak(set);
+  setEl('pfStreak',sk.cur);setEl('pfStreakBest',`Terbaik: ${sk.best} hari`);
+  const fl=$('pfFlame');if(fl)fl.classList.toggle('on',sk.cur>0);
+  const week=$('pfWeek');
+  if(week){
+    const nm=['Mg','Sn','Sl','Rb','Km','Jm','Sb'];let h='';
+    for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const on=set.has(dayKey(d));
+      h+=`<div class="pf-day${on?' on':''}${i===0?' today':''}"><div class="pf-dot">${on?'✓':''}</div>${nm[d.getDay()]}</div>`;}
+    week.innerHTML=h;
+  }
+  setEl('pfStreakNote',set.has(dayKey())?'Mantap! Hari ini sudah belajar.':(sk.cur>0?`Selesaikan 1 latihan hari ini untuk menjaga streak ${sk.cur} harimu.`:'Selesaikan 1 latihan hari ini untuk memulai streak.'));
+  // kesiapan ujian: skor terbaik vs total passing grade
+  const passTot=PASSING.TWK+PASSING.TIU+PASSING.TKP,maxTot=550;
+  const rfill=$('pfReadyFill'),rmark=$('pfReadyMark');
+  if(rmark)rmark.style.left=(passTot/maxTot*100)+'%';
+  if(rfill){rfill.style.width=(best/maxTot*100)+'%';rfill.classList.toggle('ok',best>=passTot);}
+  setEl('pfReadyLeft',best>0?`Skor terbaik ${best} dari ${maxTot}`:'Belum ada skor. Mulai latihan dulu!');
+  setEl('pfReadyRight',best>0?(best>=passTot?`Di atas target (${passTot})`:`Kurang ${passTot-best} poin dari target ${passTot}`):`Target lulus ${passTot}`);
+  // kartu statistik
+  setEl('pfBest',best>0?best:'-');setEl('pfDone',done+'/5');setEl('pfLulus',lulus);
+  setEl('pfQC',['twk','tiu','tkp'].reduce((a,c)=>a+getQCTotalSesi(c),0));
+  setEl('pfWrong',countWrongBank());setEl('pfBm',countBookmarkBank());
+  // pencapaian
+  try{
+    const bs=getBadgeStats();let total=0,got=[];
+    BADGE_TIERS.forEach(t=>t.badges.forEach(b=>{total++;if(b.check(bs))got.push(b);}));
+    setEl('pfAchCount',`${got.length}/${total}`);
+    const af=$('pfAchFill');if(af)af.style.width=(total?Math.round(got.length/total*100):0)+'%';
+    const ic=$('pfAchIcons');
+    if(ic)ic.innerHTML=got.length?got.slice(-6).reverse().map(b=>`<span title="${b.name}">${b.icon}</span>`).join(''):'<span class="none">Belum ada badge. Ketuk untuk lihat daftar.</span>';
+  }catch(e){}
+  syncSoundToggle();
 }
 
 // ========== SOUND SETTINGS ==========
@@ -3233,6 +3381,7 @@ function snapQuestion(q){return{question:q.question,options:[...q.options],answe
 // soal yang dijawab SALAH otomatis masuk Bank Soal Salah, soal yang dijawab BENAR
 // otomatis dihapus dari daftar (jika sebelumnya ada di sana / sudah dikuasai).
 function recordWrongAnswers(){
+  markStudyToday();
   const wb=getWrongBank();
   let addedCount=0;
   for(let i=0;i<originals.length;i++){
@@ -3453,7 +3602,7 @@ function getQCSoal(cat){
 function getQCBestScore(cat,menit){return parseInt(localStorage.getItem(`qcBest_${cat}_${menit}m`)||'0');}
 function setQCBestScore(cat,menit,val){const prev=getQCBestScore(cat,menit);if(val>prev)localStorage.setItem(`qcBest_${cat}_${menit}m`,val);return val>prev;}
 function getQCTotalSesi(cat){return parseInt(localStorage.getItem(`qcTotalSesi_${cat}`)||'0');}
-function incQCTotalSesi(cat){localStorage.setItem(`qcTotalSesi_${cat}`,getQCTotalSesi(cat)+1);}
+function incQCTotalSesi(cat){markStudyToday();localStorage.setItem(`qcTotalSesi_${cat}`,getQCTotalSesi(cat)+1);}
 function getQCStreakMax(cat){return parseInt(localStorage.getItem(`qcStreakMax_${cat}`)||'0');}
 function setQCStreakMax(cat,val){const p=getQCStreakMax(cat);if(val>p)localStorage.setItem(`qcStreakMax_${cat}`,val);}
 function getQCNoWrongBest(cat){return parseInt(localStorage.getItem(`qcNoWrong_${cat}`)||'0');}
@@ -4201,7 +4350,7 @@ function showNextAch(){
 // ========== BACKUP & PULIHKAN PROGRES ==========
 // Progres hanya ada di localStorage perangkat ini. Backup = salinan semua kunci progres
 // (bukan sesi login / cache kredensial) dalam satu file JSON atau satu kode teks.
-const BK_RE=/^(skor(TWK|TIU|TKP)_latihan\d+|bestScore_latihan\d+|evalData_latihan\d+|paketUlangi_\d+|riwayat_latihan\d+|simulasi_last|simulasiCount|simulasiLulusBerturut|materiOpened|menuVisited|qc(Best|TotalSesi|StreakMax|NoWrong|Akurasi90)_\w+|achUnlocked|skd_wrongBank|skd_bookmarkBank|skd_aktivitas_log|soundEnabled|timerEnabled|fontScale_\w+)$/;
+const BK_RE=/^(skor(TWK|TIU|TKP)_latihan\d+|bestScore_latihan\d+|evalData_latihan\d+|paketUlangi_\d+|riwayat_latihan\d+|simulasi_last|simulasiCount|simulasiLulusBerturut|materiOpened|menuVisited|qc(Best|TotalSesi|StreakMax|NoWrong|Akurasi90)_\w+|achUnlocked|skd_wrongBank|skd_bookmarkBank|skd_aktivitas_log|skd_studyDays|soundEnabled|timerEnabled|fontScale_\w+)$/;
 const BK_PREFIX='SKDBACKUP1:';
 const BK_LAST_KEY='skd_lastBackup';
 function bkCollect(){const d={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(BK_RE.test(k))d[k]=localStorage.getItem(k);}return d;}
@@ -4285,7 +4434,7 @@ function resetAllProgress(){
   localStorage.removeItem('simulasi_last');localStorage.removeItem('simulasiCount');localStorage.removeItem('simulasiLulusBerturut');localStorage.removeItem('materiOpened');localStorage.removeItem('menuVisited');
   ['twk','tiu','tkp'].forEach(cat=>{[1,3,5,10].forEach(m=>localStorage.removeItem(`qcBest_${cat}_${m}m`));localStorage.removeItem(`qcTotalSesi_${cat}`);localStorage.removeItem(`qcStreakMax_${cat}`);localStorage.removeItem(`qcNoWrong_${cat}`);localStorage.removeItem(`qcAkurasi90_${cat}`);});
   localStorage.removeItem('achUnlocked');achUnlocked=[];
-  localStorage.removeItem(WRONG_KEY);localStorage.removeItem(BOOKMARK_KEY);
+  localStorage.removeItem(WRONG_KEY);localStorage.removeItem(BOOKMARK_KEY);localStorage.removeItem(STUDY_KEY);
   syncProgressToServer();
   refreshQuizList();refreshHomeStats();closeResetModal();playSound('back');alert('✅ Semua progress telah direset!');
 }
