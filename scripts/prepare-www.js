@@ -12,5 +12,5 @@ for (const f of fs.readdirSync(root)) {
   }
 }
 fs.cpSync(path.join(root, 'images'), path.join(out, 'images'), { recursive: true });
-fs.writeFileSync(path.join(out, 'version.js'), `const APP_BUILD = ${parseInt(process.env.BUILD_NUMBER || '0', 10)};\nconst APP_REPO = 'yi-katabba/SKD';\n`);
+fs.writeFileSync(path.join(out, 'version.js'), `const APP_BUILD = ${parseInt(process.env.BUILD_NUMBER || '0', 10)};\nconst APP_REPO = '${process.env.GITHUB_REPOSITORY || 'yi-katabba/SKD-CPNS'}';\n`);
 console.log('www siap:', fs.readdirSync(out).length, 'item');
