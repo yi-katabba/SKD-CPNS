@@ -37,7 +37,7 @@ body::-webkit-scrollbar,
   --gray:#64748b;--gray-light:#F1F5F9;--border:#E2E8F0;--dark:#1E293B;
   --radius:16px;--radius-sm:12px;--radius-xs:8px;
   --shadow:0 2px 12px rgba(21,101,192,.10);
-  --fs-scale-soal:1;--fs-scale-umum:1;
+  --fs-scale-soal:1;--fs-scale-umum:1;--lh-soal:1.65;
 }
 body{
   font-family:'Segoe UI',system-ui,sans-serif;
@@ -388,6 +388,9 @@ body{
 .fontsize-btn:active{transform:scale(.96);}
 .fontsize-example{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--bg);color:#334155;line-height:1.5;text-align:justify;}
 .fontsize-example.fs-ex-soal{font-size:calc(14px * var(--fs-scale-soal));}
+.fontsize-example.lh-ex{font-size:calc(14px * var(--fs-scale-soal));line-height:var(--lh-soal);}
+.fontsize-btn .fb-lh{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--g,3px);height:16px;}
+.fontsize-btn .fb-lh i{display:block;width:16px;height:2px;border-radius:2px;background:currentColor;}
 .fontsize-example.fs-ex-umum{font-size:calc(13px * var(--fs-scale-umum));}
 
 /* ========== QUIZ LIST PAGE ========== */
@@ -589,15 +592,15 @@ input:checked+.slider:before{transform:translateX(22px);}
 .evaluasi-item.salah{border-left-color:#C62828;background:#FFEBEE;}
 .evaluasi-item.belum{border-left-color:#F57C00;background:#FFF8E1;}
 .evaluasi-item .soal-teks{font-weight:700;margin-bottom:5px;font-size:calc(13px * var(--fs-scale-soal));color:var(--dark);}
-.evaluasi-item .soal-isi{font-size:calc(13px * var(--fs-scale-soal));margin-bottom:7px;color:#475569;line-height:1.5;text-align:justify;}
+.evaluasi-item .soal-isi{font-size:calc(13px * var(--fs-scale-soal));margin-bottom:7px;color:#475569;line-height:calc(var(--lh-soal) - .15);text-align:justify;}
 .evaluasi-item .jawaban-user{font-size:calc(13px * var(--fs-scale-soal));margin-bottom:4px;padding:7px 10px;border-radius:8px;background:#E2E8F0;text-align:justify;}
 .evaluasi-item .jawaban-benar{font-size:calc(13px * var(--fs-scale-soal));margin-bottom:4px;padding:7px 10px;border-radius:8px;background:#E0F2F1;color:#004D40;text-align:justify;}
-.evaluasi-item .pembahasan-box{margin-top:8px;padding:10px 12px;border-radius:8px;background:#E3F2FD;border-left:3px solid var(--blue);font-size:calc(12px * var(--fs-scale-soal));color:#0D47A1;line-height:1.6;text-align:justify;}
+.evaluasi-item .pembahasan-box{margin-top:8px;padding:10px 12px;border-radius:8px;background:#E3F2FD;border-left:3px solid var(--blue);font-size:calc(12px * var(--fs-scale-soal));color:#0D47A1;line-height:calc(var(--lh-soal) - .05);text-align:justify;}
 .pembahasan-box p{margin:4px 0 0;text-align:justify;}
 .pembahasan-box p:first-of-type{margin-top:4px;}
 .pembahasan-box strong{display:block;margin-bottom:3px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;}
 .eval-opts{margin:8px 0;display:flex;flex-direction:column;gap:6px;}
-.eval-opt{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:8px;background:#fff;border:1.5px solid var(--border);font-size:calc(12.5px * var(--fs-scale-soal));line-height:1.5;color:#334155;text-align:justify;}
+.eval-opt{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:8px;background:#fff;border:1.5px solid var(--border);font-size:calc(12.5px * var(--fs-scale-soal));line-height:calc(var(--lh-soal) - .15);color:#334155;text-align:justify;}
 .eval-opt .eval-opt-letter{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#E2E8F0;color:#475569;font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;}
 .eval-opt .eval-opt-text{flex:1;padding-top:2px;}
 .eval-opt .eval-opt-tag{flex-shrink:0;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;white-space:nowrap;}
@@ -663,14 +666,14 @@ input:checked+.slider:before{transform:translateX(22px);}
 .timer-danger{color:#C62828!important;}
 .timer-blink{color:#C62828!important;animation:blinkFast .5s ease infinite;}
 @keyframes blinkFast{0%,100%{opacity:1}50%{opacity:.2}}
-.question-txt{font-size:calc(15px * var(--fs-scale-soal));margin-bottom:16px;font-weight:600;line-height:1.65;color:var(--dark);text-align:justify;}
+.question-txt{font-size:calc(15px * var(--fs-scale-soal));margin-bottom:16px;font-weight:600;line-height:var(--lh-soal);color:var(--dark);text-align:justify;}
 .option{display:flex;align-items:center;gap:12px;margin-bottom:9px;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;transition:.15s;background:#fff;}
 .option:hover{background:var(--bg);border-color:var(--blue);}
 .option input{display:none;}
 .choice-letter{width:36px;height:36px;min-width:36px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;}
 .option input:checked+.choice-letter{background:#00897B;}
 .option:has(input:checked){background:#E0F2F1;border-color:#00897B;}
-.choice-text{flex:1;font-size:calc(14px * var(--fs-scale-soal));color:#334155;text-align:justify;}
+.choice-text{flex:1;line-height:var(--lh-soal);font-size:calc(14px * var(--fs-scale-soal));color:#334155;text-align:justify;}
 .quiz-nav{display:flex;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
 .btn-prev,.btn-next,.btn-finish{flex:1;padding:12px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;}
 .btn-prev{background:#F1F5F9;color:var(--dark);}
@@ -926,7 +929,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 .qc-progress-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,#1565C0,#7B1FA2);transition:width .4s ease;}
 .qc-question-card{background:#fff;border-radius:16px;padding:18px;box-shadow:var(--shadow);margin-bottom:10px;width:100%;box-sizing:border-box;}
 .qc-q-num{font-size:11px;color:var(--gray);font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;}
-.qc-q-txt{font-size:calc(15px * var(--fs-scale-soal));font-weight:700;line-height:1.65;color:var(--dark);margin-bottom:14px;text-align:justify;word-break:break-word;width:100%;}
+.qc-q-txt{font-size:calc(15px * var(--fs-scale-soal));font-weight:700;line-height:var(--lh-soal);color:var(--dark);margin-bottom:14px;text-align:justify;word-break:break-word;width:100%;}
 .qc-q-txt img, .question-txt img, .evaluasi-item .soal-isi img{max-width:100%;height:auto;border-radius:10px;margin:8px 0;display:block;}
 .qc-options{display:flex;flex-direction:column;gap:8px;}
 .qc-opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid var(--border);border-radius:12px;cursor:pointer;transition:.15s;background:#fff;}
@@ -939,7 +942,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 .qc-opt.selected .qc-opt-letter{background:var(--blue);color:#fff;border-color:var(--blue);}
 .qc-opt.correct .qc-opt-letter{background:#00897B;color:#fff;border-color:#00897B;}
 .qc-opt.wrong .qc-opt-letter{background:#C62828;color:#fff;border-color:#C62828;}
-.qc-opt-text{flex:1;font-size:calc(14px * var(--fs-scale-soal));color:#334155;text-align:justify;}
+.qc-opt-text{flex:1;line-height:var(--lh-soal);font-size:calc(14px * var(--fs-scale-soal));color:#334155;text-align:justify;}
 .qc-feedback{padding:10px 14px;border-radius:10px;font-size:13px;font-weight:700;margin-bottom:8px;display:none;}
 .qc-feedback.benar{background:#E0F2F1;color:#004D40;display:block;}
 .qc-feedback.salah{background:#FFEBEE;color:#B71C1C;display:block;}
@@ -1301,7 +1304,7 @@ input:checked+.slider:before{transform:translateX(22px);}
   background:linear-gradient(180deg,var(--ac-bg) 0%,#fff 62%);
   box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
 }
-#homePage .menu-item-left{position:relative;z-index:1;width:100%;gap:2px;padding:14px 14px 12px;flex:1;}
+#homePage .menu-item-left{position:relative;z-index:1;width:100%;gap:2px;padding:14px 14px 16px;flex:1;}
 #homePage .menu-icon-wrap{
   width:46px;height:46px;border-radius:14px;margin-bottom:10px;
   background:linear-gradient(135deg,var(--ac),var(--ac-l));
@@ -1313,14 +1316,12 @@ input:checked+.slider:before{transform:translateX(22px);}
 #homePage .menu-item-name{font-size:calc(15px * var(--fs-scale-umum));font-weight:800;letter-spacing:-.2px;color:var(--dark);}
 #homePage .menu-item-desc{font-size:calc(11.5px * var(--fs-scale-umum));line-height:1.45;color:#64748b;font-weight:600;}
 #homePage .menu-chevron{
-  position:static;z-index:1;width:100%;height:auto;border-radius:0;box-shadow:none;
-  display:flex;align-items:center;justify-content:space-between;
+  position:absolute;top:12px;right:12px;z-index:2;
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
   background:#fff;color:var(--ac);
-  border-top:1px dashed #E2E8F0;padding:10px 14px 11px;
-  font-size:12.5px;font-weight:800;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
-#homePage .menu-chevron::before{content:'Buka';}
-#homePage .menu-item:nth-child(5) .menu-chevron{color:#B7791F;}
 #homePage .menu-chevron svg{width:12px;height:12px;}
 
 /* =====================================================================
@@ -1537,6 +1538,629 @@ input:checked+.slider:before{transform:translateX(22px);}
   box-shadow:0 14px 22px -10px color-mix(in srgb,var(--ac) 85%,transparent);
   display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:0;
 }
+
+/* =====================================================================
+   SIMULASI CAT, MATERI, PETUNJUK, TENTANG — selaras dengan Pilih Latihan SKD.
+   ===================================================================== */
+#simulasiPage,#petunjukPage,#tentangPage,#materiPage,#materiContentPage{
+  --ac:#1565C0;--ac-l:#42A5F5;--ac-bg:#E3F2FD;
+}
+#simulasiPage{--ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;}
+#petunjukPage{--ac:#C62828;--ac-l:#EF5350;--ac-bg:#FFEBEE;}
+#tentangPage{--ac:#00838F;--ac-l:#26C6DA;--ac-bg:#E0F7FA;}
+#materiPage,#materiContentPage{--ac:#00796B;--ac-l:#4DB6AC;--ac-bg:#E0F2F1;}
+#materiContentPage[data-cat="twk"]{--ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;}
+#materiContentPage[data-cat="tiu"]{--ac:#D84315;--ac-l:#FF8A65;--ac-bg:#FBE9E7;}
+#materiContentPage[data-cat="tkp"]{--ac:#00796B;--ac-l:#4DB6AC;--ac-bg:#E0F2F1;}
+
+.ix-section{
+  font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);
+  padding:18px 2px 10px;
+}
+.ix-section:first-child{padding-top:0;}
+.ix-card{
+  background:#fff;border:1px solid #E6ECF8;border-radius:22px;margin-bottom:14px;overflow:hidden;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+}
+.ix-head{
+  display:flex;align-items:center;gap:12px;padding:14px 14px 12px;
+  background:linear-gradient(180deg,var(--ac-bg) 0%,#fff 100%);
+}
+.ix-tile{
+  width:46px;height:46px;border-radius:14px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  box-shadow:0 8px 14px -6px rgba(0,0,0,.35);
+  box-shadow:0 8px 14px -6px color-mix(in srgb,var(--ac) 75%,transparent);
+}
+.ix-tile svg{width:26px;height:26px;}
+.ix-tile.tip{background:linear-gradient(135deg,#F9A825,#FFCA28);}
+.ix-title{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;}
+.ix-title b{font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);}
+.ix-title small{font-size:11.5px;font-weight:600;color:#64748b;}
+.ix-pill{
+  white-space:nowrap;flex-shrink:0;font-size:11px;padding:5px 11px;
+  background:#fff;border:1px solid color-mix(in srgb,var(--ac) 30%,#fff);color:var(--ac);
+}
+.ix-text{padding:2px 16px 16px;font-size:calc(13px * var(--fs-scale-umum));line-height:1.65;color:#475569;}
+.ix-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px 12px;}
+.ix-stats.three{padding:14px 14px 14px;}
+.ix-stat{
+  text-align:center;padding:10px 4px 8px;border-radius:14px;
+  background:#F8FAFC;border:1px solid #E2E8F0;
+}
+.ix-stat b{display:block;font-size:22px;font-weight:900;letter-spacing:-.5px;color:var(--dark);line-height:1.1;}
+.ix-stat span{display:block;font-size:10.5px;font-weight:700;color:#64748b;margin-top:3px;}
+.ix-stat.twk{background:#F3E5F5;border-color:#E1BEE7;}.ix-stat.twk b{color:#6A1B9A;}
+.ix-stat.tiu{background:#FFF3E0;border-color:#FFE0B2;}.ix-stat.tiu b{color:#BF360C;}
+.ix-stat.tkp{background:#E0F2F1;border-color:#B2DFDB;}.ix-stat.tkp b{color:#00695C;}
+.ix-badges{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px 14px;}
+.ix-badges .qci-badge{
+  text-align:center;padding:6px 4px;border-radius:10px;font-size:11px;font-weight:800;border:1px solid;
+}
+.ix-badges .qci-badge.twk{background:#F3E5F5;border-color:#E1BEE7;color:#6A1B9A;}
+.ix-badges .qci-badge.tiu{background:#FFF3E0;border-color:#FFE0B2;color:#BF360C;}
+.ix-badges .qci-badge.tkp{background:#E0F2F1;border-color:#B2DFDB;color:#00695C;}
+.ix-foot{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 14px 13px;border-top:1px dashed #E2E8F0;font-size:12px;font-weight:600;color:#64748b;
+}
+.ix-foot strong{color:var(--dark);font-weight:800;}
+.ix-list{padding:4px 14px;}
+.ix-card .ix-head + .ix-list{padding-top:0;padding-bottom:8px;}
+.ix-li{
+  display:flex;align-items:flex-start;gap:11px;padding:11px 0;
+  font-size:calc(13px * var(--fs-scale-umum));line-height:1.55;color:#334155;
+  border-top:1px dashed #E2E8F0;
+}
+.ix-li:first-child{border-top:none;}
+.ix-dot{
+  width:24px;height:24px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--ac-bg);color:var(--ac);font-size:12px;font-weight:900;
+}
+.ix-tips{--ac:#B7791F;--ac-bg:#FFF8E1;}
+.ix-steps{padding:0 14px 8px;}
+.ix-step{
+  display:flex;align-items:flex-start;gap:11px;padding:11px 0;
+  font-size:calc(13px * var(--fs-scale-umum));line-height:1.55;color:#334155;
+  border-top:1px dashed #E2E8F0;
+}
+.ix-step:first-child{border-top:none;}
+.ix-step i{
+  width:24px;height:24px;border-radius:50%;flex-shrink:0;font-style:normal;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+}
+.ix-copy{text-align:center;font-size:11.5px;font-weight:700;color:#94A3B8;margin:4px 0 8px;}
+
+/* Simulasi */
+#simulasiPage .btn-mulai-simulasi{
+  padding:16px;border-radius:18px;font-size:16px;font-weight:800;letter-spacing:.2px;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  box-shadow:0 14px 22px -10px rgba(0,0,0,.4);
+  box-shadow:0 14px 22px -10px color-mix(in srgb,var(--ac) 85%,transparent);
+  margin-top:4px;
+}
+
+/* Materi: daftar kategori */
+#materiPage .materi-cat-card{
+  --ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;
+  display:block;padding:0;min-height:0;width:100%;text-align:left;color:var(--dark);
+  background:#fff;border:1px solid #E6ECF8;border-radius:22px;overflow:hidden;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);margin-bottom:14px;
+}
+#materiPage .materi-cat-card.tiu{--ac:#D84315;--ac-l:#FF8A65;--ac-bg:#FBE9E7;}
+#materiPage .materi-cat-card.tkp{--ac:#00796B;--ac-l:#4DB6AC;--ac-bg:#E0F2F1;}
+#materiPage .materi-cat-card.twk,#materiPage .materi-cat-card.tiu,#materiPage .materi-cat-card.tkp{background:#fff;}
+#materiPage .mcc-head{
+  display:flex;align-items:center;gap:12px;padding:14px 14px 12px;
+  background:linear-gradient(180deg,var(--ac-bg) 0%,#fff 100%);
+}
+#materiPage .mc-icon{
+  width:46px;height:46px;border-radius:14px;flex-shrink:0;color:#fff;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  box-shadow:0 8px 14px -6px rgba(0,0,0,.35);
+  box-shadow:0 8px 14px -6px color-mix(in srgb,var(--ac) 75%,transparent);
+}
+#materiPage .mc-icon svg{width:26px;height:26px;}
+#materiPage .mcc-title{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;}
+#materiPage .mcc-title b{font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);}
+#materiPage .mcc-title small{font-size:11.5px;font-weight:600;color:#64748b;}
+#materiPage .mcc-pill{
+  white-space:nowrap;flex-shrink:0;font-size:11px;padding:5px 11px;
+  background:#fff;border:1px solid color-mix(in srgb,var(--ac) 30%,#fff);color:var(--ac);
+}
+#materiPage .mcc-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 14px 13px;border-top:1px dashed #E2E8F0;
+  font-size:12px;font-weight:600;color:#64748b;line-height:1.4;
+}
+#materiPage .mcc-foot .qci-go{font-size:12.5px;font-weight:800;color:var(--ac);white-space:nowrap;}
+
+/* Materi: isi bacaan */
+#materiContentPage .materi-full{
+  background:#fff;border:1px solid #E6ECF8;border-radius:22px;padding:18px 16px;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+  text-align:left;line-height:1.75;
+}
+#materiContentPage .materi-full h2{
+  color:var(--dark);font-size:18px;border-bottom:none;padding-bottom:0;
+}
+#materiContentPage .materi-full h3{
+  display:flex;align-items:center;gap:8px;
+  margin:22px -4px 10px;padding:10px 12px;border-left:none;border-radius:14px;
+  font-size:15px;font-weight:800;color:var(--ac);
+  background:linear-gradient(90deg,var(--ac-bg),#fff);
+  border:1px solid color-mix(in srgb,var(--ac) 14%,#fff);
+}
+#materiContentPage .materi-full > h3:first-child{margin-top:0;}
+#materiContentPage .materi-full h3 svg{width:18px;height:18px;flex-shrink:0;}
+#materiContentPage .materi-full h4{
+  display:flex;align-items:center;gap:8px;margin:16px 0 6px;
+  font-size:14px;font-weight:800;color:var(--dark);
+}
+#materiContentPage .materi-full h4::before{
+  content:'';width:4px;height:15px;border-radius:4px;flex-shrink:0;
+  background:linear-gradient(180deg,var(--ac-l),var(--ac));
+}
+#materiContentPage .materi-full strong{color:var(--ac);}
+#materiContentPage .materi-full ul,#materiContentPage .materi-full ol{margin-left:20px;}
+#materiContentPage .materi-full li::marker{color:var(--ac);font-weight:800;}
+#materiContentPage .materi-full hr{border:none;border-top:1px dashed #E2E8F0;margin:16px 0;}
+#materiContentPage .materi-full .info-box{
+  background:var(--ac-bg);border-left:4px solid var(--ac);border-radius:0 14px 14px 0;
+}
+#materiContentPage .materi-nav-bottom{margin-top:16px;}
+#materiContentPage .materi-nav-bottom button{
+  border-radius:16px;padding:13px;font-weight:800;
+  box-shadow:0 10px 16px -10px rgba(0,0,0,.45);
+}
+
+/* =====================================================================
+   STATISTIK, PROFIL, PENCAPAIAN — selaras dengan Pilih Latihan SKD.
+   ===================================================================== */
+#statistikPage{--ac:#3949AB;--ac-l:#7986CB;--ac-bg:#E8EAF6;}
+#akunPage{--ac:#1565C0;--ac-l:#42A5F5;--ac-bg:#E3F2FD;}
+#pencapaianPage{--ac:#F9A825;--ac-l:#FFCA28;--ac-bg:#FFF8E1;}
+#pencapaianPage .ix-tile{color:#fff;}
+#pencapaianPage .pc-bar-wrap{padding:0 16px 16px;}
+#pencapaianPage .pencapaian-progress-bar{height:14px;margin:0;background:#EEF2F9;}
+#pencapaianPage .pencapaian-progress-fill{
+  background:linear-gradient(90deg,#FFB300,#F57C00);font-size:9px;min-width:32px;
+}
+
+/* ---- Statistik ---- */
+#statistikPage .stats-overview-grid{gap:10px;margin-bottom:6px;}
+#statistikPage .stats-mini{
+  border-radius:18px;padding:14px 6px 12px;border:1px solid #E6ECF8;
+  box-shadow:0 8px 20px -12px rgba(21,101,192,.4);
+}
+#statistikPage .stats-mini .mi-icon{
+  width:40px;height:40px;border-radius:13px;margin:0 auto 9px;color:#fff;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  box-shadow:0 8px 14px -6px rgba(0,0,0,.3);
+  box-shadow:0 8px 14px -6px color-mix(in srgb,var(--ac) 75%,transparent);
+}
+#statistikPage .stats-mini:nth-child(2){--ac:#F9A825;--ac-l:#FFCA28;}
+#statistikPage .stats-mini:nth-child(3){--ac:#00796B;--ac-l:#4DB6AC;}
+#statistikPage .stats-mini .mi-icon svg{width:22px;height:22px;}
+#statistikPage .stats-mini .mi-val{font-size:22px;letter-spacing:-.5px;color:var(--dark);}
+#statistikPage .stats-mini .mi-lbl{font-size:10.5px;color:#64748b;}
+
+#statsBars,#statsWeak,#statsTrend,#statsHistory,#statsQCHistory{
+  background:#fff;border:1px solid #E6ECF8;border-radius:22px;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+  padding:0 14px 14px;margin-top:14px !important;overflow:hidden;
+}
+#statistikPage .stats-title{
+  margin:0 -14px 12px;padding:14px 14px 12px;font-size:16px;font-weight:800;letter-spacing:-.2px;
+  background:linear-gradient(180deg,var(--ac-bg) 0%,#fff 100%);
+}
+#statistikPage .stats-title .ic-inline svg{width:20px;height:20px;color:var(--ac);}
+#statsQCHistory .stats-title{margin-top:0 !important;}
+#statsBars .stats-bar-container{margin:12px 0;}
+#statsBars .stats-bar{height:20px;background:#EEF2F9;border:none;}
+#statsBars .stats-bar-label{font-size:12.5px;}
+#statistikPage .weak-intro{color:#64748b;font-weight:600;}
+#statistikPage .weak-card{border-radius:16px;border:1px solid #E6ECF8;border-left:4px solid #C62828;box-shadow:none;}
+#statistikPage .weak-card.ok{border-left-color:#00897B;}
+#statistikPage .weak-q{border-radius:12px;}
+#statistikPage .trend-wrap{border-radius:16px;border:1px solid #E6ECF8;box-shadow:none;}
+#statistikPage .stats-table{border-radius:14px;overflow:hidden;}
+#statistikPage .stats-table th{background:var(--ac-bg);color:var(--ac);font-weight:800;}
+#statistikPage .stats-table td{border-bottom:1px dashed #E2E8F0;}
+#statistikPage .stats-table tr:last-child td{border-bottom:none;}
+
+/* ---- Profil ---- */
+#akunPage .pf-hero{
+  border-radius:24px;padding:22px 18px 18px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0B3D91 0%,#1565C0 55%,#2196F3 100%);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 14px 32px -10px rgba(13,71,161,.65),inset 0 1px 0 rgba(255,255,255,.2);
+}
+#akunPage .pf-hero::after{
+  content:'';position:absolute;left:0;bottom:0;width:60%;height:55%;
+  background-image:radial-gradient(rgba(255,255,255,.16) 1.2px,transparent 1.5px);
+  background-size:14px 14px;
+  -webkit-mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  pointer-events:none;
+}
+#akunPage .pf-hero > *{position:relative;z-index:1;}
+#akunPage .pf-rank{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);}
+#akunPage .pf-rankbar{height:10px;background:rgba(8,32,86,.35);box-shadow:inset 0 1px 3px rgba(0,0,0,.3);}
+#akunPage .pf-rankfill{background:linear-gradient(90deg,#4DD0E1,#B2EBF2);box-shadow:0 0 10px rgba(128,222,234,.85);}
+#akunPage .pf-card{
+  border-radius:22px;padding:14px;border:1px solid #E6ECF8;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);margin-bottom:14px;
+}
+#akunPage .pf-card-title{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:12px;}
+#akunPage .pf-streak{
+  background:linear-gradient(180deg,#FFF3E0 0%,#fff 70%);
+}
+#akunPage .pf-streak-main b{font-size:26px;}
+#akunPage .pf-streak-best{background:#fff;border:1px solid #FFE0B2;color:#BF360C;font-weight:800;}
+#akunPage .pf-dot{background:#F8FAFC;}
+#akunPage .pf-ready-bar{height:12px;background:#EEF2F9;border:none;}
+#akunPage .pf-grid{gap:10px;margin-bottom:14px;}
+#akunPage .pf-tile{
+  border-radius:18px;padding:14px 6px 12px;border:1px solid #E6ECF8;
+  box-shadow:0 8px 20px -12px rgba(21,101,192,.4);
+}
+#akunPage .pf-tile-val{font-size:22px;letter-spacing:-.5px;color:var(--dark);}
+#akunPage .pf-tile:nth-child(1) .pf-tile-val{color:#B7791F;}
+#akunPage .pf-tile:nth-child(2) .pf-tile-val{color:#1565C0;}
+#akunPage .pf-tile:nth-child(3) .pf-tile-val{color:#00796B;}
+#akunPage .pf-tile:nth-child(4) .pf-tile-val{color:#EF6C00;}
+#akunPage .pf-tile:nth-child(5) .pf-tile-val{color:#C62828;}
+#akunPage .pf-tile:nth-child(6) .pf-tile-val{color:#7B1FA2;}
+#akunPage .pf-ach{background:linear-gradient(180deg,#FFF8E1 0%,#fff 70%);}
+#akunPage .pf-ach-bar{height:10px;background:#EEF2F9;border:none;}
+#akunPage .pf-ach-icons span{border-radius:12px;width:34px;height:34px;}
+#akunPage .pf-ach-icons .none{width:auto;height:auto;border-radius:0;}
+#akunPage .pf-menu{padding:4px 14px;}
+#akunPage .pf-row{border-bottom:1px dashed #E2E8F0;padding:12px 0;}
+#akunPage .pf-row:last-child{border-bottom:none;}
+#akunPage .pf-ic{
+  width:34px;height:34px;border-radius:11px;background:var(--ac-bg);color:var(--ac);font-size:16px;
+}
+#akunPage .pf-ic svg{width:18px !important;height:18px !important;}
+#akunPage .pf-row .menu-chevron{color:#94A3B8;}
+#akunPage .btn-logout{border-radius:16px;}
+
+/* ---- Pencapaian ---- */
+#pencapaianPage .pencapaian-tier-label{
+  border-radius:20px;font-size:13px;font-weight:800;letter-spacing:.1px;margin:18px 0 10px;
+  border:1px solid rgba(0,0,0,.06);
+}
+#pencapaianPage .pencapaian-grid{gap:10px;}
+#pencapaianPage .badge-card{
+  border-radius:20px;padding:16px 10px 12px;
+  box-shadow:0 10px 24px -16px rgba(21,101,192,.55);
+}
+#pencapaianPage .badge-card .badge-icon{
+  width:50px;height:50px;border-radius:16px;margin:0 auto 8px;height:50px;
+  background:#fff;border:1px solid #E6ECF8;
+}
+#pencapaianPage .badge-card.unlocked .badge-icon{
+  background:#fff;box-shadow:0 8px 14px -8px rgba(0,0,0,.35);
+}
+#pencapaianPage .badge-card .badge-icon svg{width:28px;height:28px;}
+#pencapaianPage .badge-card .badge-name{font-size:13px;font-weight:800;letter-spacing:-.1px;}
+#pencapaianPage .badge-card .badge-desc{font-size:10.5px;color:#64748b;font-weight:600;}
+#pencapaianPage .badge-card.locked{border-style:dashed;}
+#pencapaianPage .badge-unlocked-check{font-weight:800;}
+
+/* =====================================================================
+   SISA HALAMAN — Pengaturan, Backup, Bank Soal, Hasil, Evaluasi, Latihan,
+   Kuis Cepat (main & hasil), Notifikasi, Login. Hanya mengubah tampilan.
+   ===================================================================== */
+#pengaturanPage,#backupPage,#reviewPage,#resultPage,#evaluasiListPage,#quizPage,#quizCepatPlayPage,#quizCepatResultPage{
+  --ac:#1565C0;--ac-l:#42A5F5;--ac-bg:#E3F2FD;
+}
+#pengaturanPage{--ac:#455A64;--ac-l:#78909C;--ac-bg:#ECEFF1;}
+#backupPage{--ac:#1565C0;--ac-l:#42A5F5;--ac-bg:#E3F2FD;}
+#reviewPage{--ac:#C62828;--ac-l:#EF5350;--ac-bg:#FFEBEE;}
+
+/* ---- Pengaturan Sistem ---- */
+#pengaturanPage .akun-info-card{
+  border-radius:22px;padding:6px 14px;border:1px solid #E6ECF8;margin-bottom:14px !important;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+}
+#pengaturanPage .fontsize-block{padding:14px 0;border-bottom:1px dashed #E2E8F0;}
+#pengaturanPage .fontsize-block:last-child{border-bottom:none;}
+#pengaturanPage .fontsize-block:first-child{padding-top:12px;}
+#pengaturanPage .fontsize-head-left{font-size:calc(14px * var(--fs-scale-umum));font-weight:800;color:var(--dark);}
+#pengaturanPage .fontsize-preview-badge{
+  background:#fff;border:1px solid #B3D4F5;color:var(--blue);padding:4px 11px;
+}
+#pengaturanPage .fontsize-row{gap:6px;}
+#pengaturanPage .fontsize-btn{border-radius:14px;border:1.5px solid #E2E8F0;padding:9px 2px;}
+#pengaturanPage .fontsize-btn.active{
+  background:linear-gradient(135deg,#1565C0,#42A5F5);border-color:transparent;
+  box-shadow:0 10px 16px -10px rgba(21,101,192,.7);
+}
+#pengaturanPage .fontsize-example{border-radius:14px;background:#F8FAFC;border:1px dashed #CBD5E1;}
+#pengaturanPage .akun-row{border-bottom:none;padding:12px 0;}
+
+/* ---- Backup ---- */
+#backupPage .bk-hero{
+  border-radius:24px;padding:22px 18px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0B3D91 0%,#1565C0 55%,#2196F3 100%);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 14px 32px -10px rgba(13,71,161,.65),inset 0 1px 0 rgba(255,255,255,.2);
+}
+#backupPage .bk-hero::after{
+  content:'';position:absolute;left:0;bottom:0;width:60%;height:55%;
+  background-image:radial-gradient(rgba(255,255,255,.16) 1.2px,transparent 1.5px);
+  background-size:14px 14px;
+  -webkit-mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  pointer-events:none;
+}
+#backupPage .bk-hero > *{position:relative;z-index:1;}
+#backupPage .bk-hero-last{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);}
+#backupPage .pf-card{
+  border-radius:22px;padding:14px;border:1px solid #E6ECF8;margin-bottom:14px;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+}
+#backupPage .pf-card-title{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:8px;}
+#backupPage .bk-btn{border-radius:16px;padding:13px 10px;border:1.5px solid #E2E8F0;font-weight:800;}
+#backupPage .bk-btn.primary{
+  background:linear-gradient(135deg,#1565C0,#42A5F5);border-color:transparent;
+  box-shadow:0 10px 16px -10px rgba(21,101,192,.75);
+}
+
+/* ---- Bank Soal (Salah & Bookmark) ---- */
+#reviewPage .btn-mulai-review{
+  border-radius:18px;padding:15px;font-size:15px;font-weight:800;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  box-shadow:0 14px 22px -10px rgba(0,0,0,.4);
+  box-shadow:0 14px 22px -10px color-mix(in srgb,var(--ac) 85%,transparent);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+#reviewPage .review-item{
+  border-radius:22px;padding:0;overflow:hidden;border:1px solid #E6ECF8;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);margin-bottom:14px;
+}
+#reviewPage .review-item-head{
+  padding:12px 14px 8px;margin-bottom:0;
+  background:linear-gradient(180deg,#F8FAFC 0%,#fff 100%);
+}
+#reviewPage .review-item-txt{padding:0 14px;margin-bottom:10px;}
+#reviewPage .review-item-foot{padding:10px 14px 12px;border-top:1px dashed #E2E8F0;}
+#reviewPage .review-empty{
+  background:#fff;border:1px dashed #CBD5E1;border-radius:22px;margin:0;padding:34px 16px;
+}
+#reviewPage .btn-reset{
+  background:#FFF5F5;color:#C62828;border:1px solid #FFCDD2;border-radius:16px;font-size:13.5px;margin-top:10px;
+}
+
+/* ---- Hasil latihan ---- */
+#resultPage .result-hero{
+  border-radius:24px;padding:24px 22px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0B3D91 0%,#1565C0 55%,#2196F3 100%);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 14px 32px -10px rgba(13,71,161,.65),inset 0 1px 0 rgba(255,255,255,.2);
+}
+#resultPage .result-hero::after{
+  content:'';position:absolute;left:0;bottom:0;width:60%;height:55%;
+  background-image:radial-gradient(rgba(255,255,255,.16) 1.2px,transparent 1.5px);
+  background-size:14px 14px;
+  -webkit-mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  pointer-events:none;
+}
+#resultPage .result-hero > *{position:relative;z-index:1;}
+#resultPage .result-hero h2,#resultPage .result-hero p{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;width:100%;}
+#resultPage .result-total{letter-spacing:-1px;}
+#resultPage .result-detail-card{
+  border-radius:22px;padding:0 14px 8px;overflow:hidden;border:1px solid #E6ECF8;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);margin-bottom:14px;
+}
+#resultPage .result-detail-card h3{
+  margin:0 -14px 8px;padding:14px;font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);
+  background:linear-gradient(180deg,var(--ac-bg) 0%,#fff 100%);
+}
+#resultPage .result-table td{border-bottom:1px dashed #E2E8F0;}
+#resultPage .pg-grid{gap:10px;margin:0 0 14px;}
+#resultPage .pg-card{
+  border-radius:18px;padding:12px 6px;border:1px solid #E6ECF8;
+  box-shadow:0 8px 20px -12px rgba(21,101,192,.4);
+}
+#resultPage .pg-card.pass{background:#E0F2F1;border-color:#B2DFDB;}
+#resultPage .pg-card.fail{background:#FFEBEE;border-color:#FFCDD2;}
+#resultPage .pass-banner{border-radius:18px;padding:14px;border:1px solid transparent;}
+#resultPage .pass-banner.pass{border-color:#B2DFDB;}
+#resultPage .pass-banner.fail{border-color:#FFCDD2;}
+#resultPage .result-btns button,#quizCepatResultPage .qc-result-btns button{
+  border-radius:16px;padding:14px 12px;font-weight:800;
+  box-shadow:0 12px 18px -10px rgba(0,0,0,.4);
+}
+#resultPage .btn-close-eval{border-radius:16px;}
+
+/* ---- Evaluasi ---- */
+#evaluasiListPage .eval-chip{border-radius:20px;border:1.5px solid #E2E8F0;}
+#evaluasiListPage .eval-chip.active,#resultPage .eval-chip.active{
+  background:linear-gradient(135deg,#1565C0,#42A5F5);border-color:transparent;
+}
+#evaluasiListPage .score-pill,#resultPage .score-pill{border:1px solid rgba(0,0,0,.05);}
+.evaluasi-item{
+  border-radius:20px;padding:14px;border:1px solid #E6ECF8;border-left-width:5px;
+  box-shadow:0 10px 24px -16px rgba(21,101,192,.5);
+}
+.evaluasi-item.benar{border-color:#B2DFDB;border-left-color:#00897B;}
+.evaluasi-item.salah{border-color:#FFCDD2;border-left-color:#C62828;}
+.evaluasi-item.belum{border-color:#FFE0B2;border-left-color:#F57C00;}
+.evaluasi-item .pembahasan-box{border-radius:14px;}
+.evaluasi-item .jawaban-user,.evaluasi-item .jawaban-benar{border-radius:12px;}
+.eval-opt{border-radius:14px;}
+.eval-bm{border-radius:16px;}
+
+/* ---- Halaman mengerjakan soal (Latihan / Simulasi) ---- */
+#quizPage .quiz-card{
+  border-radius:22px;border:1px solid #E6ECF8;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+}
+#quizPage .option{
+  border-radius:16px;border:1.5px solid #E2E8F0;
+}
+#quizPage .option:hover{border-color:var(--ac-l);}
+#quizPage .choice-letter{
+  background:linear-gradient(135deg,#1565C0,#42A5F5);
+  box-shadow:0 6px 10px -5px rgba(21,101,192,.7);
+}
+#quizPage .option input:checked+.choice-letter{background:linear-gradient(135deg,#00796B,#4DB6AC);}
+#quizPage .option:has(input:checked){border-color:#00897B;}
+#quizPage .btn-prev,#quizPage .btn-next,#quizPage .btn-finish{
+  border-radius:16px;font-weight:800;box-shadow:0 10px 16px -10px rgba(0,0,0,.4);
+}
+#quizPage .btn-prev{box-shadow:none;border:1px solid #E2E8F0;}
+
+/* ---- Kuis Cepat: main ---- */
+#quizCepatPlayPage .qc-play-header{
+  border-radius:22px;border:1px solid #E6ECF8;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+}
+#quizCepatPlayPage .qc-play-cat{border:1px solid rgba(0,0,0,.05);}
+#quizCepatPlayPage .qc-progress-bar{height:9px;background:#E2E8F0;}
+#quizCepatPlayPage .qc-question-card{
+  border-radius:22px;border:1px solid #E6ECF8;
+  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
+}
+#quizCepatPlayPage .qc-opt{border-radius:16px;border:1.5px solid #E2E8F0;}
+#quizCepatPlayPage .qc-opt.selected{border-color:var(--blue);}
+#quizCepatPlayPage .qc-opt.correct{border-color:#00897B;}
+#quizCepatPlayPage .qc-opt.wrong{border-color:#C62828;}
+#quizCepatPlayPage .qc-opt-letter{border-width:0;background:#EEF2F9;}
+#quizCepatPlayPage .qc-opt.selected .qc-opt-letter{background:var(--blue);}
+#quizCepatPlayPage .qc-opt.correct .qc-opt-letter{background:#00897B;}
+#quizCepatPlayPage .qc-opt.wrong .qc-opt-letter{background:#C62828;}
+#quizCepatPlayPage .qc-feedback{border-radius:16px;}
+#quizCepatPlayPage .btn-qc-next{border-radius:18px;padding:15px;font-weight:800;box-shadow:0 14px 22px -10px rgba(0,0,0,.4);}
+
+/* ---- Kuis Cepat: hasil ---- */
+#quizCepatResultPage .qc-result-header{
+  border-radius:24px;padding:24px 22px;position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 14px 32px -10px rgba(198,40,40,.6),inset 0 1px 0 rgba(255,255,255,.2);
+}
+#quizCepatResultPage .qc-result-header::after{
+  content:'';position:absolute;left:0;bottom:0;width:60%;height:55%;
+  background-image:radial-gradient(rgba(255,255,255,.16) 1.2px,transparent 1.5px);
+  background-size:14px 14px;
+  -webkit-mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  mask-image:linear-gradient(45deg,#000 0%,transparent 80%);
+  pointer-events:none;
+}
+#quizCepatResultPage .qc-result-header > *{position:relative;z-index:1;}
+#quizCepatResultPage .qc-result-stats{gap:10px;}
+#quizCepatResultPage .qc-rs{
+  border-radius:18px;padding:14px 6px 12px;border:1px solid #E6ECF8;
+  box-shadow:0 8px 20px -12px rgba(21,101,192,.4);
+}
+#quizCepatResultPage .qc-rs .rs-val{font-size:22px;letter-spacing:-.5px;color:var(--dark);}
+#quizCepatResultPage .qc-rs:nth-child(1) .rs-val{color:#00796B;}
+#quizCepatResultPage .qc-rs:nth-child(2) .rs-val{color:#C62828;}
+#quizCepatResultPage .qc-rs:nth-child(3) .rs-val{color:#1565C0;}
+
+/* ---- Panel notifikasi ---- */
+.notif-panel-header{
+  background:linear-gradient(135deg,#0B3D91 0%,#1565C0 55%,#2196F3 100%);
+  position:relative;overflow:hidden;
+}
+.notif-item{
+  border-radius:18px;border:1px solid #E6ECF8;background:#fff;padding:12px;
+  box-shadow:0 8px 20px -14px rgba(21,101,192,.5);
+}
+.notif-item.unread{background:linear-gradient(180deg,#E3F2FD 0%,#fff 100%);border-color:#BBDEFB;}
+.notif-item-icon{
+  width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  background:#FFF8E1;font-size:20px;margin-top:0;
+}
+.notif-item-icon svg{width:24px;height:24px;}
+.notif-clear-btn{border-top:1px dashed #E2E8F0;}
+.notif-clear-btn button{border-radius:16px;border:1px solid #FFCDD2;padding:12px;}
+
+/* ---- Login ---- */
+.login-box{border-radius:26px;box-shadow:0 24px 50px -16px rgba(13,71,161,.55);}
+.login-icon-wrap .big-icon{
+  width:76px;height:76px;margin:0 auto 12px !important;border-radius:24px;
+  display:flex !important;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#1565C0,#42A5F5);color:#fff !important;
+  box-shadow:0 14px 22px -10px rgba(21,101,192,.7);
+}
+.login-icon-wrap .big-icon svg{width:42px;height:42px;}
+.field-wrap input{border-radius:16px;}
+.btn-masuk{border-radius:18px;font-weight:800;box-shadow:0 14px 22px -10px rgba(21,101,192,.7);}
+
+/* =====================================================================
+   MODAL & DAFTAR SOAL — selaras dengan kartu lain.
+   ===================================================================== */
+.modal-backdrop{background:rgba(15,23,42,.6);}
+.modal-box{
+  --ac:#1565C0;--ac-l:#42A5F5;--ac-bg:#E3F2FD;
+  border-radius:26px;padding:0 0 22px;overflow:hidden;
+  border:1px solid #E6ECF8;
+  box-shadow:0 24px 50px -16px rgba(13,71,161,.55);
+}
+#resetModal .modal-box,#exitAppModal .modal-box,#clearReviewModal .modal-box{--ac:#C62828;--ac-l:#EF5350;--ac-bg:#FFEBEE;}
+#logoutModal .modal-box{--ac:#EF6C00;--ac-l:#FFB74D;--ac-bg:#FFF3E0;}
+#restoreModal .modal-box{--ac:#00796B;--ac-l:#4DB6AC;--ac-bg:#E0F2F1;}
+#gantiPasswordModal .modal-box{--ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;}
+.modal-box > div:first-child:not(.modal-btns){
+  width:100% !important;height:auto;margin:0 0 14px !important;padding:22px 0 14px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,var(--ac-bg) 0%,#fff 100%);
+  font-size:0 !important;line-height:1;
+}
+.modal-box > div:first-child:not(.modal-btns) svg{
+  box-sizing:content-box;width:30px;height:30px;padding:15px;border-radius:20px;color:#fff;
+  background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  box-shadow:0 12px 20px -10px rgba(0,0,0,.4);
+  box-shadow:0 12px 20px -10px color-mix(in srgb,var(--ac) 80%,transparent);
+}
+.modal-box h3,.modal-box p,.modal-box .modal-btns,.modal-box .field-group,.modal-box > input,.modal-box > textarea,.modal-box > button,.modal-box > label{
+  margin-left:22px;margin-right:22px;
+}
+.modal-box > h3:first-child{padding-top:22px;}
+.modal-box h3{letter-spacing:-.2px;}
+.modal-box p{color:#64748b;font-weight:500;}
+.modal-box .modal-btns{width:auto;}
+.modal-btns button{border-radius:16px;padding:13px 10px;font-weight:800;}
+.btn-modal-danger{box-shadow:0 12px 18px -10px rgba(198,40,40,.7);}
+.btn-modal-cancel{border:1px solid #E2E8F0;}
+.modal-box > textarea,.modal-box > .bk-text,.modal-box > button,.modal-box > input{width:calc(100% - 44px) !important;box-sizing:border-box;margin-left:22px !important;margin-right:22px !important;}
+.modal-box .bk-btn{border-radius:16px;}
+.modal-box .bk-text{border-radius:16px;}
+.modal-box input{border-radius:14px;}
+
+/* ---- Daftar Soal (sidebar) ---- */
+.sidebar{border-radius:26px 0 0 26px;box-shadow:-14px 0 40px -16px rgba(13,71,161,.45);overflow:hidden;}
+.sidebar-header{
+  background:linear-gradient(135deg,#0B3D91 0%,#1565C0 55%,#2196F3 100%);
+  padding:18px 18px 16px;
+}
+.soal-grid{gap:9px;padding:16px 14px;}
+.grid-soal{
+  border-radius:14px;border:1px solid #E6ECF8;border-left-width:1px;
+  box-shadow:0 8px 14px -10px rgba(21,101,192,.5);font-weight:800;position:relative;
+}
+.grid-soal.answered{background:linear-gradient(135deg,#00796B,#4DB6AC);border-color:transparent;}
+.grid-soal.unanswered{background:#fff;color:#C62828;border:1.5px solid #FFCDD2;box-shadow:none;}
+.grid-soal.active{background:linear-gradient(135deg,#1565C0,#42A5F5);border-color:transparent;box-shadow:0 0 0 3px rgba(21,101,192,.25);}
+.grid-soal.twk,.grid-soal.tiu,.grid-soal.tkp,
+.grid-soal.active.twk,.grid-soal.active.tiu,.grid-soal.active.tkp{border-left-width:1px;}
+.grid-soal::after{
+  content:'';position:absolute;left:50%;bottom:4px;width:14px;height:3px;border-radius:3px;
+  transform:translateX(-50%);background:#CBD5E1;
+}
+.grid-soal.twk::after{background:#BA68C8;}
+.grid-soal.tiu::after{background:#FF8A65;}
+.grid-soal.tkp::after{background:#4DB6AC;}
+.grid-soal.answered::after,.grid-soal.active::after{background:rgba(255,255,255,.75);}
 
 </style>
 </head>
@@ -1830,6 +2454,20 @@ input:checked+.slider:before{transform:translateX(22px);}
         </div>
         <div class="fontsize-block">
           <div class="fontsize-head">
+            <span class="fontsize-head-left">↕️ Jarak Antar Baris Soal</span>
+            <span class="fontsize-preview-badge" id="lhSoalBadge">Normal</span>
+          </div>
+          <div class="fontsize-row" id="lhSoalRow">
+            <button type="button" class="fontsize-btn" data-lh="1.2"><span class="fb-lh" style="--g:1px"><i></i><i></i><i></i></span><span class="fb-l">Rapat</span></button>
+            <button type="button" class="fontsize-btn" data-lh="1.4"><span class="fb-lh" style="--g:2px"><i></i><i></i><i></i></span><span class="fb-l">Agak Rapat</span></button>
+            <button type="button" class="fontsize-btn" data-lh="1.65"><span class="fb-lh" style="--g:3px"><i></i><i></i><i></i></span><span class="fb-l">Normal</span></button>
+            <button type="button" class="fontsize-btn" data-lh="1.85"><span class="fb-lh" style="--g:4px"><i></i><i></i><i></i></span><span class="fb-l">Longgar</span></button>
+            <button type="button" class="fontsize-btn" data-lh="2.05"><span class="fb-lh" style="--g:5px"><i></i><i></i><i></i></span><span class="fb-l">X-Longgar</span></button>
+          </div>
+          <div class="fontsize-example lh-ex">Contoh: soal dan pilihan jawaban yang panjang akan terlihat lebih rapat atau lebih renggang antar barisnya sesuai pengaturan ini, sehingga lebih nyaman dibaca.</div>
+        </div>
+        <div class="fontsize-block">
+          <div class="fontsize-head">
             <span class="fontsize-head-left">🔡 Ukuran Font Lainnya</span>
             <span class="fontsize-preview-badge" id="fsUmumBadge">Sedang</span>
           </div>
@@ -2046,11 +2684,22 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div style="height:54px;"></div>
     
     <!-- KONTEN -->
-    <div style="padding:0 16px;">
-      <p style="color:var(--gray);font-size:13px;margin-bottom:14px;">Pilih kategori materi:</p>
-      <button class="materi-cat-card twk" onclick="playSound('menu');showMateri('twk')"><span class="mc-icon" data-icon="icon_twkm"></span><span>TWK</span><span class="mc-desc">Tes Wawasan Kebangsaan</span></button>
-      <button class="materi-cat-card tiu" onclick="playSound('menu');showMateri('tiu')"><span class="mc-icon" data-icon="icon_tium"></span><span>TIU</span><span class="mc-desc">Tes Intelegensi Umum</span></button>
-      <button class="materi-cat-card tkp" onclick="playSound('menu');showMateri('tkp')"><span class="mc-icon" data-icon="icon_tkpm"></span><span>TKP</span><span class="mc-desc">Tes Karakteristik Pribadi</span></button>
+    <div style="padding:16px;">
+      <div class="ix-section">Pilih Kategori Materi</div>
+      <div class="materi-cats">
+        <div class="materi-cat-card twk" onclick="playSound('menu');showMateri('twk')">
+          <div class="mcc-head"><span class="mc-icon" data-icon="icon_twkm"></span><span class="mcc-title"><b>TWK</b><small>Tes Wawasan Kebangsaan</small></span><span class="status-pill mcc-pill">Materi</span></div>
+          <div class="mcc-foot"><span>Nasionalisme, Pancasila, UUD 1945, dan lainnya</span><span class="qci-go">Baca ›</span></div>
+        </div>
+        <div class="materi-cat-card tiu" onclick="playSound('menu');showMateri('tiu')">
+          <div class="mcc-head"><span class="mc-icon" data-icon="icon_tium"></span><span class="mcc-title"><b>TIU</b><small>Tes Intelegensi Umum</small></span><span class="status-pill mcc-pill">Materi</span></div>
+          <div class="mcc-foot"><span>Verbal, numerik, dan figural</span><span class="qci-go">Baca ›</span></div>
+        </div>
+        <div class="materi-cat-card tkp" onclick="playSound('menu');showMateri('tkp')">
+          <div class="mcc-head"><span class="mc-icon" data-icon="icon_tkpm"></span><span class="mcc-title"><b>TKP</b><small>Tes Karakteristik Pribadi</small></span><span class="status-pill mcc-pill">Materi</span></div>
+          <div class="mcc-foot"><span>Pelayanan publik, jejaring kerja, integritas</span><span class="qci-go">Baca ›</span></div>
+        </div>
+      </div>
     </div>
     
   </div>
@@ -2116,9 +2765,14 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div style="height:54px;"></div>
     
     <!-- PROGRESS BAR -->
-    <div style="padding:12px 16px 0;">
-      <p style="color:var(--gray);font-size:13px;margin-bottom:6px;">Kumpulkan semua badge dengan terus berlatih!</p>
-      <div class="pencapaian-progress-bar"><div class="pencapaian-progress-fill" id="pencapaianProgressFill" style="width:0%">0%</div></div>
+    <div style="padding:16px 16px 0;">
+      <div class="ix-card pc-top">
+        <div class="ix-head">
+          <span class="ix-tile" data-icon="icon_menu_pencapaian"></span>
+          <span class="ix-title"><b>Koleksi Badge</b><small>Kumpulkan semua badge dengan terus berlatih!</small></span>
+        </div>
+        <div class="pc-bar-wrap"><div class="pencapaian-progress-bar"><div class="pencapaian-progress-fill" id="pencapaianProgressFill" style="width:0%">0%</div></div></div>
+      </div>
     </div>
     
     <!-- KONTEN SCROLL -->
@@ -2141,13 +2795,27 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div style="height:54px;"></div>
     
     <!-- KONTEN -->
-    <div style="padding:0 16px;">
-      <div class="simulasi-info-card">
-        <strong>⚠️ Perhatian!</strong><br>
-        • 110 soal (30 TWK + 35 TIU + 45 TKP)<br>
-        • Waktu: <strong>100 menit</strong> (tidak bisa pause)<br>
-        • Soal diambil dari <strong>semua paket</strong> yang tersedia<br>
-        • Hasil muncul setelah waktu habis atau semua soal selesai
+    <div style="padding:16px;" class="sim-wrap">
+      <div class="ix-card sim-hero">
+        <div class="ix-head">
+          <span class="ix-tile" data-icon="icon_menu_simulasi"></span>
+          <span class="ix-title"><b>Simulasi CAT</b><small>Suasana seperti ujian SKD yang asli</small></span>
+          <span class="status-pill ix-pill">Mode Ujian</span>
+        </div>
+        <div class="ix-stats">
+          <div class="ix-stat"><b>110</b><span>Soal</span></div>
+          <div class="ix-stat"><b>100</b><span>Menit</span></div>
+          <div class="ix-stat"><b>550</b><span>Skor Maks</span></div>
+        </div>
+        <div class="ix-badges">
+          <span class="qci-badge twk">TWK: 30</span><span class="qci-badge tiu">TIU: 35</span><span class="qci-badge tkp">TKP: 45</span>
+        </div>
+      </div>
+      <div class="ix-section">Sebelum Memulai</div>
+      <div class="ix-card ix-list">
+        <div class="ix-li"><span class="ix-dot">⏱</span><span>Waktu <strong>100 menit</strong> dan <strong>tidak bisa dijeda</strong>.</span></div>
+        <div class="ix-li"><span class="ix-dot">🗂</span><span>Soal diambil dari <strong>semua paket</strong> yang tersedia.</span></div>
+        <div class="ix-li"><span class="ix-dot">📊</span><span>Hasil muncul setelah waktu habis atau semua soal selesai.</span></div>
       </div>
       <button class="btn-mulai-simulasi" onclick="playSound('start');mulaiSimulasi()"><span data-icon="icon_simulasi_mulai"></span> MULAI SIMULASI UJIAN</button>
     </div>
@@ -2169,24 +2837,34 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div style="height:54px;"></div>
     
     <!-- KONTEN -->
-    <div style="padding:0 16px;">
-      <div class="info-block blue-bg">
-        <p><strong>📌 Cara Menggunakan:</strong></p>
-        <p>1. Pilih salah satu soal latihan yang tersedia.</p>
-        <p>2. Baca soal dengan teliti lalu pilih jawaban yang benar.</p>
-        <p>3. Gunakan tombol Next dan Previous untuk berpindah soal.</p>
-        <p>4. Tekan tombol Selesai untuk melihat hasil nilai.</p>
-        <p>5. Setiap soal memiliki timer 100 menit (bisa dimatikan).</p>
-        <p>6. Gunakan 📋 Daftar Soal untuk navigasi cepat.</p>
-        <p>7. Menu <strong>⚡ Kuis Cepat</strong>: jawab soal TWK/TIU/TKP sebanyak-banyaknya dalam 1–10 menit.</p>
-        <p>8. Menu <strong>Pencapaian</strong> untuk melihat badge yang sudah diraih.</p>
+    <div style="padding:16px;">
+      <div class="ix-card">
+        <div class="ix-head">
+          <span class="ix-tile" data-icon="icon_menu_petunjuk"></span>
+          <span class="ix-title"><b>Cara Menggunakan</b><small>8 langkah singkat memulai belajar</small></span>
+        </div>
+        <div class="ix-steps">
+          <div class="ix-step"><i>1</i><span>Pilih salah satu soal latihan yang tersedia.</span></div>
+          <div class="ix-step"><i>2</i><span>Baca soal dengan teliti lalu pilih jawaban yang benar.</span></div>
+          <div class="ix-step"><i>3</i><span>Gunakan tombol Next dan Previous untuk berpindah soal.</span></div>
+          <div class="ix-step"><i>4</i><span>Tekan tombol Selesai untuk melihat hasil nilai.</span></div>
+          <div class="ix-step"><i>5</i><span>Setiap soal memiliki timer 100 menit (bisa dimatikan).</span></div>
+          <div class="ix-step"><i>6</i><span>Gunakan 📋 Daftar Soal untuk navigasi cepat.</span></div>
+          <div class="ix-step"><i>7</i><span>Menu <strong>⚡ Kuis Cepat</strong>: jawab soal TWK/TIU/TKP sebanyak-banyaknya dalam 1–10 menit.</span></div>
+          <div class="ix-step"><i>8</i><span>Menu <strong>Pencapaian</strong> untuk melihat badge yang sudah diraih.</span></div>
+        </div>
       </div>
-      <div class="info-block yellow-bg">
-        <p><strong>💡 Tips:</strong></p>
-        <p>• Kerjakan soal dengan tenang dan fokus</p>
-        <p>• Manfaatkan fitur evaluasi untuk pembahasan lengkap</p>
-        <p>• Pelajari materi terlebih dahulu sebelum mengerjakan soal</p>
-        <p>• Gunakan Kuis Cepat untuk melatih kecepatan menjawab</p>
+      <div class="ix-card ix-tips">
+        <div class="ix-head">
+          <span class="ix-tile tip">💡</span>
+          <span class="ix-title"><b>Tips Belajar</b><small>Supaya latihan lebih efektif</small></span>
+        </div>
+        <div class="ix-list">
+          <div class="ix-li"><span class="ix-dot">✓</span><span>Kerjakan soal dengan tenang dan fokus</span></div>
+          <div class="ix-li"><span class="ix-dot">✓</span><span>Manfaatkan fitur evaluasi untuk pembahasan lengkap</span></div>
+          <div class="ix-li"><span class="ix-dot">✓</span><span>Pelajari materi terlebih dahulu sebelum mengerjakan soal</span></div>
+          <div class="ix-li"><span class="ix-dot">✓</span><span>Gunakan Kuis Cepat untuk melatih kecepatan menjawab</span></div>
+        </div>
       </div>
     </div>
     
@@ -2207,30 +2885,47 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div style="height:54px;"></div>
     
     <!-- KONTEN -->
-    <div style="padding:0 16px;">
-      <div class="info-block blue-bg">
-        <p><strong>📱 Aplikasi Latihan SKD</strong></p>
-        <p>Aplikasi ini dirancang untuk membantu calon peserta CPNS mempersiapkan diri menghadapi Seleksi Kompetensi Dasar (SKD) dengan berlatih soal TWK, TIU, dan TKP secara mandiri, efektif, dan terarah.</p>
+    <div style="padding:16px;">
+      <div class="ix-card">
+        <div class="ix-head">
+          <span class="ix-tile" data-icon="icon_login_app"></span>
+          <span class="ix-title"><b>Latihan SKD CPNS</b><small>Versi 4.4</small></span>
+          <span class="status-pill ix-pill">Gratis</span>
+        </div>
+        <p class="ix-text">Dirancang untuk membantu calon peserta CPNS mempersiapkan diri menghadapi Seleksi Kompetensi Dasar (SKD) dengan berlatih soal TWK, TIU, dan TKP secara mandiri, efektif, dan terarah.</p>
       </div>
-      <div class="info-block green-bg">
-        <p><strong>⭐ Fitur Unggulan:</strong></p>
-        <p>• Pengacakan pilihan jawaban setiap soal dibuka</p>
-        <p>• Timer 100 menit (dapat dimatikan/dinyalakan)</p>
-        <p>• Sidebar grid soal untuk navigasi cepat</p>
-        <p>• Evaluasi jawaban dengan pembahasan detail</p>
-        <p>• Materi TWK, TIU, TKP lengkap</p>
-        <p>• Grafik progress skor per paket</p>
-        <p>• Pencapaian/Badge 7 Tier dari Pemula hingga Legendaris</p>
-        <p>• ⚡ Kuis Cepat: jawab soal sebanyak mungkin dalam 1–10 menit</p>
+
+      <div class="ix-section">Passing Grade</div>
+      <div class="ix-card">
+        <div class="ix-stats three">
+          <div class="ix-stat twk"><b>65</b><span>TWK</span></div>
+          <div class="ix-stat tiu"><b>80</b><span>TIU</span></div>
+          <div class="ix-stat tkp"><b>166</b><span>TKP</span></div>
+        </div>
       </div>
-      <div class="info-block gray-bg">
-        <p><strong>📊 Passing Grade:</strong></p>
-        <p>• TWK: 65 | TIU: 80 | TKP: 166</p>
-        <p><strong>📋 Komposisi Soal:</strong></p>
-        <p>• TWK: 30 soal | TIU: 35 soal | TKP: 45 soal</p>
-        <p>• Total: 110 soal | Skor Maksimal: 550</p>
-        <p><strong>Version 4.4 | © 2026 Latihan SKD</strong></p>
+
+      <div class="ix-section">Komposisi Soal</div>
+      <div class="ix-card">
+        <div class="ix-stats three">
+          <div class="ix-stat twk"><b>30</b><span>Soal TWK</span></div>
+          <div class="ix-stat tiu"><b>35</b><span>Soal TIU</span></div>
+          <div class="ix-stat tkp"><b>45</b><span>Soal TKP</span></div>
+        </div>
+        <div class="ix-foot"><span>Total <strong>110 soal</strong></span><span>Skor maksimal <strong>550</strong></span></div>
       </div>
+
+      <div class="ix-section">Fitur Unggulan</div>
+      <div class="ix-card ix-list">
+        <div class="ix-li"><span class="ix-dot">✓</span><span>Pengacakan pilihan jawaban setiap soal dibuka</span></div>
+        <div class="ix-li"><span class="ix-dot">✓</span><span>Timer 100 menit (dapat dimatikan/dinyalakan)</span></div>
+        <div class="ix-li"><span class="ix-dot">✓</span><span>Sidebar grid soal untuk navigasi cepat</span></div>
+        <div class="ix-li"><span class="ix-dot">✓</span><span>Evaluasi jawaban dengan pembahasan detail</span></div>
+        <div class="ix-li"><span class="ix-dot">✓</span><span>Materi TWK, TIU, TKP lengkap</span></div>
+        <div class="ix-li"><span class="ix-dot">✓</span><span>Grafik progress skor per paket</span></div>
+        <div class="ix-li"><span class="ix-dot">✓</span><span>Pencapaian/Badge 7 Tier dari Pemula hingga Legendaris</span></div>
+        <div class="ix-li"><span class="ix-dot">✓</span><span>⚡ Kuis Cepat: jawab soal sebanyak mungkin dalam 1–10 menit</span></div>
+      </div>
+      <p class="ix-copy">Version 4.4 | © 2026 Latihan SKD</p>
     </div>
     
   </div>
@@ -2386,9 +3081,9 @@ input:checked+.slider:before{transform:translateX(22px);}
       <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:5px;">
         <span style="background:#1565C0;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;">Aktif</span>
         <span style="background:#00897B;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;">Dijawab</span>
-        <span style="background:#EF5350;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;">Belum</span>
+        <span style="background:#fff;color:#C62828;border:1px solid #FFCDD2;padding:2px 8px;border-radius:10px;font-size:11px;">Belum</span>
       </div>
-      <p>🟣 TWK | 🟤 TIU | 🟢 TKP</p>
+      <p>Garis bawah nomor: 🟣 TWK | 🟠 TIU | 🟢 TKP</p>
     </div>
   </div>
 </div>
@@ -3726,6 +4421,31 @@ function initFontScaleControls(){
 }
 // Terapkan segera saat halaman dimuat (sebelum masuk halaman akun)
 initFontScaleControls();
+
+// ---- Jarak antar baris soal ----
+const LH_LABELS={'1.2':'Rapat','1.4':'Agak Rapat','1.65':'Normal','1.85':'Longgar','2.05':'X-Longgar'};
+function getLineHeight(){const v=localStorage.getItem('lineHeight_soal');return (v!==null&&LH_LABELS[v])?v:'1.65';}
+function applyLineHeight(val){document.documentElement.style.setProperty('--lh-soal',val);}
+function syncLineHeightUI(val){
+  const row=document.getElementById('lhSoalRow'),badge=document.getElementById('lhSoalBadge');
+  if(row)row.querySelectorAll('.fontsize-btn').forEach(b=>b.classList.toggle('active',b.dataset.lh===String(val)));
+  if(badge)badge.textContent=LH_LABELS[String(val)]||'Normal';
+}
+function initLineHeightControls(){
+  const saved=getLineHeight();applyLineHeight(saved);syncLineHeightUI(saved);
+  const row=document.getElementById('lhSoalRow');
+  if(row&&!row.dataset.bound){
+    row.dataset.bound='1';
+    row.querySelectorAll('.fontsize-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        playSound('select');
+        localStorage.setItem('lineHeight_soal',btn.dataset.lh);
+        applyLineHeight(btn.dataset.lh);syncLineHeightUI(btn.dataset.lh);
+      });
+    });
+  }
+}
+initLineHeightControls();
   
 // ========== TIMER TOGGLE ==========
 function getTimerEnabled(){const v=localStorage.getItem('timerEnabled');return v===null?true:v==='true';}
@@ -3753,6 +4473,7 @@ function getMateri(k){
 function showMateri(k){
   markMateriOpened(k);
   const m = getMateri(k);
+  const _mcp=document.getElementById('materiContentPage');if(_mcp)_mcp.dataset.cat=k;
   document.getElementById('materiContentTitle').textContent = m.judul;
   const cd = document.getElementById('materiContentFull');
 
@@ -4794,7 +5515,7 @@ function showNextAch(){
 // ========== BACKUP & PULIHKAN PROGRES ==========
 // Progres hanya ada di localStorage perangkat ini. Backup = salinan semua kunci progres
 // (bukan sesi login / cache kredensial) dalam satu file JSON atau satu kode teks.
-const BK_RE=/^(skor(TWK|TIU|TKP)_latihan\d+|bestScore_latihan\d+|evalData_latihan\d+|paketUlangi_\d+|riwayat_latihan\d+|simulasi_last|simulasiCount|simulasiLulusBerturut|materiOpened|menuVisited|qc(Best|TotalSesi|StreakMax|NoWrong|Akurasi90)_\w+|achUnlocked|skd_wrongBank|skd_bookmarkBank|skd_aktivitas_log|skd_studyDays|soundEnabled|timerEnabled|fontScale_\w+)$/;
+const BK_RE=/^(skor(TWK|TIU|TKP)_latihan\d+|bestScore_latihan\d+|evalData_latihan\d+|paketUlangi_\d+|riwayat_latihan\d+|simulasi_last|simulasiCount|simulasiLulusBerturut|materiOpened|menuVisited|qc(Best|TotalSesi|StreakMax|NoWrong|Akurasi90)_\w+|achUnlocked|skd_wrongBank|skd_bookmarkBank|skd_aktivitas_log|skd_studyDays|soundEnabled|timerEnabled|fontScale_\w+|lineHeight_\w+)$/;
 const BK_PREFIX='SKDBACKUP1:';
 const BK_LAST_KEY='skd_lastBackup';
 function bkCollect(){const d={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(BK_RE.test(k))d[k]=localStorage.getItem(k);}return d;}
