@@ -1,0 +1,325 @@
+/* ============================================================
+   BACKEND LOGIN — Latihan SKD CPNS (versi Override Akun)
+   ------------------------------------------------------------
+   INI PROJECT APPS SCRIPT TERPISAH, TIDAK ADA HUBUNGANNYA
+   dengan backend "Kelas Digital / Pengantar Statistika".
+   Pakai Google Sheet BARU khusus untuk aplikasi ini.
+
+   CATATAN: fitur sinkronisasi progres (simpanprogres/ambilprogres)
+   sudah DIHAPUS dari versi ini. Progres sekarang murni disimpan di
+   localStorage tiap browser (lihat index.html). Sheet "Progress"
+   yang mungkin sudah pernah dibuat otomatis oleh versi lama bisa
+   dihapus manual kalau mau (sudah tidak dipakai lagi).
+
+   KONSEP:
+   - Daftar akun DEFAULT (username & password awal) disimpan di
+     file client-side "daftar-pengguna.js", BUKAN di sini.
+   - Sheet ini HANYA menyimpan OVERRIDE: akun yang username dan/
+     atau password-nya sudah pernah diganti oleh pemiliknya lewat
+     menu "Ganti Akun" di aplikasi.
+   - Setiap akun (baik masih default maupun sudah override) punya
+     "id" TETAP yang didefinisikan di daftar-pengguna.js. Sheet
+     ini mengunci baris berdasarkan id itu, bukan berdasarkan
+     username (karena username bisa berubah-ubah).
+
+   ALUR LOGIN (dikerjakan gabungan client + backend):
+   1. Client cari dulu di daftar-pengguna.js apakah username yang
+      diketik cocok dengan salah satu id default (candidateId),
+      lalu kirim aksi "login" {username, password, candidateId}.
+   2. Backend cari di Sheet "Users" baris dengan kolom username
+      yang cocok.
+        - Kalau ketemu -> verifikasi password terhadap hash
+          tersimpan (di-salt dengan id, bukan username, supaya
+          tetap valid walau username berubah lagi nanti).
+          -> cocok: ok:true, id dikirim balik.
+          -> tidak cocok: ok:false, error:'WRONG_PASSWORD'.
+        - Kalau TIDAK ketemu by username, tapi candidateId dikirim
+          dan id itu TERNYATA sudah pernah override (ada barisnya
+          di Sheet dengan username lain) -> ok:false,
+          error:'ACCOUNT_MOVED'. Ini mencegah username & password
+          DEFAULT lama tetap bisa dipakai login setelah pemiliknya
+          ganti ke username baru.
+        - Kalau TIDAK ketemu sama sekali (baik by username maupun
+          by id) -> ok:false, error:'NOT_FOUND'. Client lalu
+          mengecek sendiri ke daftar-pengguna.js (whitelist lokal).
+          Kalau cocok, login berhasil dengan id dari whitelist.
+          Kalau tidak cocok juga, login ditolak total.
+
+   ALUR GANTI AKUN (username & password baru):
+   1. Client kirim aksi "gantiakun"
+      {id, usernameBaru, passwordLama, passwordBaru}.
+   2. Backend cek: apakah id ini SUDAH punya baris override di
+      Sheet?
+        - SUDAH ADA -> passwordLama WAJIB cocok dengan hash
+          tersimpan, baru boleh update ke username/password baru.
+        - BELUM ADA (baru pertama kali ganti dari akun default)
+          -> backend TIDAK BISA memverifikasi passwordLama karena
+          daftar default hanya ada di file client (daftar-
+          pengguna.js), tidak dikirim ke server. Verifikasi
+          password lama untuk kasus ini dilakukan di SISI CLIENT
+          sebelum request ini dikirim. Backend akan langsung
+          membuat baris override baru.
+          -> Ini cukup untuk aplikasi latihan internal, tapi
+          BUKAN tingkat keamanan produksi (siapapun yang tahu
+          cara memanggil endpoint ini langsung tanpa lewat app
+          bisa membuat override baru untuk id manapun tanpa tahu
+          password lama). Kalau butuh lebih ketat, perlu sistem
+          token/otentikasi tambahan.
+   3. Backend pastikan usernameBaru belum dipakai id lain.
+
+   Cara pakai:
+   1. Buat Google Sheet BARU (kosong saja).
+   2. Extensions > Apps Script, hapus isi Code.gs, paste file ini.
+   3. Ganti SHEET_ID_USERS di bawah dengan ID Sheet baru.
+   4. Deploy > New deployment > Web app (Execute as: Me,
+      Who has access: Anyone). Copy URL-nya.
+   5. Isi GAS_LOGIN_URL di index.html dengan URL itu.
+
+   OPSIONAL — biar jarang "cold start" (lambat pas request pertama):
+   Tambahkan trigger waktu yang manggil jagaTetapHangat_() tiap
+   beberapa menit (Apps Script editor > ikon jam > Add Trigger >
+   Time-driven > Minutes timer).
+============================================================ */
+
+const SHEET_ID_USERS = '188_7hGOieAJWeCX5z5xBNFwYhvjsssbkUZ8r0Xt_qbg';
+const SHEET_NAME_USERS = 'Users';
+
+/* ============================================================
+   ROUTER
+============================================================ */
+function doGet(e) {
+  return jsonOut_({ ok: true, info: 'Backend Login Latihan SKD (Override Akun) aktif.' });
+}
+
+function doPost(e) {
+  const body = JSON.parse(e.postData.contents);
+  const aksi = String(body.aksi || '').trim().toLowerCase();
+
+  // Lock GLOBAL cuma dipakai untuk operasi yang MENULIS ke Sheet (supaya tidak
+  // tabrakan pas update baris yang sama). Operasi baca (login) SENGAJA tidak
+  // pakai lock -- biar login peserta lain tidak ikut ngantre gara-gara ada
+  // yang lain sedang ganti akun.
+  const AKSI_PERLU_LOCK = ['gantiakun'];
+
+  if (AKSI_PERLU_LOCK.includes(aksi)) {
+    const lock = LockService.getScriptLock();
+    lock.waitLock(10000);
+    try {
+      return routeAksi_(aksi, body);
+    } catch (err) {
+      return jsonOut_({ ok: false, error: String(err) });
+    } finally {
+      lock.releaseLock();
+    }
+  }
+
+  try {
+    return routeAksi_(aksi, body);
+  } catch (err) {
+    return jsonOut_({ ok: false, error: String(err) });
+  }
+}
+
+function routeAksi_(aksi, body) {
+  if (aksi === 'login') return login_(body.username, body.password, body.candidateId);
+  if (aksi === 'gantiakun') return gantiAkun_(body);
+  return jsonOut_({ ok: false, error: 'Aksi tidak dikenal.' });
+}
+
+/* ============================================================
+   LOGIN — hanya mengecek OVERRIDE di Sheet.
+   Kalau tidak ketemu, client yang akan cek daftar-pengguna.js.
+============================================================ */
+function login_(username, password, candidateId) {
+  username = String(username || '').trim();
+  password = String(password || '');
+  candidateId = String(candidateId || '').trim();
+
+  if (!username || !password) {
+    return jsonOut_({ ok: false, error: 'Username dan password wajib diisi.' });
+  }
+
+  const sheet = getUsersSheet_();
+  const row = findRowByUsername_(sheet, username);
+
+  if (row !== -1) {
+    const idCol = colIndex_(sheet, 'id');
+    const hashCol = colIndex_(sheet, 'passwordHash');
+    const id = String(sheet.getRange(row, idCol + 1).getValue());
+    const expectedHash = sheet.getRange(row, hashCol + 1).getValue();
+
+    if (hashPw_(id, password) === expectedHash) {
+      return jsonOut_({ ok: true, id: id, sumber: 'sheet' });
+    }
+    return jsonOut_({ ok: false, error: 'WRONG_PASSWORD' });
+  }
+
+  // Username tidak ketemu di Sheet. Kalau client mengirim candidateId
+  // (artinya username yang diketik cocok dengan salah satu akun DEFAULT di
+  // daftar-pengguna.js), cek dulu apakah id itu SUDAH PERNAH override
+  // dengan username lain. Kalau sudah, kredensial default lama untuk id ini
+  // tidak boleh dipakai lagi -> tolak, jangan biarkan client fallback.
+  //
+  // CATATAN RESET: baris dianggap "masih override aktif" HANYA kalau kolom
+  // username DAN passwordHash-nya sama-sama terisi. Jadi untuk me-reset akun
+  // (misal user lupa password baru), admin cukup salah satu dari ini di
+  // Sheet "Users":
+  //   a) hapus SELURUH BARIS akun tsb, ATAU
+  //   b) kosongkan saja isi kolom username & passwordHash pada baris itu
+  //      (baris/id boleh tetap ada).
+  // Setelah itu, login otomatis fallback lagi ke daftar-pengguna.js.
+  if (candidateId) {
+    const idRow = findRowById_(sheet, candidateId);
+    if (idRow !== -1) {
+      const usernameCol = colIndex_(sheet, 'username');
+      const hashCol = colIndex_(sheet, 'passwordHash');
+      const usernameVal = String(sheet.getRange(idRow, usernameCol + 1).getValue()).trim();
+      const hashVal = String(sheet.getRange(idRow, hashCol + 1).getValue()).trim();
+      if (usernameVal && hashVal) {
+        return jsonOut_({ ok: false, error: 'ACCOUNT_MOVED' });
+      }
+      // username/passwordHash kosong -> anggap sudah direset admin, lanjut ke NOT_FOUND di bawah
+    }
+  }
+
+  // Tidak ketemu di Sheet sama sekali dan id belum pernah override
+  // -> biar client cek daftar-pengguna.js sebagai akun default asli.
+  return jsonOut_({ ok: false, error: 'NOT_FOUND' });
+}
+
+/* ============================================================
+   GANTI AKUN (username & password baru)
+============================================================ */
+function gantiAkun_(body) {
+  const id = String(body.id || '').trim();
+  const usernameBaru = String(body.usernameBaru || '').trim();
+  const passwordLama = String(body.passwordLama || '');
+  const passwordBaru = String(body.passwordBaru || '');
+
+  if (!id || !usernameBaru || !passwordBaru) {
+    return jsonOut_({ ok: false, error: 'Data tidak lengkap.' });
+  }
+  if (usernameBaru.length > 40) {
+    return jsonOut_({ ok: false, error: 'Username maksimal 40 karakter.' });
+  }
+  if (passwordBaru.length < 4) {
+    return jsonOut_({ ok: false, error: 'Password baru minimal 4 karakter.' });
+  }
+
+  const sheet = getUsersSheet_();
+
+  // Username baru tidak boleh sudah dipakai id lain
+  const clashRow = findRowByUsername_(sheet, usernameBaru);
+  if (clashRow !== -1) {
+    const idCol = colIndex_(sheet, 'id');
+    const clashId = String(sheet.getRange(clashRow, idCol + 1).getValue());
+    if (clashId !== id) {
+      return jsonOut_({ ok: false, error: 'Username baru sudah dipakai akun lain.' });
+    }
+  }
+
+  const existingRow = findRowById_(sheet, id);
+  const usernameCol = colIndex_(sheet, 'username');
+  const hashCol = colIndex_(sheet, 'passwordHash');
+  const updatedAtCol = colIndex_(sheet, 'updatedAt');
+
+  // Baris dianggap "override AKTIF" hanya kalau username & passwordHash-nya
+  // sama-sama terisi. Kalau baris ada tapi sudah dikosongkan admin (untuk
+  // reset password), perlakukan sama seperti belum pernah override sama
+  // sekali, tapi TETAP isi ulang baris yang sama itu (bukan bikin baris baru).
+  const overrideAktif = existingRow !== -1 &&
+    String(sheet.getRange(existingRow, usernameCol + 1).getValue()).trim() &&
+    String(sheet.getRange(existingRow, hashCol + 1).getValue()).trim();
+
+  if (overrideAktif) {
+    // Sudah pernah override sebelumnya -> passwordLama wajib cocok
+    const expectedHash = sheet.getRange(existingRow, hashCol + 1).getValue();
+    if (hashPw_(id, passwordLama) !== expectedHash) {
+      return jsonOut_({ ok: false, error: 'Password lama salah.' });
+    }
+    sheet.getRange(existingRow, usernameCol + 1).setValue(usernameBaru);
+    sheet.getRange(existingRow, hashCol + 1).setValue(hashPw_(id, passwordBaru));
+    sheet.getRange(existingRow, updatedAtCol + 1).setValue(new Date().toISOString());
+    return jsonOut_({ ok: true });
+  }
+
+  if (existingRow !== -1) {
+    // Baris id ini ada tapi kosong (baru saja direset admin) -> isi ulang
+    // baris yang sama (verifikasi password lama sudah dilakukan di sisi
+    // client terhadap daftar-pengguna.js, lihat catatan di atas)
+    const idCol = colIndex_(sheet, 'id');
+    sheet.getRange(existingRow, idCol + 1).setValue(id);
+    sheet.getRange(existingRow, usernameCol + 1).setValue(usernameBaru);
+    sheet.getRange(existingRow, hashCol + 1).setValue(hashPw_(id, passwordBaru));
+    sheet.getRange(existingRow, updatedAtCol + 1).setValue(new Date().toISOString());
+    return jsonOut_({ ok: true });
+  }
+
+  // Belum pernah ada barisnya sama sekali -> baris baru (verifikasi password
+  // lama sudah dilakukan di sisi client terhadap daftar-pengguna.js)
+  sheet.appendRow([id, usernameBaru, hashPw_(id, passwordBaru), new Date().toISOString()]);
+  return jsonOut_({ ok: true });
+}
+
+/* ============================================================
+   HELPER
+============================================================ */
+function getUsersSheet_() {
+  const ss = SpreadsheetApp.openById(SHEET_ID_USERS);
+  let sheet = ss.getSheetByName(SHEET_NAME_USERS);
+  if (!sheet) {
+    sheet = ss.insertSheet(SHEET_NAME_USERS);
+    sheet.appendRow(['id', 'username', 'passwordHash', 'updatedAt']);
+  }
+  return sheet;
+}
+
+function colIndex_(sheet, headerName) {
+  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  return headers.indexOf(headerName);
+}
+
+function findRowByUsername_(sheet, username) {
+  const data = sheet.getDataRange().getValues();
+  const usernameCol = data[0].indexOf('username');
+  const usernameLower = String(username).trim().toLowerCase();
+  for (let i = 1; i < data.length; i++) {
+    if (String(data[i][usernameCol]).trim().toLowerCase() === usernameLower) return i + 1;
+  }
+  return -1;
+}
+
+function findRowById_(sheet, id) {
+  const data = sheet.getDataRange().getValues();
+  const idCol = data[0].indexOf('id');
+  for (let i = 1; i < data.length; i++) {
+    if (String(data[i][idCol]).trim() === String(id).trim()) return i + 1;
+  }
+  return -1;
+}
+
+// Hash di-salt dengan ID (bukan username), supaya tetap valid walau
+// username diganti berkali-kali.
+function hashPw_(id, password) {
+  const raw = Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256,
+    String(id).trim() + ':' + String(password)
+  );
+  return raw.map(b => {
+    const v = (b < 0 ? b + 256 : b).toString(16);
+    return v.length === 1 ? '0' + v : v;
+  }).join('');
+}
+
+function jsonOut_(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+/* ============================================================
+   OPSIONAL — biar jarang "cold start"
+   Bikin Time-driven trigger yang manggil fungsi ini tiap 10 menit.
+============================================================ */
+function jagaTetapHangat_() {
+  SpreadsheetApp.openById(SHEET_ID_USERS);
+}

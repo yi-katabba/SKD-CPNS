@@ -1,0 +1,9 @@
+{
+  "appId": "com.katabba.skdcpns",
+  "appName": "Latihan SKD CPNS",
+  "webDir": "www",
+  "backgroundColor": "#ffffff",
+  "android": {
+    "allowMixedContent": false
+  }
+}
