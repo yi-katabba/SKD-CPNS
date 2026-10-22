@@ -6,7 +6,8 @@
 <title>Latihan SKD CPNS</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{overscroll-behavior:none;}
+html,body{overscroll-behavior:none;overscroll-behavior-y:none;}
+html{height:100%;}
 
 /* ===== SEMBUNYIKAN SCROLLBAR (garis abu-abu di kanan saat scroll) =====
    Berlaku untuk semua elemen yang bisa di-scroll di app ini: html/body,
@@ -1222,6 +1223,7 @@ input:checked+.slider:before{transform:translateX(22px);}
       <button class="btn-logout" style="background:var(--gray-light);color:var(--dark);margin-bottom:10px;" onclick="playSound('back');showGantiUsernameModal()"><span data-icon="icon_akun_nama"></span> Ganti Username</button>
       <button class="btn-logout" style="background:var(--gray-light);color:var(--dark);margin-bottom:10px;" onclick="playSound('back');showGantiPasswordModal()"><span data-icon="icon_akun_nama"></span> Ganti Password</button>
       <button class="btn-logout" onclick="playSound('back');showLogoutModal()"><span data-icon="icon_akun_logout"></span> Logout dari User Ini</button>
+      <button class="btn-logout" style="background:var(--gray-light);color:var(--dark);margin-top:10px;" onclick="playSound('back');showExitAppModal()">🚪 Keluar dari Aplikasi</button>
     </div>
     
   </div>
@@ -1796,6 +1798,17 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div class="modal-btns">
       <button class="btn-modal-danger" onclick="doLogout()">Ya, Logout</button>
       <button class="btn-modal-cancel" onclick="closeLogoutModal()">Batal</button>
+    </div>
+  </div>
+</div>
+<div id="exitAppModal" class="modal-backdrop">
+  <div class="modal-box">
+    <div style="font-size:44px;margin-bottom:10px;">🚪</div>
+    <h3>Keluar dari Aplikasi?</h3>
+    <p>Aplikasi akan ditutup. Akun kamu tetap login dan progres tersimpan.</p>
+    <div class="modal-btns">
+      <button class="btn-modal-danger" onclick="keluarAplikasi()">Ya, Keluar</button>
+      <button class="btn-modal-cancel" onclick="closeExitAppModal()">Batal</button>
     </div>
   </div>
 </div>
@@ -2745,13 +2758,15 @@ function goTo(pageId){
 }
 
 // ========== BACK BUTTON ==========
-window.addEventListener('popstate',function(e){
+// Satu fungsi dipakai bersama oleh tombol back Android (Capacitor) dan popstate browser.
+// Urutan: tutup sidebar -> tutup modal -> naik ke halaman induk -> (di Home/Login) 'root'.
+function navigateBack_(){
   const sb=document.getElementById('sidebar');
-  if(sb&&sb.classList.contains('open')){toggleSidebar();history.pushState({page:currentPage},'','');return;}
-  const modals=['logoutModal','resetModal','clearReviewModal'];let mc=false;
-  modals.forEach(id=>{const m=document.getElementById(id);if(m&&m.classList.contains('show')){m.classList.remove('show');mc=true;}});
-  if(mc){history.pushState({page:currentPage},'','');return;}
-  if(currentPage==='loginPage'||currentPage==='homePage'){history.pushState({page:currentPage},'','');return;}
+  if(sb&&sb.classList.contains('open')){toggleSidebar();return 'handled';}
+  let mc=false;
+  document.querySelectorAll('.modal-backdrop.show').forEach(m=>{m.classList.remove('show');mc=true;});
+  if(mc)return 'handled';
+  if(currentPage==='loginPage'||currentPage==='homePage')return 'root';
   playSound('back');
   const parent=currentPage==='quizPage'
   ? (quizSource==='simulasi'?'simulasiPage':'quizlistPage')
@@ -2764,8 +2779,50 @@ window.addEventListener('popstate',function(e){
   if(parent==='homePage'){refreshHomeStats();setRandomQuote();}
   if(parent==='quizlistPage')refreshQuizList();
   if(parent==='quizCepatPage')renderQuizCepatGrid();
-  history.pushState({page:parent},'','');
+  if(parent==='akunPage')refreshAkunPage();
+  if(parent==='pengaturanPage')syncSoundToggle();
+  return 'navigated';
+}
+window.addEventListener('popstate',function(e){
+  const r=navigateBack_();
+  history.pushState({page:currentPage},'','');
 });
+
+// ========== TOMBOL BACK ANDROID (Capacitor) + KELUAR APLIKASI ==========
+// - Back = kembali ke halaman sebelumnya (bukan keluar app).
+// - Di Home / Login: tekan back DUA KALI (dalam 2 detik) untuk keluar aplikasi.
+function _capApp(){ return (window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.App) || null; }
+function keluarAplikasi(){
+  const app=_capApp();
+  if(app&&app.exitApp){app.exitApp();}
+  else{window.close();}
+}
+function showExitAppModal(){document.getElementById('exitAppModal').classList.add('show');}
+function closeExitAppModal(){document.getElementById('exitAppModal').classList.remove('show');}
+let _lastBackRoot=0;
+function tampilToastKeluar_(){
+  let t=document.getElementById('exitToast');
+  if(!t){
+    t=document.createElement('div');t.id='exitToast';
+    t.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:calc(90px + env(safe-area-inset-bottom));z-index:99999;background:rgba(15,23,42,.92);color:#fff;border-radius:22px;padding:10px 18px;font:600 13px system-ui,sans-serif;transition:opacity .25s;pointer-events:none;';
+    t.textContent='Tekan sekali lagi untuk keluar';
+    document.body.appendChild(t);
+  }
+  t.style.opacity='1';
+  clearTimeout(t._h);t._h=setTimeout(()=>{t.style.opacity='0';},1800);
+}
+(function pasangBackAndroid(){
+  const app=_capApp();
+  if(!app||!app.addListener)return;
+  app.addListener('backButton',function(){
+    const r=navigateBack_();
+    if(r!=='root')return;
+    const now=Date.now();
+    if(now-_lastBackRoot<2000){keluarAplikasi();return;}
+    _lastBackRoot=now;
+    tampilToastKeluar_();
+  });
+})();
 
 // ========== CEK UPDATE APLIKASI (online, opsional) ==========
 // Saat ada internet, cek rilis terbaru di GitHub Releases. Kalau nomor build lebih

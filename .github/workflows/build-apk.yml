@@ -59,6 +59,9 @@ jobs:
       - name: Buat proyek Android
         run: npx cap add android
 
+      - name: Pasang MainActivity (matikan scrollbar & efek melar)
+        run: cp scripts/MainActivity.java android/app/src/main/java/com/katabba/skdcpns/MainActivity.java
+
       - name: Generate ikon & splash
         run: npx capacitor-assets generate --android
 
