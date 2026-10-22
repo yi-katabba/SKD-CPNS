@@ -300,14 +300,14 @@ body{
 /* ========== OTHER PAGES ========== */
 .inner-page{padding:16px;max-width:430px;margin:0 auto;}
 .page-header{
-  display:flex;align-items:center;gap:12px;
-  padding:16px;background:#fff;
+  display:flex;align-items:center;gap:10px;
+  padding:8px 14px;background:#fff;
   border-bottom:1px solid var(--border);
   margin-bottom:16px;border-radius:0 0 16px 16px;
   box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
 .btn-back{
-  width:38px;height:38px;border-radius:50%;background:var(--bg);
+  width:34px;height:34px;border-radius:50%;background:var(--bg);
   border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
 }
@@ -447,6 +447,37 @@ input:checked+.slider:before{transform:translateX(22px);}
 }
 
 /* ========== EVALUASI ========== */
+/* ===== Bookmark di evaluasi ===== */
+.eval-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.eval-head .soal-teks{flex:1;min-width:0;}
+.eval-bm{flex-shrink:0;display:inline-flex;align-items:center;gap:4px;border:1.5px solid var(--border);background:#fff;color:#475569;font-size:11px;font-weight:700;padding:4px 9px;border-radius:16px;cursor:pointer;font-family:inherit;line-height:1.2;}
+.eval-bm:active{transform:scale(.96);}
+.eval-bm.on{background:#FFF8E1;border-color:#F9A825;color:#B26A00;}
+.eval-bm-ic{display:inline-flex;align-items:center;}
+.eval-bm-ic svg{width:13px;height:13px;}
+/* ===== Riwayat per percobaan ===== */
+.att-list{display:flex;flex-direction:column;gap:6px;}
+.att-row{background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 10px;}
+.att-top{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--dark);}
+.att-date{font-size:11px;color:#64748B;font-weight:600;}
+.att-bot{display:flex;align-items:center;gap:8px;margin-top:4px;font-size:11px;flex-wrap:wrap;}
+.att-sc{color:#475569;flex:1;min-width:0;}
+.att-tot{font-weight:800;color:var(--dark);}
+.att-delta{font-weight:800;font-size:10.5px;}
+.att-delta.up{color:#00897B;}.att-delta.down{color:#C62828;}
+.att-st{font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;}
+.att-st.pass{background:#E0F2F1;color:#00695C;}.att-st.fail{background:#FFEBEE;color:#C62828;}
+.att-more{width:100%;margin-top:8px;padding:9px;border:1.5px solid var(--border);background:#fff;border-radius:10px;font-size:12px;font-weight:700;color:var(--blue);cursor:pointer;font-family:inherit;}
+/* ===== Backup ===== */
+.bk-card{padding:14px 16px;}
+.bk-title{font-size:14px;font-weight:800;color:var(--dark);margin-bottom:6px;}
+.bk-note{font-size:12px;color:#475569;line-height:1.5;margin:0 0 6px;}
+.bk-last{font-size:11.5px;color:#64748B;font-weight:600;margin:0 0 10px;}
+.bk-btns{display:flex;gap:8px;}
+.bk-btn{flex:1;padding:11px 10px;border:1.5px solid var(--border);background:#fff;color:var(--dark);border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.bk-btn.primary{background:var(--blue);border-color:var(--blue);color:#fff;}
+.bk-btn:active{transform:scale(.98);}
+.bk-text{width:100%;box-sizing:border-box;border:1.5px solid var(--border);border-radius:10px;padding:8px 10px;font-size:11.5px;font-family:monospace;resize:vertical;color:var(--dark);background:#fff;}
 /* ========== IKON EMOJI -> SVG ========== */
 .emo{display:inline-flex;align-items:center;vertical-align:-0.18em;line-height:1;}
 .emo svg{width:1.1em;height:1.1em;display:block;flex-shrink:0;}
@@ -479,9 +510,12 @@ input:checked+.slider:before{transform:translateX(22px);}
 .weak-q-txt{flex:1;color:#334155;line-height:1.4;}
 .weak-q-n{font-weight:800;color:#C62828;flex-shrink:0;}
 
-.eval-top{padding:10px 16px 4px;flex-shrink:0;}
-.eval-top .score-summary-row{margin-bottom:0;}
-.eval-filter{display:flex;gap:6px;margin-top:8px;overflow-x:auto;scrollbar-width:none;}
+.eval-top{padding:6px 16px 2px;flex-shrink:0;}
+.eval-top #evalListTitle{font-size:13px !important;line-height:1.2;}
+.eval-top .score-summary-row{margin-bottom:0;flex-wrap:nowrap;gap:5px;justify-content:space-between;}
+.eval-top .score-pill{flex:1 1 auto;min-width:0;white-space:nowrap;text-align:center;padding:4px 6px;font-size:11.5px;display:inline-flex;align-items:center;justify-content:center;gap:4px;}
+.eval-top .score-pill .ic-inline{display:inline-flex;align-items:center;}
+.eval-filter{display:flex;gap:6px;margin-top:6px;padding-bottom:4px;overflow-x:auto;scrollbar-width:none;}
 .eval-filter::-webkit-scrollbar{display:none;}
 .eval-chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--border);background:#fff;color:#475569;font-size:12px;font-weight:700;padding:5px 11px;border-radius:20px;cursor:pointer;font-family:inherit;}
 .eval-chip i{width:8px;height:8px;border-radius:50%;display:inline-block;background:#94A3B8;}
@@ -495,7 +529,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 .eval-empty{display:none;text-align:center;color:#94A3B8;font-size:13px;padding:28px 0;}
 /* padding-bawah = tinggi bottom nav + safe area, supaya item terakhir tidak tertutup nav */
 .eval-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 16px calc(84px + env(safe-area-inset-bottom));}
-.eval-scroll > h3{margin:4px 0 8px !important;}
+.eval-scroll > h3{margin:2px 0 6px !important;}
 .evaluasi-item{background:#F8FAFC;border-radius:12px;padding:14px;margin-bottom:10px;border-left:5px solid var(--border);}
 .evaluasi-item.benar{border-left-color:#00897B;background:#E0F2F1;}
 .evaluasi-item.salah{border-left-color:#C62828;background:#FFEBEE;}
@@ -542,12 +576,13 @@ input:checked+.slider:before{transform:translateX(22px);}
 .btn-bookmark-q.active{background:#FFF8E1;border-color:#FFD54F;}
 
 /* ===== REVIEW ENTRY CARDS (quizlist page) ===== */
-.review-entry-row{display:flex;gap:10px;margin-bottom:14px;}
-.review-entry-card{flex:1;background:#fff;border-radius:14px;padding:14px 10px;text-align:center;box-shadow:var(--shadow);cursor:pointer;border:1.5px solid var(--border);}
+.review-entry-row{display:flex;gap:8px;margin-bottom:10px;}
+.review-entry-card{flex:1;background:#fff;border-radius:12px;padding:7px 10px;box-shadow:var(--shadow);cursor:pointer;border:1.5px solid var(--border);display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:center;text-align:left;}
 .review-entry-card:active{transform:scale(.97);}
-.review-entry-icon{font-size:22px;display:block;margin-bottom:4px;}
-.review-entry-label{font-size:calc(12px * var(--fs-scale-umum));font-weight:700;color:var(--dark);display:block;}
-.review-entry-count{font-size:calc(11px * var(--fs-scale-umum));color:var(--gray);font-weight:700;}
+.review-entry-icon{font-size:20px;display:flex;align-items:center;justify-content:center;grid-row:1 / span 2;margin:0;}
+.review-entry-icon svg{width:22px;height:22px;}
+.review-entry-label{font-size:calc(12px * var(--fs-scale-umum));font-weight:700;color:var(--dark);display:block;line-height:1.2;}
+.review-entry-count{font-size:calc(11px * var(--fs-scale-umum));color:var(--gray);font-weight:700;line-height:1.2;}
 
 /* ===== REVIEW PAGE (Bank Soal Salah & Bookmark) ===== */
 .review-tabs{display:flex;gap:22px;margin-bottom:16px;border-bottom:1.5px solid var(--border);}
@@ -1253,13 +1288,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_profil" class="ic-sm"></span> Profil Saya</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN -->
     <div class="akun-wrap">
@@ -1295,13 +1330,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
 
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('akunPage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;">⚙️ Pengaturan Sistem</h2>
     </div>
 
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
 
     <!-- KONTEN -->
     <div class="akun-wrap">
@@ -1344,6 +1379,16 @@ input:checked+.slider:before{transform:translateX(22px);}
           </label>
         </div>
       </div>
+      <div class="akun-info-card bk-card" style="margin-bottom:12px;">
+        <div class="bk-title">💾 Backup &amp; Pulihkan Progres</div>
+        <p class="bk-note">Progres tersimpan di perangkat ini saja. Kalau cache dibersihkan, aplikasi di-uninstall, atau ganti HP, data bisa hilang. Simpan backup secara berkala.</p>
+        <p class="bk-last" id="bkLast">Backup terakhir: belum pernah</p>
+        <div class="bk-btns">
+          <button type="button" class="bk-btn primary" onclick="playSound('menu');exportProgressFile()">Simpan File</button>
+          <button type="button" class="bk-btn" onclick="playSound('menu');copyProgressCode()">Salin Kode</button>
+        </div>
+        <button type="button" class="bk-btn" style="width:100%;margin-top:8px;" onclick="playSound('menu');openRestoreModal()">Pulihkan dari Backup</button>
+      </div>
     </div>
 
   </div>
@@ -1354,7 +1399,7 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED - TIDAK AKAN SCROLL -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_latihan" class="ic-sm"></span> Pilih Latihan SKD</h2>
       <div style="display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;">
@@ -1364,7 +1409,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     </div>
     
     <!-- SPACER - menggantikan tinggi header -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN SCROLL (scroll mengikuti halaman normal) -->
     <div style="padding:16px;">
@@ -1390,11 +1435,11 @@ input:checked+.slider:before{transform:translateX(22px);}
 <!-- =========== BANK SOAL (SALAH & BOOKMARK) =========== -->
 <div id="reviewPage" class="page">
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('quizlistPage')"></button>
       <h2 id="reviewPageTitle" style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;">📚 Bank Soal</h2>
     </div>
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     <div style="padding:0 16px 16px;">
       <button class="btn-mulai-review" id="btnMulaiReview" onclick="startReviewQuiz(currentReviewTab)">▶️ Mulai Latihan Ulang</button>
       <p style="font-size:11.5px;color:var(--gray);text-align:center;margin-top:8px;">Soal yang dijawab benar saat latihan ulang otomatis hilang dari daftar 🎉</p>
@@ -1451,7 +1496,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     </div>
     <div class="eval-top">
       <p style="font-size:14px;font-weight:700;color:var(--dark);" id="evalListTitle">Latihan SKD Paket 1</p>
-      <div id="evalListScoreSummary" style="margin-top:8px;"></div>
+      <div id="evalListScoreSummary" style="margin-top:5px;"></div>
       <div class="eval-filter" id="evalFilter"></div>
     </div>
     <div class="eval-scroll" id="evalListContent"></div>
@@ -1461,11 +1506,11 @@ input:checked+.slider:before{transform:translateX(22px);}
 <!-- =========== HASIL =========== -->
 <div id="resultPage" class="page">
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');backToHome()"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_statistik" class="ic-sm"></span> Hasil</h2>
     </div>
-    <div class="result-wrap" style="padding-top:82px;">
+    <div class="result-wrap" style="padding-top:66px;">
       <div class="result-hero">
         <h2>Skor Kamu</h2>
         <p id="resultSubtitle">Latihan SKD</p>
@@ -1490,13 +1535,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_materi" class="ic-sm"></span> Materi SKD</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN -->
     <div style="padding:0 16px;">
@@ -1513,13 +1558,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('materiPage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;" id="materiContentTitle"><span data-icon="icon_menu_materi" class="ic-sm"></span> Materi</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN SCROLL -->
     <div style="padding:16px;">
@@ -1534,13 +1579,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_statistik" class="ic-sm"></span> Statistik Belajar</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN SCROLL -->
     <div style="padding:16px;">
@@ -1560,13 +1605,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_pencapaian" class="ic-sm"></span> Pencapaian</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- PROGRESS BAR -->
     <div style="padding:12px 16px 0;">
@@ -1585,13 +1630,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_simulasi" class="ic-sm"></span> Simulasi Ujian SKD</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN -->
     <div style="padding:0 16px;">
@@ -1613,13 +1658,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_petunjuk" class="ic-sm"></span> Petunjuk</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN -->
     <div style="padding:0 16px;">
@@ -1651,13 +1696,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_tentang" class="ic-sm"></span> Tentang Aplikasi</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN -->
     <div style="padding:0 16px;">
@@ -1694,13 +1739,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_kuis" class="ic-sm"></span> Kuis Cepat</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN -->
     <div style="padding:0 16px;">
@@ -1715,13 +1760,13 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
     
     <!-- HEADER FIXED -->
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('quizCepatPage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;">Konfirmasi</h2>
     </div>
     
     <!-- SPACER -->
-    <div style="height:70px;"></div>
+    <div style="height:54px;"></div>
     
     <!-- KONTEN -->
     <div style="padding:16px;">
@@ -1785,12 +1830,12 @@ input:checked+.slider:before{transform:translateX(22px);}
 <div id="quizCepatResultPage" class="page">
   <div style="background:var(--bg);min-height:100vh;padding:16px;padding-bottom:80px;">
     
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);margin:-16px -16px 0;">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);margin:-16px -16px 0;">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('quizCepatPage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_statistik" class="ic-sm"></span> Hasil</h2>
     </div>
 
-    <div style="padding-top:66px;">
+    <div style="padding-top:50px;">
     <div class="qc-result-header">
       <div class="qc-result-icon" id="qcResIcon">🏆</div>
       <div class="qc-result-title" id="qcResTitle">Quiz Selesai!</div>
@@ -1884,6 +1929,19 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div class="modal-btns">
       <button class="btn-modal-danger" onclick="resetAllProgress()">Ya, Reset</button>
       <button class="btn-modal-cancel" onclick="closeResetModal()">Batal</button>
+    </div>
+  </div>
+</div>
+<div id="restoreModal" class="modal-backdrop">
+  <div class="modal-box" style="text-align:left;">
+    <h3>Pulihkan Progres</h3>
+    <p style="margin-bottom:10px;">Tempel kode backup di bawah, atau pilih file backup (.json). Progres di perangkat ini akan diganti dengan isi backup.</p>
+    <textarea id="restoreText" class="bk-text" rows="5" placeholder="SKDBACKUP1:..." spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+    <input type="file" id="restoreFile" accept=".json,application/json,text/plain" style="display:none;" onchange="restoreFromFileInput(this)">
+    <button type="button" class="bk-btn" style="width:100%;margin:8px 0 12px;" onclick="document.getElementById('restoreFile').click()">Pilih File Backup…</button>
+    <div class="modal-btns">
+      <button class="btn-modal-danger" onclick="restoreProgress()">Pulihkan</button>
+      <button class="btn-modal-cancel" onclick="closeRestoreModal()">Batal</button>
     </div>
   </div>
 </div>
@@ -2817,7 +2875,7 @@ function goTo(pageId){
   if(pageId==='pencapaianPage')refreshPencapaian();
   if(pageId==='quizCepatPage')renderQuizCepatGrid();
   if(pageId==='akunPage')refreshAkunPage();
-  if(pageId==='pengaturanPage')syncSoundToggle();
+  if(pageId==='pengaturanPage'){syncSoundToggle();refreshBackupInfo();}
   history.pushState({page:pageId},'','');
 }
 
@@ -3298,7 +3356,7 @@ function getRiwayat(id){try{const a=JSON.parse(localStorage.getItem(`riwayat_lat
 function pushRiwayat(id,s){
   const m=bankMax(id),a=getRiwayat(id),total=s.twk+s.tiu+s.tkp;
   a.push({t:Date.now(),twk:s.twk,tiu:s.tiu,tkp:s.tkp,total:total,max:m.total,lulus:s.twk>=PASSING.TWK&&s.tiu>=PASSING.TIU&&s.tkp>=PASSING.TKP});
-  while(a.length>30)a.shift();
+  while(a.length>60)a.shift();
   try{localStorage.setItem(`riwayat_latihan${id}`,JSON.stringify(a));}catch(e){}
 }
 // Semua percobaan semua paket, urut waktu. Data lama (sebelum ada riwayat) dijadikan 1 percobaan.
@@ -3685,6 +3743,35 @@ function refreshQuizList(){
   if(elB)elB.textContent=`${bc} soal`;
 }
 
+// ---- Bookmark langsung dari halaman evaluasi ----
+let evalBmSrc={l:[],p:[]};
+function evalBmBtn(src,i){
+  const q=evalBmSrc[src][i];if(!q)return '';
+  const on=!!getBookmarkBank()[getQId(q)];
+  return `<button type="button" class="eval-bm${on?' on':''}" data-src="${src}" data-i="${i}" onclick="toggleBookmarkEval(this)" title="${on?'Hapus bookmark':'Bookmark soal ini'}"><span class="eval-bm-ic">${on?'🔖':'🏷️'}</span><span class="eval-bm-tx">${on?'Tersimpan':'Bookmark'}</span></button>`;
+}
+function refreshReviewCounts(){
+  const elW=document.getElementById('homeWrongCount'),elB=document.getElementById('homeBookmarkCount');
+  if(elW)elW.textContent=`${countWrongBank()} soal`;
+  if(elB)elB.textContent=`${countBookmarkBank()} soal`;
+}
+function toggleBookmarkEval(btn){
+  const q=(evalBmSrc[btn.dataset.src]||[])[+btn.dataset.i];if(!q)return;
+  const id=getQId(q),bb=getBookmarkBank();
+  if(bb[id]){delete bb[id];playSound('back');}
+  else{bb[id]={...snapQuestion(q),addedAt:new Date().toISOString()};playSound('select');}
+  saveBookmarkBank(bb);
+  const on=!!bb[id];
+  document.querySelectorAll('.eval-bm').forEach(b=>{
+    const x=(evalBmSrc[b.dataset.src]||[])[+b.dataset.i];
+    if(!x||getQId(x)!==id)return;
+    b.classList.toggle('on',on);b.title=on?'Hapus bookmark':'Bookmark soal ini';
+    b.querySelector('.eval-bm-ic').textContent=on?'🔖':'🏷️';
+    b.querySelector('.eval-bm-tx').textContent=on?'Tersimpan':'Bookmark';
+  });
+  refreshReviewCounts();
+  if(typeof updateBookmarkBtn==='function')updateBookmarkBtn();
+}
 function showEvaluasiFromList(setId){
   const bank=getSoalBank(setId);
   let savedAnswers=[],savedScores=[],savedQuestions=[];
@@ -3701,9 +3788,10 @@ function showEvaluasiFromList(setId){
   const sTot=sTWK+sTIU+sTKP;
   const mTWK=bank.twk.length*5,mTIU=bank.tiu.length*5,mTKP=bank.tkp.length*5,mTot=mTWK+mTIU+mTKP;
   document.getElementById('evalListTitle').textContent=`📖 Latihan SKD Paket ${setId}`;
-  document.getElementById('evalListScoreSummary').innerHTML=`<div class="score-summary-row"><span class="score-pill twk"><span class="ic-inline">${IMAGES.icon_twkm}TWK</span>: ${sTWK}/${mTWK}</span><span class="score-pill tiu"><span class="ic-inline">${IMAGES.icon_tium}TIU</span>: ${sTIU}/${mTIU}</span><span class="score-pill tkp"><span class="ic-inline">${IMAGES.icon_tkpm}TKP</span>: ${sTKP}/${mTKP}</span><span class="score-pill total">✅ Total: ${sTot}/${mTot}</span></div>`;
+  document.getElementById('evalListScoreSummary').innerHTML=`<div class="score-summary-row"><span class="score-pill twk"><span class="ic-inline">${IMAGES.icon_twkm}</span> ${sTWK}/${mTWK}</span><span class="score-pill tiu"><span class="ic-inline">${IMAGES.icon_tium}</span> ${sTIU}/${mTIU}</span><span class="score-pill tkp"><span class="ic-inline">${IMAGES.icon_tkpm}</span> ${sTKP}/${mTKP}</span><span class="score-pill total">✅ Total ${sTot}/${mTot}</span></div>`;
   let html='<h3 style="color:var(--blue);margin-bottom:12px;font-size:15px;">📝 Evaluasi Jawaban & Pembahasan</h3>';
   const cnt={benar:0,salah:0,belum:0};
+  evalBmSrc.l=eq;
   for(let i=0;i<eq.length;i++){
     const n=i+1,cat=getCat(n),q=eq[i],pb=q.pembahasan||'';
     let jawUser='Tidak dijawab',jawBenar='',stCls='belum',stIcon='⏳';
@@ -3711,7 +3799,7 @@ function showEvaluasiFromList(setId){
     if(q.isTKP){const uS=(savedScores[i]!==undefined&&savedScores[i]!==null)?savedScores[i]:null;if(uS!==null){const idx=q.optionScores.findIndex(s=>s===uS);userIdx=idx>=0?idx:null;const mS=Math.max(...q.optionScores);stCls=uS===mS?'benar':'salah';stIcon=uS===mS?'✅':'❌';}}
     else{const uA=(savedAnswers[i]!==undefined&&savedAnswers[i]!==null)?savedAnswers[i]:null;if(uA!==null){userIdx=uA;stCls=uA===q.answer?'benar':'salah';stIcon=uA===q.answer?'✅':'❌';}}
     let stLabel=stCls==='benar'?'<span style="color:#00897B;font-weight:700;font-size:12px;">✅ BENAR</span>':stCls==='salah'?'<span style="color:#C62828;font-weight:700;font-size:12px;">❌ SALAH</span>':'<span style="color:#F57C00;font-weight:700;font-size:12px;">⏳ BELUM</span>';
-    cnt[stCls]++;html+=`<div class="evaluasi-item ${stCls}" data-st="${stCls}"><div class="soal-teks">${stIcon} Soal ${n} [${cat.name}] — ${stLabel}</div><div class="soal-isi">${formatSoal(q.question)}</div>${renderEvalOptions(q,userIdx)}${pb?`<div class="pembahasan-box"><strong>💡 Pembahasan</strong>${formatSoal(pb)}</div>`:''}</div>`;
+    cnt[stCls]++;html+=`<div class="evaluasi-item ${stCls}" data-st="${stCls}"><div class="eval-head"><div class="soal-teks">${stIcon} Soal ${n} [${cat.name}] — ${stLabel}</div>${evalBmBtn('l',i)}</div><div class="soal-isi">${formatSoal(q.question)}</div>${renderEvalOptions(q,userIdx)}${pb?`<div class="pembahasan-box"><strong>💡 Pembahasan</strong>${formatSoal(pb)}</div>`:''}</div>`;
   }
   html+='<div class="eval-empty" id="evalEmpty">Tidak ada soal pada filter ini.</div>';
   document.getElementById('evalListContent').innerHTML=html;
@@ -3790,6 +3878,34 @@ function renderTrendChart(att){
     <div class="trend-legend"><span><i style="background:#00897B"></i>Lulus</span><span><i style="background:#C62828"></i>Belum lulus</span><span><i class="dash"></i>Batas total passing (${pass}%)</span></div>
     <p class="trend-note">Persentase skor dari ${d.length} percobaan terakhir (P = nomor paket).</p>`;
 }
+// ---- Riwayat per percobaan (bukan cuma skor terakhir) ----
+let riwayatShowAll=false;
+function toggleRiwayatAll(){riwayatShowAll=!riwayatShowAll;playSound('menu');refreshStatistik();}
+function fmtAttemptDate(t){
+  if(!t)return 'Data lama';
+  const d=new Date(t),now=new Date();
+  const o={day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'};
+  if(d.getFullYear()!==now.getFullYear())o.year='numeric';
+  try{return d.toLocaleString('id-ID',o);}catch(e){return d.toISOString().slice(0,16).replace('T',' ');}
+}
+function renderAttemptList(){
+  const att=getAllAttempts();
+  if(att.length===0)return '';
+  // selisih total terhadap percobaan sebelumnya di paket yang sama
+  const lastByPaket={};
+  att.forEach(a=>{a.delta=(lastByPaket[a.paket]===undefined)?null:a.total-lastByPaket[a.paket];lastByPaket[a.paket]=a.total;});
+  const rev=att.slice().reverse(),LIMIT=8;
+  const shown=riwayatShowAll?rev:rev.slice(0,LIMIT);
+  let h=`<h4 class="stats-title" style="margin-top:14px;"><span class="ic-inline">${IMAGES.icon_trend}Semua Percobaan (${att.length})</span></h4><div class="att-list">`;
+  shown.forEach(a=>{
+    const dl=a.delta===null?'':`<span class="att-delta ${a.delta>=0?'up':'down'}">${a.delta>=0?'▲ +':'▼ '}${a.delta}</span>`;
+    h+=`<div class="att-row"><div class="att-top"><b>Paket ${a.paket}</b><span class="att-date">${fmtAttemptDate(a.t)}</span></div>
+      <div class="att-bot"><span class="att-sc">TWK ${a.twk} · TIU ${a.tiu} · TKP ${a.tkp}</span><span class="att-tot">${a.total}/${a.max}</span>${dl}<span class="att-st ${a.lulus?'pass':'fail'}">${a.lulus?'Lulus':'Belum'}</span></div></div>`;
+  });
+  h+='</div>';
+  if(rev.length>LIMIT)h+=`<button type="button" class="att-more" onclick="toggleRiwayatAll()">${riwayatShowAll?'Tampilkan lebih sedikit':'Tampilkan semua ('+rev.length+')'}</button>`;
+  return h;
+}
 function refreshStatistik(){
   let totalLatihan=0,totalLulus=0,bestOverall=0;
   const rows=[];
@@ -3814,6 +3930,7 @@ function refreshStatistik(){
   let hHtml=`<h4 class="stats-title"><span class="ic-inline">${IMAGES.icon_clipboard_data}Riwayat Latihan</span></h4>`;
   if(rows.length>0){hHtml+=`<table class="stats-table"><tr><th>Paket</th><th>TWK</th><th>TIU</th><th>TKP</th><th>Total</th><th>Coba</th><th>Status</th></tr>`;rows.forEach(r=>{hHtml+=`<tr><td>P${r.paket}</td><td>${r.twk}</td><td>${r.tiu}</td><td>${r.tkp}</td><td>${r.total}/${r.max}</td><td>${r.coba}x</td><td class="${r.lulus?'pass':'fail'}"><span class="ic-inline">${r.lulus?IMAGES.icon_check_circle:IMAGES.icon_x_circle}</span></td></tr>`;});hHtml+='</table>';}
   else{hHtml+='<p class="stats-empty">Belum ada riwayat latihan.</p>';}
+  hHtml+=renderAttemptList();
   document.getElementById('statsHistory').innerHTML=hHtml;
   let qcHtml=`<h4 class="stats-title" style="margin-top:14px;"><span class="ic-inline">${IMAGES.icon_bolt}Rekor Kuis Cepat</span></h4>`;
   qcHtml+=`<table class="stats-table"><tr><th>Kategori</th><th>1m</th><th>3m</th><th>5m</th><th>10m</th><th>Sesi</th></tr>`;
@@ -4024,6 +4141,7 @@ function renderEvalOptions(q,userIdx){
 }
 function showEvaluasi(){
   const panel=document.getElementById('evaluasiPanel');let html='<h3 style="color:var(--blue);margin-bottom:12px;">📝 Evaluasi Jawaban</h3>';
+  evalBmSrc.p=originals.slice();
   for(let i=0;i<questions.length;i++){
     const n=i+1;const katName=questions[i].kategori||getCat(n).name;
     const q=questions[i],pb=q.pembahasan||'';
@@ -4031,7 +4149,7 @@ function showEvaluasi(){
     let userIdx=null;
     if(q.isTKP){if(userScores[i]!==null&&userScores[i]!==undefined){const uS=userScores[i],idx=q.optionScores.findIndex(s=>s===uS);userIdx=idx>=0?idx:null;const mS=Math.max(...q.optionScores);stCls=uS===mS?'benar':'salah';stIcon=uS===mS?'✅':'❌';}}
     else{if(userAnswers[i]!==null){userIdx=userAnswers[i];stCls=userAnswers[i]===q.answer?'benar':'salah';stIcon=userAnswers[i]===q.answer?'✅':'❌';}}
-    html+=`<div class="evaluasi-item ${stCls}"><div class="soal-teks">${stIcon} Soal ${n} [${katName}]</div><div class="soal-isi">${formatSoal(q.question)}</div>${renderEvalOptions(q,userIdx)}${pb?`<div class="pembahasan-box"><strong>💡 Pembahasan</strong>${formatSoal(pb)}</div>`:''}</div>`;
+    html+=`<div class="evaluasi-item ${stCls}"><div class="eval-head"><div class="soal-teks">${stIcon} Soal ${n} [${katName}]</div>${evalBmBtn('p',i)}</div><div class="soal-isi">${formatSoal(q.question)}</div>${renderEvalOptions(q,userIdx)}${pb?`<div class="pembahasan-box"><strong>💡 Pembahasan</strong>${formatSoal(pb)}</div>`:''}</div>`;
   }
   panel.innerHTML=html;panel.style.display='block';document.getElementById('btnCloseEval').style.display='block';panel.scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -4080,6 +4198,88 @@ function showNextAch(){
   },3500);
 }
   
+// ========== BACKUP & PULIHKAN PROGRES ==========
+// Progres hanya ada di localStorage perangkat ini. Backup = salinan semua kunci progres
+// (bukan sesi login / cache kredensial) dalam satu file JSON atau satu kode teks.
+const BK_RE=/^(skor(TWK|TIU|TKP)_latihan\d+|bestScore_latihan\d+|evalData_latihan\d+|paketUlangi_\d+|riwayat_latihan\d+|simulasi_last|simulasiCount|simulasiLulusBerturut|materiOpened|menuVisited|qc(Best|TotalSesi|StreakMax|NoWrong|Akurasi90)_\w+|achUnlocked|skd_wrongBank|skd_bookmarkBank|skd_aktivitas_log|soundEnabled|timerEnabled|fontScale_\w+)$/;
+const BK_PREFIX='SKDBACKUP1:';
+const BK_LAST_KEY='skd_lastBackup';
+function bkCollect(){const d={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(BK_RE.test(k))d[k]=localStorage.getItem(k);}return d;}
+function bkBuild(){return{app:'skd-cpns',v:1,exportedAt:new Date().toISOString(),user:getLoggedInUser()||'',data:bkCollect()};}
+function bkEncode(o){return BK_PREFIX+btoa(unescape(encodeURIComponent(JSON.stringify(o))));}
+function bkStamp(){const d=new Date(),z=n=>String(n).padStart(2,'0');return `${d.getFullYear()}${z(d.getMonth()+1)}${z(d.getDate())}-${z(d.getHours())}${z(d.getMinutes())}`;}
+function bkMarkDone(){try{localStorage.setItem(BK_LAST_KEY,new Date().toISOString());}catch(e){}refreshBackupInfo();}
+function refreshBackupInfo(){
+  const el=document.getElementById('bkLast');if(!el)return;
+  const v=localStorage.getItem(BK_LAST_KEY);
+  el.textContent=v?`Backup terakhir: ${fmtAttemptDate(new Date(v).getTime())}`:'Backup terakhir: belum pernah';
+}
+async function exportProgressFile(){
+  const o=bkBuild();
+  if(Object.keys(o.data).length===0){alert('Belum ada progres untuk dibackup.');return;}
+  const name=`skd-cpns-backup-${bkStamp()}.json`,text=JSON.stringify(o);
+  try{
+    const file=new File([text],name,{type:'application/json'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Backup SKD CPNS'});bkMarkDone();return;}
+  }catch(e){if(e&&e.name==='AbortError')return;}
+  try{
+    const url=URL.createObjectURL(new Blob([text],{type:'application/json'}));
+    const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),4000);bkMarkDone();
+    alert('✅ Backup dibuat: '+name+'\n\nKalau file tidak muncul di perangkatmu, pakai tombol "Salin Kode".');
+  }catch(e){alert('⚠️ Gagal membuat file. Coba tombol "Salin Kode".');}
+}
+async function copyProgressCode(){
+  const o=bkBuild();
+  if(Object.keys(o.data).length===0){alert('Belum ada progres untuk dibackup.');return;}
+  const code=bkEncode(o);let ok=false;
+  try{await navigator.clipboard.writeText(code);ok=true;}catch(e){}
+  if(!ok){try{const t=document.createElement('textarea');t.value=code;t.style.cssText='position:fixed;top:0;left:0;opacity:0;';document.body.appendChild(t);t.focus();t.select();ok=document.execCommand('copy');t.remove();}catch(e){}}
+  if(ok){bkMarkDone();alert('✅ Kode backup disalin.\n\nTempel & simpan di tempat aman (catatan, WhatsApp ke diri sendiri, email). Di HP baru: Pulihkan dari Backup → tempel kode.');}
+  else alert('⚠️ Gagal menyalin otomatis. Gunakan tombol "Simpan File".');
+}
+function openRestoreModal(){document.getElementById('restoreText').value='';document.getElementById('restoreModal').classList.add('show');}
+function closeRestoreModal(){document.getElementById('restoreModal').classList.remove('show');}
+function restoreFromFileInput(inp){
+  const f=inp.files&&inp.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{document.getElementById('restoreText').value=String(r.result||'');};
+  r.onerror=()=>alert('⚠️ File tidak bisa dibaca.');
+  r.readAsText(f);inp.value='';
+}
+function bkParse(text){
+  text=String(text||'').trim();
+  if(!text)throw new Error('Tempel kode backup atau pilih file backup dulu.');
+  let json=text;
+  if(text[0]!=='{'){
+    if(text.indexOf(BK_PREFIX)===0)text=text.slice(BK_PREFIX.length);
+    text=text.replace(/\s+/g,'');
+    try{json=decodeURIComponent(escape(atob(text)));}catch(e){throw new Error('Kode backup tidak valid atau terpotong.');}
+  }
+  let o;try{o=JSON.parse(json);}catch(e){throw new Error('Isi backup rusak.');}
+  if(!o||o.app!=='skd-cpns'||!o.data||typeof o.data!=='object')throw new Error('Ini bukan backup aplikasi SKD CPNS.');
+  const data={};let n=0;
+  Object.keys(o.data).forEach(k=>{const v=o.data[k];if(BK_RE.test(k)&&typeof v==='string'&&v.length<5e6){data[k]=v;n++;}});
+  if(!n)throw new Error('Backup tidak berisi data progres.');
+  return{o,data,n};
+}
+function restoreProgress(){
+  let p;try{p=bkParse(document.getElementById('restoreText').value);}catch(e){alert('⚠️ '+e.message);return;}
+  let when='-';try{when=fmtAttemptDate(new Date(p.o.exportedAt).getTime());}catch(e){}
+  const who=p.o.user?` milik "${p.o.user}"`:'';
+  if(!confirm(`Pulihkan progres dari backup${who} (${when})?\n\nProgres di perangkat ini akan DIGANTI dengan isi backup.`))return;
+  const old=bkCollect();
+  try{
+    Object.keys(old).forEach(k=>localStorage.removeItem(k));
+    Object.keys(p.data).forEach(k=>localStorage.setItem(k,p.data[k]));
+  }catch(e){
+    try{Object.keys(p.data).forEach(k=>localStorage.removeItem(k));Object.keys(old).forEach(k=>localStorage.setItem(k,old[k]));}catch(e2){}
+    alert('⚠️ Gagal memulihkan (penyimpanan penuh?). Progres lama dikembalikan.');return;
+  }
+  closeRestoreModal();
+  alert('✅ Progres berhasil dipulihkan. Aplikasi akan dimuat ulang.');
+  location.reload();
+}
 function resetAllProgress(){
   for(let i=1;i<=5;i++){['bestScore','skorTWK','skorTIU','skorTKP'].forEach(k=>localStorage.removeItem(`${k}_latihan${i}`));localStorage.removeItem(`evalData_latihan${i}`);localStorage.removeItem(`paketUlangi_${i}`);localStorage.removeItem(`riwayat_latihan${i}`);}
   localStorage.removeItem('simulasi_last');localStorage.removeItem('simulasiCount');localStorage.removeItem('simulasiLulusBerturut');localStorage.removeItem('materiOpened');localStorage.removeItem('menuVisited');
