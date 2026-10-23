@@ -24,3 +24,21 @@ const signing = `    signingConfigs {
 g = g.replace('    buildTypes {', signing).replace(/release \{\n(\s+)minifyEnabled/, 'release {\n$1signingConfig signingConfigs.release\n$1minifyEnabled');
 fs.writeFileSync(f, g);
 console.log('build.gradle dipatch: versionCode', build);
+
+// Izin memasang APK (untuk pembaruan di dalam aplikasi) + pastikan FileProvider boleh membagikan folder cache.
+const man = path.resolve(__dirname, '..', 'android', 'app', 'src', 'main', 'AndroidManifest.xml');
+let m = fs.readFileSync(man, 'utf8');
+if (!m.includes('REQUEST_INSTALL_PACKAGES')) {
+  m = m.replace(/<application/, '<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />\n    <application');
+  fs.writeFileSync(man, m);
+}
+const fp = path.resolve(__dirname, '..', 'android', 'app', 'src', 'main', 'res', 'xml', 'file_paths.xml');
+let x = fs.readFileSync(fp, 'utf8');
+if (!x.includes('<cache-path')) {
+  x = x.replace('</paths>', '    <cache-path name="skd_cache" path="." />\n</paths>');
+  fs.writeFileSync(fp, x);
+}
+if (!m.includes('REQUEST_INSTALL_PACKAGES') && !fs.readFileSync(man, 'utf8').includes('REQUEST_INSTALL_PACKAGES')) {
+  console.error('Gagal menambah izin REQUEST_INSTALL_PACKAGES'); process.exit(1);
+}
+console.log('AndroidManifest & file_paths dipatch');

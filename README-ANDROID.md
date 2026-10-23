@@ -17,3 +17,11 @@ Jangan pernah commit file .jks ke repo, dan simpan backup-nya. Kalau hilang, pen
 ## Rilis versi baru
 Push ke `main`. Setiap build otomatis menaikkan `versionCode` (nomor run) dan membuat Release `build-N` berisi `SKD-CPNS.apk`.
 Aplikasi yang terpasang akan menampilkan banner "Update tersedia" saat ada internet (repo harus public agar bisa dicek).
+
+## Pembaruan di dalam aplikasi
+Tombol **Perbarui** pada banner mengunduh APK dari GitHub Releases (dengan persentase progres) lalu membuka installer Android; pengguna cukup menekan "Pasang".
+- Pertama kali, Android meminta izin "Pasang aplikasi dari sumber ini" untuk aplikasi ini. Setelah diizinkan, kembali ke aplikasi dan tekan Perbarui lagi.
+- Android tidak mengizinkan instal sepenuhnya senyap di luar Play Store, jadi satu ketukan "Pasang" tetap diperlukan.
+- Hanya URL `https` dari github.com / githubusercontent.com yang diterima. APK dengan tanda tangan berbeda otomatis ditolak Android, jadi keystore harus tetap sama.
+- Versi APK lama (sebelum fitur ini) tetap memakai tautan unduh; setelah memasang build ini sekali secara manual, update berikutnya otomatis.
+- Code signing Windows/SmartScreen tidak berlaku untuk APK (itu hanya untuk aplikasi desktop Windows).

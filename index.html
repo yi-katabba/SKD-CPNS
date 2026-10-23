@@ -4169,12 +4169,29 @@ async function cekUpdateAplikasi_(){
     const b = document.createElement('div');
     b.id = 'updateBanner';
     b.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:99999;background:#1e3a8a;color:#fff;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:center;box-shadow:0 6px 24px rgba(0,0,0,.35);font:600 14px system-ui,sans-serif;';
-    b.innerHTML = '<span style="flex:1">🔔 Update tersedia (versi '+m[1]+'). Progres kamu tetap aman.</span>'
+    b.innerHTML = '<span id="updTxt" style="flex:1">🔔 Update tersedia (versi '+m[1]+'). Progres kamu tetap aman.</span>'
       + '<button id="updBtn" style="background:#fbbf24;color:#1e3a8a;border:0;border-radius:10px;padding:8px 12px;font-weight:700">Unduh</button>'
       + '<button id="updClose" style="background:transparent;color:#fff;border:0;font-size:18px">✕</button>';
     document.body.appendChild(b);
-    document.getElementById('updBtn').onclick = ()=>{ window.open(url,'_blank'); };
+    const teks = b.firstChild, btn = document.getElementById('updBtn');
     document.getElementById('updClose').onclick = ()=>b.remove();
+    btn.onclick = ()=>{
+      // APK: unduh & pasang langsung dari dalam aplikasi. Selain itu (browser / APK lama): buka tautan.
+      if(!apk || !window.SkdUpdater || typeof window.SkdUpdater.downloadAndInstall!=='function'){ window.open(url,'_blank'); return; }
+      const awal = '🔔 Update tersedia (versi '+m[1]+'). Progres kamu tetap aman.';
+      const reset = (pesan)=>{ teks.textContent = pesan||awal; btn.disabled=false; btn.textContent='Perbarui'; };
+      window.__skdUpdProgress = (p)=>{ teks.textContent = '⬇️ Mengunduh update… '+p+'%'; };
+      window.__skdUpdDone = (st)=>{
+        if(st==='OK'){ teks.textContent = '✅ Unduhan selesai. Tekan "Pasang" pada layar Android.'; btn.disabled=false; btn.textContent='Ulangi'; }
+        else{ reset('⚠️ Gagal mengunduh ('+st+'). Cek internet lalu coba lagi.'); }
+      };
+      let r; try{ r = String(window.SkdUpdater.downloadAndInstall(url)); }catch(e){ r='ERR:'+(e&&e.name||'bridge'); }
+      if(r==='START'){ btn.disabled=true; btn.textContent='…'; teks.textContent='⬇️ Mengunduh update… 0%'; }
+      else if(r==='NEED_PERMISSION'){ reset('Izinkan "Pasang aplikasi dari sumber ini" untuk aplikasi ini di pengaturan, lalu kembali dan tekan Perbarui.'); }
+      else if(r==='BUSY'){ /* sudah berjalan */ }
+      else{ window.open(url,'_blank'); reset(); }
+    };
+    btn.textContent = (apk && window.SkdUpdater) ? 'Perbarui' : 'Unduh';
   }catch(e){}
 }
 setTimeout(cekUpdateAplikasi_, 3000);
