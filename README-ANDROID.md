@@ -19,9 +19,13 @@ Push ke `main`. Setiap build otomatis menaikkan `versionCode` (nomor run) dan me
 Aplikasi yang terpasang akan menampilkan banner "Update tersedia" saat ada internet (repo harus public agar bisa dicek).
 
 ## Pembaruan di dalam aplikasi
-Tombol **Perbarui** pada banner mengunduh APK dari GitHub Releases (dengan persentase progres) lalu membuka installer Android; pengguna cukup menekan "Pasang".
-- Pertama kali, Android meminta izin "Pasang aplikasi dari sumber ini" untuk aplikasi ini. Setelah diizinkan, kembali ke aplikasi dan tekan Perbarui lagi.
-- Android tidak mengizinkan instal sepenuhnya senyap di luar Play Store, jadi satu ketukan "Pasang" tetap diperlukan.
-- Hanya URL `https` dari github.com / githubusercontent.com yang diterima. APK dengan tanda tangan berbeda otomatis ditolak Android, jadi keystore harus tetap sama.
-- Versi APK lama (sebelum fitur ini) tetap memakai tautan unduh; setelah memasang build ini sekali secara manual, update berikutnya otomatis.
-- Code signing Windows/SmartScreen tidak berlaku untuk APK (itu hanya untuk aplikasi desktop Windows).
+Buka **Tentang Aplikasi > Pembaruan** (gaya yang sama dengan Alethra):
+- Menampilkan versi terpasang, tombol **Periksa pembaruan**, dan sakelar **Periksa pembaruan otomatis** (maksimal sekali sehari, hanya satu permintaan ke api.github.com).
+- Kalau ada versi baru: ukuran, tanggal, catatan rilis, tombol **Unduh & pasang** dan **Lewati versi ini**. Unduhan menampilkan progres dan bisa **dibatalkan**.
+- Pemeriksaan otomatis yang menemukan versi baru juga memunculkan banner di **atas** layar (tombol Perbarui / Batal / tutup).
+- Keamanan: hanya `https` dari github.com / githubusercontent.com; ukuran dan SHA-256 (dari GitHub) dicek; tanda tangan APK harus sama dengan aplikasi terpasang sebelum installer dibuka. Berkas yang sudah utuh dipakai ulang (tidak diunduh ulang setelah memberi izin).
+- Pertama kali Android meminta izin "Pasang aplikasi tidak dikenal" untuk aplikasi ini. Instal sepenuhnya senyap tidak diizinkan Android di luar Play Store, jadi satu ketukan "Pasang" tetap perlu.
+- Sisa APK di cache dihapus otomatis saat aplikasi dibuka setelah update.
+- Catatan rilis diambil dari pesan commit yang memicu build, jadi tulis pesan commit yang jelas.
+- Versi APK sebelum fitur ini tidak punya menu ini; pasang build ini sekali secara manual, update berikutnya lewat menu Pembaruan.
+- Code signing Windows/SmartScreen tidak berlaku untuk APK.

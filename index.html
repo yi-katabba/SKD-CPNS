@@ -1830,6 +1830,31 @@ input:checked+.slider:before{transform:translateX(22px);}
 #akunPage .pf-row .menu-chevron{color:#94A3B8;}
 #akunPage .btn-logout{border-radius:16px;}
 
+/* ---- Pembaruan aplikasi (menu Tentang + banner atas) ---- */
+.upd-card{padding:14px;}
+.upd-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.upd-ic{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#1565C0,#26A69A);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.upd-main{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.upd-main b{font-size:15px;font-weight:800;color:var(--dark);}
+.upd-main small{font-size:11.5px;font-weight:600;color:#64748b;}
+.upd-status{font-size:13px;line-height:1.55;color:#475569;margin-bottom:10px;}
+.upd-bar{height:10px;border-radius:6px;background:#EEF2F9;overflow:hidden;margin-bottom:10px;}
+.upd-fill{height:100%;width:0;background:linear-gradient(90deg,#1976D2,#26A69A);transition:width .2s;}
+.upd-notes{background:#F1F5F9;border-radius:12px;padding:10px 12px;font-size:12px;line-height:1.55;color:#334155;margin-bottom:10px;word-break:break-word;}
+.upd-actions{display:flex;flex-wrap:wrap;gap:8px;}
+.upd-btn{flex:1;min-width:120px;border:0;border-radius:12px;padding:11px 12px;font-weight:800;font-size:13px;background:#1565C0;color:#fff;font-family:inherit;}
+.upd-btn.ghost{background:#E8EEF9;color:#1e3a8a;}
+.upd-btn:disabled{opacity:.6;}
+.upd-btn:active{opacity:.8;}
+.upd-auto{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:12px;border-top:1px dashed #E2E8F0;}
+.upd-auto span{display:flex;flex-direction:column;gap:2px;}
+.upd-auto b{font-size:13px;font-weight:800;color:var(--dark);}
+.upd-auto small{font-size:11px;line-height:1.45;color:#64748b;font-weight:500;}
+.upd-auto input{width:22px;height:22px;accent-color:#1565C0;flex-shrink:0;}
+.upd-bbtn{background:#fbbf24;color:#1e3a8a;border:0;border-radius:10px;padding:8px 12px;font-weight:800;font-size:13px;font-family:inherit;}
+.upd-bbtn.ghost{background:rgba(255,255,255,.18);color:#fff;}
+.upd-bx{background:transparent;color:#fff;border:0;font-size:18px;padding:0 4px;}
+
 /* ---- Pencapaian ---- */
 #pencapaianPage .pencapaian-tier-label{
   border-radius:20px;font-size:13px;font-weight:800;letter-spacing:.1px;margin:18px 0 10px;
@@ -2893,6 +2918,21 @@ input:checked+.slider:before{transform:translateX(22px);}
           <span class="status-pill ix-pill">Gratis</span>
         </div>
         <p class="ix-text">Dirancang untuk membantu calon peserta CPNS mempersiapkan diri menghadapi Seleksi Kompetensi Dasar (SKD) dengan berlatih soal TWK, TIU, dan TKP secara mandiri, efektif, dan terarah.</p>
+      </div>
+
+      <div id="updSection" style="display:none">
+        <div class="ix-section">Pembaruan</div>
+        <div class="ix-card upd-card">
+          <div class="upd-top">
+            <span class="upd-ic"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg></span>
+            <div class="upd-main"><b id="updTitle">Pembaruan aplikasi</b><small id="updVer">Versi terpasang —</small></div>
+          </div>
+          <div class="upd-status" id="updStatus">Ketuk "Periksa pembaruan" untuk melihat versi terbaru.</div>
+          <div class="upd-bar" id="updBar" style="display:none"><div class="upd-fill" id="updFill"></div></div>
+          <div class="upd-notes" id="updNotes" style="display:none"></div>
+          <div class="upd-actions" id="updActions"></div>
+          <label class="upd-auto"><span><b>Periksa pembaruan otomatis</b><small>Cek versi baru di GitHub Releases saat aplikasi dibuka, maksimal sekali sehari. Hanya mengirim satu permintaan ke api.github.com.</small></span><input type="checkbox" id="updAuto" onchange="updSetAuto_(this.checked)"></label>
+        </div>
       </div>
 
       <div class="ix-section">Passing Grade</div>
@@ -4080,6 +4120,7 @@ function goTo(pageId){
   if(pageId==='akunPage')refreshAkunPage();
   if(pageId==='pengaturanPage')syncSoundToggle();
   if(pageId==='backupPage')refreshBackupInfo();
+  if(pageId==='tentangPage'){renderUpd_();updAuto_();}
   history.pushState({page:pageId},'','');
 }
 
@@ -4151,50 +4192,155 @@ function tampilToastKeluar_(){
   });
 })();
 
-// ========== CEK UPDATE APLIKASI (online, opsional) ==========
-// Saat ada internet, cek rilis terbaru di GitHub Releases. Kalau nomor build lebih
-// baru dari yang terpasang, tampilkan banner "Update tersedia". Tanpa internet =
-// dilewati diam-diam, aplikasi tetap jalan normal.
-async function cekUpdateAplikasi_(){
+// ========== PEMBARUAN APLIKASI (GitHub Releases, hanya di APK) ==========
+// Menu: Tentang Aplikasi > Pembaruan (periksa manual, periksa otomatis maks. sekali sehari, lewati versi, batalkan unduhan).
+// Banner di atas layar muncul saat pemeriksaan otomatis menemukan versi baru. Tanpa internet = dilewati diam-diam.
+const UPD_REPO = (typeof APP_REPO!=='undefined' && APP_REPO) ? APP_REPO : 'yi-katabba/SKD-CPNS';
+const UPD = {rel:null, state:'idle', msg:'', done:0, total:0, bannerOn:false};
+function updBridge_(){ const b=window.SkdUpdater; return (b && typeof b.downloadAndInstall==='function' && typeof b.info==='function') ? b : null; }
+function updInstalled_(){ const b=updBridge_(); if(!b) return null; try{ const o=JSON.parse(b.info()); return (o && o.code>0) ? o : null; }catch(e){ return null; } }
+function updLs_(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
+function updAutoOn_(){ return updLs_('skd_upd_auto')!=='0'; }
+function updSetAuto_(on){ updLs_('skd_upd_auto', on?'1':'0'); }
+function updMB_(n){ return (n/1048576).toFixed(1).replace('.',',')+' MB'; }
+function updEsc_(t){ return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function updToast_(t){
+  let e=document.getElementById('updToast');
+  if(!e){ e=document.createElement('div'); e.id='updToast';
+    e.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:calc(90px + env(safe-area-inset-bottom));z-index:100000;background:rgba(15,23,42,.92);color:#fff;border-radius:22px;padding:10px 16px;font:600 13px system-ui,sans-serif;max-width:86%;text-align:center;transition:opacity .25s;';
+    document.body.appendChild(e); }
+  e.textContent=t; e.style.opacity='1'; clearTimeout(e._h); e._h=setTimeout(()=>{ e.style.opacity='0'; },2600);
+}
+
+async function updCek_(manual){
+  const inst=updInstalled_();
+  if(!inst){ if(manual) updToast_('Pembaruan hanya tersedia di aplikasi Android'); return; }
+  if(UPD.state==='checking' || UPD.state==='downloading') return;
+  if(!adaInternet_()){ if(manual){ UPD.state='error'; UPD.msg='Tidak ada koneksi internet.'; renderUpd_(); } return; }
+  UPD.state='checking'; renderUpd_();
   try{
-    if(typeof APP_BUILD==='undefined' || !APP_BUILD || !adaInternet_()) return;
-    const res = await fetchDenganTimeout_('https://api.github.com/repos/'+APP_REPO+'/releases/latest', {headers:{'Accept':'application/vnd.github+json'}}, 8000);
-    if(!res.ok) return;
+    const res = await fetchDenganTimeout_('https://api.github.com/repos/'+UPD_REPO+'/releases/latest', {headers:{'Accept':'application/vnd.github+json'}}, 10000);
+    if(res.status===404){ UPD.rel=null; UPD.state='latest'; UPD.msg='Belum ada rilis di GitHub.'; renderUpd_(); return; }
+    if(res.status===403 || res.status===429) throw new Error('Batas permintaan GitHub tercapai, coba lagi nanti');
+    if(!res.ok) throw new Error('GitHub menjawab '+res.status);
     const rel = await res.json();
-    const m = /build-(\d+)/.exec(rel.tag_name||'');
-    if(!m || parseInt(m[1],10) <= APP_BUILD) return;
-    const apk = (rel.assets||[]).find(a=>/\.apk$/i.test(a.name));
-    const url = apk ? apk.browser_download_url : rel.html_url;
-    if(document.getElementById('updateBanner')) return;
-    const b = document.createElement('div');
-    b.id = 'updateBanner';
-    b.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:99999;background:#1e3a8a;color:#fff;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:center;box-shadow:0 6px 24px rgba(0,0,0,.35);font:600 14px system-ui,sans-serif;';
-    b.innerHTML = '<span id="updTxt" style="flex:1">🔔 Update tersedia (versi '+m[1]+'). Progres kamu tetap aman.</span>'
-      + '<button id="updBtn" style="background:#fbbf24;color:#1e3a8a;border:0;border-radius:10px;padding:8px 12px;font-weight:700">Unduh</button>'
-      + '<button id="updClose" style="background:transparent;color:#fff;border:0;font-size:18px">✕</button>';
+    updLs_('skd_upd_last', String(Date.now()));
+    const m = /(\d+)$/.exec(rel.tag_name||'');
+    const apk = (rel.assets||[]).find(a=>/\.apk$/i.test(a.name||'') && /^https:\/\//.test(a.browser_download_url||''));
+    if(!m || !apk || parseInt(m[1],10) <= inst.code){
+      UPD.rel=null; UPD.state='latest'; UPD.msg='Aplikasi sudah versi terbaru.'; UPD.bannerOn=false; renderUpd_(); if(manual) updToast_('Aplikasi sudah versi terbaru'); return;
+    }
+    const dg = String(apk.digest||'');
+    UPD.rel = {tag:rel.tag_name, build:parseInt(m[1],10), url:apk.browser_download_url, size:apk.size||0,
+               sha:/^sha256:/i.test(dg) ? dg.slice(7).toLowerCase() : '', notes:String(rel.body||'').trim().slice(0,600),
+               date:rel.published_at||''};
+    UPD.state='available'; UPD.msg='';
+    UPD.bannerOn = !manual && updLs_('skd_upd_skip')!==rel.tag_name;
+    renderUpd_();
+  }catch(e){
+    UPD.state = manual ? 'error' : 'idle';
+    UPD.msg = (e && e.name==='AbortError') ? 'Waktu habis, coba lagi.' : ('Gagal memeriksa: '+((e&&e.message)||'periksa internet').slice(0,80));
+    renderUpd_();
+  }
+}
+
+function updMulai_(){
+  const b=updBridge_(), r=UPD.rel; if(!b || !r) return;
+  UPD.state='downloading'; UPD.done=0; UPD.total=r.size; UPD.msg=''; renderUpd_();
+  window.__skdUpdProgress = (d,t)=>{ UPD.done=d; UPD.total=t||r.size; renderUpd_(); };
+  window.__skdUpdDone = (st)=>{
+    st=String(st||'');
+    if(st==='OK'){ UPD.state='done'; UPD.msg='Unduhan selesai. Tekan "Pasang" pada layar Android.'; }
+    else if(st==='NEED_PERMISSION'){ UPD.state='needperm'; UPD.msg='Android perlu izin "Pasang aplikasi tidak dikenal" untuk aplikasi ini. Setelah mengizinkan, kembali ke sini dan ketuk Coba lagi (berkas tidak diunduh ulang).'; }
+    else if(st==='SIGNER_MISMATCH'){ UPD.state='error'; UPD.rel=null; UPD.bannerOn=false; UPD.msg='Tanda tangan APK tidak sama dengan aplikasi yang terpasang, jadi tidak dipasang demi keamanan. Berkas unduhan sudah dihapus.'; }
+    else if(st==='CANCELED'){ UPD.state='available'; UPD.msg=''; updToast_('Unduhan dibatalkan'); }
+    else { UPD.state='error'; UPD.msg='Gagal mengunduh: '+st.replace(/^ERR:/,'').slice(0,80); }
+    renderUpd_();
+  };
+  let r0; try{ r0=String(b.downloadAndInstall(r.url, r.build, r.size||0, r.sha||'')); }catch(e){ r0='ERR:'+((e&&e.message)||'bridge'); }
+  if(r0.indexOf('ERR:')===0){ UPD.state='error'; UPD.msg='Gagal mengunduh: '+r0.slice(4); renderUpd_(); }
+}
+function updBatal_(){ try{ const b=updBridge_(); if(b) b.cancel(); }catch(e){} }
+function updIzin_(){ try{ const b=updBridge_(); if(b) b.openInstallSettings(); }catch(e){} }
+function updLewati_(){
+  if(UPD.rel) updLs_('skd_upd_skip', UPD.rel.tag);
+  UPD.rel=null; UPD.state='latest'; UPD.bannerOn=false;
+  UPD.msg='Versi ini dilewati. Pengingat otomatis tidak muncul lagi untuk versi ini; periksa manual kapan saja untuk memasangnya.';
+  renderUpd_();
+}
+function updTutupBanner_(){ UPD.bannerOn=false; renderUpd_(); }
+function updKeTentang_(){ UPD.bannerOn=false; if(typeof goTo==='function'){ playSound('menu'); goTo('tentangPage'); } renderUpd_(); }
+
+function renderUpd_(){
+  const inst=updInstalled_();
+  const sec=document.getElementById('updSection');
+  if(sec){
+    sec.style.display = inst ? '' : 'none';
+    if(inst){
+      const $=id=>document.getElementById(id);
+      $('updVer').textContent='Versi terpasang '+inst.name+' (build '+inst.code+')';
+      const auto=$('updAuto'); if(auto) auto.checked=updAutoOn_();
+      const r=UPD.rel, st=UPD.state;
+      const pct = UPD.total>0 ? Math.min(100,Math.floor(UPD.done*100/UPD.total)) : null;
+      let title='Pembaruan aplikasi', text='Ketuk "Periksa pembaruan" untuk melihat versi terbaru.', btns='';
+      const B=(label,fn,cls)=>'<button class="upd-btn'+(cls?' '+cls:'')+'" onclick="playSound(\'menu\');'+fn+'">'+label+'</button>';
+      if(st==='checking'){ text='Memeriksa pembaruan…'; btns='<button class="upd-btn" disabled>Memeriksa…</button>'; }
+      else if(st==='available' && r){
+        title='Pembaruan tersedia: versi '+r.build;
+        text='Ukuran ±'+(r.size>0?updMB_(r.size):'?')+(r.date?' · '+new Date(r.date).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}):'')+'. Progres kamu tetap aman.';
+        btns=B('Unduh &amp; pasang','updMulai_()')+B('Lewati versi ini','updLewati_()','ghost');
+      }
+      else if(st==='downloading'){
+        title='Mengunduh pembaruan'+(r?' '+r.build:'');
+        text = pct===null ? 'Mengunduh…' : 'Mengunduh… '+updMB_(UPD.done)+' / '+updMB_(UPD.total)+' ('+pct+'%)';
+        btns=B('Batal','updBatal_()','ghost');
+      }
+      else if(st==='needperm'){ text=UPD.msg; btns=B('Buka pengaturan','updIzin_()')+B('Coba lagi','updMulai_()','ghost'); }
+      else if(st==='done'){ text=UPD.msg; btns=B('Pasang ulang','updMulai_()','ghost'); }
+      else if(st==='error'){ text=UPD.msg; btns=B(r?'Coba lagi':'Periksa pembaruan', r?'updMulai_()':'updCek_(true)'); }
+      else if(st==='latest'){ text=UPD.msg||'Aplikasi sudah versi terbaru.'; btns=B('Periksa pembaruan','updCek_(true)'); }
+      else { btns=B('Periksa pembaruan','updCek_(true)'); }
+      $('updTitle').textContent=title; $('updStatus').textContent=text; $('updActions').innerHTML=btns;
+      const bar=$('updBar'); bar.style.display = (st==='downloading') ? '' : 'none';
+      $('updFill').style.width = (pct===null?0:pct)+'%';
+      const nt=$('updNotes'); const showNotes=(r && r.notes && (st==='available'||st==='needperm'||st==='done'));
+      nt.style.display = showNotes ? '' : 'none'; if(showNotes) nt.innerHTML='<b>Yang baru:</b><br>'+updEsc_(r.notes).replace(/\n/g,'<br>');
+    }
+  }
+  renderUpdBanner_();
+}
+
+function renderUpdBanner_(){
+  let b=document.getElementById('updateBanner');
+  const st=UPD.state, r=UPD.rel;
+  const aktif = UPD.bannerOn && r && ['available','downloading','needperm','done','error'].indexOf(st)>=0;
+  if(!aktif){ if(b) b.remove(); return; }
+  if(!b){
+    b=document.createElement('div'); b.id='updateBanner';
+    b.style.cssText='position:fixed;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top));z-index:99999;background:#1e3a8a;color:#fff;border-radius:14px;padding:11px 12px;display:flex;gap:8px;align-items:center;box-shadow:0 6px 24px rgba(0,0,0,.35);font:600 13.5px system-ui,sans-serif;';
     document.body.appendChild(b);
-    const teks = b.firstChild, btn = document.getElementById('updBtn');
-    document.getElementById('updClose').onclick = ()=>b.remove();
-    btn.onclick = ()=>{
-      // APK: unduh & pasang langsung dari dalam aplikasi. Selain itu (browser / APK lama): buka tautan.
-      if(!apk || !window.SkdUpdater || typeof window.SkdUpdater.downloadAndInstall!=='function'){ window.open(url,'_blank'); return; }
-      const awal = '🔔 Update tersedia (versi '+m[1]+'). Progres kamu tetap aman.';
-      const reset = (pesan)=>{ teks.textContent = pesan||awal; btn.disabled=false; btn.textContent='Perbarui'; };
-      window.__skdUpdProgress = (p)=>{ teks.textContent = '⬇️ Mengunduh update… '+p+'%'; };
-      window.__skdUpdDone = (st)=>{
-        if(st==='OK'){ teks.textContent = '✅ Unduhan selesai. Tekan "Pasang" pada layar Android.'; btn.disabled=false; btn.textContent='Ulangi'; }
-        else{ reset('⚠️ Gagal mengunduh ('+st+'). Cek internet lalu coba lagi.'); }
-      };
-      let r; try{ r = String(window.SkdUpdater.downloadAndInstall(url)); }catch(e){ r='ERR:'+(e&&e.name||'bridge'); }
-      if(r==='START'){ btn.disabled=true; btn.textContent='…'; teks.textContent='⬇️ Mengunduh update… 0%'; }
-      else if(r==='NEED_PERMISSION'){ reset('Izinkan "Pasang aplikasi dari sumber ini" untuk aplikasi ini di pengaturan, lalu kembali dan tekan Perbarui.'); }
-      else if(r==='BUSY'){ /* sudah berjalan */ }
-      else{ window.open(url,'_blank'); reset(); }
-    };
-    btn.textContent = (apk && window.SkdUpdater) ? 'Perbarui' : 'Unduh';
+  }
+  const pct = UPD.total>0 ? Math.min(100,Math.floor(UPD.done*100/UPD.total)) : null;
+  let text, btn;
+  if(st==='available'){ text='🔔 Pembaruan tersedia: versi '+r.build; btn='<button class="upd-bbtn" onclick="updMulai_()">Perbarui</button>'; }
+  else if(st==='downloading'){ text='⬇️ Mengunduh pembaruan'+(pct===null?'…':' '+pct+'%'); btn='<button class="upd-bbtn ghost" onclick="updBatal_()">Batal</button>'; }
+  else if(st==='done'){ text='✅ Unduhan selesai. Tekan "Pasang".'; btn='<button class="upd-bbtn" onclick="updKeTentang_()">Detail</button>'; }
+  else if(st==='needperm'){ text='Izin pemasangan diperlukan.'; btn='<button class="upd-bbtn" onclick="updKeTentang_()">Detail</button>'; }
+  else { text='⚠️ Pembaruan gagal.'; btn='<button class="upd-bbtn" onclick="updKeTentang_()">Detail</button>'; }
+  b.innerHTML='<span style="flex:1;cursor:pointer" onclick="updKeTentang_()">'+text+'</span>'+btn
+    +(st==='downloading'?'':'<button class="upd-bx" onclick="updTutupBanner_()">✕</button>');
+}
+
+// Pemeriksaan otomatis: sekali sehari, hanya bila diaktifkan dan hanya di APK.
+function updAuto_(){
+  try{
+    if(!updInstalled_() || !updAutoOn_()) return;
+    const last=parseInt(updLs_('skd_upd_last')||'0',10)||0;
+    if(Date.now()-last < 24*3600*1000) return;
+    updCek_(false);
   }catch(e){}
 }
-setTimeout(cekUpdateAplikasi_, 3000);
+setTimeout(updAuto_, 3000);
 
 // Ambang kelulusan SKD. Harus dideklarasikan SEBELUM initApp() karena refreshHomeStats()
 // -> getBadgeStats() memakainya saat aplikasi dibuka ulang (kalau tidak: ReferenceError/TDZ).

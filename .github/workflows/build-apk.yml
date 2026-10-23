@@ -97,4 +97,5 @@ jobs:
           tag_name: build-${{ github.run_number }}
           name: SKD CPNS build ${{ github.run_number }}
           make_latest: true
+          body: ${{ github.event.head_commit.message }}
           files: SKD-CPNS.apk
