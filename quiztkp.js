@@ -1,6 +1,6 @@
 var quizTKP = [
   { // No 1
-    q: "Aya adalah pegawai bidang pelayanan masyarakat. Ketika ada tamu yang bertindak kurang menyenangkan, maka saya akan bersikap ....",
+    sub: "Pelayanan Publik", q: "Aya adalah pegawai bidang pelayanan masyarakat. Ketika ada tamu yang bertindak kurang menyenangkan, maka saya akan bersikap ....",
     opts: [
         "Tidak ingin melayani orang tersebut",
         "Melapor kepada atasan, orang seperti itu jangan pernah dilayani",
@@ -12,7 +12,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 2
-    q: "Ketika berada di kantor, Anda mendapat kabar bahwa mertua Anda sedang sakit, dan sedang banyak orang yang membutuhkan pelayanan, apakah yang Anda lakukan?",
+    sub: "Pelayanan Publik", q: "Ketika berada di kantor, Anda mendapat kabar bahwa mertua Anda sedang sakit, dan sedang banyak orang yang membutuhkan pelayanan, apakah yang Anda lakukan?",
     opts: [
         "Tetap menyelesaikan pekerjaan sampai waktu kerja habis, baru setelah itu pergi menjenguk",
         "Izin kepada atasan menjenguk mertua di rumah sakit",
@@ -24,7 +24,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 3
-    q: "Anda berangan-angan ingin mudik bersama suami Anda, tetapi ternyata Anda mendapat libur lima hari setelah lebaran, maka Anda ....",
+    sub: "Pelayanan Publik", q: "Anda berangan-angan ingin mudik bersama suami Anda, tetapi ternyata Anda mendapat libur lima hari setelah lebaran, maka Anda ....",
     opts: [
         "Marah kepada atasan karena memberi jadwal libur di akhir",
         "Meminta ganti jadwal libur dengan rekan lain",
@@ -36,7 +36,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 4
-    q: "Anda seorang dokter yang sedang bertugas, pada saat Anda istirahat, tiba-tiba ada pasien yang datang, apakah reaksi Anda?",
+    sub: "Pelayanan Publik", q: "Anda seorang dokter yang sedang bertugas, pada saat Anda istirahat, tiba-tiba ada pasien yang datang, apakah reaksi Anda?",
     opts: [
         "Menyuruh orang tersebut menunggu sampai istirahat selesai",
         "Dengan jujur mengatakan jam pelayanan setelah jam istirahat",
@@ -48,7 +48,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 5
-    q: "Pada saat jam bekerja, Anda melihat teman Anda malah bermain game internet, maka Anda ....",
+    sub: "Profesionalisme", q: "Pada saat jam bekerja, Anda melihat teman Anda malah bermain game internet, maka Anda ....",
     opts: [
         "Mendiamkannya karena takut dimusuhi",
         "Pura-pura tidak tahu",
@@ -60,7 +60,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 6
-    q: "Rekan kerja saya selalu datang tepat waktu, tetapi ia kerap melalaikan tugasnya dan asyik mengobrol dengan rekan yang lain, maka saya akan ....",
+    sub: "Profesionalisme", q: "Rekan kerja saya selalu datang tepat waktu, tetapi ia kerap melalaikan tugasnya dan asyik mengobrol dengan rekan yang lain, maka saya akan ....",
     opts: [
         "Melaporkan kepada atasan",
         "Mengingatkan agar tidak mengulangi kesalahan",
@@ -72,7 +72,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 7
-    q: "Saya sedang makan, tiba-tiba atasan saya meminta bantuan, yang saya lakukan adalah ....",
+    sub: "Profesionalisme", q: "Saya sedang makan, tiba-tiba atasan saya meminta bantuan, yang saya lakukan adalah ....",
     opts: [
         "Menolak dengan halus karena saya sedang makan",
         "Mengatakan dengan jujur bahwa saya tidak mau bekerja pada jam istirahat",
@@ -84,7 +84,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 8
-    q: "Rekan kantor saya selalu menarik imbalan pada setiap jenis layanan yang ia lakukan. Padahal, hal tersebut dilarang, yang saya lakukan adalah ....",
+    sub: "Profesionalisme", q: "Rekan kantor saya selalu menarik imbalan pada setiap jenis layanan yang ia lakukan. Padahal, hal tersebut dilarang, yang saya lakukan adalah ....",
     opts: [
         "Melaporkan kepada atasan",
         "Meniru tindakan tersebut",
@@ -96,7 +96,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 9
-    q: "Saya seorang anggota polisi yang sudah pensiun, tetapi saya dimintai bantuan untuk mengusut kasus pencurian, maka saya ....",
+    sub: "Profesionalisme", q: "Saya seorang anggota polisi yang sudah pensiun, tetapi saya dimintai bantuan untuk mengusut kasus pencurian, maka saya ....",
     opts: [
         "Diam saja karena itu bukan pekerjaan saya lagi",
         "Membantunya dengan menarik bayaran yang tinggi",
@@ -108,7 +108,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 10
-    q: "Bagi saya melayani masyarakat adalah ....",
+    sub: "Pelayanan Publik", q: "Bagi saya melayani masyarakat adalah ....",
     opts: [
         "Kewajiban",
         "Keharusan",
@@ -120,7 +120,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 11
-    q: "Hari sudah sore, lima menit lagi kantor pelayanan sudah tutup, tetapi tiba-tiba ada warga yang meminta bantuan yang sangat penting, yang saya lakukan adalah ....",
+    sub: "Pelayanan Publik", q: "Hari sudah sore, lima menit lagi kantor pelayanan sudah tutup, tetapi tiba-tiba ada warga yang meminta bantuan yang sangat penting, yang saya lakukan adalah ....",
     opts: [
         "Tidak memberinya pelayanan karena jam kantor sudah habis",
         "Tetap memberinya pelayanan, jika perlu melembur",
@@ -132,7 +132,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 12
-    q: "Anda seorang guru, suatu hari ada wali murid yang datang ke rumah Anda ingin berkonsultasi mengenai anaknya, maka Anda ....",
+    sub: "Pelayanan Publik", q: "Anda seorang guru, suatu hari ada wali murid yang datang ke rumah Anda ingin berkonsultasi mengenai anaknya, maka Anda ....",
     opts: [
         "Tidak peduli",
         "Memberi pesan kepada orang rumah jika Anda sedang tidak ada di rumah",
@@ -144,7 +144,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 13
-    q: "Ayah Anda seorang pelayan masyarakat, ia kerap pulang setelah lepas magrib karena menyelesaikan pekerjaan, menurut Anda ayah Anda ....",
+    sub: "Pelayanan Publik", q: "Ayah Anda seorang pelayan masyarakat, ia kerap pulang setelah lepas magrib karena menyelesaikan pekerjaan, menurut Anda ayah Anda ....",
     opts: [
         "Hal tersebut patut dijadikan teladan, semua pegawai pulang setelah magrib",
         "Bukan contoh yang baik karena membuat diri sendiri merasa lelah",
@@ -156,7 +156,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 14
-    q: "Atasan saya memberikan tugas dengan tenggat waktu tanggal 30 bulan ini, tetapi tiba-tiba ia memberi kabar bahwa tenggat waktu dimajukan menjadi tanggal 28, maka saya ....",
+    sub: "Profesionalisme", q: "Atasan saya memberikan tugas dengan tenggat waktu tanggal 30 bulan ini, tetapi tiba-tiba ia memberi kabar bahwa tenggat waktu dimajukan menjadi tanggal 28, maka saya ....",
     opts: [
         "Meminta perpanjangan waktu karena tenggat waktu awal tanggal 30",
         "Akan menyelesaikan tugas sesuai dengan waktu yang ditentukan",
@@ -168,7 +168,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 15
-    q: "Berikut ini adalah tindakan yang memberikan pelayanan secara maksimal kepada masyarakat, kecuali ....",
+    sub: "Pelayanan Publik", q: "Berikut ini adalah tindakan yang memberikan pelayanan secara maksimal kepada masyarakat, kecuali ....",
     opts: [
         "Ikut melembur jika memang pekerjaan belum selesai",
         "Meminta jatah lembur dua kali lipat karena menyelesaikan pekerjaan",
@@ -180,7 +180,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 16
-    q: "Ayah Anda seorang PNS. Suatu hari ada orang yang memberinya uang untuk membantu proses pengurusan surat, tetapi ayah Anda menolak, sikap Ayah Anda mencerminkan ....",
+    sub: "Profesionalisme", q: "Ayah Anda seorang PNS. Suatu hari ada orang yang memberinya uang untuk membantu proses pengurusan surat, tetapi ayah Anda menolak, sikap Ayah Anda mencerminkan ....",
     opts: [
         "Tidak tahu diuntung karena tidak mau menerima uang",
         "Seseorang yang tidak mau melakukan tindakan KKN",
@@ -192,7 +192,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 17
-    q: "Suatu hari saya dimintai bantuan tetangga untuk mengurus proses pembuatan surat lebih cepat dengan imbalan uang lima ratus ribu, yang saya lakukan adalah ....",
+    sub: "Profesionalisme", q: "Suatu hari saya dimintai bantuan tetangga untuk mengurus proses pembuatan surat lebih cepat dengan imbalan uang lima ratus ribu, yang saya lakukan adalah ....",
     opts: [
         "Menolak menerima uang dan menyelesaikan kewajiban sesuai dengan prosedur kantor",
         "Menerima uang dan menyelesaikan kewajiban sesuai dengan prosedur kantor",
@@ -204,7 +204,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 18
-    q: "Atasan saya sering menerima suap untuk membantu proses-proses pengurusan jual-beli, yang saya lakukan adalah ....",
+    sub: "Profesionalisme", q: "Atasan saya sering menerima suap untuk membantu proses-proses pengurusan jual-beli, yang saya lakukan adalah ....",
     opts: [
         "Ikut menerima suap",
         "Menolak menerima suap",
@@ -216,7 +216,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 19
-    q: "Teman saya kerap mengeluh karena sering melembur karena pekerjaan yang menumpuk, yang saya lakukan adalah ....",
+    sub: "Profesionalisme", q: "Teman saya kerap mengeluh karena sering melembur karena pekerjaan yang menumpuk, yang saya lakukan adalah ....",
     opts: [
         "Ikut mengeluhkan pekerjaan yang sangat banyak",
         "Menyarankan agar cuti",
@@ -228,7 +228,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 20
-    q: "Esok hari laporan pelayanan kepada masyarakat sudah harus diserahkan dan Anda harus melembur, tetapi anak Anda sakit, dan di rumah tidak ada siapa-siapa, tindakan Anda adalah ....",
+    sub: "Profesionalisme", q: "Esok hari laporan pelayanan kepada masyarakat sudah harus diserahkan dan Anda harus melembur, tetapi anak Anda sakit, dan di rumah tidak ada siapa-siapa, tindakan Anda adalah ....",
     opts: [
         "Meminta izin kepada atasan tidak ikut mengerjakan",
         "Menunda mengerjakan laporan hingga besok",
@@ -240,7 +240,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 21
-    q: "Teman Anda mengalami kesulitan keuangan, maka Anda ....",
+    sub: "Jejaring Kerja", q: "Teman Anda mengalami kesulitan keuangan, maka Anda ....",
     opts: [
         "Memberinya saran-saran yang terbaik untuk mendapatkan uang",
         "Meminjami dengan uang pribadi",
@@ -252,7 +252,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 22
-    q: "Menurut saya, kritikan dari rekan kantor saya adalah ....",
+    sub: "Jejaring Kerja", q: "Menurut saya, kritikan dari rekan kantor saya adalah ....",
     opts: [
         "Cemoohan",
         "Harus disyukuri",
@@ -264,7 +264,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 23
-    q: "Teman saya sedang sakit. Oleh atasan saya diberi tugas untuk menyelesaikan pekerjaannya, sikap saya ....",
+    sub: "Jejaring Kerja", q: "Teman saya sedang sakit. Oleh atasan saya diberi tugas untuk menyelesaikan pekerjaannya, sikap saya ....",
     opts: [
         "Menolaknya dengan kasar",
         "Menolak dengan halus",
@@ -276,7 +276,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 24
-    q: "Orang lain di kantor Anda lebih pintar dan sering mengolok-olok, respons Anda ....",
+    sub: "Jejaring Kerja", q: "Orang lain di kantor Anda lebih pintar dan sering mengolok-olok, respons Anda ....",
     opts: [
         "Malas menanggapi",
         "Mengajaknya berbicara secara pribadi",
@@ -288,7 +288,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 25
-    q: "Jika teman saya berhasil dan saya gagal, saya akan ....",
+    sub: "Jejaring Kerja", q: "Jika teman saya berhasil dan saya gagal, saya akan ....",
     opts: [
         "Memberinya ucapan selamat dengan sepenuh hati",
         "Memberi dukungan agar dikira tidak sakit hati",
@@ -300,7 +300,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 26
-    q: "Teman saya ingin berpresentasi, tetapi ia belum siap, respons saya adalah ....",
+    sub: "Jejaring Kerja", q: "Teman saya ingin berpresentasi, tetapi ia belum siap, respons saya adalah ....",
     opts: [
         "Mendiamkannya karena itu bukan urusan saya",
         "Menyarankan agar menyiapkan diri sebaik mungkin dan jika perlu membantunya",
@@ -312,7 +312,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 27
-    q: "Setiap teman Anda ulang tahun, maka Anda ....",
+    sub: "Jejaring Kerja", q: "Setiap teman Anda ulang tahun, maka Anda ....",
     opts: [
         "Memberinya hadiah yang mahal-mahal",
         "Memberinya kue yang tidak enak",
@@ -324,7 +324,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 28
-    q: "Ketika akan berangkat ke kantor, saya melihat tetangga saya ban motornya bocor, sedangkan ia akan mengantar anaknya sekolah, yang saya lakukan adalah ....",
+    sub: "Sosial Budaya", q: "Ketika akan berangkat ke kantor, saya melihat tetangga saya ban motornya bocor, sedangkan ia akan mengantar anaknya sekolah, yang saya lakukan adalah ....",
     opts: [
         "Menyuruhnya pulang ke rumah",
         "Mengantar anaknya pergi ke sekolah",
@@ -336,7 +336,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 29
-    q: "Teman yang tidak pernah bertegur sapa dengan Anda sedang sakit, respons Anda ialah ....",
+    sub: "Jejaring Kerja", q: "Teman yang tidak pernah bertegur sapa dengan Anda sedang sakit, respons Anda ialah ....",
     opts: [
         "Tidak akan menjenguknya karena selama hidupnya ia tidak pernah bertegur sapa",
         "Menjenguk dengan terpaksa",
@@ -348,7 +348,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 30
-    q: "Teman Anda membutuhkan bantuan Anda karena ayahnya sakit keras, maka sikap Anda ....",
+    sub: "Jejaring Kerja", q: "Teman Anda membutuhkan bantuan Anda karena ayahnya sakit keras, maka sikap Anda ....",
     opts: [
         "Membantunya jika mampu",
         "Membantu dengan meminta imbalan",
@@ -360,7 +360,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 31
-    q: "Tetangga Anda ada yang meninggal, padahal Anda masuk kerja, maka Anda ....",
+    sub: "Sosial Budaya", q: "Tetangga Anda ada yang meninggal, padahal Anda masuk kerja, maka Anda ....",
     opts: [
         "Mendiamkannya",
         "Meminta izin tidak berangkat",
@@ -372,7 +372,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 32
-    q: "Ketika mendapat arisan, tetangga Anda meminta untuk meminjam, pada saat itu Anda sedang butuh untuk membayar uang sekolah, maka Anda ....",
+    sub: "Sosial Budaya", q: "Ketika mendapat arisan, tetangga Anda meminta untuk meminjam, pada saat itu Anda sedang butuh untuk membayar uang sekolah, maka Anda ....",
     opts: [
         "Meminjamkan seluruh uang Anda",
         "Tidak meminjami",
@@ -384,7 +384,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 33
-    q: "Anda telah dipindahtugaskan ke kantor baru, maka Anda ....",
+    sub: "Jejaring Kerja", q: "Anda telah dipindahtugaskan ke kantor baru, maka Anda ....",
     opts: [
         "Terlebih dahulu mengajak kenalan semua orang di kantor",
         "Bersikap cuek",
@@ -396,7 +396,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 34
-    q: "Anda tidak senang dengan sikap teman Anda yang senang pamer, maka Anda ....",
+    sub: "Jejaring Kerja", q: "Anda tidak senang dengan sikap teman Anda yang senang pamer, maka Anda ....",
     opts: [
         "Tidak ingin berteman dengannya",
         "Tidak ingin menyapanya",
@@ -408,7 +408,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 35
-    q: "Teman saya lupa membawa alat pada saat akan presentasi, maka saya ....",
+    sub: "Jejaring Kerja", q: "Teman saya lupa membawa alat pada saat akan presentasi, maka saya ....",
     opts: [
         "Menyuruhnya untuk membatalkan presentasi",
         "Membantunya mencari pinjaman alat sebelum presentasi",
@@ -420,7 +420,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 36
-    q: "Teman yang tidak Anda sukai meminta bantuan Anda, sikap Anda adalah ....",
+    sub: "Jejaring Kerja", q: "Teman yang tidak Anda sukai meminta bantuan Anda, sikap Anda adalah ....",
     opts: [
         "Pura-pura tidak mendengar",
         "Menolongnya tanpa pamrih",
@@ -432,7 +432,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 37
-    q: "Teman Anda termasuk orang yang pelupa, maka Anda ....",
+    sub: "Jejaring Kerja", q: "Teman Anda termasuk orang yang pelupa, maka Anda ....",
     opts: [
         "Memberi saran agar mempunyai catatan khusus",
         "Memberi saran agar banyak minum vitamin",
@@ -444,7 +444,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 38
-    q: "Teman Anda kehilangan kunci mobilnya, maka Anda ....",
+    sub: "Jejaring Kerja", q: "Teman Anda kehilangan kunci mobilnya, maka Anda ....",
     opts: [
         "Pura-pura tidak tahu",
         "Membantu jika diminta",
@@ -456,7 +456,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 39
-    q: "Usulan saya ditolak oleh peserta rapat, maka saya ....",
+    sub: "Jejaring Kerja", q: "Usulan saya ditolak oleh peserta rapat, maka saya ....",
     opts: [
         "Akan memberikannya pendapat sampai semua pendapat diterima",
         "Menerima dengan lapang dada",
@@ -468,7 +468,7 @@ var quizTKP = [
     pembahasan: ""
 },
   { // No 40
-    q: "Teman saya jatuh dari motor dan terluka, padahal saya takut dengan darah, maka saya ....",
+    sub: "Jejaring Kerja", q: "Teman saya jatuh dari motor dan terluka, padahal saya takut dengan darah, maka saya ....",
     opts: [
         "Pura-pura tidak tahu",
         "Meninggalkannya karena saya takut darah",

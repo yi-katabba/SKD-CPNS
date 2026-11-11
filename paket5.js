@@ -2,181 +2,181 @@
 var paket5 = {
   twk: [
   { // No 1
-    q: "Statistika adalah cabang ilmu yang mempelajari metode dan teknik untuk mengumpulkan, mengolah, menganalisis, menyajikan, dan menafsirkan data sehingga dapat digunakan sebagai dasar pengambilan keputusan; melalui statistika, data yang beragam dapat diubah menjadi informasi yang bermakna dan mudah dipahami dalam bentuk tabel, diagram, grafik, maupun ukuran statistik seperti mean, median, modus, varians, dan simpangan baku, serta digunakan untuk mengetahui pola, tren, hubungan, dan karakteristik data guna membantu membuat prediksi atau kesimpulan yang lebih akurat. Statistika secara umum dibedakan menjadi statistika deskriptif yang berfungsi menggambarkan data dan statistika inferensial yang digunakan untuk menarik kesimpulan mengenai populasi berdasarkan sampel. Penerapannya sangat luas dalam bidang pendidikan, ekonomi, bisnis, kesehatan, teknologi, pemerintahan, dan penelitian ilmiah sehingga statistika berperan penting dalam membantu manusia memahami informasi, mengurangi ketidakpastian, serta mendukung pengambilan keputusan yang objektif, rasional, dan berdasarkan fakta.",
+    sub: "Bahasa Indonesia", q: "Statistika adalah cabang ilmu yang mempelajari metode dan teknik untuk mengumpulkan, mengolah, menganalisis, menyajikan, dan menafsirkan data sehingga dapat digunakan sebagai dasar pengambilan keputusan; melalui statistika, data yang beragam dapat diubah menjadi informasi yang bermakna dan mudah dipahami dalam bentuk tabel, diagram, grafik, maupun ukuran statistik seperti mean, median, modus, varians, dan simpangan baku, serta digunakan untuk mengetahui pola, tren, hubungan, dan karakteristik data guna membantu membuat prediksi atau kesimpulan yang lebih akurat. Statistika secara umum dibedakan menjadi statistika deskriptif yang berfungsi menggambarkan data dan statistika inferensial yang digunakan untuk menarik kesimpulan mengenai populasi berdasarkan sampel. Penerapannya sangat luas dalam bidang pendidikan, ekonomi, bisnis, kesehatan, teknologi, pemerintahan, dan penelitian ilmiah sehingga statistika berperan penting dalam membantu manusia memahami informasi, mengurangi ketidakpastian, serta mendukung pengambilan keputusan yang objektif, rasional, dan berdasarkan fakta.",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 2
-    q: "",
+    sub: "Bahasa Indonesia", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 3
-    q: "",
+    sub: "Bahasa Indonesia", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 4
-    q: "",
+    sub: "Bahasa Indonesia", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 5
-    q: "",
+    sub: "Bahasa Indonesia", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 6
-    q: "",
+    sub: "Bahasa Indonesia", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 7
-    q: "",
+    sub: "Pilar Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 8
-    q: "",
+    sub: "Pilar Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 9
-    q: "",
+    sub: "Pilar Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 10
-    q: "",
+    sub: "Pilar Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 11
-    q: "",
+    sub: "Pilar Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 12
-    q: "",
+    sub: "Pilar Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 13
-    q: "",
+    sub: "Bela Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 14
-    q: "",
+    sub: "Bela Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 15
-    q: "",
+    sub: "Bela Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 16
-    q: "",
+    sub: "Bela Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 17
-    q: "",
+    sub: "Bela Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 18
-    q: "",
+    sub: "Bela Negara", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 19
-    q: "",
+    sub: "Integritas", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 20
-    q: "",
+    sub: "Integritas", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 21
-    q: "",
+    sub: "Integritas", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 22
-    q: "",
+    sub: "Integritas", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 23
-    q: "",
+    sub: "Integritas", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 24
-    q: "",
+    sub: "Integritas", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 25
-    q: "",
+    sub: "Nasionalisme", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 26
-    q: "",
+    sub: "Nasionalisme", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 27
-    q: "",
+    sub: "Nasionalisme", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 28
-    q: "",
+    sub: "Nasionalisme", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 29
-    q: "",
+    sub: "Nasionalisme", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 30
-    q: "",
+    sub: "Nasionalisme", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
@@ -185,210 +185,210 @@ var paket5 = {
   
   tiu: [
     { // No 31
-    q: "",
+    sub: "Verbal (Analogi)", q: "",
     opt: ["","","","",""],
     a: 3,
     pembahasan: ""
   },
   { // No 32
-    q: "",
+    sub: "Verbal (Analogi)", q: "",
     opt: ["","","","",""],
     a: 3,
     pembahasan: ""
   },
   { // No 33
-    q: "",
+    sub: "Verbal (Analogi)", q: "",
     opt: ["","","","",""],
     a: 0,
     pembahasan: ""
   },
   { // No 34
-    q: "",
+    sub: "Verbal (Silogisme)", q: "",
     opt: ["","","","",""],
     a: 1,
     pembahasan: ""
   },
   { // No 35
-    q: "",
+    sub: "Verbal (Silogisme)", q: "",
     opt: ["","","","",""],
     a: 0,
     pembahasan: ""
   },
   { // No 36
-    q: "",
+    sub: "Verbal (Silogisme)", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 37
-    q: "",
+    sub: "Verbal (Silogisme)", q: "",
     opt: ["","","","",""],
     a: 1,
     pembahasan: ""
   },
   { // No 38
-    q: "",
+    sub: "Verbal (Logika Analitik)", q: "",
     opt: ["","","","",""],
     a: 3,
     pembahasan: ""
   },
   { // No 39
-    q: "",
+    sub: "Verbal (Logika Analitik)", q: "",
     opt: ["","","","",""],
     a: 1,
     pembahasan: ""
   },
   { // No 40
-    q: "",
+    sub: "Verbal (Logika Analitik)", q: "",
     opt: ["","","","",""],
     a: 2,
     pembahasan: ""
   },
   { // No 41
-    q: "",
+    sub: "Verbal (Logika Analitik)", q: "",
     opt: ["","","","",""],
     a: 0,
     pembahasan: ""
   },
   { // No 42
-    q: "",
+    sub: "Verbal (Hitung Cepat)", q: "",
     opt: ["","","","",""],
     a: 1,
     pembahasan: ""
   },
   { // No 43
-    q: "",
+    sub: "Verbal (Hitung Cepat)", q: "",
     opt: ["","","","",""],
     a: 3,
     pembahasan: ""
   },
   { // No 44
-    q: "",
+    sub: "Verbal (Hitung Cepat)", q: "",
     opt: ["","","","",""],
     a: 1,
     pembahasan: ""
   },
   { // No 45
-    q: "",
+    sub: "Numerik (Deret)", q: "",
     opt: ["","","","",""],
     a: 0,
     pembahasan: ""
   },
   { // No 46
-    q: "",
+    sub: "Numerik (Deret)", q: "",
     opt: ["","","","",""],
     a: 2,
     pembahasan: ""
   },
   { // No 47
-    q: "",
+    sub: "Numerik (Deret)", q: "",
     opt: ["","","","",""],
     a: 3,
     pembahasan: ""
   },
   { // No 48
-    q: "",
+    sub: "Numerik (Deret)", q: "",
     opt: ["","","","",""],
     a: 1,
     pembahasan: ""
   },
   { // No 49
-    q: "",
+    sub: "Numerik (Perbandingan)", q: "",
     opt: ["","","","",""],
     a: 2,
     pembahasan: ""
   },
   { // No 50
-    q: "",
+    sub: "Numerik (Perbandingan)", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 51
-    q: "",
+    sub: "Numerik (Perbandingan)", q: "",
     opt: ["","","","",""],
     a: 3,
     pembahasan: ""
   },
   { // No 52
-    q: "",
+    sub: "Numerik (Perbandingan)", q: "",
     opt: ["","","","",""],
     a: 4,
     pembahasan: ""
   },
   { // No 53
-    q: "",
+    sub: "Numerik (Soal Cerita)", q: "",
     opt: ["","","","",""],
     a: 0,
     pembahasan: ""
   },
   { // No 54
-    q: "",
+    sub: "Numerik (Soal Cerita)", q: "",
     opt: ["","","","",""],
     a: 0,
     pembahasan: ""
   },
   { // No 55
-    q: "",
+    sub: "Numerik (Soal Cerita)", q: "",
     opt: ["","","","",""],
     a: 1,
     pembahasan: ""
   },
   { // No 56
-    q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
+    sub: "Numerik (Soal Cerita)", q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
 	  opt:["Gambar A","Gambar B","Gambar C","Gambar D","Gambar E"],
 	  a:3,
 	  pembahasan: ""
   },
   { // No 57
-    q:`<span style="display:block;margin-bottom:6px;font-weight:bold;color:#000000;">Tentukan satu gambar yang tidak mempunyai persamaan dengan gambar-gambar lainnya ...</span><img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
+    sub: "Figural (Analogi Gambar)", q:`<span style="display:block;margin-bottom:6px;font-weight:bold;color:#000000;">Tentukan satu gambar yang tidak mempunyai persamaan dengan gambar-gambar lainnya ...</span><img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
 	  opt:["Gambar A","Gambar B","Gambar C","Gambar D","Gambar E"],
 	  a:3,
 	  pembahasan: ""
   },
   { // No 58
-    q:`<span style="display:block;margin-bottom:6px;font-weight:bold;color:#000000;">Tentukan satu gambar yang tidak mempunyai persamaan dengan gambar-gambar lainnya ...</span><img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,	  opt:["Gambar A","Gambar B","Gambar C","Gambar D","Gambar E"],
+    sub: "Figural (Analogi Gambar)", q:`<span style="display:block;margin-bottom:6px;font-weight:bold;color:#000000;">Tentukan satu gambar yang tidak mempunyai persamaan dengan gambar-gambar lainnya ...</span><img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,	  opt:["Gambar A","Gambar B","Gambar C","Gambar D","Gambar E"],
 	  a:1,
 	  pembahasan: ""
   },
   { // No 59
-    q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
+    sub: "Figural (Analogi Gambar)", q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
 	  opt:["Gambar A","Gambar B","Gambar C","Gambar D","Gambar E"],
 	  a:3,
 	  pembahasan: ""
   },
   { // No 60
-    q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
+    sub: "Figural (Analogi Gambar)", q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
       opt:["Gambar A","Gambar B","Gambar C","Gambar D","Gambar E"],
 	  a:4,
 	  pembahasan: ""
   },
   { // No 61
-    q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
+    sub: "Figural (Ketidaksamaan)", q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
 	  opt:["Gambar A","Gambar B","Gambar C","Gambar D","Gambar E"],
 	  a:4,
 	  pembahasan: ""
   },
   { // No 62
-    q: "MUMUK >< ...",
+    sub: "Figural (Ketidaksamaan)", q: "MUMUK >< ...",
     opt: ["Padat","Lubak","Keropos","Hanur","Kuat"],
     a: 0,
     pembahasan: ""
   },
   { // No 63
-    q: "STANZA = ....",
+    sub: "Figural (Serial)", q: "STANZA = ....",
     opt: ["Halte","Romantis","Gelap","Puisi","Bait"],
     a: 4,
     pembahasan: ""
   },
   { // No 64
-    q: "EKSPLOITASI >< ...",
+    sub: "Figural (Serial)", q: "EKSPLOITASI >< ...",
     opt: ["Konservasi","Interpretasi","Perlindungan","Konservatori","Kuno"],
     a: 0,
     pembahasan: ""
   },
   { // No 65
-    q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
+    sub: "Figural (Serial)", q:`<img style="max-width:100%;border-radius:8px;margin:6px 0;display:block;" src="" />`,
     opt:["J dan R","J dan S","K dan S","I dan R","I dan S"],
     a:1,
     pembahasan: ""
@@ -397,271 +397,271 @@ var paket5 = {
   
  tkp: [
   { // No 66
-    q: "",
+    sub: "Profesionalisme", q: "",
     opts: ["","","","",""],
     scores: [4,1,5,2,3],
     pembahasan: ""
   },
   { // No 67
-    q: "",
+    sub: "Profesionalisme", q: "",
     opts: ["","","","",""],
     scores: [3,1,2,5,4],
     pembahasan: ""
   },
   { // No 68
-    q: "",
+    sub: "Profesionalisme", q: "",
     opts: ["","","","",""],
     scores: [3,2,5,1,4],
     pembahasan: ""
   },
   { // No 69
-    q: "",
+    sub: "Profesionalisme", q: "",
     opts: ["","","","",""],
     scores: [3,2,5,1,4],
     pembahasan: ""
   },
   { // No 70
-    q: "",
+    sub: "Profesionalisme", q: "",
     opts: ["","","","",""],
     scores: [4,2,1,3,5],
     pembahasan: ""
   },
   { // No 71
-    q: "",
+    sub: "Profesionalisme", q: "",
     opts: ["","","","",""],
     scores: [3,4,2,1,5],
     pembahasan: ""
   },
   { // No 72
-    q: "",
+    sub: "Profesionalisme", q: "",
     opts: ["","","","",""],
     scores: [1,4,5,3,2],
     pembahasan: ""
   },
   { // No 73
-    q: "",
+    sub: "Profesionalisme", q: "",
     opts: ["","","","",""],
     scores: [4,5,1,3,2],
     pembahasan: ""
   },
   { // No 74
-    q: "",
+    sub: "Pelayanan Publik", q: "",
     opts: ["","","","",""],
     scores: [4,1,3,5,2],
     pembahasan: ""
   },
   { // No 75
-    q: "",
+    sub: "Pelayanan Publik", q: "",
     opts: ["","","","",""],
     scores: [2,5,1,4,3],
     pembahasan: ""
   },
   { // No 76
-    q: "",
+    sub: "Pelayanan Publik", q: "",
     opts: ["","","","",""],
     scores: [2,1,3,5,4],
     pembahasan: ""
   },
   { // No 77
-    q: "",
+    sub: "Pelayanan Publik", q: "",
     opts: ["","","","",""],
     scores: [4,3,1,5,2],
     pembahasan: ""
   },
   { // No 78
-    q: "",
+    sub: "Pelayanan Publik", q: "",
     opts: ["","","","",""],
     scores: [2,4,5,1,3],
     pembahasan: ""
   },
   { // No 79
-    q: "",
+    sub: "Pelayanan Publik", q: "",
     opts: ["","","","",""],
     scores: [1,2,4,3,5],
     pembahasan: ""
   },
   { // No 80
-    q: "",
+    sub: "Pelayanan Publik", q: "",
     opts: ["","","","",""],
     scores: [3,1,5,2,4],
     pembahasan: ""
   },
   { // No 81
-    q: "",
+    sub: "Pelayanan Publik", q: "",
     opts: ["","","","",""],
     scores: [1,4,3,5,2],
     pembahasan: ""
   },
   { // No 82
-    q: "",
+    sub: "Jejaring Kerja", q: "",
     opts: ["","","","",""],
     scores: [5,2,4,1,3],
     pembahasan: ""
   },
   { // No 83
-    q: "",
+    sub: "Jejaring Kerja", q: "",
     opts: ["","","","",""],
     scores: [4,1,3,5,2],
     pembahasan: ""
   },
   { // No 84
-    q: "",
+    sub: "Jejaring Kerja", q: "",
     opts: ["","","","",""],
     scores: [5,1,3,4,2],
     pembahasan: ""
   },
   { // No 85
-    q: "",
+    sub: "Jejaring Kerja", q: "",
     opts: ["","","","",""],
     scores: [3,4,1,2,5],
     pembahasan: ""
   },
   { // No 86
-    q: "",
+    sub: "Jejaring Kerja", q: "",
     opts: ["","","","",""],
     scores: [2,5,4,1,3],
     pembahasan: ""
   },
   { // No 87
-    q: "",
+    sub: "Jejaring Kerja", q: "",
     opts: ["","","","",""],
     scores: [3,5,2,4,1],
     pembahasan: ""
   },
   { // No 88
-    q: "",
+    sub: "Jejaring Kerja", q: "",
     opts: ["","","","",""],
     scores: [5,3,1,2,4],
     pembahasan: ""
   },
   { // No 89
-    q: "",
+    sub: "Jejaring Kerja", q: "",
     opts: ["","","","",""],
     scores: [4,5,1,3,2],
     pembahasan: ""
   },
   { // No 90
-    q: "",
+    sub: "Sosial Budaya", q: "",
     opts: ["","","","",""],
     scores: [3,4,1,5,2],
     pembahasan: ""
   },
   { // No 91
-    q: "",
+    sub: "Sosial Budaya", q: "",
     opts: ["","","","",""],
     scores: [4,2,1,5,3],
     pembahasan: ""
   },
   { // No 92
-    q: "",
+    sub: "Sosial Budaya", q: "",
     opts: ["","","","",""],
     scores: [5,1,4,2,3],
     pembahasan: ""
   },
   { // No 93
-    q: "",
+    sub: "Sosial Budaya", q: "",
     opts: ["","","","",""],
     scores: [4,1,5,3,2],
     pembahasan: ""
   },
   { // No 94
-    q: "",
+    sub: "Sosial Budaya", q: "",
     opts: ["","","","",""],
     scores: [4,2,3,1,5],
     pembahasan: ""
   },
   { // No 95
-    q: "",
+    sub: "Sosial Budaya", q: "",
     opts: ["","","","",""],
     scores: [5,4,3,2,1],
     pembahasan: ""
   },
   { // No 96
-    q: "",
+    sub: "Sosial Budaya", q: "",
     opts: ["","","","",""],
     scores: [3,4,1,2,5],
     pembahasan: ""
   },
   { // No 97
-    q: "",
+    sub: "Teknologi Informasi dan Komunikasi (TIK)", q: "",
     opts: ["","","","",""],
     scores: [1,3,2,5,4],
     pembahasan: ""
   },
   { // No 98
-    q: "",
+    sub: "Teknologi Informasi dan Komunikasi (TIK)", q: "",
     opts: ["","","","",""],
     scores: [4,5,1,3,2],
     pembahasan: ""
   },
   { // No 99
-    q: "",
+    sub: "Teknologi Informasi dan Komunikasi (TIK)", q: "",
     opts: ["","","","",""],
     scores: [2,5,3,4,1],
     pembahasan: ""
   },
   { // No 100
-    q: "",
+    sub: "Teknologi Informasi dan Komunikasi (TIK)", q: "",
     opts: ["","","","",""],
     scores: [1,5,2,3,4],
     pembahasan: ""
   },
   { // No 101
-    q: "",
+    sub: "Teknologi Informasi dan Komunikasi (TIK)", q: "",
     opts: ["","","","",""],
     scores: [5,4,1,3,2],
     pembahasan: ""
   },
   { // No 102
-    q: "",
+    sub: "Teknologi Informasi dan Komunikasi (TIK)", q: "",
     opts: ["","","","",""],
     scores: [4,2,1,5,3],
     pembahasan: ""
   },
   { // No 103
-    q: "",
+    sub: "Teknologi Informasi dan Komunikasi (TIK)", q: "",
     opts: ["","","","",""],
     scores: [2,3,5,1,4],
     pembahasan: ""
   },
   { // No 104
-    q: "",
+    sub: "Anti Radikalisme", q: "",
     opts: ["","","","",""],
     scores: [2,3,4,5,1],
     pembahasan: ""
   },
   { // No 105
-    q: "",
+    sub: "Anti Radikalisme", q: "",
     opts: ["","","","",""],
     scores: [3,2,4,5,1],
     pembahasan: ""
   },
   { // No 106
-    q: "",
+    sub: "Anti Radikalisme", q: "",
     opts: ["","","","",""],
     scores: [4,1,5,2,3],
     pembahasan: ""
   },
   { // No 107
-    q: "",
+    sub: "Anti Radikalisme", q: "",
     opts: ["","","","",""],
     scores: [3,1,2,5,4],
     pembahasan: ""
   },
   { // No 108
-    q: "",
+    sub: "Anti Radikalisme", q: "",
     opts: ["","","","",""],
     scores: [3,2,5,1,4],
     pembahasan: ""
   },
   { // No 109
-    q: "",
+    sub: "Anti Radikalisme", q: "",
     opts: ["","","","",""],
     scores: [3,2,5,1,4],
     pembahasan: ""
   },
   { // No 110
-    q: "",
+    sub: "Anti Radikalisme", q: "",
     opts: ["","","","",""],
     scores: [4,2,1,3,5],
     pembahasan: ""

@@ -626,6 +626,10 @@ input:checked+.slider:before{transform:translateX(22px);}
 .cat-pill.twk{background:#EDE7F6;color:#7B1FA2;}
 .cat-pill.tiu{background:#FFF3E0;color:#E65100;}
 .cat-pill.tkp{background:#E0F2F1;color:#00695C;}
+.sub-pill{display:inline-block;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:700;line-height:1.35;background:#EEF2FF;color:#3949AB;border:1px solid #C5CAE9;}
+.sub-pill.twk{background:#EDE7F6;color:#7B1FA2;border-color:#D1C4E9;}
+.sub-pill.tiu{background:#FFF3E0;color:#E65100;border-color:#FFE0B2;}
+.sub-pill.tkp{background:#E0F2F1;color:#00695C;border-color:#B2DFDB;}
 
 /* ===== BOOKMARK BUTTON (quiz page) ===== */
 .btn-bookmark-q{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);background:#F8FAFC;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s;}
@@ -2627,7 +2631,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     
     <!-- META INFO -->
     <div style="flex-shrink:0;background:#F8FAFC;padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:13px;border-bottom:1px solid var(--border);">
-      <span id="quizProgress" style="color:var(--gray);">Soal 1/110</span>
+      <span style="display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap;"><span id="quizProgress" style="color:var(--gray);white-space:nowrap;">Soal 1/110</span><span id="quizSub" class="sub-pill" style="display:none;"></span></span>
       <div>
         <span id="timerDisplay" style="font-weight:800;color:var(--dark);">100:00</span>
         <span id="timerBadge" class="timer-badge on">⏱️ Timer ON</span>
@@ -4696,7 +4700,7 @@ function getBookmarkBank(){try{return JSON.parse(localStorage.getItem(BOOKMARK_K
 function saveBookmarkBank(o){localStorage.setItem(BOOKMARK_KEY,JSON.stringify(o));}
 function countWrongBank(){return Object.keys(getWrongBank()).length;}
 function countBookmarkBank(){return Object.keys(getBookmarkBank()).length;}
-function snapQuestion(q){return{question:q.question,options:[...q.options],answer:q.answer,isTKP:q.isTKP,optionScores:q.optionScores?[...q.optionScores]:null,pembahasan:q.pembahasan||'',kategori:q.kategori||''};}
+function snapQuestion(q){return{question:q.question,options:[...q.options],answer:q.answer,isTKP:q.isTKP,optionScores:q.optionScores?[...q.optionScores]:null,pembahasan:q.pembahasan||'',sub:q.sub||'',kategori:q.kategori||''};}
 
 // Dipanggil tiap kali quiz selesai (latihan, simulasi, atau latihan ulang):
 // soal yang dijawab SALAH otomatis masuk Bank Soal Salah, soal yang dijawab BENAR
@@ -4758,7 +4762,7 @@ function startReviewQuiz(mode,kat){
   if(kat)items=items.filter(it=>(it.kategori||'')===kat);
   if(items.length===0){alert(kat?`Tidak ada soal ${kat} di ${mode==='wrong'?'Bank Soal Salah':'Bookmark'}.`:(mode==='wrong'?'🎉 Tidak ada soal di Bank Soal Salah!':'📌 Belum ada soal yang di-bookmark.'));return;}
   if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
-  originals=items.map(it=>({question:it.question,options:[...it.options],answer:it.answer,isTKP:it.isTKP,optionScores:it.optionScores?[...it.optionScores]:null,pembahasan:it.pembahasan||'',kategori:it.kategori||''}));
+  originals=items.map(it=>({question:it.question,options:[...it.options],answer:it.answer,isTKP:it.isTKP,optionScores:it.optionScores?[...it.optionScores]:null,pembahasan:it.pembahasan||'',sub:it.sub||'',kategori:it.kategori||''}));
   for(let i=originals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[originals[i],originals[j]]=[originals[j],originals[i]];}
   questions=originals.map(q=>shuffleOpts(q));
   curQ=0;userAnswers=Array(questions.length).fill(null);userScores=Array(questions.length).fill(null);
@@ -4855,19 +4859,19 @@ function shuffleOpts(q){
   if(q.isTKP){
     let p=q.options.map((t,i)=>({text:t,score:q.optionScores[i]}));
     for(let i=p.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[p[i],p[j]]=[p[j],p[i]];}
-    return{question:q.question,options:p.map(x=>x.text),answer:null,isTKP:true,optionScores:p.map(x=>x.score),pembahasan:q.pembahasan||'',kategori:kat};
+    return{question:q.question,options:p.map(x=>x.text),answer:null,isTKP:true,optionScores:p.map(x=>x.score),pembahasan:q.pembahasan||'',sub:q.sub||'',kategori:kat};
   } else {
     let p=q.options.map((t,i)=>({text:t,idx:i}));
     for(let i=p.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[p[i],p[j]]=[p[j],p[i]];}
-    return{question:q.question,options:p.map(x=>x.text),answer:p.findIndex(x=>x.idx===q.answer),isTKP:false,optionScores:null,pembahasan:q.pembahasan||'',kategori:kat};
+    return{question:q.question,options:p.map(x=>x.text),answer:p.findIndex(x=>x.idx===q.answer),isTKP:false,optionScores:null,pembahasan:q.pembahasan||'',sub:q.sub||'',kategori:kat};
   }
 }
 function getSoalBank(id){const v='paket'+id;return typeof window[v]!=='undefined'?window[v]:{twk:[],tiu:[],tkp:[]};}
 function buildOriginals(id){
   const bank=getSoalBank(id),orig=[];
-  bank.twk.forEach(d=>orig.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',kategori:'TWK'}));
-  bank.tiu.forEach(d=>orig.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',kategori:'TIU'}));
-  bank.tkp.forEach(d=>orig.push({question:d.q,options:[...d.opts],answer:null,isTKP:true,optionScores:[...d.scores],pembahasan:d.pembahasan||'',kategori:'TKP'}));
+  bank.twk.forEach(d=>orig.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TWK'}));
+  bank.tiu.forEach(d=>orig.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TIU'}));
+  bank.tkp.forEach(d=>orig.push({question:d.q,options:[...d.opts],answer:null,isTKP:true,optionScores:[...d.scores],pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TKP'}));
   return orig;
 }
 function hitungSkor(){
@@ -4914,9 +4918,9 @@ function getQCSoal(cat){
   let all=[];
   for(let i=1;i<=5;i++){
     const b=getSoalBank(i);
-    if(cat==='twk')b.twk.forEach(d=>all.push({q:d.q,opt:[...d.opt],a:d.a,isTKP:false,pembahasan:d.pembahasan||''}));
-    else if(cat==='tiu')b.tiu.forEach(d=>all.push({q:d.q,opt:[...d.opt],a:d.a,isTKP:false,pembahasan:d.pembahasan||''}));
-    else if(cat==='tkp')b.tkp.forEach(d=>all.push({q:d.q,opt:[...d.opts],scores:[...d.scores],isTKP:true,pembahasan:d.pembahasan||''}));
+    if(cat==='twk')b.twk.forEach(d=>all.push({q:d.q,opt:[...d.opt],a:d.a,isTKP:false,pembahasan:d.pembahasan||'',sub:d.sub||''}));
+    else if(cat==='tiu')b.tiu.forEach(d=>all.push({q:d.q,opt:[...d.opt],a:d.a,isTKP:false,pembahasan:d.pembahasan||'',sub:d.sub||''}));
+    else if(cat==='tkp')b.tkp.forEach(d=>all.push({q:d.q,opt:[...d.opts],scores:[...d.scores],isTKP:true,pembahasan:d.pembahasan||'',sub:d.sub||''}));
   }
   return all;
 }
@@ -4977,8 +4981,8 @@ function mulaiQuizCepat(){
   const rawSoal=getQCSoal(cat);if(!rawSoal||rawSoal.length===0){alert('Soal tidak tersedia!');return;}
   const soalShuffled=shuffleQCSoal(rawSoal).map(d=>{
     const isTKP=d.isTKP||(d.scores&&!d.a&&d.a!==0)||false;
-    if(isTKP)return{q:d.q,opt:[...(d.opt||d.opts||[])],scores:[...(d.scores||[])],isTKP:true,pembahasan:d.pembahasan||''};
-    else return{q:d.q,opt:[...(d.opt||[])],a:d.a!==undefined?d.a:0,isTKP:false,pembahasan:d.pembahasan||''};
+    if(isTKP)return{q:d.q,opt:[...(d.opt||d.opts||[])],scores:[...(d.scores||[])],isTKP:true,pembahasan:d.pembahasan||'',sub:d.sub||''};
+    else return{q:d.q,opt:[...(d.opt||[])],a:d.a!==undefined?d.a:0,isTKP:false,pembahasan:d.pembahasan||'',sub:d.sub||''};
   }).map(d=>shuffleQCOpts(d));
   qcState.soal=soalShuffled;qcState.curIdx=0;qcState.benar=0;qcState.salah=0;
   qcState.totalDijawab=0;qcState.timeLeft=menit*60;qcState.totalWaktu=menit*60;
@@ -4993,7 +4997,8 @@ function renderQCQuestion(){
   document.getElementById('qcPlayCat').className=`qc-play-cat ${qcState.cat}`;
   document.getElementById('qcPlayScore').textContent=`Soal ke-${idx+1}`;
   document.getElementById('qcCorrectCount').textContent=`✅ ${qcState.benar} Benar`;
-  document.getElementById('qcQNum').textContent=`SOAL ${idx+1}`;
+  document.getElementById('qcQNum').innerHTML=`SOAL ${idx+1} <span id="qcSub" class="sub-pill ${qcState.cat}" style="display:none;margin-left:6px;text-transform:none;letter-spacing:0;"></span>`;
+  setSubPill(document.getElementById('qcSub'),d,qcState.cat);
   document.getElementById('qcQTxt').innerHTML=formatSoal(d.q);
   let optsHtml='';
   d.opt.forEach((o,i)=>{optsHtml+=`<div class="qc-opt" onclick="playSound('select');pilihQCJawaban(${i})"><div class="qc-opt-letter">${PREFIXES[i]}</div><div class="qc-opt-text">${o}</div></div>`;});
@@ -5255,9 +5260,9 @@ function showEvaluasiFromList(setId){
   try{const d=localStorage.getItem(`evalData_latihan${setId}`);if(d){const p=JSON.parse(d);savedAnswers=p.answers||[];savedScores=p.scores||[];savedQuestions=p.questions||[];}}catch(e){}
   let eq=savedQuestions.length>0?savedQuestions:[];
   if(eq.length===0){
-    bank.twk.forEach(d=>eq.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',kategori:'TWK'}));
-    bank.tiu.forEach(d=>eq.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',kategori:'TIU'}));
-    bank.tkp.forEach(d=>eq.push({question:d.q,options:[...d.opts],answer:null,isTKP:true,optionScores:[...d.scores],pembahasan:d.pembahasan||'',kategori:'TKP'}));
+    bank.twk.forEach(d=>eq.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TWK'}));
+    bank.tiu.forEach(d=>eq.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TIU'}));
+    bank.tkp.forEach(d=>eq.push({question:d.q,options:[...d.opts],answer:null,isTKP:true,optionScores:[...d.scores],pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TKP'}));
   }
   const sTWK=parseInt(localStorage.getItem(`skorTWK_latihan${setId}`))||0;
   const sTIU=parseInt(localStorage.getItem(`skorTIU_latihan${setId}`))||0;
@@ -5425,9 +5430,9 @@ function mulaiSimulasi(){
   if(sTWK.length+sTIU.length+sTKP.length===0){alert('⚠️ Tidak ada soal tersedia!');return;}
   if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
   originals=[];
-  sTWK.forEach(d=>originals.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',kategori:'TWK'}));
-  sTIU.forEach(d=>originals.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',kategori:'TIU'}));
-  sTKP.forEach(d=>originals.push({question:d.q,options:[...d.opts],answer:null,isTKP:true,optionScores:[...d.scores],pembahasan:d.pembahasan||'',kategori:'TKP'}));
+  sTWK.forEach(d=>originals.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TWK'}));
+  sTIU.forEach(d=>originals.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TIU'}));
+  sTKP.forEach(d=>originals.push({question:d.q,options:[...d.opts],answer:null,isTKP:true,optionScores:[...d.scores],pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TKP'}));
   questions=originals.map(q=>shuffleOpts(q));
   curQ=0;userAnswers=Array(questions.length).fill(null);userScores=Array(questions.length).fill(null);
   timeLeft=6000;simulasiMode=true;activeSet=0;quizSource='simulasi';reviewMode=null;lastReviewMode=null;lastReviewKat=null;
@@ -5459,12 +5464,35 @@ function startQuiz(setId){
   else{td.textContent='100:00';td.style.opacity='.5';tb.textContent='⏸️ Timer OFF';tb.className='timer-badge off';}
 }
 
+// ---- Sub-label materi (mis. Bahasa Indonesia, Pilar Negara, Verbal (Analogi), dst.) ----
+var _subMap=null;
+function getSubLabel(q){
+  if(!q)return '';
+  if(q.sub)return q.sub;
+  const t=q.question||q.q||'';if(!t)return '';
+  if(!_subMap){
+    _subMap={};
+    const add=(arr)=>{(arr||[]).forEach(d=>{if(d&&d.q&&d.sub)_subMap[d.q]=d.sub;});};
+    for(let i=1;i<=20;i++){const b=window['paket'+i];if(b){add(b.twk);add(b.tiu);add(b.tkp);}}
+    if(typeof quizTWK!=='undefined')add(quizTWK);
+    if(typeof quizTIU!=='undefined')add(quizTIU);
+    if(typeof quizTKP!=='undefined')add(quizTKP);
+  }
+  return _subMap[t]||'';
+}
+function setSubPill(el,q,kat){
+  if(!el)return;
+  const sb=getSubLabel(q);
+  if(sb){el.textContent=sb;el.className='sub-pill '+String(kat||'').toLowerCase();el.style.display='';}
+  else{el.textContent='';el.style.display='none';}
+}
 function loadQuestion(){
   const n=curQ+1;
   document.getElementById('quizProgress').textContent=`Soal ${n}/${questions.length}`;
   document.getElementById('quizQuestion').innerHTML=formatSoal(questions[curQ].question);
   const kat=questions[curQ].kategori||getCat(n).name;
   const hc=document.getElementById('quizHeaderCat');hc.textContent=`📍 ${kat}`;hc.className=`cat-pill ${kat.toLowerCase()}`;
+  setSubPill(document.getElementById('quizSub'),questions[curQ],kat);
   updateBookmarkBtn();
   let html='';
   questions[curQ].options.forEach((opt,idx)=>{
@@ -5548,7 +5576,7 @@ function finishQuiz(){
   } else {
     incPaketUlangi(activeSet);
     localStorage.setItem(`skorTWK_latihan${activeSet}`,s.twk);localStorage.setItem(`skorTIU_latihan${activeSet}`,s.tiu);localStorage.setItem(`skorTKP_latihan${activeSet}`,s.tkp);
-    const ed={answers:userAnswers,scores:userScores,questions:questions.map(q=>({question:q.question,options:q.options,answer:q.answer,isTKP:q.isTKP,optionScores:q.optionScores,pembahasan:q.pembahasan||'',kategori:q.kategori||''}))};
+    const ed={answers:userAnswers,scores:userScores,questions:questions.map(q=>({question:q.question,options:q.options,answer:q.answer,isTKP:q.isTKP,optionScores:q.optionScores,pembahasan:q.pembahasan||'',sub:q.sub||'',kategori:q.kategori||''}))};
     localStorage.setItem(`evalData_latihan${activeSet}`,JSON.stringify(ed));
     const key=`bestScore_latihan${activeSet}`;const prev=localStorage.getItem(key);if(prev===null||s.total>parseInt(prev))localStorage.setItem(key,s.total);
     pushRiwayat(activeSet,s);
