@@ -2266,7 +2266,7 @@ input:checked+.slider:before{transform:translateX(22px);}
       Anda dapat mengubah Username dan Password pada menu Profil.
     </p>
     <button class="btn-masuk" id="btnMasuk" onclick="doLogin()">Masuk →</button>
-    <div class="login-foot">Version 4.4 · © 2026 Latihan SKD · Hak Cipta Dilindungi</div>
+    <div class="login-foot">Version <span class="app-ver">4.4</span> · © 2026 Latihan SKD · Hak Cipta Dilindungi</div>
   </div>
 </div>
 
@@ -2978,7 +2978,7 @@ input:checked+.slider:before{transform:translateX(22px);}
       <div class="ix-card">
         <div class="ix-head">
           <span class="ix-tile" data-icon="icon_login_app"></span>
-          <span class="ix-title"><b>Latihan SKD CPNS</b><small>Versi 4.4</small></span>
+          <span class="ix-title"><b>Latihan SKD CPNS</b><small>Versi <span class="app-ver">4.4</span></small></span>
           <span class="status-pill ix-pill">Gratis</span>
         </div>
         <p class="ix-text">Dirancang untuk membantu calon peserta CPNS mempersiapkan diri menghadapi Seleksi Kompetensi Dasar (SKD) dengan berlatih soal TWK, TIU, dan TKP secara mandiri, efektif, dan terarah.</p>
@@ -3029,7 +3029,7 @@ input:checked+.slider:before{transform:translateX(22px);}
         <div class="ix-li"><span class="ix-dot">✓</span><span>Pencapaian/Badge 7 Tier dari Pemula hingga Legendaris</span></div>
         <div class="ix-li"><span class="ix-dot">✓</span><span>⚡ Kuis Cepat: jawab soal sebanyak mungkin dalam 1–10 menit</span></div>
       </div>
-      <p class="ix-copy">Version 4.4 | © 2026 Latihan SKD</p>
+      <p class="ix-copy">Version <span class="app-ver">4.4</span> | © 2026 Latihan SKD</p>
     </div>
     
   </div>
@@ -4359,6 +4359,20 @@ const UPD_REPO = (typeof APP_REPO!=='undefined' && APP_REPO) ? APP_REPO : 'yi-ka
 const UPD = {rel:null, state:'idle', msg:'', done:0, total:0, bannerOn:false};
 function updBridge_(){ const b=window.SkdUpdater; return (b && typeof b.downloadAndInstall==='function' && typeof b.info==='function') ? b : null; }
 function updInstalled_(){ const b=updBridge_(); if(!b) return null; try{ const o=JSON.parse(b.info()); return (o && o.code>0) ? o : null; }catch(e){ return null; } }
+// Versi yang tampil di login/menu = versi pembaruan yang sedang dipakai:
+// 1) APK Android -> versionName terpasang (mis. 1.0.57); 2) build web (version.js) -> 1.0.<build>; 3) cadangan: 4.4
+const APP_VER_FALLBACK = '4.4';
+function appVersionLabel_(){
+  try{ const i=updInstalled_(); if(i && i.name && i.name!=='?') return String(i.name); }catch(e){}
+  try{ if(typeof APP_BUILD!=='undefined' && APP_BUILD>0) return '1.0.'+APP_BUILD; }catch(e){}
+  return APP_VER_FALLBACK;
+}
+function renderAppVersion_(){
+  const v=appVersionLabel_();
+  document.querySelectorAll('.app-ver').forEach(el=>{ el.textContent=v; });
+}
+document.addEventListener('DOMContentLoaded', renderAppVersion_);
+window.addEventListener('load', function(){ renderAppVersion_(); setTimeout(renderAppVersion_, 800); });
 function updLs_(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
 function updAutoOn_(){ return updLs_('skd_upd_auto')!=='0'; }
 function updSetAuto_(on){ updLs_('skd_upd_auto', on?'1':'0'); }
