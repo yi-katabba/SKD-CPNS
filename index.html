@@ -2230,6 +2230,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 .katex{font-size:1.08em;}
 .katex-display{margin:6px 0;overflow-x:auto;overflow-y:hidden;max-width:100%;}
 #quizQuestion,#qcQTxt,.soal-isi,.pembahasan-box{overflow-wrap:anywhere;}
+.choice-text img,.eval-opt-text img,.qc-opt-text img{display:block;max-width:100%;height:auto;margin:2px 0;border-radius:4px;}
 </style>
 </head>
 <body>
@@ -5179,7 +5180,7 @@ function pilihQCJawaban(idx){
     opts[idx].classList.add(idx===soal.a?'correct':'wrong');
     if(idx!==soal.a)opts[soal.a].classList.add('correct');
     isBenar=(idx===soal.a);
-    fb.textContent=isBenar?'✅ Benar!':'❌ Salah! Jawaban: '+PREFIXES[soal.a]+'. '+soal.opt[soal.a];
+    fb.textContent=isBenar?'✅ Benar!':'❌ Salah! Jawaban: '+PREFIXES[soal.a]+(/^\s*<img/i.test(soal.opt[soal.a])?'':'. '+soal.opt[soal.a]);
     fb.className='qc-feedback '+(isBenar?'benar':'salah');
   }
   playSound(isBenar?'correct':'wrong');
