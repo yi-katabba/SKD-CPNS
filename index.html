@@ -3366,6 +3366,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 <script src="paket4.js"></script>
 <script src="paket5.js"></script>
 <script src="paket6.js"></script>
+<script src="paket7.js"></script>
 <script src="quiztwk.js"></script>
 <script src="quiztiu.js"></script>
 <script src="quiztkp.js"></script>
@@ -3397,7 +3398,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 
 // ========== CEK FILE ==========
 (function(){
-  const vars=['paket1','paket2','paket3','paket4','paket5','paket6'];
+  const vars=['paket1','paket2','paket3','paket4','paket5','paket6','paket7'];
   if(!vars.some(v=>typeof window[v]!=='undefined'))
     document.getElementById('errorNotice').style.display='block';
   const mv=['materiTWK','materiTIU','materiTKP'];
@@ -4579,7 +4580,7 @@ function refreshHomeStats(){
   const gDay=document.getElementById('homeGreetingDay');
   if(gDay){const h=new Date().getHours();gDay.textContent=h<5?'Selamat subuh, ':h<11?'Selamat pagi, ':h<15?'Selamat siang, ':h<18?'Selamat sore, ':'Selamat malam, ';}
   let best=[],done=0,totalSoalSelesai=0,totalSemuaSoal=0;
-  for(let i=1;i<=6;i++){
+  for(let i=1;i<=7;i++){
     const twk=localStorage.getItem(`skorTWK_latihan${i}`);
     const tiu=localStorage.getItem(`skorTIU_latihan${i}`);
     const tkp=localStorage.getItem(`skorTKP_latihan${i}`);
@@ -4655,7 +4656,7 @@ function refreshAkunPage(){
   setEl('akunUsername',u);
   const av=$('pfAvatar');if(av){av.textContent=(u&&u!=='—')?Array.from(u)[0].toUpperCase():'?';av.style.background=pfColor(u);}
   let best=0,done=0,lulus=0;
-  for(let i=1;i<=6;i++){
+  for(let i=1;i<=7;i++){
     const twk=localStorage.getItem(`skorTWK_latihan${i}`),tiu=localStorage.getItem(`skorTIU_latihan${i}`),tkp=localStorage.getItem(`skorTKP_latihan${i}`);
     if(twk&&tiu&&tkp){done++;const t=parseInt(twk)||0,x=parseInt(tiu)||0,k=parseInt(tkp)||0;if(t+x+k>best)best=t+x+k;if(t>=PASSING.TWK&&x>=PASSING.TIU&&k>=PASSING.TKP)lulus++;}
   }
@@ -5007,7 +5008,7 @@ function pushRiwayat(id,s){
 // Semua percobaan semua paket, urut waktu. Data lama (sebelum ada riwayat) dijadikan 1 percobaan.
 function getAllAttempts(){
   const all=[];
-  for(let i=1;i<=6;i++){
+  for(let i=1;i<=7;i++){
     let h=getRiwayat(i);
     if(h.length===0){
       const a=localStorage.getItem(`skorTWK_latihan${i}`),b=localStorage.getItem(`skorTIU_latihan${i}`),c=localStorage.getItem(`skorTKP_latihan${i}`);
@@ -5017,9 +5018,9 @@ function getAllAttempts(){
   }
   return all.map((x,i)=>({x,i})).sort((a,b)=>(a.x.t-b.x.t)||(a.i-b.i)).map(o=>o.x);
 }
-function getPaketUlangiMax(){let mx=0;for(let i=1;i<=6;i++){const v=parseInt(localStorage.getItem(`paketUlangi_${i}`)||'0');if(v>mx)mx=v;}return mx;}
+function getPaketUlangiMax(){let mx=0;for(let i=1;i<=7;i++){const v=parseInt(localStorage.getItem(`paketUlangi_${i}`)||'0');if(v>mx)mx=v;}return mx;}
 function checkSkorNaik(){
-  const scores=[];for(let i=1;i<=6;i++){const b=localStorage.getItem(`bestScore_latihan${i}`);if(b)scores.push(parseInt(b));}
+  const scores=[];for(let i=1;i<=7;i++){const b=localStorage.getItem(`bestScore_latihan${i}`);if(b)scores.push(parseInt(b));}
   if(scores.length<2)return false;
   for(let i=1;i<scores.length;i++){if(scores[i]<=scores[i-1])return false;}
   return true;
@@ -5087,7 +5088,7 @@ function getQCSoal(cat){
   const varName=QC_CATS[cat].jsVar;
   if(typeof window[varName]!=='undefined')return window[varName];
   let all=[];
-  for(let i=1;i<=6;i++){
+  for(let i=1;i<=7;i++){
     const b=getSoalBank(i);
     if(cat==='twk')b.twk.forEach(d=>all.push({q:d.q,opt:[...d.opt],a:d.a,isTKP:false,pembahasan:d.pembahasan||'',sub:d.sub||''}));
     else if(cat==='tiu')b.tiu.forEach(d=>all.push({q:d.q,opt:[...d.opt],a:d.a,isTKP:false,pembahasan:d.pembahasan||'',sub:d.sub||''}));
@@ -5306,7 +5307,7 @@ const BADGE_TIERS=[
 ];
 function getBadgeStats(){
   let totalDone=0,totalLulus=0,bestScore=0,bestTWK=0,bestTIU=0,simulasiDone=0,simulasiLulus=false;
-  for(let i=1;i<=6;i++){
+  for(let i=1;i<=7;i++){
     const twk=localStorage.getItem(`skorTWK_latihan${i}`),tiu=localStorage.getItem(`skorTIU_latihan${i}`),tkp=localStorage.getItem(`skorTKP_latihan${i}`);
     if(twk&&tiu&&tkp){totalDone++;const t=parseInt(twk)||0,u=parseInt(tiu)||0,k=parseInt(tkp)||0;if(t>=PASSING.TWK&&u>=PASSING.TIU&&k>=PASSING.TKP)totalLulus++;if(t+u+k>bestScore)bestScore=t+u+k;if(t>bestTWK)bestTWK=t;if(u>bestTIU)bestTIU=u;}
   }
@@ -5329,7 +5330,7 @@ function getBadgeStats(){
   const menuAll=['latihan','materi','statistik','simulasi','petunjuk','tentang','pencapaian','quizcepat'].every(m=>menuVisited[m]);
   const menuVisitedTentang=!!menuVisited['tentang'];
   const paketUlangiMax=getPaketUlangiMax();
-  let pernahJawab=false;for(let i=1;i<=6;i++){if(localStorage.getItem(`evalData_latihan${i}`))pernahJawab=true;}
+  let pernahJawab=false;for(let i=1;i<=7;i++){if(localStorage.getItem(`evalData_latihan${i}`))pernahJawab=true;}
   return{totalDone,totalLulus,bestScore,bestTWK,bestTIU,simulasiDone,simulasiLulus,simulasiLulusBerturut,qcTotalSesi,qcSesiTWK,qcSesiTIU,qcSesiTKP,qcBestTWK,qcBestTIU,qcBestTKP,qcBest1m,qcBest5m,qcBest10m,qcStreakMaxAll,qcNoWrongAny,qcAkurasi90,materiAll,menuAll,menuVisitedTentang,paketUlangiMax,skorNaik:checkSkorNaik(),pernahJawab};
 }
 function refreshPencapaian(){
@@ -5363,7 +5364,7 @@ function refreshPencapaian(){
 // ========== QUIZ LIST ==========
 const quizMeta=[
   {id:1,name:'Paket 1',icon:'icon_menu_latihan'},{id:2,name:'Paket 2',icon:'icon_menu_latihan'},
-  {id:3,name:'Paket 3',icon:'icon_menu_latihan'},{id:4,name:'Paket 4',icon:'icon_menu_latihan'},{id:5,name:'Paket 5',icon:'icon_menu_latihan'},{id:6,name:'Paket 6',icon:'icon_menu_latihan',tag:'TIU Terbaru'}
+  {id:3,name:'Paket 3',icon:'icon_menu_latihan'},{id:4,name:'Paket 4',icon:'icon_menu_latihan'},{id:5,name:'Paket 5',icon:'icon_menu_latihan'},{id:6,name:'Paket 6',icon:'icon_menu_latihan',tag:'TIU Terbaru'},{id:7,name:'Paket 7',icon:'icon_menu_latihan',tag:'Terbaru'}
 ];
 function getLatihanView(){try{return localStorage.getItem('latihanView')==='kategori'?'kategori':'paket';}catch(e){return 'paket';}}
 function setLatihanView(v){playSound('menu');try{localStorage.setItem('latihanView',v);}catch(e){}refreshQuizList();}
@@ -5614,7 +5615,7 @@ function renderPaketKategoriChart(){
   const el=document.getElementById('statsPaketKat');if(!el)return;
   const cats=[['TWK','twk'],['TIU','tiu'],['TKP','tkp']];
   let cards='',n=0;
-  for(let i=1;i<=6;i++){
+  for(let i=1;i<=7;i++){
     const m=bankMax(i);
     const vals=cats.map(([K,k])=>{
       const full=localStorage.getItem(`skor${K}_latihan${i}`),kt=localStorage.getItem(`skorKat_${K}_latihan${i}`);
@@ -5643,7 +5644,7 @@ function renderPaketKategoriChart(){
 function refreshStatistik(){
   let totalLatihan=0,totalLulus=0,bestOverall=0;
   const rows=[];
-  for(let i=1;i<=6;i++){
+  for(let i=1;i<=7;i++){
     const twk=localStorage.getItem(`skorTWK_latihan${i}`),tiu=localStorage.getItem(`skorTIU_latihan${i}`),tkp=localStorage.getItem(`skorTKP_latihan${i}`);
     if(twk&&tiu&&tkp){totalLatihan++;const t=parseInt(twk)||0,u=parseInt(tiu)||0,k=parseInt(tkp)||0,tot=t+u+k;const lulus=t>=PASSING.TWK&&u>=PASSING.TIU&&k>=PASSING.TKP;if(lulus)totalLulus++;if(tot>bestOverall)bestOverall=tot;const m=bankMax(i);rows.push({paket:i,twk:t,tiu:u,tkp:k,total:tot,lulus,max:m.total,m,coba:Math.max(getRiwayat(i).length,1)});}
   }
@@ -5652,7 +5653,7 @@ function refreshStatistik(){
     <div class="stats-mini"><div class="mi-icon">${IMAGES.icon_stat_best}</div><div class="mi-val">${bestOverall||'-'}</div><div class="mi-lbl">Skor Terbaik</div></div>
     <div class="stats-mini"><div class="mi-icon">${IMAGES.icon_akun_lulus}</div><div class="mi-val">${totalLulus}/${totalLatihan}</div><div class="mi-lbl">Lulus PG</div></div>`;
   // Penguasaan: skor terbaik per kategori terhadap skor maksimal paket tersebut (bukan angka tetap)
-  const best=(key)=>{let bv=0,bm=0,br=-1;rows.forEach(r=>{const mx=r.m[key];const ratio=mx>0?r[key]/mx:0;if(ratio>br){br=ratio;bv=r[key];bm=mx;}});if(rows.length===0){for(let i=1;i<=6;i++){const mx=bankMax(i)[key];if(mx>bm)bm=mx;}}return{v:bv,m:bm,p:bm>0?Math.round(bv/bm*100):0};};
+  const best=(key)=>{let bv=0,bm=0,br=-1;rows.forEach(r=>{const mx=r.m[key];const ratio=mx>0?r[key]/mx:0;if(ratio>br){br=ratio;bv=r[key];bm=mx;}});if(rows.length===0){for(let i=1;i<=7;i++){const mx=bankMax(i)[key];if(mx>bm)bm=mx;}}return{v:bv,m:bm,p:bm>0?Math.round(bv/bm*100):0};};
   const cT=best('twk'),cU=best('tiu'),cK=best('tkp');
   const bar=(cls,icon,name,c)=>`<div class="stats-bar-container"><div class="stats-bar-label"><span class="ic-inline">${icon}${name}</span><span>${c.v}/${c.m} (${c.p}%)</span></div><div class="stats-bar"><div class="stats-bar-fill ${cls}" style="width:${c.p}%">${c.p}%</div></div></div>`;
   document.getElementById('statsBars').innerHTML=`
@@ -5677,7 +5678,7 @@ function refreshStatistik(){
 // ========== SIMULASI ==========
 function mulaiSimulasi(){
   const allTWK=[],allTIU=[],allTKP=[];
-  for(let i=1;i<=6;i++){const b=getSoalBank(i);allTWK.push(...b.twk);allTIU.push(...b.tiu);allTKP.push(...b.tkp);}
+  for(let i=1;i<=7;i++){const b=getSoalBank(i);allTWK.push(...b.twk);allTIU.push(...b.tiu);allTKP.push(...b.tkp);}
   const pick=(arr,n)=>[...arr].sort(()=>Math.random()-.5).slice(0,Math.min(n,arr.length));
   const sTWK=pick(allTWK,30),sTIU=pick(allTIU,35),sTKP=pick(allTKP,45);
   if(sTWK.length+sTIU.length+sTKP.length===0){alert('⚠️ Tidak ada soal tersedia!');return;}
@@ -6114,7 +6115,7 @@ function restoreProgress(){
   location.reload();
 }
 function resetAllProgress(){
-  for(let i=1;i<=6;i++){['bestScore','skorTWK','skorTIU','skorTKP'].forEach(k=>localStorage.removeItem(`${k}_latihan${i}`));localStorage.removeItem(`evalData_latihan${i}`);localStorage.removeItem(`paketUlangi_${i}`);localStorage.removeItem(`riwayat_latihan${i}`);['TWK','TIU','TKP'].forEach(k=>{localStorage.removeItem(`skorKat_${k}_latihan${i}`);localStorage.removeItem(`evalData_kat_${k}_${i}`);});}
+  for(let i=1;i<=7;i++){['bestScore','skorTWK','skorTIU','skorTKP'].forEach(k=>localStorage.removeItem(`${k}_latihan${i}`));localStorage.removeItem(`evalData_latihan${i}`);localStorage.removeItem(`paketUlangi_${i}`);localStorage.removeItem(`riwayat_latihan${i}`);['TWK','TIU','TKP'].forEach(k=>{localStorage.removeItem(`skorKat_${k}_latihan${i}`);localStorage.removeItem(`evalData_kat_${k}_${i}`);});}
   localStorage.removeItem('simulasi_last');localStorage.removeItem('simulasiCount');localStorage.removeItem('simulasiLulusBerturut');localStorage.removeItem('materiOpened');localStorage.removeItem('menuVisited');
   ['twk','tiu','tkp'].forEach(cat=>{[1,3,5,10].forEach(m=>localStorage.removeItem(`qcBest_${cat}_${m}m`));localStorage.removeItem(`qcTotalSesi_${cat}`);localStorage.removeItem(`qcStreakMax_${cat}`);localStorage.removeItem(`qcNoWrong_${cat}`);localStorage.removeItem(`qcAkurasi90_${cat}`);});
   localStorage.removeItem('achUnlocked');achUnlocked=[];
