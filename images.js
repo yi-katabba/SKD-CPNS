@@ -149,6 +149,8 @@ var IMAGES = {
   emo_dot_green: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#00897B"/></svg>`,
   emo_dot_red: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#EF5350"/></svg>`,
   emo_bank: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.501.501 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89L8 0ZM3.777 3h8.447L8 1 3.777 3ZM2 6v7h1V6H2Zm2 0v7h2.5V6H4Zm3.5 0v7h1V6h-1Zm2 0v7H12V6H9.5ZM13 6v7h1V6h-1Zm2-1V4H1v1h14Zm-.39 9H1.39l-.25 1h13.72l-.25-1Z"/></svg>`,
+  emo_box: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 16 16"><path d="M8 1.2 14 4.5v7L8 14.8 2 11.5v-7z"/><path d="M2 4.5 8 7.8l6-3.3M8 7.8v7"/></svg>`,
+  emo_grid: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1.2"/><rect x="9" y="2" width="5" height="5" rx="1.2"/><rect x="2" y="9" width="5" height="5" rx="1.2"/><rect x="9" y="9" width="5" height="5" rx="1.2"/></svg>`,
   icon_fire: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0c-1 3-4 4.5-4 8.5a4 4 0 1 0 8 0C12 4.5 9 3 8 0z"/></svg>`,
 
 };
@@ -236,7 +238,9 @@ var EMO_MAP={
   '🟣':'emo_dot_purple',
   '🟤':'emo_dot_brown',
   '🟢':'emo_dot_green',
-  '🔴':'emo_dot_red'
+  '🔴':'emo_dot_red',
+  '📦':'emo_box',
+  '🗂':'emo_grid'
 };
 var EMO_RE=(function(){
   var k=Object.keys(EMO_MAP).sort(function(a,b){return b.length-a.length;}).map(function(x){return x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');});
@@ -286,4 +290,23 @@ document.addEventListener('DOMContentLoaded',function(){
     mo.takeRecords();
   });
   mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+});
+
+/* ===== Gambar soal persegi (n x n) -> kelas img-sq (diperkecil 75% lewat CSS) =====
+   Gambar persegi panjang tetap selebar penuh. Dicek setelah gambar termuat. */
+function markSquareImg(img){
+  if(!img||!img.naturalWidth||!img.naturalHeight)return;
+  var r=img.naturalWidth/img.naturalHeight;
+  img.classList.toggle('img-sq',r>=0.9&&r<=1.1);
+}
+document.addEventListener('load',function(e){if(e.target&&e.target.tagName==='IMG')markSquareImg(e.target);},true);
+document.addEventListener('DOMContentLoaded',function(){
+  var mo2=new MutationObserver(function(muts){
+    muts.forEach(function(m){Array.prototype.forEach.call(m.addedNodes,function(n){
+      if(n.nodeType!==1)return;
+      var list=n.tagName==='IMG'?[n]:n.querySelectorAll?n.querySelectorAll('img'):[];
+      Array.prototype.forEach.call(list,function(im){if(im.complete)markSquareImg(im);});
+    });});
+  });
+  mo2.observe(document.body,{childList:true,subtree:true});
 });

@@ -936,6 +936,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 .qc-q-num{font-size:11px;color:var(--gray);font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;}
 .qc-q-txt{font-size:calc(15px * var(--fs-scale-soal));font-weight:400;line-height:var(--lh-soal);color:var(--dark);margin-bottom:14px;text-align:justify;word-break:break-word;width:100%;}
 .qc-q-txt img, .question-txt img, .evaluasi-item .soal-isi img{max-width:100%;height:auto;border-radius:10px;margin:8px 0;display:block;}
+.qc-q-txt img.img-sq, .question-txt img.img-sq, .evaluasi-item .soal-isi img.img-sq{max-width:75% !important;margin:8px auto !important;}
 .qc-options{display:flex;flex-direction:column;gap:8px;}
 .qc-opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid var(--border);border-radius:12px;cursor:pointer;transition:.15s;background:#fff;}
 .qc-opt:active{transform:scale(.98);}
@@ -2224,13 +2225,13 @@ input:checked+.slider:before{transform:translateX(22px);}
 
 
 /* ===== Tabel HTML & rumus LaTeX di dalam soal/opsi/pembahasan ===== */
-.soal-isi table,#quizQuestion table,#qcQTxt table,.pembahasan-box table,.choice-text table,.eval-opt-text table,.qc-opt-text table{border-collapse:collapse;margin:8px 0;max-width:100%;font-size:.95em;}
+.soal-isi table,#quizQuestion table,#qcQTxt table,.pembahasan-box table,.choice-text table,.eval-opt-text table,.qc-opt-text table{border-collapse:collapse;margin:8px auto;max-width:100%;font-size:.95em;}
 .soal-isi th,.soal-isi td,#quizQuestion th,#quizQuestion td,#qcQTxt th,#qcQTxt td,.pembahasan-box th,.pembahasan-box td,.choice-text th,.choice-text td,.eval-opt-text th,.eval-opt-text td,.qc-opt-text th,.qc-opt-text td{border:1px solid #888;padding:4px 10px;text-align:center;}
 .soal-isi th,#quizQuestion th,#qcQTxt th,.pembahasan-box th{background:rgba(100,116,139,.12);}
 .katex{font-size:1.08em;}
 .katex-display{margin:6px 0;overflow-x:auto;overflow-y:hidden;max-width:100%;}
 #quizQuestion,#qcQTxt,.soal-isi,.pembahasan-box{overflow-wrap:anywhere;}
-.choice-text img,.eval-opt-text img,.qc-opt-text img{display:block;max-width:100%;height:auto;margin:2px 0;border-radius:4px;}
+.choice-text img,.eval-opt-text img,.qc-opt-text img{display:block;max-width:100%;height:auto;margin:2px 0;border-radius:4px;zoom:.75;}
 </style>
 </head>
 <body>
