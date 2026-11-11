@@ -670,7 +670,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 .timer-danger{color:#C62828!important;}
 .timer-blink{color:#C62828!important;animation:blinkFast .5s ease infinite;}
 @keyframes blinkFast{0%,100%{opacity:1}50%{opacity:.2}}
-.question-txt{font-size:calc(15px * var(--fs-scale-soal));margin-bottom:16px;font-weight:600;line-height:var(--lh-soal);color:var(--dark);text-align:justify;}
+.question-txt{font-size:calc(15px * var(--fs-scale-soal));margin-bottom:16px;font-weight:400;line-height:var(--lh-soal);color:var(--dark);text-align:justify;}
 .option{display:flex;align-items:center;gap:12px;margin-bottom:9px;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;transition:.15s;background:#fff;}
 .option:hover{background:var(--bg);border-color:var(--blue);}
 .option input{display:none;}
@@ -933,7 +933,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 .qc-progress-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,#1565C0,#7B1FA2);transition:width .4s ease;}
 .qc-question-card{background:#fff;border-radius:16px;padding:18px;box-shadow:var(--shadow);margin-bottom:10px;width:100%;box-sizing:border-box;}
 .qc-q-num{font-size:11px;color:var(--gray);font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;}
-.qc-q-txt{font-size:calc(15px * var(--fs-scale-soal));font-weight:700;line-height:var(--lh-soal);color:var(--dark);margin-bottom:14px;text-align:justify;word-break:break-word;width:100%;}
+.qc-q-txt{font-size:calc(15px * var(--fs-scale-soal));font-weight:400;line-height:var(--lh-soal);color:var(--dark);margin-bottom:14px;text-align:justify;word-break:break-word;width:100%;}
 .qc-q-txt img, .question-txt img, .evaluasi-item .soal-isi img{max-width:100%;height:auto;border-radius:10px;margin:8px 0;display:block;}
 .qc-options{display:flex;flex-direction:column;gap:8px;}
 .qc-opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid var(--border);border-radius:12px;cursor:pointer;transition:.15s;background:#fff;}
@@ -3401,17 +3401,41 @@ function formatSoal(teks) {
     imgTags.push(match);
     return '\u0000IMG' + (imgTags.length - 1) + '\u0000';
   });
+  // Tag format aman tanpa atribut: <b> <i> <u> <sup> <sub> (dan penutupnya) ikut dipertahankan
+  const fmtTags = [];
+  working = working.replace(/<\/?(?:b|i|u|sup|sub)>/gi, function(match) {
+    fmtTags.push(match.toLowerCase());
+    return '\u0001FMT' + (fmtTags.length - 1) + '\u0001';
+  });
   working = working
     .replace(/&/g, '&amp;')           // escape HTML
     .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
+    .replace(/>/g, '&gt;');
+  working = mdInline(working);   // markdown diproses per baris, sebelum baris baru diubah jadi <br>/<p>
+  working = working
     .replace(/\n\n/g, '</p><p style="margin-bottom:8px;text-align:justify;">')  // paragraf baru
     .replace(/\n/g, '<br>')            // baris baru biasa
     .replace(/^/, '<p style="margin-bottom:8px;text-align:justify;">')           // buka p
     .replace(/$/, '</p>');             // tutup p
-  // Kembalikan tag <img> aslinya ke posisi semula
+  // Kembalikan tag format dan tag <img> aslinya ke posisi semula
+  working = working.replace(/\u0001FMT(\d+)\u0001/g, function(_, i) { return fmtTags[parseInt(i, 10)]; });
   working = working.replace(/\u0000IMG(\d+)\u0000/g, function(_, i) { return imgTags[parseInt(i, 10)]; });
   return working;
+}
+// Markdown ringan: **tebal**, *miring*, ***tebal miring***, __garis bawah__, ~~coret~~.
+// Aturan "tidak menempel huruf/angka" menjaga tulisan seperti 3*4 atau snake_case tidak ikut berubah.
+function mdInline(t) {
+  return t
+    .replace(/(?<![\w*])\*\*\*(?=\S)([^*\n]+?)(?<=\S)\*\*\*(?![\w*])/g, '<b><i>$1</i></b>')
+    .replace(/(?<![\w*])\*\*(?=\S)([^*\n]+?)(?<=\S)\*\*(?![\w*])/g, '<b>$1</b>')
+    .replace(/(?<![\w*])\*(?=\S)([^*\n]+?)(?<=\S)\*(?![\w*])/g, '<i>$1</i>')
+    .replace(/(?<![\w_])__(?=\S)([^_\n]+?)(?<=\S)__(?![\w_])/g, '<u>$1</u>')
+    .replace(/(?<![\w~])~~(?=\S)([^~\n]+?)(?<=\S)~~(?![\w~])/g, '<s>$1</s>');
+}
+// Pilihan jawaban: HTML sudah dibiarkan apa adanya, jadi markdown hanya diterapkan pada bagian teks di luar tag.
+function fmtOpt(o) {
+  if (typeof o !== 'string' || (o.indexOf('*') < 0 && o.indexOf('__') < 0 && o.indexOf('~~') < 0)) return o;
+  return o.split(/(<[^>]+>)/).map(function(part) { return part.charAt(0) === '<' ? part : mdInline(part); }).join('');
 }
 
 // ========== PROTECTION ==========
@@ -5051,7 +5075,7 @@ function renderQCQuestion(){
   setSubPill(document.getElementById('qcSub'),d,qcState.cat);
   document.getElementById('qcQTxt').innerHTML=formatSoal(d.q);
   let optsHtml='';
-  d.opt.forEach((o,i)=>{optsHtml+=`<div class="qc-opt" onclick="playSound('select');pilihQCJawaban(${i})"><div class="qc-opt-letter">${PREFIXES[i]}</div><div class="qc-opt-text">${o}</div></div>`;});
+  d.opt.forEach((o,i)=>{optsHtml+=`<div class="qc-opt" onclick="playSound('select');pilihQCJawaban(${i})"><div class="qc-opt-letter">${PREFIXES[i]}</div><div class="qc-opt-text">${fmtOpt(o)}</div></div>`;});
   document.getElementById('qcOpts').innerHTML=optsHtml;
   const fb=document.getElementById('qcFeedback');fb.className='qc-feedback';fb.textContent='';
   const btnNext=document.getElementById('btnQcNext');btnNext.className='btn-qc-next';btnNext.textContent='Soal Berikutnya →';
@@ -5670,7 +5694,7 @@ function loadQuestion(){
   let html='';
   questions[curQ].options.forEach((opt,idx)=>{
     let checked=questions[curQ].isTKP?(userScores[curQ]===questions[curQ].optionScores[idx]):(userAnswers[curQ]===idx);
-    html+=`<label class="option" onclick="playSound('select')"><input type="radio" name="ans" value="${idx}" ${checked?'checked':''}><span class="choice-letter">${PREFIXES[idx]}</span><span class="choice-text">${opt}</span></label>`;
+    html+=`<label class="option" onclick="playSound('select')"><input type="radio" name="ans" value="${idx}" ${checked?'checked':''}><span class="choice-letter">${PREFIXES[idx]}</span><span class="choice-text">${fmtOpt(opt)}</span></label>`;
   });
   document.getElementById('quizOptions').innerHTML=html;
   const btn=document.getElementById('btnNextFinish');
@@ -5821,7 +5845,7 @@ function renderEvalOptions(q,userIdx){
       else if(isUser){cls+=' user-wrong';tag=`<span class="eval-opt-tag">📌 Pilihan Anda (${q.optionScores[i]}pt)</span>`;}
       else{tag=`<span class="eval-opt-tag" style="background:#E2E8F0;color:#475569;">${q.optionScores[i]}pt</span>`;}
       if(isUser&&isBest){tag=`<span class="eval-opt-tag">📌✅ Pilihan Anda · Terbaik (${q.optionScores[i]}pt)</span>`;}
-      return `<div class="${cls}"><div class="eval-opt-letter">${PREFIXES[i]}</div><div class="eval-opt-text">${o}</div>${tag}</div>`;
+      return `<div class="${cls}"><div class="eval-opt-letter">${PREFIXES[i]}</div><div class="eval-opt-text">${fmtOpt(o)}</div>${tag}</div>`;
     }).join('')+'</div>';
   }
   return '<div class="eval-opts">'+q.options.map((o,i)=>{
@@ -5831,7 +5855,7 @@ function renderEvalOptions(q,userIdx){
     if(isCorrect){cls+=' correct';tag='<span class="eval-opt-tag">✅ Jawaban Benar</span>';}
     else if(isUser){cls+=' user-wrong';tag='<span class="eval-opt-tag">📌 Pilihan Anda</span>';}
     if(isUser&&isCorrect){tag='<span class="eval-opt-tag">📌✅ Pilihan Anda · Benar</span>';}
-    return `<div class="${cls}"><div class="eval-opt-letter">${PREFIXES[i]}</div><div class="eval-opt-text">${o}</div>${tag}</div>`;
+    return `<div class="${cls}"><div class="eval-opt-letter">${PREFIXES[i]}</div><div class="eval-opt-text">${fmtOpt(o)}</div>${tag}</div>`;
   }).join('')+'</div>';
 }
 function showEvaluasi(){
