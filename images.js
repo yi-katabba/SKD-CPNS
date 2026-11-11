@@ -298,6 +298,7 @@ function markSquareImg(img){
   if(!img||!img.naturalWidth||!img.naturalHeight)return;
   var r=img.naturalWidth/img.naturalHeight;
   img.classList.toggle('img-sq',r>=0.9&&r<=1.1);
+  img.style.setProperty('--iw',img.naturalWidth+'px');
 }
 document.addEventListener('load',function(e){if(e.target&&e.target.tagName==='IMG')markSquareImg(e.target);},true);
 document.addEventListener('DOMContentLoaded',function(){

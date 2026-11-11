@@ -38,7 +38,7 @@ body::-webkit-scrollbar,
   --gray:#64748b;--gray-light:#F1F5F9;--border:#E2E8F0;--dark:#1E293B;
   --radius:16px;--radius-sm:12px;--radius-xs:8px;
   --shadow:0 2px 12px rgba(21,101,192,.10);
-  --fs-scale-soal:1;--fs-scale-umum:1;--lh-soal:1.65;
+  --fs-scale-soal:1;--fs-scale-umum:1;--lh-soal:1.65;--img-s-soal:1;--img-s-jawab:1;
 }
 body{
   font-family:'Segoe UI',system-ui,sans-serif;
@@ -1364,6 +1364,13 @@ input:checked+.slider:before{transform:translateX(22px);}
 .lv-toggle{display:flex;gap:4px;padding:4px;background:#EEF2F9;border-radius:14px;margin-bottom:4px;}
 .lv-toggle button{flex:1;border:none;background:transparent;padding:10px 8px;border-radius:11px;font-size:13px;font-weight:800;color:#64748b;cursor:pointer;font-family:inherit;transition:all .15s;}
 .lv-toggle button.active{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(21,101,192,.18);}
+.kat-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 12px;}
+.kat-tab{border:1.5px solid #E2E8F0;background:#fff;color:#64748b;padding:9px 4px;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .15s;}
+.kat-tab:active{transform:scale(.97);}
+.kat-tab.active{background:#E3F2FD;border-color:var(--blue);color:var(--blue);}
+.kat-tab.twk.active{background:#F3E5F5;border-color:#7B1FA2;color:#7B1FA2;}
+.kat-tab.tiu.active{background:#FFF3E0;border-color:#E65100;color:#E65100;}
+.kat-tab.tkp.active{background:#E0F2F1;border-color:#00796B;color:#00796B;}
 .kat-sec-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#475569;margin:8px 2px 10px;}
 .kat-sec-head small{font-weight:600;color:#94A3B8;}
 #quizlistPage .qci-subs{display:flex;flex-wrap:wrap;gap:4px;padding:0 14px 10px;}
@@ -2075,6 +2082,15 @@ input:checked+.slider:before{transform:translateX(22px);}
 }
 #quizPage .btn-prev{box-shadow:none;border:1px solid #E2E8F0;}
 
+
+/* ---- Navigasi kuis: grid 2x2, lebih ramping ---- */
+.quiz-nav2{flex-shrink:0;background:#fff;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:7px;
+  padding:8px 16px;padding-bottom:calc(8px + env(safe-area-inset-bottom, 0px));}
+.quiz-nav2 button{padding:8px 10px !important;font-size:14px;font-weight:800;cursor:pointer;border-radius:14px !important;line-height:1.25;
+  display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s;}
+.quiz-nav2 .btn-prev{background:#CBD5E1;color:var(--dark);border:1px solid #E2E8F0;box-shadow:none !important;}
+.quiz-nav2 .btn-daftar-soal{background:#E3F2FD;color:#1565C0;border:1.5px solid #BBDEFB;box-shadow:none !important;}
+.quiz-nav2 .btn-nav-off{background:#CBD5E1 !important;color:var(--dark) !important;border:1px solid #E2E8F0 !important;box-shadow:none !important;opacity:.4;pointer-events:none;}
 /* ---- Kuis Cepat: main ---- */
 #quizCepatPlayPage .qc-play-header{
   border-radius:22px;border:1px solid #E6ECF8;
@@ -2227,6 +2243,32 @@ input:checked+.slider:before{transform:translateX(22px);}
 .katex-display{margin:6px 0;overflow-x:auto;overflow-y:hidden;max-width:100%;}
 #quizQuestion,#qcQTxt,.soal-isi,.pembahasan-box{overflow-wrap:anywhere;}
 .choice-text img,.eval-opt-text img,.qc-opt-text img{display:block;max-width:100%;height:auto;margin:2px 0;border-radius:4px;zoom:.75;}
+
+/* ===== Ukuran gambar soal & jawaban (Pengaturan Sistem) =====
+   Lebar = ukuran dasar x skala. --iw = lebar asli gambar (diisi script). Sedang = skala 1. */
+.qc-q-txt img,.question-txt img,.evaluasi-item .soal-isi img,.pembahasan-box img,
+.qc-q-txt img.img-sq,.question-txt img.img-sq,.evaluasi-item .soal-isi img.img-sq{
+  width:calc(min(var(--iw,9999px),80%) * var(--img-s-soal)) !important;
+  max-width:100% !important;height:auto !important;margin:8px auto !important;
+}
+.qc-q-txt img.img-sq,.question-txt img.img-sq,.evaluasi-item .soal-isi img.img-sq{
+  width:calc(min(var(--iw,9999px),75%) * var(--img-s-soal)) !important;
+}
+.choice-text img,.eval-opt-text img,.qc-opt-text img{
+  zoom:1 !important;
+  width:calc(min(calc(var(--iw,9999px) * .75),100%) * var(--img-s-jawab)) !important;
+  max-width:100% !important;height:auto !important;
+}
+/* Pratinjau & ikon tombol ukuran gambar */
+.imgsz-prev{margin-top:10px;padding:12px;border-radius:14px;background:#F8FAFC;border:1px dashed #CBD5E1;}
+.imgsz-prev-lbl{font-size:calc(12px * var(--fs-scale-umum));font-weight:700;color:var(--gray);margin-bottom:8px;}
+.imgsz-box{box-sizing:border-box;border:1.5px solid var(--blue);background:#DBEAFE;color:var(--blue);font-weight:800;
+  display:flex;align-items:center;justify-content:center;border-radius:8px;transition:width .2s;}
+.imgsz-box.sq{aspect-ratio:1/1;margin:0 auto 8px;width:calc(75% * var(--img-s-soal));max-width:100%;font-size:calc(14px * var(--img-s-soal));}
+.imgsz-box.rect{aspect-ratio:4.5/1;margin:0 auto;width:calc(80% * var(--img-s-soal));max-width:100%;font-size:11px;}
+.imgsz-box.ans{aspect-ratio:1/1;width:calc(70px * var(--img-s-jawab));max-width:100%;font-size:13px;}
+.fontsize-btn .fb-sq{display:flex;align-items:center;justify-content:center;height:20px;}
+.fontsize-btn .fb-sq i{display:block;box-sizing:border-box;border:2px solid currentColor;border-radius:3px;}
 </style>
 </head>
 <body>
@@ -2545,6 +2587,41 @@ input:checked+.slider:before{transform:translateX(22px);}
           </div>
           <div class="fontsize-example fs-ex-umum">Contoh: teks menu, statistik, materi, dan info lainnya di aplikasi.</div>
         </div>
+        <div class="fontsize-block">
+          <div class="fontsize-head">
+            <span class="fontsize-head-left">🖼️ Ukuran Gambar Soal</span>
+            <span class="fontsize-preview-badge" id="imgSoalBadge">Sedang</span>
+          </div>
+          <div class="fontsize-row" id="imgSoalRow">
+            <button type="button" class="fontsize-btn" data-scale="0.5"><span class="fb-sq"><i style="width:7px;height:7px"></i></span><span class="fb-l">X-Kecil</span></button>
+            <button type="button" class="fontsize-btn" data-scale="0.7"><span class="fb-sq"><i style="width:10px;height:10px"></i></span><span class="fb-l">Kecil</span></button>
+            <button type="button" class="fontsize-btn" data-scale="1"><span class="fb-sq"><i style="width:13px;height:13px"></i></span><span class="fb-l">Sedang</span></button>
+            <button type="button" class="fontsize-btn" data-scale="1.25"><span class="fb-sq"><i style="width:16px;height:16px"></i></span><span class="fb-l">Besar</span></button>
+            <button type="button" class="fontsize-btn" data-scale="1.5"><span class="fb-sq"><i style="width:19px;height:19px"></i></span><span class="fb-l">X-Besar</span></button>
+          </div>
+          <div class="imgsz-prev">
+            <div class="imgsz-prev-lbl">Contoh gambar di soal (persegi dan persegi panjang):</div>
+            <div class="imgsz-box sq">Persegi</div>
+            <div class="imgsz-box rect">Persegi panjang</div>
+          </div>
+        </div>
+        <div class="fontsize-block">
+          <div class="fontsize-head">
+            <span class="fontsize-head-left">🖼️ Ukuran Gambar Jawaban</span>
+            <span class="fontsize-preview-badge" id="imgJawabBadge">Sedang</span>
+          </div>
+          <div class="fontsize-row" id="imgJawabRow">
+            <button type="button" class="fontsize-btn" data-scale="0.5"><span class="fb-sq"><i style="width:7px;height:7px"></i></span><span class="fb-l">X-Kecil</span></button>
+            <button type="button" class="fontsize-btn" data-scale="0.7"><span class="fb-sq"><i style="width:10px;height:10px"></i></span><span class="fb-l">Kecil</span></button>
+            <button type="button" class="fontsize-btn" data-scale="1"><span class="fb-sq"><i style="width:13px;height:13px"></i></span><span class="fb-l">Sedang</span></button>
+            <button type="button" class="fontsize-btn" data-scale="1.25"><span class="fb-sq"><i style="width:16px;height:16px"></i></span><span class="fb-l">Besar</span></button>
+            <button type="button" class="fontsize-btn" data-scale="1.5"><span class="fb-sq"><i style="width:19px;height:19px"></i></span><span class="fb-l">X-Besar</span></button>
+          </div>
+          <div class="imgsz-prev">
+            <div class="imgsz-prev-lbl">Contoh gambar di pilihan jawaban:</div>
+            <div class="imgsz-box ans">A</div>
+          </div>
+        </div>
       </div>
       <div class="akun-info-card" style="margin-bottom:12px;">
         <div class="fontsize-block">
@@ -2699,15 +2776,13 @@ input:checked+.slider:before{transform:translateX(22px);}
       <div id="quizOptions"></div>
     </div>
     
-    <!-- NAVIGASI FIXED -->
-<div style="flex-shrink:0;background:#fff;padding:10px 16px;border-top:1px solid var(--border);display:flex;gap:10px;">
-  <button class="btn-prev" onclick="prevQuestion()" style="flex:1;padding:12px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;background:#CBD5E1;color:var(--dark);">◀ Prev</button>
-  <button id="btnNextFinish" class="btn-next" onclick="nextQuestion()">Next ▶</button></div>
-<!-- DAFTAR SOAL FIXED -->
-<div style="flex-shrink:0;background:#fff;padding:0 16px 12px;padding-bottom:calc(12px + env(safe-area-inset-bottom, 0px));">
-  <button onclick="toggleSidebar()" style="width:100%;padding:12px;border:none;border-radius:12px;background:#E3F2FD;color:#1565C0;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid #BBDEFB;"><span data-icon="icon_daftar_soal"></span> Daftar Soal</button>
-</div>
-    
+    <!-- NAVIGASI FIXED (2 kolom x 2 baris): Prev | Next ; Selesai | Daftar Soal -->
+<div class="quiz-nav2">
+  <button class="btn-prev" onclick="prevQuestion()">◀ Prev</button>
+  <button id="btnNextFinish" class="btn-next" onclick="nextQuestion()">Next ▶</button>
+  <button id="btnFinishQuiz" class="btn-finish" onclick="konfirmSelesaiQuiz()">✅ Selesai</button>
+  <button class="btn-daftar-soal" onclick="toggleSidebar()"><span data-icon="icon_daftar_soal"></span> Daftar Soal</button>
+</div>    
   </div>
 </div>
 
@@ -4756,6 +4831,34 @@ function initFontScaleControls(){
 // Terapkan segera saat halaman dimuat (sebelum masuk halaman akun)
 initFontScaleControls();
 
+// ---- Ukuran gambar soal & jawaban ----
+const IMG_LABELS={'0.5':'X-Kecil','0.7':'Kecil','1':'Sedang','1.25':'Besar','1.5':'X-Besar'};
+const IMG_TYPES={soal:{row:'imgSoalRow',badge:'imgSoalBadge'},jawab:{row:'imgJawabRow',badge:'imgJawabBadge'}};
+function getImgScale(type){const v=localStorage.getItem('imgScale_'+type);return (v!==null&&IMG_LABELS[v])?v:'1';}
+function applyImgScale(type,val){document.documentElement.style.setProperty('--img-s-'+type,val);}
+function syncImgScaleUI(type,val){
+  const c=IMG_TYPES[type],row=document.getElementById(c.row),badge=document.getElementById(c.badge);
+  if(row)row.querySelectorAll('.fontsize-btn').forEach(b=>b.classList.toggle('active',b.dataset.scale===String(val)));
+  if(badge)badge.textContent=IMG_LABELS[String(val)]||'Sedang';
+}
+function initImgScaleControls(){
+  Object.keys(IMG_TYPES).forEach(type=>{
+    const saved=getImgScale(type);applyImgScale(type,saved);syncImgScaleUI(type,saved);
+    const row=document.getElementById(IMG_TYPES[type].row);
+    if(row&&!row.dataset.bound){
+      row.dataset.bound='1';
+      row.querySelectorAll('.fontsize-btn').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          playSound('select');
+          localStorage.setItem('imgScale_'+type,btn.dataset.scale);
+          applyImgScale(type,btn.dataset.scale);syncImgScaleUI(type,btn.dataset.scale);
+        });
+      });
+    }
+  });
+}
+initImgScaleControls();
+
 // ---- Jarak antar baris soal ----
 const LH_LABELS={'1.2':'Rapat','1.4':'Agak Rapat','1.65':'Normal','1.85':'Longgar','2.05':'X-Longgar'};
 function getLineHeight(){const v=localStorage.getItem('lineHeight_soal');return (v!==null&&LH_LABELS[v])?v:'1.65';}
@@ -5369,10 +5472,14 @@ const KAT_META={
   TIU:{full:'Tes Intelegensi Umum',key:'tiu',ac:'#E65100',acl:'#FFA726',bg:'#FFF3E0',poolKey:'tiu'},
   TKP:{full:'Tes Karakteristik Pribadi',key:'tkp',ac:'#00796B',acl:'#26A69A',bg:'#E0F2F1',poolKey:'tkp'}
 };
+const KAT_FILTERS=['Semua','TWK','TIU','TKP'];
+function getKatFilter(){try{const v=localStorage.getItem('latihanKatFilter');return KAT_FILTERS.includes(v)?v:'Semua';}catch(e){return 'Semua';}}
+function setKatFilter(v){playSound('menu');try{localStorage.setItem('latihanKatFilter',v);}catch(e){}refreshQuizList();}
 function renderQuizListKategori(c){
   c.classList.add('kat-view');
-  let html='';
-  ['TWK','TIU','TKP'].forEach(kat=>{
+  const kf=getKatFilter();
+  let html=`<div class="kat-tabs">${KAT_FILTERS.map(f=>`<button type="button" class="kat-tab ${f==='Semua'?'':f.toLowerCase()}${f===kf?' active':''}" onclick="setKatFilter('${f}')">${f}</button>`).join('')}</div>`;
+  (kf==='Semua'?['TWK','TIU','TKP']:[kf]).forEach(kat=>{
     const km=KAT_META[kat];
     html+=`<div class="kat-sec-head"><span class="cat-pill ${km.key}">${kat}</span><small>${km.full}</small></div>`;
     quizMeta.forEach(m=>{
@@ -5792,13 +5899,12 @@ function loadQuestion(){
   });
   document.getElementById('quizOptions').innerHTML=html;
   const btn=document.getElementById('btnNextFinish');
-  if(curQ===questions.length-1){btn.textContent='✅ Selesai';btn.className='btn-finish';btn.onclick=finishQuiz;}
-  else{btn.textContent='Next ▶';btn.className='btn-next';btn.onclick=nextQuestion;}
+  btn.textContent='Next ▶';btn.onclick=nextQuestion;
+  btn.className=(curQ===questions.length-1)?'btn-next btn-nav-off':'btn-next';
   updateGrid();
   const btnPrev=document.querySelector('.btn-prev');
   if(btnPrev){
-    if(curQ===0){btnPrev.style.opacity='.4';btnPrev.style.pointerEvents='none';}
-    else{btnPrev.style.opacity='1';btnPrev.style.pointerEvents='auto';}
+    btnPrev.classList.toggle('btn-nav-off',curQ===0);
   }
 }
 function saveAnswer(){const sel=document.querySelector('input[name="ans"]:checked');if(sel){const idx=parseInt(sel.value);if(questions[curQ].isTKP)userScores[curQ]=questions[curQ].optionScores[idx];else userAnswers[curQ]=idx;updateGrid();}}
@@ -5836,6 +5942,17 @@ function toggleSidebar(){
   if(isOpen)ov.classList.add('show');else ov.classList.remove('show');
 }
 
+function konfirmSelesaiQuiz(){
+  playSound('select');
+  let kosong=0;
+  try{questions.forEach((q,i)=>{const v=q.isTKP?userScores[i]:userAnswers[i];if(v===undefined||v===null||v===-1)kosong++;});}catch(e){}
+  const sel=document.querySelector('input[name="ans"]:checked');
+  if(sel&&questions[curQ]){const v=questions[curQ].isTKP?userScores[curQ]:userAnswers[curQ];if(v===undefined||v===null||v===-1)kosong--;}
+  if(kosong<0)kosong=0;
+  const msg=kosong>0?`Masih ada ${kosong} soal yang belum dijawab.\n\nYakin ingin menyelesaikan latihan?`:'Selesaikan latihan dan lihat hasil?';
+  if(!confirm(msg))return;
+  finishQuiz();
+}
 function finishQuiz(){
   if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
   saveAnswer();
