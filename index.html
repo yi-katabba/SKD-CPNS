@@ -5803,10 +5803,19 @@ function refreshStatistik(){
 
 // ========== SIMULASI ==========
 function mulaiSimulasi(){
-  const allTWK=[],allTIU=[],allTKP=[];
-  for(let i=1;i<=7;i++){const b=getSoalBank(i);allTWK.push(...b.twk);allTIU.push(...b.tiu);allTKP.push(...b.tkp);}
-  const pick=(arr,n)=>[...arr].sort(()=>Math.random()-.5).slice(0,Math.min(n,arr.length));
-  const sTWK=pick(allTWK,30),sTIU=pick(allTIU,35),sTKP=pick(allTKP,45);
+  // Struktur simulasi sama dengan paket: nomor soal ke-N diambil dari soal nomor ke-N
+  // milik SALAH SATU paket (1-7) yang dipilih acak, per nomor secara terpisah.
+  const bankAll=[];for(let i=1;i<=7;i++)bankAll.push(getSoalBank(i));
+  const pickPerPosisi=(kat)=>{
+    const panjang=Math.max(0,...bankAll.map(b=>(b[kat]||[]).length));
+    const hasil=[];
+    for(let pos=0;pos<panjang;pos++){
+      const kandidat=bankAll.map(b=>(b[kat]||[])[pos]).filter(Boolean);
+      if(kandidat.length)hasil.push(kandidat[Math.floor(Math.random()*kandidat.length)]);
+    }
+    return hasil;
+  };
+  const sTWK=pickPerPosisi('twk'),sTIU=pickPerPosisi('tiu'),sTKP=pickPerPosisi('tkp');
   if(sTWK.length+sTIU.length+sTKP.length===0){alert('⚠️ Tidak ada soal tersedia!');return;}
   if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
   originals=[];
