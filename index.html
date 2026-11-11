@@ -5820,7 +5820,7 @@ function mulaiSimulasi(){
   document.getElementById('quizTitle').textContent='⏰ Simulasi Ujian SKD';
   goTo('quizPage');loadQuestion();updateGrid();
   const td=document.getElementById('timerDisplay'),tb=document.getElementById('timerBadge');
-  td.style.display='';tb.style.display='';
+  td.style.display='';tb.style.display='none';
   td.textContent='100:00';td.classList.remove('timer-warning','timer-danger','timer-blink');
   tb.textContent='⏱️ Simulasi';tb.className='timer-badge on';startTimer();
 }
