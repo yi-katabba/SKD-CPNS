@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Latihan SKD CPNS</title>
+<link rel="stylesheet" href="katex/katex.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{overscroll-behavior:none;overscroll-behavior-y:none;}
@@ -2221,6 +2222,14 @@ input:checked+.slider:before{transform:translateX(22px);}
 .grid-soal.tkp::after{background:#4DB6AC;}
 .grid-soal.answered::after,.grid-soal.active::after{background:rgba(255,255,255,.75);}
 
+
+/* ===== Tabel HTML & rumus LaTeX di dalam soal/opsi/pembahasan ===== */
+.soal-isi table,#quizQuestion table,#qcQTxt table,.pembahasan-box table,.choice-text table,.eval-opt-text table,.qc-opt-text table{border-collapse:collapse;margin:8px 0;max-width:100%;font-size:.95em;}
+.soal-isi th,.soal-isi td,#quizQuestion th,#quizQuestion td,#qcQTxt th,#qcQTxt td,.pembahasan-box th,.pembahasan-box td,.choice-text th,.choice-text td,.eval-opt-text th,.eval-opt-text td,.qc-opt-text th,.qc-opt-text td{border:1px solid #888;padding:4px 10px;text-align:center;}
+.soal-isi th,#quizQuestion th,#qcQTxt th,.pembahasan-box th{background:rgba(100,116,139,.12);}
+.katex{font-size:1.08em;}
+.katex-display{margin:6px 0;overflow-x:auto;overflow-y:hidden;max-width:100%;}
+#quizQuestion,#qcQTxt,.soal-isi,.pembahasan-box{overflow-wrap:anywhere;}
 </style>
 </head>
 <body>
@@ -3345,6 +3354,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 <div id="screenshotOverlay" class="screenshot-overlay"></div>
 
 <!-- ========== SCRIPTS ========== -->
+<script src="katex/katex.min.js"></script>
 <script src="images.js"></script>
 <script src="twk.js"></script>
 <script src="tiu.js"></script>
@@ -3395,33 +3405,99 @@ input:checked+.slider:before{transform:translateX(22px);}
 })();
 
 // ========== FORMAT TEKS ==========
+// Mendukung: HTML aman (whitelist: br, table, tr, td, th, b, i, u, sup, sub, img, dll),
+// markdown ringan, dan LaTeX via KaTeX (lokal/offline):
+//   $...$  atau \(...\)  -> rumus sebaris     |   $$...$$ atau \[...\] -> rumus tampil blok
+//   Tulis \$ untuk tanda dolar biasa. Di file .js, backslash harus digandakan: "$\\frac{1}{2}$".
+const SAFE_TAGS = 'br|hr|table|thead|tbody|tfoot|tr|th|td|caption|colgroup|col|b|strong|i|em|u|s|sup|sub|small|span|code|ul|ol|li';
+const BLOCK_TAGS = 'hr|table|thead|tbody|tfoot|tr|th|td|caption|colgroup|col|ul|ol|li';
+const SAFE_ATTRS = ['style','colspan','rowspan','align','valign','width'];
+function _escH(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+// Bersihkan atribut tag: hanya atribut aman; style disaring dari url()/expression/position, dsb.
+function _cleanAttrs(raw) {
+  let out = '';
+  raw.replace(/([a-z-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi, function(_, n, v1, v2) {
+    n = n.toLowerCase();
+    const v = (v1 !== undefined ? v1 : v2);
+    if (SAFE_ATTRS.indexOf(n) < 0) return '';
+    if (n === 'style' && /url\s*\(|expression|javascript|@import|position|behavior|<|>/i.test(v)) return '';
+    if (n !== 'style' && !/^[\w\s%.#-]*$/.test(v)) return '';
+    out += ' ' + n + '="' + v.replace(/"/g, '&quot;') + '"';
+    return '';
+  });
+  return out;
+}
+// ---- LaTeX ----
+function _renderMath(tex, display) {
+  try {
+    if (window.katex) {
+      return window.katex.renderToString(tex.trim(), {displayMode: !!display, throwOnError: false, strict: 'ignore', output: 'html', trust: false});
+    }
+  } catch (e) {}
+  return '<code>' + _escH(tex) + '</code>';   // fallback bila KaTeX tidak termuat
+}
+function _extractMath(str, store) {
+  const keep = function(tex, display) { store.push(_renderMath(tex, display)); return '\u0002' + (store.length - 1) + '\u0002'; };
+  return str
+    .replace(/\$\$([\s\S]+?)\$\$/g, function(_, t) { return keep(t, true); })
+    .replace(/\\\[([\s\S]+?)\\\]/g, function(_, t) { return keep(t, true); })
+    .replace(/\\\(([\s\S]+?)\\\)/g, function(_, t) { return keep(t, false); })
+    .replace(/(?<![\\$])\$(?![\s$])([^$\n]+?)(?<![\s\\])\$(?!\d)/g, function(_, t) { return keep(t, false); });
+}
+function _restoreMath(str, store) {
+  return str.replace(/\u0002(\d+)\u0002/g, function(_, i) { return store[parseInt(i, 10)]; });
+}
+// Teks polos (tanpa HTML/LaTeX) untuk pratinjau singkat, mis. daftar soal yang sering salah
+function plainSoal(t) {
+  return String(t == null ? '' : t)
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\\(?:d|t)?frac\{([^{}]*)\}\{([^{}]*)\}/g, '$1/$2')
+    .replace(/\\text\{([^{}]*)\}/g, '$1')
+    .replace(/\\times/g, '×').replace(/\\div/g, '÷').replace(/\\approx/g, '≈')
+    .replace(/\\(?:leq?|le)\b/g, '≤').replace(/\\(?:geq?|ge)\b/g, '≥').replace(/\\neq?\b/g, '≠')
+    .replace(/\\sqrt\{([^{}]*)\}/g, '√$1').replace(/\\%/g, '%')
+    .replace(/\\[;,!: ]|\\left|\\right/g, '')
+    .replace(/(?<!\\)\$/g, '').replace(/\\\$/g, '$')
+    .replace(/\s+/g, ' ').trim();
+}
 function formatSoal(teks) {
   if (!teks) return '';
+  const mathStore = [];
+  let working = _extractMath(String(teks), mathStore);
   // Simpan tag <img> apa adanya dulu, supaya tidak ikut di-escape jadi teks &lt;img...&gt;
   const imgTags = [];
-  let working = teks.replace(/<img[^>]*>/gi, function(match) {
+  working = working.replace(/<img[^>]*>/gi, function(match) {
     imgTags.push(match);
     return '\u0000IMG' + (imgTags.length - 1) + '\u0000';
   });
-  // Tag format aman tanpa atribut: <b> <i> <u> <sup> <sub> (dan penutupnya) ikut dipertahankan
+  // Tag HTML aman (whitelist) dipertahankan; atributnya disaring
   const fmtTags = [];
-  working = working.replace(/<\/?(?:b|i|u|sup|sub)>/gi, function(match) {
-    fmtTags.push(match.toLowerCase());
-    return '\u0001FMT' + (fmtTags.length - 1) + '\u0001';
+  const tagRe = new RegExp('<(\\/?)(' + SAFE_TAGS + ')((?:\\s+[a-z-]+\\s*=\\s*(?:"[^"]*"|\'[^\']*\'))*)\\s*\\/?>', 'gi');
+  const blockRe = new RegExp('^(?:' + BLOCK_TAGS + ')$', 'i');
+  working = working.replace(tagRe, function(m, slash, name, attrs) {
+    name = name.toLowerCase();
+    const html = slash ? '</' + name + '>' : '<' + name + (slash ? '' : _cleanAttrs(attrs || '')) + '>';
+    fmtTags.push(html);
+    const ph = '\u0001FMT' + (fmtTags.length - 1) + '\u0001';
+    return blockRe.test(name) ? '\u0003' + ph + '\u0003' : ph;
   });
+  // Baris baru di sekitar tag blok (table/tr/td, dll) dibuang supaya tidak jadi <br> nyasar
+  working = working.replace(/\s*\n\s*\u0003/g, '\u0003').replace(/\u0003\s*\n\s*/g, '\u0003').replace(/\u0003/g, '');
   working = working
     .replace(/&/g, '&amp;')           // escape HTML
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
   working = mdInline(working);   // markdown diproses per baris, sebelum baris baru diubah jadi <br>/<p>
   working = working
+    .replace(/\\\$/g, '$')           // \$ -> tanda dolar biasa
     .replace(/\n\n/g, '</p><p style="margin-bottom:8px;text-align:justify;">')  // paragraf baru
     .replace(/\n/g, '<br>')            // baris baru biasa
     .replace(/^/, '<p style="margin-bottom:8px;text-align:justify;">')           // buka p
     .replace(/$/, '</p>');             // tutup p
-  // Kembalikan tag format dan tag <img> aslinya ke posisi semula
+  // Kembalikan tag format, <img>, dan rumus ke posisi semula
   working = working.replace(/\u0001FMT(\d+)\u0001/g, function(_, i) { return fmtTags[parseInt(i, 10)]; });
   working = working.replace(/\u0000IMG(\d+)\u0000/g, function(_, i) { return imgTags[parseInt(i, 10)]; });
+  working = _restoreMath(working, mathStore);
   return working;
 }
 // Markdown ringan: **tebal**, *miring*, ***tebal miring***, __garis bawah__, ~~coret~~.
@@ -3434,10 +3510,14 @@ function mdInline(t) {
     .replace(/(?<![\w_])__(?=\S)([^_\n]+?)(?<=\S)__(?![\w_])/g, '<u>$1</u>')
     .replace(/(?<![\w~])~~(?=\S)([^~\n]+?)(?<=\S)~~(?![\w~])/g, '<s>$1</s>');
 }
-// Pilihan jawaban: HTML sudah dibiarkan apa adanya, jadi markdown hanya diterapkan pada bagian teks di luar tag.
+// Pilihan jawaban: HTML dibiarkan apa adanya; markdown hanya pada teks di luar tag; LaTeX dirender.
 function fmtOpt(o) {
-  if (typeof o !== 'string' || (o.indexOf('*') < 0 && o.indexOf('__') < 0 && o.indexOf('~~') < 0)) return o;
-  return o.split(/(<[^>]+>)/).map(function(part) { return part.charAt(0) === '<' ? part : mdInline(part); }).join('');
+  if (typeof o !== 'string') return o;
+  if (o.indexOf('*') < 0 && o.indexOf('__') < 0 && o.indexOf('~~') < 0 && o.indexOf('$') < 0 && o.indexOf('\\(') < 0 && o.indexOf('\\[') < 0) return o;
+  const store = [];
+  let w = _extractMath(o, store);
+  w = w.split(/(<[^>]+>)/).map(function(part) { return part.charAt(0) === '<' ? part : mdInline(part); }).join('').replace(/\\\$/g, '$');
+  return _restoreMath(w, store);
 }
 
 // ========== PROTECTION ==========
@@ -5460,7 +5540,7 @@ function renderWeakAnalysis(){
   if(top.length){
     html+='<p class="weak-intro" style="margin-top:12px;font-weight:700;color:var(--dark);">Soal yang berulang kali salah</p>';
     top.forEach(q=>{
-      const t=(q.question||'').replace(/<[^>]+>/g,'').trim();
+      const t=plainSoal(q.question);
       html+=`<div class="weak-q"><span class="cat-pill ${(q.kategori||'').toLowerCase()}">${escHtmlStat(q.kategori||'')}</span><span class="weak-q-txt">${escHtmlStat(t.length>110?t.slice(0,110)+'…':t)}</span><span class="weak-q-n">${q.timesWrong||1}x</span></div>`;
     });
   }
