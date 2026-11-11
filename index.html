@@ -1355,6 +1355,22 @@ input:checked+.slider:before{transform:translateX(22px);}
   padding:16px 2px 12px;
 }
 #quizListContainer::after{display:none;}
+#quizListContainer.kat-view::before{content:'Latihan Perkategori';}
+.kt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;}
+.kt-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;border-radius:14px;border:1px solid #E2E8F0;background:#F8FAFC;font-weight:800;font-size:13px;}
+.kt-item.twk{background:#F3E5F5;border-color:#E1BEE7;color:#6A1B9A;}
+.kt-item.tiu{background:#FFF3E0;border-color:#FFE0B2;color:#BF360C;}
+.kt-item.tkp{background:#E0F2F1;border-color:#B2DFDB;color:#00695C;}
+.kt-item input{width:100%;max-width:70px;text-align:center;font-size:18px;font-weight:800;padding:6px 4px;border:1px solid #CBD5E1;border-radius:10px;background:#fff;color:var(--dark);font-family:inherit;box-sizing:border-box;}
+.kt-item small{font-size:10.5px;font-weight:600;color:#64748b;}
+.kt-reset{width:100%;margin-top:10px;padding:10px;border-radius:12px;border:1px solid #B3D4F5;background:#fff;color:var(--blue);font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;}
+.lv-toggle{display:flex;gap:4px;padding:4px;background:#EEF2F9;border-radius:14px;margin-bottom:4px;}
+.lv-toggle button{flex:1;border:none;background:transparent;padding:10px 8px;border-radius:11px;font-size:13px;font-weight:800;color:#64748b;cursor:pointer;font-family:inherit;transition:all .15s;}
+.lv-toggle button.active{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(21,101,192,.18);}
+.kat-sec-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#475569;margin:8px 2px 10px;}
+.kat-sec-head small{font-weight:600;color:#94A3B8;}
+#quizlistPage .qci-subs{display:flex;flex-wrap:wrap;gap:4px;padding:0 14px 10px;}
+#quizlistPage .qci-subs .sub-pill{font-size:9.5px;padding:1px 7px;}
 
 #quizlistPage .quiz-card-item{
   --ac:#1565C0;--ac-l:#42A5F5;--ac-bg:#E3F2FD;
@@ -1767,6 +1783,19 @@ input:checked+.slider:before{transform:translateX(22px);}
 #statsBars .stats-bar-container{margin:12px 0;}
 #statsBars .stats-bar{height:20px;background:#EEF2F9;border:none;}
 #statsBars .stats-bar-label{font-size:12.5px;}
+.pk-card{background:#fff;border:1px solid #E6ECF8;border-radius:18px;padding:12px 14px;margin:10px 0;box-shadow:0 8px 20px -14px rgba(21,101,192,.5);}
+.pk-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;font-weight:800;font-size:13.5px;color:var(--dark);}
+.pk-head small{font-weight:700;font-size:11px;color:#64748b;}
+.pk-row{margin:7px 0;}
+.pk-lbl{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:#334155;margin-bottom:3px;}
+.pk-lbl .pk-top{color:#F9A825;}
+.pk-track{height:16px;border-radius:9px;background:#EEF2F9;overflow:hidden;}
+.pk-fill{height:100%;border-radius:9px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;box-sizing:border-box;color:#fff;font-size:10px;font-weight:800;min-width:30px;transition:width .6s ease;}
+.pk-fill.twk{background:linear-gradient(90deg,#6A1B9A,#9C27B0);}
+.pk-fill.tiu{background:linear-gradient(90deg,#BF360C,#E64A19);}
+.pk-fill.tkp{background:linear-gradient(90deg,#00695C,#00897B);}
+.pk-row.best .pk-track{box-shadow:0 0 0 2px #FFE082;}
+.pk-note{font-size:11px;color:#64748b;margin:2px 2px 0;}
 #statistikPage .weak-intro{color:#64748b;font-weight:600;}
 #statistikPage .weak-card{border-radius:16px;border:1px solid #E6ECF8;border-left:4px solid #C62828;box-shadow:none;}
 #statistikPage .weak-card.ok{border-left-color:#00897B;}
@@ -2511,6 +2540,21 @@ input:checked+.slider:before{transform:translateX(22px);}
         </div>
       </div>
       <div class="akun-info-card" style="margin-bottom:12px;">
+        <div class="fontsize-block">
+          <div class="fontsize-head">
+            <span class="fontsize-head-left">⏱️ Waktu Latihan Perkategori</span>
+            <span class="fontsize-preview-badge" id="katTimeTotal">100 menit</span>
+          </div>
+          <div class="kt-grid">
+            <label class="kt-item twk"><span>TWK</span><input type="number" inputmode="numeric" min="1" max="180" id="katTimeTWK" onchange="onKatTimeInput('TWK',this)"><small>menit</small></label>
+            <label class="kt-item tiu"><span>TIU</span><input type="number" inputmode="numeric" min="1" max="180" id="katTimeTIU" onchange="onKatTimeInput('TIU',this)"><small>menit</small></label>
+            <label class="kt-item tkp"><span>TKP</span><input type="number" inputmode="numeric" min="1" max="180" id="katTimeTKP" onchange="onKatTimeInput('TKP',this)"><small>menit</small></label>
+          </div>
+          <div class="fontsize-example">Berlaku saat mengerjakan Latihan Perkategori (mis. TWK - Paket 1). Bawaan: TWK 25, TIU 40, TKP 35 menit.</div>
+          <button type="button" class="kt-reset" onclick="playSound('back');resetKatTimes()">↺ Reset ke Default</button>
+        </div>
+      </div>
+      <div class="akun-info-card" style="margin-bottom:12px;">
         <div class="akun-row">
           <span class="akun-row-left"><span data-icon="icon_akun_sound"></span> Efek Suara</span>
           <label class="switch">
@@ -2593,6 +2637,10 @@ input:checked+.slider:before{transform:translateX(22px);}
           <span class="review-entry-label">Bookmark</span>
           <span class="review-entry-count" id="homeBookmarkCount">0 soal</span>
         </div>
+      </div>
+      <div class="lv-toggle" id="lvToggle">
+        <button type="button" id="lvBtnPaket" onclick="setLatihanView('paket')">📦 Perpaket</button>
+        <button type="button" id="lvBtnKat" onclick="setLatihanView('kategori')">🗂️ Perkategori</button>
       </div>
       <div id="quizListContainer"></div>
       <button class="btn-reset" onclick="playSound('back');showResetModal()"><span data-icon="icon_reset"></span> Reset Semua Progress</button>
@@ -2771,6 +2819,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div style="padding:16px;">
       <div class="stats-overview-grid" id="statsOverview"></div>
       <div id="statsBars"></div>
+      <div id="statsPaketKat" style="margin-top:16px;"></div>
       <div id="statsWeak" style="margin-top:16px;"></div>
       <div id="statsTrend" style="margin-top:16px;"></div>
       <div id="statsHistory" style="margin-top:12px;"></div>
@@ -4122,7 +4171,7 @@ function goTo(pageId){
   if(pageId==='pencapaianPage')refreshPencapaian();
   if(pageId==='quizCepatPage')renderQuizCepatGrid();
   if(pageId==='akunPage')refreshAkunPage();
-  if(pageId==='pengaturanPage')syncSoundToggle();
+  if(pageId==='pengaturanPage'){syncSoundToggle();syncKatTimeInputs();}
   if(pageId==='backupPage')refreshBackupInfo();
   if(pageId==='tentangPage'){renderUpd_();updAuto_();}
   history.pushState({page:pageId},'','');
@@ -4151,7 +4200,7 @@ function navigateBack_(){
   if(parent==='quizlistPage')refreshQuizList();
   if(parent==='quizCepatPage')renderQuizCepatGrid();
   if(parent==='akunPage')refreshAkunPage();
-  if(parent==='pengaturanPage')syncSoundToggle();
+  if(parent==='pengaturanPage'){syncSoundToggle();syncKatTimeInputs();}
   if(parent==='backupPage')refreshBackupInfo();
   return 'navigated';
 }
@@ -4684,6 +4733,7 @@ let userAnswers=[],userScores=[];
 let timerInterval=null,timeLeft=6000;
 let simulasiMode=false;
 let reviewMode=null;      // null | 'wrong' | 'bookmark' — sesi latihan ulang yang sedang berjalan
+let katMode=null;   // null | {id,kat} — sesi latihan perkategori (mis. TWK - Paket 1)
 let lastReviewMode=null,lastReviewKat=null;  // dipakai tombol "Ulangi" di halaman hasil
 let currentReviewTab='wrong';
 const PREFIXES=['A','B','C','D','E'];
@@ -4766,7 +4816,7 @@ function startReviewQuiz(mode,kat){
   for(let i=originals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[originals[i],originals[j]]=[originals[j],originals[i]];}
   questions=originals.map(q=>shuffleOpts(q));
   curQ=0;userAnswers=Array(questions.length).fill(null);userScores=Array(questions.length).fill(null);
-  timeLeft=6000;simulasiMode=false;activeSet=0;quizSource='review';reviewMode=mode;lastReviewMode=mode;lastReviewKat=kat||null;
+  timeLeft=6000;simulasiMode=false;activeSet=0;quizSource='review';katMode=null;reviewMode=mode;lastReviewMode=mode;lastReviewKat=kat||null;
   document.getElementById('evaluasiPanel').style.display='none';document.getElementById('btnCloseEval').style.display='none';
   document.getElementById('quizTitle').innerHTML=(mode==='wrong'?'🔁 Latihan Ulang - Soal Salah':'🔖 Latihan Ulang - Bookmark')+(kat?' · '+kat:'');
   goTo('quizPage');loadQuestion();updateGrid();
@@ -5194,8 +5244,56 @@ const quizMeta=[
   {id:1,name:'Paket 1',icon:'icon_menu_latihan'},{id:2,name:'Paket 2',icon:'icon_menu_latihan'},
   {id:3,name:'Paket 3',icon:'icon_menu_latihan'},{id:4,name:'Paket 4',icon:'icon_menu_latihan'},{id:5,name:'Paket 5',icon:'icon_menu_latihan'}
 ];
+function getLatihanView(){try{return localStorage.getItem('latihanView')==='kategori'?'kategori':'paket';}catch(e){return 'paket';}}
+function setLatihanView(v){playSound('menu');try{localStorage.setItem('latihanView',v);}catch(e){}refreshQuizList();}
+const KAT_META={
+  TWK:{full:'Tes Wawasan Kebangsaan',key:'twk',ac:'#7B1FA2',acl:'#BA68C8',bg:'#F3E5F5',poolKey:'twk'},
+  TIU:{full:'Tes Intelegensi Umum',key:'tiu',ac:'#E65100',acl:'#FFA726',bg:'#FFF3E0',poolKey:'tiu'},
+  TKP:{full:'Tes Karakteristik Pribadi',key:'tkp',ac:'#00796B',acl:'#26A69A',bg:'#E0F2F1',poolKey:'tkp'}
+};
+function renderQuizListKategori(c){
+  c.classList.add('kat-view');
+  let html='';
+  ['TWK','TIU','TKP'].forEach(kat=>{
+    const km=KAT_META[kat];
+    html+=`<div class="kat-sec-head"><span class="cat-pill ${km.key}">${kat}</span><small>${km.full}</small></div>`;
+    quizMeta.forEach(m=>{
+      const arr=getSoalBank(m.id)[km.poolKey]||[];
+      if(arr.length===0)return;
+      const mx=kat==='TKP'?arr.reduce((a,d)=>a+Math.max(...d.scores),0):arr.length*5;
+      const raw=localStorage.getItem(`skorKat_${kat}_latihan${m.id}`);
+      const done=raw!==null;
+      const sc=done?(parseInt(raw)||0):0;
+      const passing=PASSING[kat];
+      const pctBar=mx>0?Math.round(sc/mx*100):0;
+      const subs=[];arr.forEach(d=>{if(d.sub&&!subs.includes(d.sub))subs.push(d.sub);});
+      const subHtml=subs.length?`<div class="qci-subs">${subs.map(x=>`<span class="sub-pill ${km.key}">${x}</span>`).join('')}</div>`:'';
+      const badge=done?`<span class="qci-badge ${km.key}">${kat}: ${sc}/${mx} · ${sc>=passing?'✅ Lulus PG':'❌ Belum PG'}</span>`:`<span class="qci-badge belum">${kat}: -</span>`;
+      html+=`<div class="quiz-card-item" style="--ac:${km.ac};--ac-l:${km.acl};--ac-bg:${km.bg};">
+        <div onclick="playSound('start');startQuizKategori(${m.id},'${kat}')">
+          <div class="qci-header"><div class="qci-header-left"><span class="qci-no">${m.id}</span><span class="qci-title"><b>${kat} - ${m.name}</b><small>${arr.length} soal · ${km.full}</small></span></div><span class="status-pill ${done?'done':'pending'}">${done?'✅ Selesai':'⏳ Belum'}</span></div>
+          ${subHtml}
+          <div class="qci-badges" style="grid-template-columns:1fr;">${badge}</div>
+          <div class="qci-footer">
+            <div class="qci-foot-row"><div><span class="qci-total-label">Skor ${kat}</span> <span class="qci-total-val ${done?'done':''}">${sc} / ${mx}</span></div><span class="qci-go">${done?'Ulangi':'Mulai'} ›</span></div>
+            <div class="qci-bar"><div class="qci-bar-fill" style="width:${pctBar}%"></div></div>
+          </div>
+        </div>
+        ${done?`<button class="btn-eval" onclick="event.stopPropagation();playSound('menu');showEvaluasiFromList(${m.id},'${kat}')">📋 Lihat Evaluasi & Pembahasan →</button>`:''}
+      </div>`;
+    });
+  });
+  c.innerHTML=html;
+}
 function refreshQuizList(){
-  const c=document.getElementById('quizListContainer');c.innerHTML='';
+  const c=document.getElementById('quizListContainer');c.innerHTML='';c.classList.remove('kat-view');
+  const view=getLatihanView();
+  const bp=document.getElementById('lvBtnPaket'),bk=document.getElementById('lvBtnKat');
+  if(bp&&bk){bp.classList.toggle('active',view==='paket');bk.classList.toggle('active',view==='kategori');}
+  const _wc=countWrongBank(),_bc=countBookmarkBank();
+  const _elW=document.getElementById('homeWrongCount'),_elB=document.getElementById('homeBookmarkCount');
+  if(_elW)_elW.textContent=`${_wc} soal`;if(_elB)_elB.textContent=`${_bc} soal`;
+  if(view==='kategori'){renderQuizListKategori(c);return;}
   quizMeta.forEach(m=>{
     const bank=getSoalBank(m.id);
     const total=bank.twk.length+bank.tiu.length+bank.tkp.length;
@@ -5254,28 +5352,31 @@ function toggleBookmarkEval(btn){
   refreshReviewCounts();
   if(typeof updateBookmarkBtn==='function')updateBookmarkBtn();
 }
-function showEvaluasiFromList(setId){
+function showEvaluasiFromList(setId,kat){
   const bank=getSoalBank(setId);
   let savedAnswers=[],savedScores=[],savedQuestions=[];
-  try{const d=localStorage.getItem(`evalData_latihan${setId}`);if(d){const p=JSON.parse(d);savedAnswers=p.answers||[];savedScores=p.scores||[];savedQuestions=p.questions||[];}}catch(e){}
+  try{const d=localStorage.getItem(kat?`evalData_kat_${kat}_${setId}`:`evalData_latihan${setId}`);if(d){const p=JSON.parse(d);savedAnswers=p.answers||[];savedScores=p.scores||[];savedQuestions=p.questions||[];}}catch(e){}
   let eq=savedQuestions.length>0?savedQuestions:[];
   if(eq.length===0){
     bank.twk.forEach(d=>eq.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TWK'}));
     bank.tiu.forEach(d=>eq.push({question:d.q,options:[...d.opt],answer:d.a,isTKP:false,optionScores:null,pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TIU'}));
     bank.tkp.forEach(d=>eq.push({question:d.q,options:[...d.opts],answer:null,isTKP:true,optionScores:[...d.scores],pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TKP'}));
   }
-  const sTWK=parseInt(localStorage.getItem(`skorTWK_latihan${setId}`))||0;
-  const sTIU=parseInt(localStorage.getItem(`skorTIU_latihan${setId}`))||0;
-  const sTKP=parseInt(localStorage.getItem(`skorTKP_latihan${setId}`))||0;
+  if(kat)eq=eq.filter(q=>q.kategori===kat);
+  const sTWK=kat?(kat==='TWK'?parseInt(localStorage.getItem(`skorKat_TWK_latihan${setId}`))||0:0):parseInt(localStorage.getItem(`skorTWK_latihan${setId}`))||0;
+  const sTIU=kat?(kat==='TIU'?parseInt(localStorage.getItem(`skorKat_TIU_latihan${setId}`))||0:0):parseInt(localStorage.getItem(`skorTIU_latihan${setId}`))||0;
+  const sTKP=kat?(kat==='TKP'?parseInt(localStorage.getItem(`skorKat_TKP_latihan${setId}`))||0:0):parseInt(localStorage.getItem(`skorTKP_latihan${setId}`))||0;
   const sTot=sTWK+sTIU+sTKP;
-  const mTWK=bank.twk.length*5,mTIU=bank.tiu.length*5,mTKP=bank.tkp.length*5,mTot=mTWK+mTIU+mTKP;
-  document.getElementById('evalListTitle').textContent=`📖 Latihan SKD Paket ${setId}`;
-  document.getElementById('evalListScoreSummary').innerHTML=`<div class="score-summary-row"><span class="score-pill twk"><span class="ic-inline">${IMAGES.icon_twkm}</span> ${sTWK}/${mTWK}</span><span class="score-pill tiu"><span class="ic-inline">${IMAGES.icon_tium}</span> ${sTIU}/${mTIU}</span><span class="score-pill tkp"><span class="ic-inline">${IMAGES.icon_tkpm}</span> ${sTKP}/${mTKP}</span><span class="score-pill total">✅ Total ${sTot}/${mTot}</span></div>`;
+  const mTWK=bank.twk.length*5,mTIU=bank.tiu.length*5,mTKP=bank.tkp.length*5,mTot=kat?(kat==='TWK'?mTWK:kat==='TIU'?mTIU:mTKP):(mTWK+mTIU+mTKP);
+  document.getElementById('evalListTitle').textContent=kat?`📖 ${kat} - Paket ${setId}`:`📖 Latihan SKD Paket ${setId}`;
+  if(kat){const kl=kat.toLowerCase(),sv=kat==='TWK'?sTWK:kat==='TIU'?sTIU:sTKP,mv=kat==='TWK'?mTWK:kat==='TIU'?mTIU:mTKP;
+    document.getElementById('evalListScoreSummary').innerHTML=`<div class="score-summary-row"><span class="score-pill ${kl}"><span class="ic-inline">${IMAGES['icon_'+kl+'m']}</span> ${sv}/${mv}</span></div>`;}
+  else document.getElementById('evalListScoreSummary').innerHTML=`<div class="score-summary-row"><span class="score-pill twk"><span class="ic-inline">${IMAGES.icon_twkm}</span> ${sTWK}/${mTWK}</span><span class="score-pill tiu"><span class="ic-inline">${IMAGES.icon_tium}</span> ${sTIU}/${mTIU}</span><span class="score-pill tkp"><span class="ic-inline">${IMAGES.icon_tkpm}</span> ${sTKP}/${mTKP}</span><span class="score-pill total">✅ Total ${sTot}/${mTot}</span></div>`;
   let html='<h3 style="color:var(--blue);margin-bottom:12px;font-size:15px;">📝 Evaluasi Jawaban & Pembahasan</h3>';
   const cnt={benar:0,salah:0,belum:0};
   evalBmSrc.l=eq;
   for(let i=0;i<eq.length;i++){
-    const n=i+1,cat=getCat(n),q=eq[i],pb=q.pembahasan||'';
+    const n=i+1,q=eq[i],cat=q.kategori?{name:q.kategori}:getCat(n),pb=q.pembahasan||'';
     let jawUser='Tidak dijawab',jawBenar='',stCls='belum',stIcon='⏳';
     let userIdx=null;
     if(q.isTKP){const uS=(savedScores[i]!==undefined&&savedScores[i]!==null)?savedScores[i]:null;if(uS!==null){const idx=q.optionScores.findIndex(s=>s===uS);userIdx=idx>=0?idx:null;const mS=Math.max(...q.optionScores);stCls=uS===mS?'benar':'salah';stIcon=uS===mS?'✅':'❌';}}
@@ -5388,6 +5489,36 @@ function renderAttemptList(){
   if(rev.length>LIMIT)h+=`<button type="button" class="att-more" onclick="toggleRiwayatAll()">${riwayatShowAll?'Tampilkan lebih sedikit':'Tampilkan semua ('+rev.length+')'}</button>`;
   return h;
 }
+function renderPaketKategoriChart(){
+  const el=document.getElementById('statsPaketKat');if(!el)return;
+  const cats=[['TWK','twk'],['TIU','tiu'],['TKP','tkp']];
+  let cards='',n=0;
+  for(let i=1;i<=5;i++){
+    const m=bankMax(i);
+    const vals=cats.map(([K,k])=>{
+      const full=localStorage.getItem(`skor${K}_latihan${i}`),kt=localStorage.getItem(`skorKat_${K}_latihan${i}`);
+      const a=full!==null?(parseInt(full)||0):null,b=kt!==null?(parseInt(kt)||0):null;
+      const v=(a===null&&b===null)?null:Math.max(a===null?0:a,b===null?0:b);
+      const mx=m[k]||0;
+      return{K,k,v,mx,p:(v!==null&&mx>0)?Math.round(v/mx*100):0};
+    });
+    if(vals.every(x=>x.v===null))continue;
+    n++;
+    const done=vals.filter(x=>x.v!==null);
+    const topP=Math.max(...done.map(x=>x.p));
+    const tops=done.filter(x=>x.p===topP);
+    const rows=vals.map(x=>{
+      if(x.v===null)return `<div class="pk-row"><div class="pk-lbl"><span>${x.K}</span><span style="color:#94A3B8;">belum dikerjakan</span></div><div class="pk-track"></div></div>`;
+      const isTop=done.length>1&&x.p===topP;
+      const detail=x.K==='TKP'?`${x.v}/${x.mx} poin`:`${Math.round(x.v/5)}/${Math.round(x.mx/5)} benar`;
+      return `<div class="pk-row${isTop?' best':''}"><div class="pk-lbl"><span>${x.K}${isTop?' <span class="pk-top">🏆 Terkuat</span>':''}</span><span>${detail} · ${x.p}%</span></div><div class="pk-track"><div class="pk-fill ${x.k}" style="width:${x.p}%">${x.p}%</div></div></div>`;
+    }).join('');
+    const head=done.length>1?(tops.length===done.length?'Seimbang':`Terkuat: ${tops.map(x=>x.K).join(' & ')}`):'';
+    cards+=`<div class="pk-card"><div class="pk-head"><span>Paket ${i}</span><small>${head}</small></div>${rows}</div>`;
+  }
+  const title=`<h4 class="stats-title"><span class="ic-inline">${IMAGES.icon_chart_bar}Kategori Terkuat per Paket</span></h4>`;
+  el.innerHTML=title+(n>0?cards+`<div class="pk-note">Persentase = skor terhadap skor maksimal kategori (agar TKP yang berbasis poin tetap adil dibandingkan). Memakai skor terbaik dari latihan Perpaket maupun Perkategori.</div>`:`<p class="stats-empty">Belum ada data. Kerjakan latihan dulu untuk melihat kategori mana yang paling kuat di tiap paket.</p>`);
+}
 function refreshStatistik(){
   let totalLatihan=0,totalLulus=0,bestOverall=0;
   const rows=[];
@@ -5406,6 +5537,7 @@ function refreshStatistik(){
   document.getElementById('statsBars').innerHTML=`
     <h4 class="stats-title"><span class="ic-inline">${IMAGES.icon_chart_bar}Penguasaan per Kategori</span></h4>
     ${bar('twk',IMAGES.icon_twkm,'TWK',cT)}${bar('tiu',IMAGES.icon_tium,'TIU',cU)}${bar('tkp',IMAGES.icon_tkpm,'TKP',cK)}`;
+  renderPaketKategoriChart();
   renderWeakAnalysis();
   const tr=document.getElementById('statsTrend');
   if(tr)tr.innerHTML=`<h4 class="stats-title"><span class="ic-inline">${IMAGES.icon_trend}Tren Skor Latihan</span></h4>${renderTrendChart(getAllAttempts())}`;
@@ -5435,7 +5567,7 @@ function mulaiSimulasi(){
   sTKP.forEach(d=>originals.push({question:d.q,options:[...d.opts],answer:null,isTKP:true,optionScores:[...d.scores],pembahasan:d.pembahasan||'',sub:d.sub||'',kategori:'TKP'}));
   questions=originals.map(q=>shuffleOpts(q));
   curQ=0;userAnswers=Array(questions.length).fill(null);userScores=Array(questions.length).fill(null);
-  timeLeft=6000;simulasiMode=true;activeSet=0;quizSource='simulasi';reviewMode=null;lastReviewMode=null;lastReviewKat=null;
+  timeLeft=6000;simulasiMode=true;activeSet=0;quizSource='simulasi';katMode=null;reviewMode=null;lastReviewMode=null;lastReviewKat=null;
   document.getElementById('evaluasiPanel').style.display='none';document.getElementById('btnCloseEval').style.display='none';
   document.getElementById('quizTitle').textContent='⏰ Simulasi Ujian SKD';
   goTo('quizPage');loadQuestion();updateGrid();
@@ -5445,11 +5577,51 @@ function mulaiSimulasi(){
   tb.textContent='⏱️ Simulasi';tb.className='timer-badge on';startTimer();
 }
 
+function fmtTime(t){return `${String(Math.floor(t/60)).padStart(2,'0')}:${String(t%60).padStart(2,'0')}`;}
+// ---- Waktu Latihan Perkategori (bisa diatur di Pengaturan) ----
+const KAT_TIME_DEFAULT={TWK:25,TIU:40,TKP:35};
+function getKatMinutes(kat){
+  const v=parseInt(localStorage.getItem('katTime_'+kat));
+  return (v>=1&&v<=180)?v:KAT_TIME_DEFAULT[kat];
+}
+function syncKatTimeInputs(){
+  let tot=0;
+  ['TWK','TIU','TKP'].forEach(k=>{const el=document.getElementById('katTime'+k);const m=getKatMinutes(k);tot+=m;if(el)el.value=m;});
+  const t=document.getElementById('katTimeTotal');if(t)t.textContent=`${tot} menit`;
+}
+function onKatTimeInput(kat,el){
+  const v=parseInt(el.value);
+  if(v>=1&&v<=180){
+    if(v===KAT_TIME_DEFAULT[kat])localStorage.removeItem('katTime_'+kat);else localStorage.setItem('katTime_'+kat,v);
+  }
+  syncKatTimeInputs();   // nilai tidak valid dikembalikan ke nilai sebelumnya
+  if(typeof scheduleProgressSync==='function')scheduleProgressSync();
+}
+function resetKatTimes(){['TWK','TIU','TKP'].forEach(k=>localStorage.removeItem('katTime_'+k));syncKatTimeInputs();if(typeof scheduleProgressSync==='function')scheduleProgressSync();}
+function startQuizKategori(setId,kat){
+  if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
+  const orig=buildOriginals(setId).filter(q=>q.kategori===kat);
+  if(orig.length===0){alert(`⚠️ Soal ${kat} Paket ${setId} belum tersedia.`);return;}
+  activeSet=setId;simulasiMode=false;quizSource='quizlist';reviewMode=null;lastReviewMode=null;lastReviewKat=null;katMode={id:setId,kat:kat};
+  originals=orig;
+  questions=originals.map(q=>shuffleOpts(q));
+  curQ=0;userAnswers=Array(questions.length).fill(null);userScores=Array(questions.length).fill(null);
+  timeLeft=getKatMinutes(kat)*60;   // waktu per kategori, bisa diatur di Pengaturan (default TWK 25 / TIU 40 / TKP 35 menit)
+  document.getElementById('evaluasiPanel').style.display='none';document.getElementById('btnCloseEval').style.display='none';
+  document.getElementById('quizTitle').textContent=`📖 ${kat} - Paket ${setId}`;
+  goTo('quizPage');loadQuestion();updateGrid();
+  const timerOn=getTimerEnabled();
+  const td=document.getElementById('timerDisplay'),tb=document.getElementById('timerBadge');
+  td.style.display='';tb.style.display='';td.style.opacity='';
+  td.textContent=fmtTime(timeLeft);td.classList.remove('timer-warning','timer-danger','timer-blink');
+  if(timerOn){tb.textContent='⏱️ Timer ON';tb.className='timer-badge on';tb.style.display='none';startTimer();}
+  else{td.style.display='none';tb.textContent='⏸️ Timer OFF';tb.className='timer-badge off';}
+}
 function startQuiz(setId){
   if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
   const bank=getSoalBank(setId);
   if(bank.twk.length+bank.tiu.length+bank.tkp.length===0){alert(`⚠️ Paket ${setId} belum tersedia.`);return;}
-  activeSet=setId;simulasiMode=false;quizSource='quizlist';reviewMode=null;lastReviewMode=null;lastReviewKat=null;
+  activeSet=setId;simulasiMode=false;quizSource='quizlist';katMode=null;reviewMode=null;lastReviewMode=null;lastReviewKat=null;
   originals=buildOriginals(setId);
   questions=originals.map(q=>shuffleOpts(q));
   curQ=0;userAnswers=Array(questions.length).fill(null);userScores=Array(questions.length).fill(null);
@@ -5551,9 +5723,12 @@ function finishQuiz(){
   saveAnswer();
   const wasSimulasi=simulasiMode;
   const isReview=!!reviewMode;
+  const isKat=!!katMode&&!wasSimulasi&&!isReview;
+  const curKat=katMode;
   const curReviewMode=reviewMode;
   let s;
   if(isReview){s=hitungSkorByKategori();}
+  else if(isKat){s=hitungSkorByKategori();}
   else if(!wasSimulasi){s=hitungSkor();const bank=getSoalBank(activeSet);s.mTWK=bank.twk.length*5||150;s.mTIU=bank.tiu.length*5||175;s.mTKP=bank.tkp.length*5||225;s.mTot=s.mTWK+s.mTIU+s.mTKP;} 
   else{s=hitungSkorByKategori();}
 
@@ -5574,6 +5749,11 @@ function finishQuiz(){
     if(simuLulus){const b=(parseInt(localStorage.getItem('simulasiLulusBerturut')||'0'))+1;localStorage.setItem('simulasiLulusBerturut',b);}
     else{localStorage.setItem('simulasiLulusBerturut','0');}
     simulasiMode=false;
+  } else if(isKat){
+    const kl=curKat.kat.toLowerCase();
+    localStorage.setItem(`skorKat_${curKat.kat}_latihan${curKat.id}`,s[kl]);
+    const ed={answers:userAnswers,scores:userScores,questions:questions.map(q=>({question:q.question,options:q.options,answer:q.answer,isTKP:q.isTKP,optionScores:q.optionScores,pembahasan:q.pembahasan||'',sub:q.sub||'',kategori:q.kategori||''}))};
+    localStorage.setItem(`evalData_kat_${curKat.kat}_${curKat.id}`,JSON.stringify(ed));
   } else {
     incPaketUlangi(activeSet);
     localStorage.setItem(`skorTWK_latihan${activeSet}`,s.twk);localStorage.setItem(`skorTIU_latihan${activeSet}`,s.tiu);localStorage.setItem(`skorTKP_latihan${activeSet}`,s.tkp);
@@ -5584,17 +5764,24 @@ function finishQuiz(){
   }
   scheduleProgressSync();
   const mTWK=s.mTWK||150,mTIU=s.mTIU||175,mTKP=s.mTKP||225,mTot=s.mTot||(mTWK+mTIU+mTKP);
-  document.getElementById('resultSubtitle').textContent=isReview?(curReviewMode==='wrong'?'🔁 Latihan Ulang - Soal Salah':'🔖 Latihan Ulang - Bookmark'):(wasSimulasi?'⏰ Hasil Simulasi SKD':`📝 Latihan SKD Paket ${activeSet}`);
+  document.getElementById('resultSubtitle').textContent=isReview?(curReviewMode==='wrong'?'🔁 Latihan Ulang - Soal Salah':'🔖 Latihan Ulang - Bookmark'):(wasSimulasi?'⏰ Hasil Simulasi SKD':(isKat?`📝 ${curKat.kat} - Paket ${curKat.id}`:`📝 Latihan SKD Paket ${activeSet}`));
   document.getElementById('resTotalScore').textContent=s.total;
   document.getElementById('resPct').textContent=`dari ${mTot} poin (${s.persen}%)`;
-  document.getElementById('scoreDetail').innerHTML=`<h3>📊 Detail Skor</h3><table class="result-table"><tr><td><span class="ic-inline">${IMAGES.icon_twkm}TWK</span></td><td><strong>${s.twk}</strong> / ${mTWK}</td></tr><tr><td><span class="ic-inline">${IMAGES.icon_tium}TIU</span></td><td><strong>${s.tiu}</strong> / ${mTIU}</td></tr><tr><td><span class="ic-inline">${IMAGES.icon_tkpm}TKP</span></td><td><strong>${s.tkp}</strong> / ${mTKP}</td></tr><tr><td><strong>✅ TOTAL</strong></td><td><strong>${s.total}</strong> / ${mTot}</td></tr></table>`;
-  const pass={twk:s.twk>=PASSING.TWK,tiu:s.tiu>=PASSING.TIU,tkp:s.tkp>=PASSING.TKP};pass.all=pass.twk&&pass.tiu&&pass.tkp;
+  document.getElementById('scoreDetail').innerHTML=isKat?`<h3>📊 Detail Skor</h3><table class="result-table"><tr><td><span class="ic-inline">${IMAGES['icon_'+curKat.kat.toLowerCase()+'m']}${curKat.kat}</span></td><td><strong>${s[curKat.kat.toLowerCase()]}</strong> / ${s['m'+curKat.kat]}</td></tr></table>`:`<h3>📊 Detail Skor</h3><table class="result-table"><tr><td><span class="ic-inline">${IMAGES.icon_twkm}TWK</span></td><td><strong>${s.twk}</strong> / ${mTWK}</td></tr><tr><td><span class="ic-inline">${IMAGES.icon_tium}TIU</span></td><td><strong>${s.tiu}</strong> / ${mTIU}</td></tr><tr><td><span class="ic-inline">${IMAGES.icon_tkpm}TKP</span></td><td><strong>${s.tkp}</strong> / ${mTKP}</td></tr><tr><td><strong>✅ TOTAL</strong></td><td><strong>${s.total}</strong> / ${mTot}</td></tr></table>`;
+  const pass={twk:s.twk>=PASSING.TWK,tiu:s.tiu>=PASSING.TIU,tkp:s.tkp>=PASSING.TKP};pass.all=isKat?pass[curKat.kat.toLowerCase()]:(pass.twk&&pass.tiu&&pass.tkp);
   const bannerEl=document.getElementById('passBanner');
   if(isReview){
     document.getElementById('pgGrid').innerHTML=`<div class="pg-card pass" style="grid-column:1/-1;"><span class="ic-inline">${curReviewMode==='wrong'?'🔁':'🔖'}</span><span class="pg-score">${curReviewMode==='wrong'?(masteredCount>0?`${masteredCount} soal dikuasai & dihapus dari daftar!`:'Terus berlatih sampai semua soal dikuasai.'):'Sesi review bookmark selesai.'}<strong></strong></span></div>`;
     bannerEl.className='pass-banner pass';
     bannerEl.textContent=curReviewMode==='wrong'?`🔁 Latihan ulang selesai! Sisa soal di Bank Soal Salah: ${countWrongBank()}`:'🔖 Latihan ulang bookmark selesai!';
     playSound('finish');
+  } else if(isKat){
+    const kl=curKat.kat.toLowerCase();
+    document.getElementById('pgGrid').innerHTML=`<div class="pg-card ${pass[kl]?'pass':'fail'}" style="grid-column:1/-1;"><span class="ic-inline">${IMAGES['icon_'+kl+'m']}${curKat.kat}</span><span class="pg-score">${s[kl]}/${PASSING[curKat.kat]}<strong>${pass[kl]?'✅ Lulus':'❌ Gagal'}</strong></span></div>`;
+    bannerEl.className=`pass-banner ${pass.all?'pass':'fail'}`;
+    bannerEl.textContent=pass.all?`🎉 Bagus! Skor ${curKat.kat} sudah di atas passing grade (${PASSING[curKat.kat]}).`:`⚠️ Skor ${curKat.kat} belum mencapai passing grade (${PASSING[curKat.kat]}). Terus berlatih!`;
+    playSound(pass.all?'finish':'wrong');
+    setTimeout(()=>playSound(pass.all?'skor_lulus':'skor_gagal'),600);
   } else {
     document.getElementById('pgGrid').innerHTML=`
       <div class="pg-card ${pass.twk?'pass':'fail'}"><span class="ic-inline">${IMAGES.icon_twkm}TWK</span><span class="pg-score">${s.twk}/${PASSING.TWK}<strong>${pass.twk?'✅ Lulus':'❌ Gagal'}</strong></span></div>
@@ -5610,6 +5797,8 @@ function finishQuiz(){
 if(isReview){
   addNotif(curReviewMode==='wrong'?'🔁':'🔖', curReviewMode==='wrong'?'Latihan Ulang Selesai':'Review Bookmark Selesai',
     `Skor: ${s.total}/${s.mTot}${masteredCount>0?` · ${masteredCount} soal dikuasai`:''}`);
+} else if(isKat){
+  addNotif('📝', `${curKat.kat} Paket ${curKat.id} Selesai`, `Skor: ${s[curKat.kat.toLowerCase()]}/${s['m'+curKat.kat]}`);
 } else if(!wasSimulasi){
   addNotif('📝', `Paket ${activeSet} Selesai`,
     `Skor: ${s.total}/${s.mTot} · TWK:${s.twk} TIU:${s.tiu} TKP:${s.tkp}`);
@@ -5619,7 +5808,7 @@ if(isReview){
 }
   checkNewAchievements();
 }
-function restartQuiz(){if(lastReviewMode)startReviewQuiz(lastReviewMode,lastReviewKat);else if(activeSet>0)startQuiz(activeSet);else goTo('homePage');}
+function restartQuiz(){if(lastReviewMode)startReviewQuiz(lastReviewMode,lastReviewKat);else if(katMode)startQuizKategori(katMode.id,katMode.kat);else if(activeSet>0)startQuiz(activeSet);else goTo('homePage');}
 function backToHome(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;}simulasiMode=false;goTo('homePage');refreshHomeStats();}
 function renderEvalOptions(q,userIdx){
   if(q.isTKP){
@@ -5707,7 +5896,7 @@ function showNextAch(){
 // ========== BACKUP & PULIHKAN PROGRES ==========
 // Progres hanya ada di localStorage perangkat ini. Backup = salinan semua kunci progres
 // (bukan sesi login / cache kredensial) dalam satu file JSON atau satu kode teks.
-const BK_RE=/^(skor(TWK|TIU|TKP)_latihan\d+|bestScore_latihan\d+|evalData_latihan\d+|paketUlangi_\d+|riwayat_latihan\d+|simulasi_last|simulasiCount|simulasiLulusBerturut|materiOpened|menuVisited|qc(Best|TotalSesi|StreakMax|NoWrong|Akurasi90)_\w+|achUnlocked|skd_wrongBank|skd_bookmarkBank|skd_aktivitas_log|skd_studyDays|soundEnabled|timerEnabled|fontScale_\w+|lineHeight_\w+)$/;
+const BK_RE=/^(skor(TWK|TIU|TKP)_latihan\d+|bestScore_latihan\d+|evalData_latihan\d+|skorKat_(TWK|TIU|TKP)_latihan\d+|evalData_kat_(TWK|TIU|TKP)_\d+|latihanView|katTime_(TWK|TIU|TKP)|paketUlangi_\d+|riwayat_latihan\d+|simulasi_last|simulasiCount|simulasiLulusBerturut|materiOpened|menuVisited|qc(Best|TotalSesi|StreakMax|NoWrong|Akurasi90)_\w+|achUnlocked|skd_wrongBank|skd_bookmarkBank|skd_aktivitas_log|skd_studyDays|soundEnabled|timerEnabled|fontScale_\w+|lineHeight_\w+)$/;
 const BK_PREFIX='SKDBACKUP1:';
 const BK_LAST_KEY='skd_lastBackup';
 function bkCollect(){const d={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(BK_RE.test(k))d[k]=localStorage.getItem(k);}return d;}
@@ -5804,7 +5993,7 @@ function restoreProgress(){
   location.reload();
 }
 function resetAllProgress(){
-  for(let i=1;i<=5;i++){['bestScore','skorTWK','skorTIU','skorTKP'].forEach(k=>localStorage.removeItem(`${k}_latihan${i}`));localStorage.removeItem(`evalData_latihan${i}`);localStorage.removeItem(`paketUlangi_${i}`);localStorage.removeItem(`riwayat_latihan${i}`);}
+  for(let i=1;i<=5;i++){['bestScore','skorTWK','skorTIU','skorTKP'].forEach(k=>localStorage.removeItem(`${k}_latihan${i}`));localStorage.removeItem(`evalData_latihan${i}`);localStorage.removeItem(`paketUlangi_${i}`);localStorage.removeItem(`riwayat_latihan${i}`);['TWK','TIU','TKP'].forEach(k=>{localStorage.removeItem(`skorKat_${k}_latihan${i}`);localStorage.removeItem(`evalData_kat_${k}_${i}`);});}
   localStorage.removeItem('simulasi_last');localStorage.removeItem('simulasiCount');localStorage.removeItem('simulasiLulusBerturut');localStorage.removeItem('materiOpened');localStorage.removeItem('menuVisited');
   ['twk','tiu','tkp'].forEach(cat=>{[1,3,5,10].forEach(m=>localStorage.removeItem(`qcBest_${cat}_${m}m`));localStorage.removeItem(`qcTotalSesi_${cat}`);localStorage.removeItem(`qcStreakMax_${cat}`);localStorage.removeItem(`qcNoWrong_${cat}`);localStorage.removeItem(`qcAkurasi90_${cat}`);});
   localStorage.removeItem('achUnlocked');achUnlocked=[];
