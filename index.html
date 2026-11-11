@@ -1395,6 +1395,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 #quizlistPage .qci-title{display:flex;flex-direction:column;gap:2px;min-width:0;}
 #quizlistPage .qci-title b{font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);}
 #quizlistPage .qci-title small{font-size:11.5px;font-weight:600;color:#64748b;}
+#quizlistPage .qci-new{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:10px;font-size:10px;font-weight:800;letter-spacing:0;vertical-align:middle;background:#FFF3E0;color:#E65100;border:1px solid #FFE0B2;}
 #quizlistPage .status-pill{white-space:nowrap;flex-shrink:0;font-size:11px;padding:5px 11px;}
 #quizlistPage .status-pill.done{background:#fff;border:1px solid #B2DFDB;color:#00695C;}
 #quizlistPage .status-pill.pending{background:#fff;border:1px solid #FFCDD2;color:#C62828;}
@@ -5267,7 +5268,7 @@ function refreshPencapaian(){
 // ========== QUIZ LIST ==========
 const quizMeta=[
   {id:1,name:'Paket 1',icon:'icon_menu_latihan'},{id:2,name:'Paket 2',icon:'icon_menu_latihan'},
-  {id:3,name:'Paket 3',icon:'icon_menu_latihan'},{id:4,name:'Paket 4',icon:'icon_menu_latihan'},{id:5,name:'Paket 5',icon:'icon_menu_latihan'},{id:6,name:'Paket 6',icon:'icon_menu_latihan'}
+  {id:3,name:'Paket 3',icon:'icon_menu_latihan'},{id:4,name:'Paket 4',icon:'icon_menu_latihan'},{id:5,name:'Paket 5',icon:'icon_menu_latihan'},{id:6,name:'Paket 6',icon:'icon_menu_latihan',tag:'TIU Terbaru'}
 ];
 function getLatihanView(){try{return localStorage.getItem('latihanView')==='kategori'?'kategori':'paket';}catch(e){return 'paket';}}
 function setLatihanView(v){playSound('menu');try{localStorage.setItem('latihanView',v);}catch(e){}refreshQuizList();}
@@ -5296,7 +5297,7 @@ function renderQuizListKategori(c){
       const badge=done?`<span class="qci-badge ${km.key}">${kat}: ${sc}/${mx} · ${sc>=passing?'✅ Lulus PG':'❌ Belum PG'}</span>`:`<span class="qci-badge belum">${kat}: -</span>`;
       html+=`<div class="quiz-card-item" style="--ac:${km.ac};--ac-l:${km.acl};--ac-bg:${km.bg};">
         <div onclick="playSound('start');startQuizKategori(${m.id},'${kat}')">
-          <div class="qci-header"><div class="qci-header-left"><span class="qci-no">${m.id}</span><span class="qci-title"><b>${kat} - ${m.name}</b><small>${arr.length} soal · ${km.full}</small></span></div><span class="status-pill ${done?'done':'pending'}">${done?'✅ Selesai':'⏳ Belum'}</span></div>
+          <div class="qci-header"><div class="qci-header-left"><span class="qci-no">${m.id}</span><span class="qci-title"><b>${kat} - ${m.name}${(m.tag&&kat==='TIU')?` <span class="qci-new">${m.tag}</span>`:''}</b><small>${arr.length} soal · ${km.full}</small></span></div><span class="status-pill ${done?'done':'pending'}">${done?'✅ Selesai':'⏳ Belum'}</span></div>
           ${subHtml}
           <div class="qci-badges" style="grid-template-columns:1fr;">${badge}</div>
           <div class="qci-footer">
@@ -5332,7 +5333,7 @@ function refreshQuizList(){
     const pctBar=mTot>0?Math.round(tot/mTot*100):0;
     c.innerHTML+=`<div class="quiz-card-item${done?' is-done':''}">
       <div onclick="playSound('start');startQuiz(${m.id})">
-        <div class="qci-header"><div class="qci-header-left"><span class="qci-no">${m.id}</span><span class="qci-title"><b>${m.name}</b><small>${total} soal · TWK, TIU, TKP</small></span></div><span class="status-pill ${done?'done':'pending'}">${done?'✅ Selesai':'⏳ Belum'}</span></div>
+        <div class="qci-header"><div class="qci-header-left"><span class="qci-no">${m.id}</span><span class="qci-title"><b>${m.name}${m.tag?` <span class="qci-new">${m.tag}</span>`:''}</b><small>${total} soal · TWK, TIU, TKP</small></span></div><span class="status-pill ${done?'done':'pending'}">${done?'✅ Selesai':'⏳ Belum'}</span></div>
         <div class="qci-badges">${badges}</div>
         <div class="qci-footer">
           <div class="qci-foot-row"><div><span class="qci-total-label">Total Skor</span> <span class="qci-total-val ${done?'done':''}">${tot} / ${mTot}</span></div><span class="qci-go">${done?'Ulangi':'Mulai'} ›</span></div>
