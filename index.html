@@ -1800,6 +1800,25 @@ input:checked+.slider:before{transform:translateX(22px);}
 .pk-fill.tiu{background:linear-gradient(90deg,#BF360C,#E64A19);}
 .pk-fill.tkp{background:linear-gradient(90deg,#00695C,#00897B);}
 .pk-row.best .pk-track{box-shadow:0 0 0 2px #FFE082;}
+/* Bar chart kategori per paket */
+.pk-chart{margin:22px 0 2px;padding-left:28px;}
+.pk-plot{position:relative;height:120px;border-left:1.5px solid #CBD5E1;border-bottom:1.5px solid #CBD5E1;}
+.pk-grid{position:absolute;left:0;right:0;height:0;border-top:1px dashed #E2E8F0;}
+.pk-grid em{position:absolute;left:-28px;top:-7px;width:22px;text-align:right;font-style:normal;font-size:9px;font-weight:700;color:#94A3B8;}
+.pk-cols{position:absolute;inset:0;display:flex;justify-content:space-around;align-items:stretch;}
+.pk-col{width:24%;display:flex;align-items:flex-end;}
+.pk-bar-wrap{position:relative;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;}
+.pk-bar{position:relative;width:100%;border-radius:8px 8px 0 0;transition:height .6s ease;min-height:3px;}
+.pk-bar.twk{background:linear-gradient(180deg,#9C27B0,#6A1B9A);}
+.pk-bar.tiu{background:linear-gradient(180deg,#E64A19,#BF360C);}
+.pk-bar.tkp{background:linear-gradient(180deg,#00897B,#00695C);}
+.pk-col.best .pk-bar{box-shadow:0 0 0 2px #FFE082;}
+.pk-val{position:absolute;left:50%;transform:translateX(-50%);top:-16px;white-space:nowrap;font-size:10.5px;font-weight:800;color:#334155;}
+.pk-col.empty .pk-val{top:auto;bottom:4px;}
+.pk-xaxis{display:flex;justify-content:space-around;margin-top:5px;}
+.pk-xlbl{width:24%;text-align:center;line-height:1.25;}
+.pk-xlbl b{display:block;font-size:11.5px;color:#334155;}
+.pk-xlbl small{display:block;font-size:9px;font-weight:600;color:#64748b;}
 .pk-note{font-size:11px;color:#64748b;margin:2px 2px 0;}
 #statistikPage .weak-intro{color:#64748b;font-weight:600;}
 #statistikPage .weak-card{border-radius:16px;border:1px solid #E6ECF8;border-left:4px solid #C62828;box-shadow:none;}
@@ -3208,7 +3227,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 <div id="quizCepatResultPage" class="page">
   <div style="background:var(--bg);min-height:100vh;padding:16px;padding-bottom:80px;">
     
-    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);margin:-16px -16px 0;">
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('quizCepatPage')"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_statistik" class="ic-sm"></span> Hasil</h2>
     </div>
@@ -5732,12 +5751,16 @@ function renderPaketKategoriChart(){
     const done=vals.filter(x=>x.v!==null);
     const topP=Math.max(...done.map(x=>x.p));
     const tops=done.filter(x=>x.p===topP);
-    const rows=vals.map(x=>{
-      if(x.v===null)return `<div class="pk-row"><div class="pk-lbl"><span>${x.K}</span><span style="color:#94A3B8;">belum dikerjakan</span></div><div class="pk-track"></div></div>`;
-      const isTop=done.length>1&&x.p===topP;
-      const detail=x.K==='TKP'?`${x.v}/${x.mx} poin`:`${Math.round(x.v/5)}/${Math.round(x.mx/5)} benar`;
-      return `<div class="pk-row${isTop?' best':''}"><div class="pk-lbl"><span>${x.K}${isTop?' <span class="pk-top">🏆 Terkuat</span>':''}</span><span>${detail} · ${x.p}%</span></div><div class="pk-track"><div class="pk-fill ${x.k}" style="width:${x.p}%">${x.p}%</div></div></div>`;
+    const cols=vals.map(x=>{
+      const isTop=done.length>1&&x.v!==null&&x.p===topP;
+      if(x.v===null)return `<div class="pk-col empty"><div class="pk-bar-wrap"><span class="pk-val" style="color:#94A3B8;">–</span></div></div>`;
+      return `<div class="pk-col${isTop?' best':''}"><div class="pk-bar-wrap"><div class="pk-bar ${x.k}" style="height:${Math.max(x.p,2)}%"><span class="pk-val">${isTop?'🏆 ':''}${x.p}%</span></div></div></div>`;
     }).join('');
+    const labs=vals.map(x=>{
+      const detail=x.v===null?'belum dikerjakan':(x.K==='TKP'?`${x.v}/${x.mx} poin`:`${Math.round(x.v/5)}/${Math.round(x.mx/5)} benar`);
+      return `<div class="pk-xlbl"><b>${x.K}</b><small>${detail}</small></div>`;
+    }).join('');
+    const rows=`<div class="pk-chart"><div class="pk-plot"><i class="pk-grid" style="bottom:0"><em>0</em></i><i class="pk-grid" style="bottom:50%"><em>50</em></i><i class="pk-grid" style="bottom:100%"><em>100</em></i><div class="pk-cols">${cols}</div></div><div class="pk-xaxis">${labs}</div></div>`;
     const head=done.length>1?(tops.length===done.length?'Seimbang':`Terkuat: ${tops.map(x=>x.K).join(' & ')}`):'';
     cards+=`<div class="pk-card"><div class="pk-head"><span>Paket ${i}</span><small>${head}</small></div>${rows}</div>`;
   }
