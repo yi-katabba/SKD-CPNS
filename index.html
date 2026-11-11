@@ -1351,13 +1351,8 @@ input:checked+.slider:before{transform:translateX(22px);}
 }
 #quizlistPage .review-entry-card:nth-child(2) .review-entry-count{color:#EF6C00;}
 
-#quizListContainer::before{
-  content:'Paket Latihan';display:flex;align-items:center;gap:9px;
-  font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);
-  padding:16px 2px 12px;
-}
-#quizListContainer::after{display:none;}
-#quizListContainer.kat-view::before{content:'Latihan Perkategori';}
+#quizListContainer{padding-top:12px;}
+#quizListContainer::before,#quizListContainer::after{display:none;}
 .kt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;}
 .kt-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;border-radius:14px;border:1px solid #E2E8F0;background:#F8FAFC;font-weight:800;font-size:13px;}
 .kt-item.twk{background:#F3E5F5;border-color:#E1BEE7;color:#6A1B9A;}
@@ -2225,7 +2220,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 
 
 /* ===== Tabel HTML & rumus LaTeX di dalam soal/opsi/pembahasan ===== */
-.soal-isi table,#quizQuestion table,#qcQTxt table,.pembahasan-box table,.choice-text table,.eval-opt-text table,.qc-opt-text table{border-collapse:collapse;margin:8px auto;max-width:100%;font-size:.95em;}
+.soal-isi table,#quizQuestion table,#qcQTxt table,.pembahasan-box table,.choice-text table,.eval-opt-text table,.qc-opt-text table{border-collapse:collapse;margin:8px auto !important;max-width:100%;font-size:.95em;}
 .soal-isi th,.soal-isi td,#quizQuestion th,#quizQuestion td,#qcQTxt th,#qcQTxt td,.pembahasan-box th,.pembahasan-box td,.choice-text th,.choice-text td,.eval-opt-text th,.eval-opt-text td,.qc-opt-text th,.qc-opt-text td{border:1px solid #888;padding:4px 10px;text-align:center;}
 .soal-isi th,#quizQuestion th,#qcQTxt th,.pembahasan-box th{background:rgba(100,116,139,.12);}
 .katex{font-size:1.08em;}
