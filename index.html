@@ -1743,6 +1743,86 @@ input:checked+.slider:before{transform:translateX(22px);}
   box-shadow:0 10px 16px -10px rgba(0,0,0,.45);
 }
 
+/* Materi: tab kategori (slider geser kiri/kanan) */
+#materiTabsBar{
+  display:none;position:fixed;top:51px;left:50%;transform:translateX(-50%);
+  width:100%;max-width:430px;height:54px;box-sizing:border-box;z-index:49;
+  background:#fff;border-bottom:1px solid var(--border);box-shadow:0 6px 12px -8px rgba(0,0,0,.18);
+  align-items:center;padding:0 2px;gap:0;
+}
+#materiTabsBar.show{display:flex;}
+#materiContentPage .mt-arrow{
+  flex:0 0 26px;width:26px;height:34px;border:none;background:transparent;cursor:pointer;
+  color:var(--ac);font-size:26px;font-weight:800;line-height:1;padding:0;border-radius:10px;
+}
+#materiContentPage .mt-arrow:active{background:var(--ac-bg);}
+#materiContentPage .mt-arrow:disabled{opacity:.22;cursor:default;}
+#materiContentPage .mt-scroller{
+  flex:1;min-width:0;display:flex;gap:8px;align-items:center;padding:8px 4px;
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity;touch-action:pan-x;cursor:grab;
+}
+#materiContentPage .mt-scroller::-webkit-scrollbar{display:none;}
+#materiContentPage .mt-scroller.dragging{cursor:grabbing;scroll-snap-type:none;}
+#materiContentPage .mt-tab{
+  flex:0 0 auto;display:flex;align-items:center;gap:7px;height:38px;padding:0 13px 0 6px;
+  white-space:nowrap;border-radius:19px;cursor:pointer;scroll-snap-align:center;
+  border:1.5px solid color-mix(in srgb,var(--ac) 20%,#fff);background:var(--ac-bg);
+  color:var(--ac);font-size:12.5px;font-weight:700;transition:background .15s,color .15s,box-shadow .15s;
+}
+#materiContentPage .mt-tab .mt-no{
+  width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:#fff;color:var(--ac);font-size:12px;font-weight:800;flex-shrink:0;
+}
+#materiContentPage .mt-tab.active{
+  background:var(--ac);color:#fff;border-color:var(--ac);
+  box-shadow:0 8px 14px -8px var(--ac);
+}
+#materiContentPage .mt-tab.active .mt-no{background:rgba(255,255,255,.22);color:#fff;}
+#materiContentPage .mt-tema-head{
+  display:flex;flex-direction:column;gap:2px;margin:0 0 6px;padding:14px 16px;border-radius:16px;
+  color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac-l));
+}
+#materiContentPage .mt-tema-head small{font-size:11px;font-weight:800;letter-spacing:.8px;opacity:.85;}
+#materiContentPage .mt-tema-head b{font-size:17px;font-weight:800;line-height:1.3;}
+#materiContentPage .mt-tema-head + h3{margin-top:12px;}
+/* isi materi dari docx: tabel, kutipan/daftar menjorok, contoh soal */
+#materiContentPage .materi-full .mt-table-wrap{
+  overflow-x:auto;margin:10px 0 14px;border:1px solid #E2E8F0;border-radius:12px;-webkit-overflow-scrolling:touch;
+}
+#materiContentPage .materi-full table{border-collapse:collapse;width:100%;min-width:280px;font-size:13px;line-height:1.55;}
+#materiContentPage .materi-full th{
+  background:var(--ac-bg);color:var(--ac);text-align:left;font-weight:800;padding:8px 10px;vertical-align:top;
+}
+#materiContentPage .materi-full td{padding:8px 10px;border-top:1px solid #EEF2F7;vertical-align:top;}
+#materiContentPage .materi-full th + th,#materiContentPage .materi-full td + td{border-left:1px solid #EEF2F7;}
+#materiContentPage .materi-full blockquote{
+  margin:8px 0 12px;padding:10px 12px;background:#F8FAFC;
+  border-left:4px solid var(--ac-l);border-radius:0 12px 12px 0;
+}
+#materiContentPage .materi-full blockquote p{margin:0 0 6px;}
+#materiContentPage .materi-full blockquote p:last-child{margin-bottom:0;}
+#materiContentPage .materi-full .mt-jawaban{
+  display:inline-block;margin:0 0 12px;padding:5px 12px;border-radius:10px;background:var(--ac-bg);
+}
+#materiContentPage .materi-full .mt-pembahasan{margin-bottom:4px;}
+#materiContentPage .materi-full .info-box p{margin:0 0 6px;}
+#materiContentPage .materi-full .info-box p:last-child{margin-bottom:0;}
+#materiContentPage .materi-full img{max-width:100%;height:auto;display:block;margin:0 auto;}
+#materiContentPage .materi-full .mt-fig{
+  margin:10px 0 14px;padding:10px;background:#fff;border:1px solid #E2E8F0;border-radius:12px;
+  text-align:center;overflow-x:auto;
+}
+#materiContentPage .materi-full th img{margin:0;}
+#materiContentPage .mt-pager{display:flex;gap:10px;margin-top:18px;}
+#materiContentPage .mt-pager button,#materiContentPage .mt-pager span{flex:1;}
+#materiContentPage .mt-pager button{
+  padding:12px 10px;border-radius:14px;cursor:pointer;font-size:12.5px;font-weight:800;line-height:1.3;
+  border:1.5px solid var(--ac);background:#fff;color:var(--ac);
+}
+#materiContentPage .mt-pager button:active{background:var(--ac-bg);}
+#materiContentPage .mt-pager button.next{background:var(--ac);color:#fff;}
+
 /* =====================================================================
    STATISTIK, PROFIL, PENCAPAIAN — selaras dengan Pilih Latihan SKD.
    ===================================================================== */
@@ -2892,8 +2972,16 @@ input:checked+.slider:before{transform:translateX(22px);}
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;" id="materiContentTitle"><span data-icon="icon_menu_materi" class="ic-sm"></span> Materi</h2>
     </div>
     
+    <!-- TAB KATEGORI (slider, hanya tampil jika materi punya banyak kategori) -->
+    <div id="materiTabsBar" role="tablist" aria-label="Kategori materi">
+      <button type="button" class="mt-arrow" id="materiTabPrev" aria-label="Geser ke kiri" onclick="scrollMateriTabs(-1)">&#8249;</button>
+      <div class="mt-scroller" id="materiTabs"></div>
+      <button type="button" class="mt-arrow" id="materiTabNext" aria-label="Geser ke kanan" onclick="scrollMateriTabs(1)">&#8250;</button>
+    </div>
+    
     <!-- SPACER -->
     <div style="height:54px;"></div>
+    <div id="materiTabsSpacer" style="height:54px;display:none;"></div>
     
     <!-- KONTEN SCROLL -->
     <div style="padding:16px;">
@@ -4926,33 +5014,8 @@ function getMateri(k){
   };
   return fb[k]||fb.twk;
 }
-function showMateri(k){
-  markMateriOpened(k);
-  const m = getMateri(k);
-  const _mcp=document.getElementById('materiContentPage');if(_mcp)_mcp.dataset.cat=k;
-  document.getElementById('materiContentTitle').textContent = m.judul;
-  const cd = document.getElementById('materiContentFull');
-
-  const nl = {
-    twk: { label: 'TWK', icon: 'icon_twkm' },
-    tiu: { label: 'TIU', icon: 'icon_tium' },
-    tkp: { label: 'TKP', icon: 'icon_tkpm' }
-  };
-
-  let nav = '<div class="materi-nav-bottom">';
-  for(let x in nl){
-    if(x !== k){
-      nav += `<button class="btn-${x}" onclick="playSound('menu');showMateri('${x}')">
-        <span data-icon="${nl[x].icon}"></span> ${nl[x].label}
-      </button>`;
-    }
-  }
-  nav += '</div>';
-
-  cd.innerHTML = m.konten + nav;
-
-  // Jalankan ulang auto-fill data-icon untuk elemen baru
-  cd.querySelectorAll('[data-icon]').forEach(function(el){
+function fillMateriIcons(root){
+  root.querySelectorAll('[data-icon]').forEach(function(el){
     const key = el.getAttribute('data-icon');
     const value = IMAGES[key];
     if(!value) return;
@@ -4962,8 +5025,118 @@ function showMateri(k){
       el.textContent = value;
     }
   });
+}
+function materiNavBottom(k){
+  const nl = {
+    twk: { label: 'TWK', icon: 'icon_twkm' },
+    tiu: { label: 'TIU', icon: 'icon_tium' },
+    tkp: { label: 'TKP', icon: 'icon_tkpm' }
+  };
+  let nav = '<div class="materi-nav-bottom">';
+  for(let x in nl){
+    if(x !== k){
+      nav += `<button class="btn-${x}" onclick="playSound('menu');showMateri('${x}')">
+        <span data-icon="${nl[x].icon}"></span> ${nl[x].label}
+      </button>`;
+    }
+  }
+  return nav + '</div>';
+}
+function _mtEsc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-  goTo('materiContentPage');
+// ---- Tab kategori materi (slider kiri/kanan) ----
+function scrollMateriTabs(dir){
+  const sc=document.getElementById('materiTabs');if(!sc)return;
+  sc.scrollBy({left:dir*Math.max(120,sc.clientWidth*0.7),behavior:'smooth'});
+}
+function updateMateriTabArrows(){
+  const sc=document.getElementById('materiTabs');if(!sc)return;
+  const p=document.getElementById('materiTabPrev'),n=document.getElementById('materiTabNext');
+  if(p)p.disabled=sc.scrollLeft<=2;
+  if(n)n.disabled=sc.scrollLeft+sc.clientWidth>=sc.scrollWidth-2;
+}
+function centerActiveMateriTab(smooth){
+  const sc=document.getElementById('materiTabs');if(!sc)return;
+  const t=sc.querySelector('.mt-tab.active');if(!t)return;
+  sc.scrollTo({left:t.offsetLeft-(sc.clientWidth-t.offsetWidth)/2,behavior:smooth?'smooth':'auto'});
+  setTimeout(updateMateriTabArrows,smooth?350:0);
+}
+function setMateriTabsVisible(on){
+  const bar=document.getElementById('materiTabsBar'),sp=document.getElementById('materiTabsSpacer');
+  if(bar)bar.classList.toggle('show',!!on);
+  if(sp)sp.style.display=on?'block':'none';
+}
+function selectMateriTab(k,i,initial){
+  const m=getMateri(k);
+  if(!m||!Array.isArray(m.kategori)||!m.kategori.length)return;
+  if(i<0||i>=m.kategori.length)i=0;
+  const c=m.kategori[i];
+  const cd=document.getElementById('materiContentFull');
+  document.querySelectorAll('#materiTabs .mt-tab').forEach(function(b,idx){
+    const on=idx===i;
+    b.classList.toggle('active',on);
+    b.setAttribute('aria-selected',on?'true':'false');
+  });
+  const prev=i>0?m.kategori[i-1]:null,next=i<m.kategori.length-1?m.kategori[i+1]:null;
+  let pager='<div class="mt-pager">';
+  pager+=prev?`<button type="button" onclick="playSound('select');selectMateriTab('${k}',${i-1})">&#8249; ${_mtEsc(prev.nama)}</button>`:'<span></span>';
+  pager+=next?`<button type="button" class="next" onclick="playSound('select');selectMateriTab('${k}',${i+1})">${_mtEsc(next.nama)} &#8250;</button>`:'<span></span>';
+  pager+='</div>';
+  cd.innerHTML=`<div class="mt-tema-head"><small>TEMA ${i+1} DARI ${m.kategori.length}</small><b>${_mtEsc(c.nama)}</b></div>`+c.konten+pager+materiNavBottom(k);
+  fillMateriIcons(cd);
+  try{localStorage.setItem('materiTab_'+k,String(i));}catch(e){}
+  if(!initial){window.scrollTo(0,0);centerActiveMateriTab(true);}
+}
+(function initMateriTabs(){
+  const sc=document.getElementById('materiTabs');if(!sc)return;
+  sc.addEventListener('scroll',updateMateriTabArrows,{passive:true});
+  window.addEventListener('resize',function(){updateMateriTabArrows();});
+  // geser dengan mouse (desktop); di HP cukup swipe biasa
+  let down=false,sx=0,sl=0,moved=false;
+  sc.addEventListener('mousedown',function(e){down=true;moved=false;sx=e.pageX;sl=sc.scrollLeft;});
+  window.addEventListener('mousemove',function(e){
+    if(!down)return;
+    const dx=e.pageX-sx;
+    if(Math.abs(dx)>4){moved=true;sc.classList.add('dragging');}
+    if(moved)sc.scrollLeft=sl-dx;
+  });
+  window.addEventListener('mouseup',function(){down=false;sc.classList.remove('dragging');});
+  sc.addEventListener('click',function(e){if(moved){e.stopPropagation();e.preventDefault();moved=false;}},true);
+})();
+
+function showMateri(k){
+  markMateriOpened(k);
+  const m = getMateri(k);
+  const _mcp=document.getElementById('materiContentPage');if(_mcp)_mcp.dataset.cat=k;
+  document.getElementById('materiContentTitle').textContent = m.judul;
+  const cd = document.getElementById('materiContentFull');
+
+  if(Array.isArray(m.kategori) && m.kategori.length){
+    // Materi bertab: 1 baris tab di bawah header, isi tampil per kategori terpilih
+    const sc=document.getElementById('materiTabs');
+    sc.innerHTML='';
+    m.kategori.forEach(function(c,i){
+      const b=document.createElement('button');
+      b.type='button';b.className='mt-tab';b.setAttribute('role','tab');
+      const no=document.createElement('span');no.className='mt-no';no.textContent=String(i+1);
+      const tx=document.createElement('span');tx.textContent=c.nama;
+      b.appendChild(no);b.appendChild(tx);
+      b.addEventListener('click',function(){playSound('select');selectMateriTab(k,i);});
+      sc.appendChild(b);
+    });
+    setMateriTabsVisible(true);
+    let saved=0;
+    try{saved=parseInt(localStorage.getItem('materiTab_'+k)||'0',10)||0;}catch(e){}
+    selectMateriTab(k,saved,true);
+    goTo('materiContentPage');
+    window.scrollTo(0,0);
+    setTimeout(function(){centerActiveMateriTab(false);},60);
+  } else {
+    setMateriTabsVisible(false);
+    cd.innerHTML = m.konten + materiNavBottom(k);
+    fillMateriIcons(cd);
+    goTo('materiContentPage');
+  }
   checkNewAchievements();
 }
 
