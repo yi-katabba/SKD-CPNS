@@ -519,7 +519,7 @@ var materiTIU = {
 <td>S-P-Pel</td>
 </tr>
 <tr>
-<td>Vina – merupakan – siswa Privat Al-Hikmah.</td>
+<td>Vina – merupakan – siswa SMA Al-Hikmah.</td>
 <td>S-P-Pel</td>
 </tr>
 </tbody>

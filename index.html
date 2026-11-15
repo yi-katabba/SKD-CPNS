@@ -1442,7 +1442,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 }
 
 /* =====================================================================
-   KUIS CEPAT — redesign statis (tanpa animasi/transition baru).
+   LATIHAN CEPAT — redesign statis (tanpa animasi/transition baru).
    Hanya berlaku di halaman pilih kategori & konfirmasi.
    ===================================================================== */
 #quizCepatPage{--q-pad:0;}
@@ -1463,11 +1463,6 @@ input:checked+.slider:before{transform:translateX(22px);}
 .qc-intro-txt span{font-size:calc(11px * var(--fs-scale-umum));line-height:1.4;color:#64748b;font-weight:600;}
 
 #quizCepatGrid{padding-top:0;}
-#quizCepatGrid::before{
-  content:'Pilih Kategori';display:flex;align-items:center;gap:9px;
-  font-size:16px;font-weight:800;letter-spacing:-.2px;color:var(--dark);
-  padding:16px 2px 12px;
-}
 #quizCepatPage .qc-cat-card{
   --ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;
   position:relative;background:#fff;border-radius:22px;overflow:hidden;
@@ -1516,6 +1511,46 @@ input:checked+.slider:before{transform:translateX(22px);}
 }
 #quizCepatPage .qc-cat-foot .qci-foot-row{margin-bottom:0;}
 #quizCepatPage .qc-cat-foot .qci-go{color:var(--ac);}
+
+
+/* ---- Latihan Cepat: pilih Kategori / Sub Label ---- */
+.qc-mode-tabs{
+  display:flex;gap:6px;margin:14px 0 16px;padding:5px;
+  background:#fff;border:1px solid #E6ECF8;border-radius:18px;
+  box-shadow:0 8px 20px -14px rgba(21,101,192,.5);
+}
+.qc-mode-tab{
+  flex:1;border:none;background:transparent;padding:11px 8px;border-radius:14px;cursor:pointer;
+  font-family:inherit;font-size:calc(13.5px * var(--fs-scale-umum));font-weight:800;color:#64748b;
+}
+.qc-mode-tab.active{
+  color:#fff;background:linear-gradient(135deg,#1565C0,#42A5F5);
+  box-shadow:0 8px 14px -8px #1565C0;
+}
+#quizCepatSubPage{--ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;}
+#quizCepatSubPage[data-cat="tiu"]{--ac:#D84315;--ac-l:#FF8A65;--ac-bg:#FBE9E7;}
+#quizCepatSubPage[data-cat="tkp"]{--ac:#00796B;--ac-l:#4DB6AC;--ac-bg:#E0F2F1;}
+#quizCepatSubPage .qc-intro{margin-bottom:6px;}
+#quizCepatSubPage .qc-intro-ic{background:var(--ac-bg);color:var(--ac);}
+#quizCepatSubPage .qcs-group{
+  font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--ac);
+  padding:16px 4px 8px;
+}
+#quizCepatSubPage .qcs-row{
+  display:flex;align-items:center;gap:12px;margin-top:10px;padding:12px 14px;cursor:pointer;
+  background:#fff;border:1px solid #E6ECF8;border-radius:18px;
+  box-shadow:0 8px 18px -14px rgba(21,101,192,.55);
+}
+#quizCepatSubPage .qcs-group + .qcs-row{margin-top:0;}
+#quizCepatSubPage .qcs-row:active{transform:scale(.98);}
+#quizCepatSubPage .qcs-no{
+  width:34px;height:34px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac-l));
+}
+#quizCepatSubPage .qcs-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+#quizCepatSubPage .qcs-info b{font-size:calc(14px * var(--fs-scale-umum));font-weight:800;color:var(--dark);line-height:1.3;}
+#quizCepatSubPage .qcs-info small{font-size:calc(11.5px * var(--fs-scale-umum));font-weight:600;color:#64748b;}
+#quizCepatSubPage .qcs-go{font-size:24px;font-weight:800;line-height:1;color:var(--ac);}
 
 /* ---- Halaman konfirmasi ---- */
 #quizCepatConfirmPage{--ac:#7B1FA2;--ac-l:#BA68C8;--ac-bg:#F3E5F5;}
@@ -1706,38 +1741,70 @@ input:checked+.slider:before{transform:translateX(22px);}
 
 /* Materi: isi bacaan */
 #materiContentPage .materi-full{
-  background:#fff;border:1px solid #E6ECF8;border-radius:22px;padding:18px 16px;
-  box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
-  text-align:left;line-height:1.75;
+  --txt:#334155;
+  background:#fff;border:1px solid #E6ECF8;border-radius:24px;padding:20px 18px 22px;
+  box-shadow:0 14px 30px -18px rgba(21,101,192,.55);
+  color:var(--txt);font-size:calc(14.5px * var(--fs-scale-umum));line-height:1.75;letter-spacing:.005em;
+  /* teks rata kiri-kanan */
+  text-align:justify;text-justify:inter-word;
+  hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;word-break:normal;
 }
+#materiContentPage .materi-full p,
+#materiContentPage .materi-full li,
+#materiContentPage .materi-full blockquote{text-align:justify;text-justify:inter-word;}
+#materiContentPage .materi-full p{margin:0 0 12px;}
 #materiContentPage .materi-full h2{
-  color:var(--dark);font-size:18px;border-bottom:none;padding-bottom:0;
+  color:var(--dark);font-size:18px;border-bottom:none;padding-bottom:0;text-align:left;
 }
+/* judul bagian (1. PANCASILA, dst.) */
 #materiContentPage .materi-full h3{
-  display:flex;align-items:center;gap:8px;
-  margin:22px -4px 10px;padding:10px 12px;border-left:none;border-radius:14px;
-  font-size:15px;font-weight:800;color:var(--ac);
-  background:linear-gradient(90deg,var(--ac-bg),#fff);
-  border:1px solid color-mix(in srgb,var(--ac) 14%,#fff);
+  display:flex;align-items:center;gap:10px;text-align:left;hyphens:manual;
+  margin:28px 0 12px;padding:11px 14px 11px 16px;border-radius:16px;position:relative;overflow:hidden;
+  font-size:15px;font-weight:800;line-height:1.4;color:var(--ac);
+  background:linear-gradient(90deg,var(--ac-bg),color-mix(in srgb,var(--ac-bg) 35%,#fff));
+  border:1px solid color-mix(in srgb,var(--ac) 16%,#fff);
 }
-#materiContentPage .materi-full > h3:first-child{margin-top:0;}
-#materiContentPage .materi-full h3 svg{width:18px;height:18px;flex-shrink:0;}
-#materiContentPage .materi-full h4{
-  display:flex;align-items:center;gap:8px;margin:16px 0 6px;
-  font-size:14px;font-weight:800;color:var(--dark);
-}
-#materiContentPage .materi-full h4::before{
-  content:'';width:4px;height:15px;border-radius:4px;flex-shrink:0;
+#materiContentPage .materi-full h3::before{
+  content:'';align-self:stretch;width:5px;margin:-11px 0 -11px -16px;flex-shrink:0;
   background:linear-gradient(180deg,var(--ac-l),var(--ac));
 }
-#materiContentPage .materi-full strong{color:var(--ac);}
-#materiContentPage .materi-full ul,#materiContentPage .materi-full ol{margin-left:20px;}
-#materiContentPage .materi-full li::marker{color:var(--ac);font-weight:800;}
-#materiContentPage .materi-full hr{border:none;border-top:1px dashed #E2E8F0;margin:16px 0;}
-#materiContentPage .materi-full .info-box{
-  background:var(--ac-bg);border-left:4px solid var(--ac);border-radius:0 14px 14px 0;
+#materiContentPage .materi-full > h3:first-child{margin-top:4px;}
+#materiContentPage .materi-full h3 svg{width:18px;height:18px;flex-shrink:0;}
+/* sub-judul (a. Operasi ..., dst.) */
+#materiContentPage .materi-full h4{
+  display:flex;align-items:center;gap:8px;text-align:left;hyphens:manual;
+  margin:20px 0 8px;font-size:14.5px;font-weight:800;line-height:1.4;color:var(--dark);
 }
-#materiContentPage .materi-nav-bottom{margin-top:16px;}
+#materiContentPage .materi-full h4::before{
+  content:'';width:8px;height:8px;border-radius:3px;flex-shrink:0;transform:rotate(45deg);
+  background:linear-gradient(135deg,var(--ac-l),var(--ac));
+}
+#materiContentPage .materi-full strong{color:var(--ac);font-weight:800;}
+#materiContentPage .materi-full em{color:#475569;}
+/* daftar */
+#materiContentPage .materi-full ul,#materiContentPage .materi-full ol{margin:8px 0 14px;padding:0;}
+#materiContentPage .materi-full ul{list-style:none;}
+#materiContentPage .materi-full ul > li{position:relative;padding-left:24px;margin-bottom:8px;}
+#materiContentPage .materi-full ul > li::before{
+  content:'';position:absolute;left:6px;top:.72em;width:8px;height:8px;border-radius:50%;
+  background:var(--ac-l);box-shadow:0 0 0 3px var(--ac-bg);
+}
+#materiContentPage .materi-full ol{padding-left:22px;}
+#materiContentPage .materi-full ol > li{margin-bottom:8px;padding-left:4px;}
+#materiContentPage .materi-full li::marker{color:var(--ac);font-weight:800;}
+#materiContentPage .materi-full li > p{margin:0 0 6px;}
+#materiContentPage .materi-full li > p:last-child{margin-bottom:0;}
+#materiContentPage .materi-full hr{border:none;border-top:1px dashed #E2E8F0;margin:18px 0;}
+/* kotak kata kunci / info */
+#materiContentPage .materi-full .info-box{
+  background:linear-gradient(135deg,var(--ac-bg),#fff);
+  border:1px solid color-mix(in srgb,var(--ac) 22%,#fff);border-left:5px solid var(--ac);
+  border-radius:6px 16px 16px 6px;padding:13px 15px;margin:16px 0;
+  box-shadow:0 8px 18px -14px var(--ac);
+}
+#materiContentPage .materi-full .info-box p{margin:0 0 6px;}
+#materiContentPage .materi-full .info-box p:last-child{margin-bottom:0;}
+#materiContentPage .materi-nav-bottom{margin-top:20px;}
 #materiContentPage .materi-nav-bottom button{
   border-radius:16px;padding:13px;font-weight:800;
   box-shadow:0 10px 16px -10px rgba(0,0,0,.45);
@@ -1780,48 +1847,69 @@ input:checked+.slider:before{transform:translateX(22px);}
 }
 #materiContentPage .mt-tab.active .mt-no{background:rgba(255,255,255,.22);color:#fff;}
 #materiContentPage .mt-tema-head{
-  display:flex;flex-direction:column;gap:2px;margin:0 0 6px;padding:14px 16px;border-radius:16px;
+  position:relative;overflow:hidden;display:flex;flex-direction:column;gap:4px;
+  margin:0 0 16px;padding:18px 18px 17px;border-radius:20px;text-align:left;hyphens:manual;
   color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac-l));
+  box-shadow:0 14px 22px -14px var(--ac);
 }
-#materiContentPage .mt-tema-head small{font-size:11px;font-weight:800;letter-spacing:.8px;opacity:.85;}
-#materiContentPage .mt-tema-head b{font-size:17px;font-weight:800;line-height:1.3;}
-#materiContentPage .mt-tema-head + h3{margin-top:12px;}
-/* isi materi dari docx: tabel, kutipan/daftar menjorok, contoh soal */
+#materiContentPage .mt-tema-head::before,#materiContentPage .mt-tema-head::after{
+  content:'';position:absolute;border-radius:50%;background:rgba(255,255,255,.13);pointer-events:none;
+}
+#materiContentPage .mt-tema-head::before{width:120px;height:120px;right:-30px;top:-44px;}
+#materiContentPage .mt-tema-head::after{width:70px;height:70px;right:44px;bottom:-38px;}
+#materiContentPage .mt-tema-head small{
+  position:relative;align-self:flex-start;font-size:10.5px;font-weight:800;letter-spacing:.9px;
+  padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.2);
+}
+#materiContentPage .mt-tema-head b{position:relative;font-size:19px;font-weight:800;line-height:1.3;margin-top:4px;}
+#materiContentPage .mt-tema-head + h3{margin-top:0;}
+/* paragraf pembuka tema sedikit menonjol */
+#materiContentPage .mt-tema-head + p{
+  font-size:calc(15px * var(--fs-scale-umum));color:#1E293B;
+  padding:2px 0 2px 14px;border-left:3px solid var(--ac-l);margin-bottom:14px;
+}
+/* isi materi dari docx: tabel, kutipan/contoh, contoh soal */
 #materiContentPage .materi-full .mt-table-wrap{
-  overflow-x:auto;margin:10px 0 14px;border:1px solid #E2E8F0;border-radius:12px;-webkit-overflow-scrolling:touch;
+  overflow-x:auto;margin:12px 0 16px;border:1px solid #DDE5F2;border-radius:14px;
+  -webkit-overflow-scrolling:touch;box-shadow:0 8px 18px -14px rgba(21,101,192,.5);
 }
-#materiContentPage .materi-full table{border-collapse:collapse;width:100%;min-width:280px;font-size:13px;line-height:1.55;}
+#materiContentPage .materi-full table{border-collapse:collapse;width:100%;min-width:280px;font-size:13px;line-height:1.6;}
 #materiContentPage .materi-full th{
-  background:var(--ac-bg);color:var(--ac);text-align:left;font-weight:800;padding:8px 10px;vertical-align:top;
+  background:var(--ac);color:#fff;text-align:left;font-weight:800;padding:10px 12px;vertical-align:top;
+  font-size:12.5px;letter-spacing:.2px;
 }
-#materiContentPage .materi-full td{padding:8px 10px;border-top:1px solid #EEF2F7;vertical-align:top;}
+#materiContentPage .materi-full th strong{color:#fff;}
+#materiContentPage .materi-full td{padding:9px 12px;border-top:1px solid #EEF2F7;vertical-align:top;text-align:left;hyphens:manual;}
+#materiContentPage .materi-full td p,#materiContentPage .materi-full th p{margin:0 0 4px;text-align:left;}
+#materiContentPage .materi-full td p:last-child,#materiContentPage .materi-full th p:last-child{margin-bottom:0;}
+#materiContentPage .materi-full tbody tr:nth-child(even) td{background:#F8FAFD;}
 #materiContentPage .materi-full th + th,#materiContentPage .materi-full td + td{border-left:1px solid #EEF2F7;}
+#materiContentPage .materi-full th + th{border-left:1px solid rgba(255,255,255,.22);}
+/* kutipan / contoh */
 #materiContentPage .materi-full blockquote{
-  margin:8px 0 12px;padding:10px 12px;background:#F8FAFC;
-  border-left:4px solid var(--ac-l);border-radius:0 12px 12px 0;
+  position:relative;margin:10px 0 14px;padding:12px 14px 12px 16px;background:#F6F9FE;
+  border:1px solid #E3EAF6;border-left:4px solid var(--ac-l);border-radius:6px 14px 14px 6px;
+  font-size:.97em;
 }
-#materiContentPage .materi-full blockquote p{margin:0 0 6px;}
+#materiContentPage .materi-full blockquote p{margin:0 0 7px;}
 #materiContentPage .materi-full blockquote p:last-child{margin-bottom:0;}
+/* contoh soal */
 #materiContentPage .materi-full .mt-jawaban{
-  display:inline-block;margin:0 0 12px;padding:5px 12px;border-radius:10px;background:var(--ac-bg);
+  display:inline-flex;align-items:center;margin:2px 0 12px;padding:6px 14px;border-radius:20px;
+  background:#E8F5E9;border:1px solid #C8E6C9;text-align:left;
 }
-#materiContentPage .materi-full .mt-pembahasan{margin-bottom:4px;}
-#materiContentPage .materi-full .info-box p{margin:0 0 6px;}
-#materiContentPage .materi-full .info-box p:last-child{margin-bottom:0;}
+#materiContentPage .materi-full .mt-jawaban strong{color:#2E7D32;}
+#materiContentPage .materi-full .mt-pembahasan{
+  margin:0 0 14px;padding:11px 14px;background:#FFFBEB;border:1px solid #FDE9B0;
+  border-left:4px solid #F5B301;border-radius:6px 14px 14px 6px;
+}
+#materiContentPage .materi-full .mt-pembahasan strong{color:#B45309;}
 #materiContentPage .materi-full img{max-width:100%;height:auto;display:block;margin:0 auto;}
 #materiContentPage .materi-full .mt-fig{
-  margin:10px 0 14px;padding:10px;background:#fff;border:1px solid #E2E8F0;border-radius:12px;
-  text-align:center;overflow-x:auto;
+  margin:12px 0 16px;padding:12px;background:#fff;border:1px solid #E2E8F0;border-radius:14px;
+  text-align:center;overflow-x:auto;box-shadow:0 8px 18px -14px rgba(21,101,192,.5);
 }
 #materiContentPage .materi-full th img{margin:0;}
-#materiContentPage .mt-pager{display:flex;gap:10px;margin-top:18px;}
-#materiContentPage .mt-pager button,#materiContentPage .mt-pager span{flex:1;}
-#materiContentPage .mt-pager button{
-  padding:12px 10px;border-radius:14px;cursor:pointer;font-size:12.5px;font-weight:800;line-height:1.3;
-  border:1.5px solid var(--ac);background:#fff;color:var(--ac);
-}
-#materiContentPage .mt-pager button:active{background:var(--ac-bg);}
-#materiContentPage .mt-pager button.next{background:var(--ac);color:#fff;}
 
 /* =====================================================================
    STATISTIK, PROFIL, PENCAPAIAN — selaras dengan Pilih Latihan SKD.
@@ -2017,7 +2105,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 
 /* =====================================================================
    SISA HALAMAN — Pengaturan, Backup, Bank Soal, Hasil, Evaluasi, Latihan,
-   Kuis Cepat (main & hasil), Notifikasi, Login. Hanya mengubah tampilan.
+   Latihan Cepat (main & hasil), Notifikasi, Login. Hanya mengubah tampilan.
    ===================================================================== */
 #pengaturanPage,#backupPage,#reviewPage,#resultPage,#evaluasiListPage,#quizPage,#quizCepatPlayPage,#quizCepatResultPage{
   --ac:#1565C0;--ac-l:#42A5F5;--ac-bg:#E3F2FD;
@@ -2190,7 +2278,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 .quiz-nav2 .btn-prev{background:#CBD5E1;color:var(--dark);border:1px solid #E2E8F0;box-shadow:none !important;}
 .quiz-nav2 .btn-daftar-soal{background:#E3F2FD;color:#1565C0;border:1.5px solid #BBDEFB;box-shadow:none !important;}
 .quiz-nav2 .btn-nav-off{background:#CBD5E1 !important;color:var(--dark) !important;border:1px solid #E2E8F0 !important;box-shadow:none !important;opacity:.4;pointer-events:none;}
-/* ---- Kuis Cepat: main ---- */
+/* ---- Latihan Cepat: main ---- */
 #quizCepatPlayPage .qc-play-header{
   border-radius:22px;border:1px solid #E6ECF8;
   box-shadow:0 10px 24px -14px rgba(21,101,192,.55);
@@ -2212,7 +2300,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 #quizCepatPlayPage .qc-feedback{border-radius:16px;}
 #quizCepatPlayPage .btn-qc-next{border-radius:18px;padding:15px;font-weight:800;box-shadow:0 14px 22px -10px rgba(0,0,0,.4);}
 
-/* ---- Kuis Cepat: hasil ---- */
+/* ---- Latihan Cepat: hasil ---- */
 #quizCepatResultPage .qc-result-header{
   border-radius:24px;padding:24px 22px;position:relative;overflow:hidden;
   border:1px solid rgba(255,255,255,.14);
@@ -2511,7 +2599,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div class="menu-item" onclick="playSound('menu');goTo('quizCepatPage')">
       <div class="menu-item-left">
         <div class="menu-icon-wrap orange" data-icon="icon_menu_kuis"></div>
-        <div class="menu-item-name">Kuis Cepat</div>
+        <div class="menu-item-name">Latihan Cepat</div>
         <div class="menu-item-desc">Latihan singkat 5 menit</div>
       </div>
       <div class="menu-chevron" data-icon="icon_chevron"></div>
@@ -2602,7 +2690,7 @@ input:checked+.slider:before{transform:translateX(22px);}
         <div class="pf-tile"><div class="pf-tile-val" id="pfBest">-</div><div class="pf-tile-lbl">Skor Terbaik</div></div>
         <div class="pf-tile"><div class="pf-tile-val" id="pfDone">0/5</div><div class="pf-tile-lbl">Paket Selesai</div></div>
         <div class="pf-tile"><div class="pf-tile-val" id="pfLulus">0</div><div class="pf-tile-lbl">Lulus PG</div></div>
-        <div class="pf-tile"><div class="pf-tile-val" id="pfQC">0</div><div class="pf-tile-lbl">Sesi Kuis Cepat</div></div>
+        <div class="pf-tile"><div class="pf-tile-val" id="pfQC">0</div><div class="pf-tile-lbl">Sesi Latihan Cepat</div></div>
         <div class="pf-tile tap" onclick="playSound('menu');openReviewPage('wrong')"><div class="pf-tile-val" id="pfWrong">0</div><div class="pf-tile-lbl">Soal Salah</div></div>
         <div class="pf-tile tap" onclick="playSound('menu');openReviewPage('bookmark')"><div class="pf-tile-val" id="pfBm">0</div><div class="pf-tile-lbl">Bookmark</div></div>
       </div>
@@ -2784,7 +2872,7 @@ input:checked+.slider:before{transform:translateX(22px);}
 
       <div class="pf-card">
         <div class="pf-card-title">Yang ikut dibackup</div>
-        <p class="bk-note" style="margin:0;">Skor dan riwayat percobaan, data evaluasi, soal salah, bookmark, pencapaian, rekor Kuis Cepat, streak belajar, dan pengaturan. Akun dan password tidak ikut.</p>
+        <p class="bk-note" style="margin:0;">Skor dan riwayat percobaan, data evaluasi, soal salah, bookmark, pencapaian, rekor Latihan Cepat, streak belajar, dan pengaturan. Akun dan password tidak ikut.</p>
       </div>
     </div>
   </div>
@@ -3117,7 +3205,7 @@ input:checked+.slider:before{transform:translateX(22px);}
           <div class="ix-step"><i>4</i><span>Tekan tombol Selesai untuk melihat hasil nilai.</span></div>
           <div class="ix-step"><i>5</i><span>Setiap soal memiliki timer 100 menit (bisa dimatikan).</span></div>
           <div class="ix-step"><i>6</i><span>Gunakan 📋 Daftar Soal untuk navigasi cepat.</span></div>
-          <div class="ix-step"><i>7</i><span>Menu <strong>⚡ Kuis Cepat</strong>: jawab soal TWK/TIU/TKP sebanyak-banyaknya dalam 1–10 menit.</span></div>
+          <div class="ix-step"><i>7</i><span>Menu <strong>⚡ Latihan Cepat</strong>: jawab soal TWK/TIU/TKP sebanyak-banyaknya dalam 1–10 menit.</span></div>
           <div class="ix-step"><i>8</i><span>Menu <strong>Pencapaian</strong> untuk melihat badge yang sudah diraih.</span></div>
         </div>
       </div>
@@ -3130,7 +3218,7 @@ input:checked+.slider:before{transform:translateX(22px);}
           <div class="ix-li"><span class="ix-dot">✓</span><span>Kerjakan soal dengan tenang dan fokus</span></div>
           <div class="ix-li"><span class="ix-dot">✓</span><span>Manfaatkan fitur evaluasi untuk pembahasan lengkap</span></div>
           <div class="ix-li"><span class="ix-dot">✓</span><span>Pelajari materi terlebih dahulu sebelum mengerjakan soal</span></div>
-          <div class="ix-li"><span class="ix-dot">✓</span><span>Gunakan Kuis Cepat untuk melatih kecepatan menjawab</span></div>
+          <div class="ix-li"><span class="ix-dot">✓</span><span>Gunakan Latihan Cepat untuk melatih kecepatan menjawab</span></div>
         </div>
       </div>
     </div>
@@ -3205,7 +3293,7 @@ input:checked+.slider:before{transform:translateX(22px);}
         <div class="ix-li"><span class="ix-dot">✓</span><span>Materi TWK, TIU, TKP lengkap</span></div>
         <div class="ix-li"><span class="ix-dot">✓</span><span>Grafik progress skor per paket</span></div>
         <div class="ix-li"><span class="ix-dot">✓</span><span>Pencapaian/Badge 7 Tier dari Pemula hingga Legendaris</span></div>
-        <div class="ix-li"><span class="ix-dot">✓</span><span>⚡ Kuis Cepat: jawab soal sebanyak mungkin dalam 1–10 menit</span></div>
+        <div class="ix-li"><span class="ix-dot">✓</span><span>⚡ Latihan Cepat: jawab soal sebanyak mungkin dalam 1–10 menit</span></div>
       </div>
       <p class="ix-copy">Version <span class="app-ver">4.4</span> | © 2026 Latihan SKD</p>
     </div>
@@ -3220,7 +3308,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     <!-- HEADER FIXED -->
     <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
       <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('homePage')"></button>
-      <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_kuis" class="ic-sm"></span> Kuis Cepat</h2>
+      <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_kuis" class="ic-sm"></span> Latihan Cepat</h2>
     </div>
     
     <!-- SPACER -->
@@ -3232,10 +3320,36 @@ input:checked+.slider:before{transform:translateX(22px);}
         <div class="qc-intro-ic" data-icon="icon_menu_kuis"></div>
         <div class="qc-intro-txt">
           <b>Adu cepat, asah ketepatan</b>
-          <span>Jawab soal sebanyak mungkin dalam waktu terbatas. Pilih kategori:</span>
+          <span>Jawab soal sebanyak mungkin dalam waktu terbatas. Pilih cara berlatih:</span>
         </div>
       </div>
+      <div class="qc-mode-tabs" id="qcModeTabs" role="tablist" aria-label="Cara memilih soal">
+        <button type="button" class="qc-mode-tab active" data-mode="kategori" role="tab" aria-selected="true" onclick="playSound('select');setQCMode('kategori')">Pilih Kategori</button>
+        <button type="button" class="qc-mode-tab" data-mode="sub" role="tab" aria-selected="false" onclick="playSound('select');setQCMode('sub')">Pilih Sub Label</button>
+      </div>
       <div id="quizCepatGrid"></div>
+      <div id="quizCepatSubGrid" style="display:none;"></div>
+    </div>
+    
+  </div>
+</div>
+
+<div id="quizCepatSubPage" class="page">
+  <div style="background:var(--bg);min-height:100vh;padding-bottom:80px;">
+    
+    <!-- HEADER FIXED -->
+    <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
+      <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('quizCepatPage')"></button>
+      <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_kuis" class="ic-sm"></span> Pilih Sub Label</h2>
+    </div>
+    
+    <!-- SPACER -->
+    <div style="height:54px;"></div>
+    
+    <!-- KONTEN -->
+    <div style="padding:0 16px;">
+      <div class="qc-intro" id="qcSubIntro"></div>
+      <div id="qcSubList"></div>
     </div>
     
   </div>
@@ -3246,7 +3360,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     
     <!-- HEADER FIXED -->
     <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
-      <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('quizCepatPage')"></button>
+      <button class="btn-back" data-icon="icon_back" onclick="playSound('back');qcBackToList()"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;">Konfirmasi</h2>
     </div>
     
@@ -3257,7 +3371,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     <div style="padding:16px;">
       <div class="qc-confirm-card">
         <div class="qc-confirm-icon" id="qcConfirmIcon">📚</div>
-        <div class="qc-confirm-title" id="qcConfirmTitle">Kuis Cepat TWK</div>
+        <div class="qc-confirm-title" id="qcConfirmTitle">Latihan Cepat TWK</div>
         <div class="qc-confirm-sub" id="qcConfirmSub">Jawab soal sebanyak-banyaknya dalam waktu yang dipilih!</div>
         <div class="qc-info-row" id="qcInfoRow"></div>
         <p style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:10px;">⏱️ Pilih Durasi Waktu:</p>
@@ -3316,7 +3430,7 @@ input:checked+.slider:before{transform:translateX(22px);}
   <div style="background:var(--bg);min-height:100vh;padding:16px;padding-bottom:80px;">
     
     <div style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);">
-      <button class="btn-back" data-icon="icon_back" onclick="playSound('back');goTo('quizCepatPage')"></button>
+      <button class="btn-back" data-icon="icon_back" onclick="playSound('back');qcBackToList()"></button>
       <h2 style="font-size:17px;font-weight:800;color:var(--dark);flex:1;margin:0;"><span data-icon="icon_menu_statistik" class="ic-sm"></span> Hasil</h2>
     </div>
 
@@ -3340,7 +3454,7 @@ input:checked+.slider:before{transform:translateX(22px);}
     
     <div class="qc-result-btns">
       <button class="btn-qc-ulang" onclick="playSound('start');ulangQuizCepat()">🔄 Ulangi</button>
-      <button class="btn-qc-lain" onclick="playSound('back');goTo('quizCepatPage')">⚡ Lain</button>
+      <button class="btn-qc-lain" onclick="playSound('back');qcBackToList()">⚡ Lain</button>
     </div>
     </div>
     
@@ -3978,7 +4092,7 @@ const PAGE_PARENT={
   quizlistPage:'homePage',materiPage:'homePage',materiContentPage:'materiPage',
   statistikPage:'homePage',simulasiPage:'homePage',petunjukPage:'homePage',
   tentangPage:'homePage',pencapaianPage:'homePage',quizCepatPage:'homePage',
-  quizCepatConfirmPage:'quizCepatPage',quizCepatResultPage:'quizCepatPage',quizCepatPlayPage:'quizCepatPage',
+  quizCepatSubPage:'quizCepatPage',quizCepatConfirmPage:'quizCepatPage',quizCepatResultPage:'quizCepatPage',quizCepatPlayPage:'quizCepatPage',
   akunPage:'homePage',resultPage:'quizlistPage',
   evaluasiListPage:'quizlistPage',pengaturanPage:'akunPage',backupPage:'akunPage',
 };
@@ -4391,7 +4505,7 @@ function updateNavHighlight(pageId){
 // ========== PAGE SYSTEM ==========
 const PAGES=['homePage','quizlistPage','materiPage','materiContentPage','statistikPage','simulasiPage',
   'petunjukPage','tentangPage','quizPage','resultPage','evaluasiListPage','pencapaianPage',
-  'quizCepatPage','quizCepatConfirmPage','quizCepatPlayPage','quizCepatResultPage','akunPage','loginPage','reviewPage','pengaturanPage','backupPage'];
+  'quizCepatPage','quizCepatSubPage','quizCepatConfirmPage','quizCepatPlayPage','quizCepatResultPage','akunPage','loginPage','reviewPage','pengaturanPage','backupPage'];
 const PAGES_WITH_SIDEBAR=['quizPage'];
 let currentPage='loginPage';
 
@@ -4476,8 +4590,8 @@ function navigateBack_(){
   playSound('back');
   const parent=currentPage==='quizPage'
   ? (quizSource==='simulasi'?'simulasiPage':'quizlistPage')
-  : currentPage==='quizCepatPlayPage'
-  ? 'quizCepatPage'
+  : (currentPage==='quizCepatPlayPage'||currentPage==='quizCepatConfirmPage'||currentPage==='quizCepatResultPage')
+  ? ((qcState&&qcState.sub&&qcSubCat)?'quizCepatSubPage':'quizCepatPage')
   : (PAGE_PARENT[currentPage]||'homePage');
   if(currentPage==='quizPage'){if(timerInterval){clearInterval(timerInterval);timerInterval=null;}}
   if(currentPage==='quizCepatPlayPage'){if(qcState&&qcState.interval){clearInterval(qcState.interval);qcState.interval=null;}}
@@ -4485,6 +4599,7 @@ function navigateBack_(){
   if(parent==='homePage'){refreshHomeStats();setRandomQuote();}
   if(parent==='quizlistPage')refreshQuizList();
   if(parent==='quizCepatPage')renderQuizCepatGrid();
+  if(parent==='quizCepatSubPage'&&qcSubCat)renderQCSubList(qcSubCat);
   if(parent==='akunPage')refreshAkunPage();
   if(parent==='pengaturanPage'){syncSoundToggle();syncKatTimeInputs();}
   if(parent==='backupPage')refreshBackupInfo();
@@ -4706,7 +4821,7 @@ const PASSING={TWK:65,TIU:80,TKP:166};
     const lastPage = getLastActivePage();
     const FORCE_HOME_ON_REFRESH = [
       'quizlistPage','simulasiPage','pencapaianPage','statistikPage',
-      'materiPage','materiContentPage','quizCepatPage','quizCepatConfirmPage',
+      'materiPage','materiContentPage','quizCepatPage','quizCepatSubPage','quizCepatConfirmPage',
       'quizCepatResultPage','akunPage','petunjukPage','tentangPage',
       'resultPage','evaluasiListPage','pengaturanPage','backupPage'
     ];
@@ -5077,12 +5192,7 @@ function selectMateriTab(k,i,initial){
     b.classList.toggle('active',on);
     b.setAttribute('aria-selected',on?'true':'false');
   });
-  const prev=i>0?m.kategori[i-1]:null,next=i<m.kategori.length-1?m.kategori[i+1]:null;
-  let pager='<div class="mt-pager">';
-  pager+=prev?`<button type="button" onclick="playSound('select');selectMateriTab('${k}',${i-1})">&#8249; ${_mtEsc(prev.nama)}</button>`:'<span></span>';
-  pager+=next?`<button type="button" class="next" onclick="playSound('select');selectMateriTab('${k}',${i+1})">${_mtEsc(next.nama)} &#8250;</button>`:'<span></span>';
-  pager+='</div>';
-  cd.innerHTML=`<div class="mt-tema-head"><small>TEMA ${i+1} DARI ${m.kategori.length}</small><b>${_mtEsc(c.nama)}</b></div>`+c.konten+pager+materiNavBottom(k);
+  cd.innerHTML=`<div class="mt-tema-head"><small>KATEGORI ${i+1} DARI ${m.kategori.length}</small><b>${_mtEsc(c.nama)}</b></div>`+c.konten+materiNavBottom(k);
   fillMateriIcons(cd);
   try{localStorage.setItem('materiTab_'+k,String(i));}catch(e){}
   if(!initial){window.scrollTo(0,0);centerActiveMateriTab(true);}
@@ -5373,7 +5483,7 @@ const QC_CATS={
   tiu:{name:'TIU',fullName:'Tes Intelegensi Umum',icon:'icon_qc_tiu',cls:'tiu',jsVar:'quizTIU',color:'#BF360C'},
   tkp:{name:'TKP',fullName:'Tes Karakteristik Pribadi',icon:'icon_qc_tkp',cls:'tkp',jsVar:'quizTKP',color:'#00695C'}
 };
-let qcState={cat:'twk',timerMenit:1,soal:[],curIdx:0,benar:0,salah:0,totalDijawab:0,timeLeft:60,interval:null,totalWaktu:60,streakCur:0,streakMax:0,noWrong:true};
+let qcState={cat:'twk',sub:null,timerMenit:1,soal:[],curIdx:0,benar:0,salah:0,totalDijawab:0,timeLeft:60,interval:null,totalWaktu:60,streakCur:0,streakMax:0,noWrong:true};
 
 function getQCSoal(cat){
   const varName=QC_CATS[cat].jsVar;
@@ -5416,17 +5526,19 @@ function renderQuizCepatGrid(){
   });
   grid.innerHTML=html;
   fillIcons(grid);
+  renderQuizCepatSubGrid();
+  setQCMode(qcMode);
 }
-function pilihanQC(cat){
-  qcState.cat=cat;qcState.timerMenit=1;
+function pilihanQC(cat,sub){
+  qcState.cat=cat;qcState.sub=sub||null;qcState.timerMenit=1;
   const _qcp=document.getElementById('quizCepatConfirmPage');if(_qcp)_qcp.dataset.cat=cat;
-  const c=QC_CATS[cat];const soalArr=getQCSoal(cat);
+  const c=QC_CATS[cat];const soalArr=sub?getQCSubSoal(cat,sub):getQCSoal(cat);
   document.getElementById('qcConfirmIcon').innerHTML=IMAGES[c.icon];
-  document.getElementById('qcConfirmTitle').textContent=`Kuis Cepat ${c.name}`;
-  document.getElementById('qcConfirmSub').textContent=`Jawab soal ${c.fullName} sebanyak-banyaknya dalam waktu yang dipilih!`;
+  document.getElementById('qcConfirmTitle').textContent=`Latihan Cepat ${c.name}`;
+  document.getElementById('qcConfirmSub').textContent=sub?`Sub label: ${sub}. Jawab soal sebanyak-banyaknya dalam waktu yang dipilih!`:`Jawab soal ${c.fullName} sebanyak-banyaknya dalam waktu yang dipilih!`;
   const infoRow=document.getElementById('qcInfoRow');
   let infoHtml=`<span class="qc-info-pill">📝 ${soalArr.length} soal</span>`;
-  [1,3,5,10].forEach(m=>{const b=getQCBestScore(cat,m);if(b>0)infoHtml+=`<span class="qc-info-pill" style="background:${c.color}20;color:${c.color}">🏆 ${m}m: ${b}</span>`;});
+  [1,3,5,10].forEach(m=>{const b=sub?getQCSubBest(cat,sub,m):getQCBestScore(cat,m);if(b>0)infoHtml+=`<span class="qc-info-pill" style="background:${c.color}20;color:${c.color}">🏆 ${m}m: ${b}</span>`;});
   infoRow.innerHTML=infoHtml;
   document.querySelectorAll('.qc-timer-btn').forEach(b=>b.classList.remove('selected'));
   document.querySelectorAll('.qc-timer-btn')[0].classList.add('selected');
@@ -5441,7 +5553,7 @@ function shuffleQCOpts(d){
 function mulaiQuizCepat(){
   if(qcState.interval){clearInterval(qcState.interval);qcState.interval=null;}
   const cat=qcState.cat;const menit=qcState.timerMenit;
-  const rawSoal=getQCSoal(cat);if(!rawSoal||rawSoal.length===0){alert('Soal tidak tersedia!');return;}
+  const rawSoal=qcState.sub?getQCSubSoal(cat,qcState.sub):getQCSoal(cat);if(!rawSoal||rawSoal.length===0){alert('Soal tidak tersedia!');return;}
   const soalShuffled=shuffleQCSoal(rawSoal).map(d=>{
     const isTKP=d.isTKP||(d.scores&&!d.a&&d.a!==0)||false;
     if(isTKP)return{q:d.q,opt:[...(d.opt||d.opts||[])],scores:[...(d.scores||[])],isTKP:true,pembahasan:d.pembahasan||'',sub:d.sub||''};
@@ -5520,7 +5632,8 @@ function finishQuizCepat(){
   const cat=qcState.cat;const menit=qcState.timerMenit;
   const benar=qcState.benar;const salah=qcState.salah;const total=qcState.totalDijawab;
   const c=QC_CATS[cat];
-  incQCTotalSesi(cat);const isNewBest=setQCBestScore(cat,menit,benar);
+  const sub=qcState.sub;
+  incQCTotalSesi(cat);const isNewBest=sub?setQCSubBest(cat,sub,menit,benar):setQCBestScore(cat,menit,benar);
   setQCStreakMax(cat,qcState.streakMax);
   if(qcState.noWrong&&total>0)setQCNoWrongBest(cat,total);
   if(total>0&&Math.round(benar/total*100)>=90)setQCAkurasi90(cat,true);
@@ -5529,25 +5642,127 @@ function finishQuizCepat(){
   let icon='😅',title='Terus Semangat!';
   if(pct>=90){icon='🏆';title='Luar Biasa!';}else if(pct>=70){icon='🎯';title='Bagus Sekali!';}else if(pct>=50){icon='💪';title='Cukup Baik!';}
   document.getElementById('qcResIcon').textContent=icon;document.getElementById('qcResTitle').textContent=title;
-  document.getElementById('qcResCat').textContent=`${c.name} · ${menit} Menit`;
+  document.getElementById('qcResCat').textContent=sub?`${c.name} · ${sub} · ${menit} Menit`:`${c.name} · ${menit} Menit`;
   document.getElementById('qcResSkor').textContent=benar;document.getElementById('qcResSub').textContent=`soal dijawab dengan benar dari ${total} soal`;
   document.getElementById('qcStatBenar').textContent=benar;document.getElementById('qcStatSalah').textContent=salah;document.getElementById('qcStatTotal').textContent=total;
   const newBestEl=document.getElementById('qcNewBest');newBestEl.style.display=isNewBest&&benar>0?'block':'none';
   if(isNewBest&&benar>0)playSound('newbest');else playSound('finish');
-  const bestOverall=getQCBestScore(cat,menit);
-  document.getElementById('qcBestInfo').innerHTML=`<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center;"><span style="font-size:13px;color:var(--gray);">🏆 Rekor ${menit} menit:</span><span style="font-size:16px;font-weight:800;color:${c.color};">${bestOverall} benar</span>${total>0?`<span style="font-size:12px;color:var(--gray);">· Akurasi: ${pct}%</span>`:''}</div>`;
+  const bestOverall=sub?getQCSubBest(cat,sub,menit):getQCBestScore(cat,menit);
+  document.getElementById('qcBestInfo').innerHTML=`<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center;"><span style="font-size:13px;color:var(--gray);">🏆 Rekor ${sub?'sub label ':''}${menit} menit:</span><span style="font-size:16px;font-weight:800;color:${c.color};">${bestOverall} benar</span>${total>0?`<span style="font-size:12px;color:var(--gray);">· Akurasi: ${pct}%</span>`:''}</div>`;
   goTo('quizCepatResultPage');
-  addNotif('⚡', `Kuis Cepat ${c.name} Selesai`,
+  addNotif('⚡', `Latihan Cepat ${c.name} Selesai`,
   `${benar} benar dari ${total} soal · ${menit} menit${isNewBest&&benar>0?' 🎉 Rekor baru!':''}`);
   checkNewAchievements();
 }
 function ulangQuizCepat(){mulaiQuizCepat();}
 
+// ========== LATIHAN CEPAT: PILIH SUB LABEL ==========
+// Soal diambil dari bank Latihan Cepat + semua paket latihan, dikelompokkan menurut field "sub".
+let qcMode='kategori',qcSubCat=null,_qcSubPool=null;
+const QC_SUB_ORDER={
+  twk:['Nasionalisme','Integritas','Bela Negara','Pilar Negara','Bahasa Indonesia'],
+  tkp:['Profesionalisme','Pelayanan Publik','Jejaring Kerja','Sosial Budaya','Teknologi Informasi dan Komunikasi (TIK)','Anti Radikalisme']
+};
+const QC_TIU_GROUP_ORDER=['Verbal','Numerik','Figural','Penalaran Logis','Penalaran Kritis','Penalaran Analitis'];
+function buildQCSubPool(){
+  if(_qcSubPool)return _qcSubPool;
+  const pool={twk:[],tiu:[],tkp:[]},seen={twk:new Set(),tiu:new Set(),tkp:new Set()};
+  const add=(cat,arr)=>(arr||[]).forEach(d=>{
+    if(!d||!d.q||!d.sub||seen[cat].has(d.q))return;
+    seen[cat].add(d.q);
+    if(cat==='tkp')pool[cat].push({q:d.q,opt:[...(d.opts||d.opt||[])],scores:[...(d.scores||[])],isTKP:true,pembahasan:d.pembahasan||'',sub:d.sub});
+    else pool[cat].push({q:d.q,opt:[...(d.opt||[])],a:d.a,isTKP:false,pembahasan:d.pembahasan||'',sub:d.sub});
+  });
+  if(typeof quizTWK!=='undefined')add('twk',quizTWK);
+  if(typeof quizTIU!=='undefined')add('tiu',quizTIU);
+  if(typeof quizTKP!=='undefined')add('tkp',quizTKP);
+  for(let i=1;i<=20;i++){const b=window['paket'+i];if(b){add('twk',b.twk);add('tiu',b.tiu);add('tkp',b.tkp);}}
+  _qcSubPool=pool;return pool;
+}
+function qcSubGroup(sub){return String(sub).split(' (')[0];}
+function getQCSubs(cat){
+  const m=new Map();
+  buildQCSubPool()[cat].forEach(d=>m.set(d.sub,(m.get(d.sub)||0)+1));
+  const list=[...m].map(([sub,count])=>({sub,count}));
+  if(cat==='tiu'){
+    const gr=x=>{const i=QC_TIU_GROUP_ORDER.indexOf(qcSubGroup(x));return i<0?99:i;};
+    list.sort((a,b)=>gr(a.sub)-gr(b.sub)||a.sub.localeCompare(b.sub,'id'));
+  }else{
+    const ord=QC_SUB_ORDER[cat]||[];
+    const rk=x=>{const i=ord.indexOf(x);return i<0?999:i;};
+    list.sort((a,b)=>rk(a.sub)-rk(b.sub)||a.sub.localeCompare(b.sub,'id'));
+  }
+  return list;
+}
+function getQCSubSoal(cat,sub){return buildQCSubPool()[cat].filter(d=>d.sub===sub);}
+function qcSubKey(cat,sub,menit){return `qcSubBest_${cat}_${String(sub).toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'')}_${menit}m`;}
+function getQCSubBest(cat,sub,menit){return parseInt(localStorage.getItem(qcSubKey(cat,sub,menit))||'0');}
+function setQCSubBest(cat,sub,menit,val){const prev=getQCSubBest(cat,sub,menit);if(val>prev)localStorage.setItem(qcSubKey(cat,sub,menit),val);return val>prev;}
+
+function setQCMode(mode){
+  qcMode=mode==='sub'?'sub':'kategori';
+  const a=document.getElementById('quizCepatGrid'),b=document.getElementById('quizCepatSubGrid');
+  if(a)a.style.display=qcMode==='kategori'?'':'none';
+  if(b)b.style.display=qcMode==='sub'?'':'none';
+  document.querySelectorAll('#qcModeTabs .qc-mode-tab').forEach(t=>{
+    const on=t.dataset.mode===qcMode;
+    t.classList.toggle('active',on);t.setAttribute('aria-selected',on?'true':'false');
+  });
+}
+function renderQuizCepatSubGrid(){
+  const grid=document.getElementById('quizCepatSubGrid');if(!grid)return;
+  let html='';
+  ['twk','tiu','tkp'].forEach(cat=>{
+    const c=QC_CATS[cat];const subs=getQCSubs(cat);const total=subs.reduce((n,x)=>n+x.count,0);
+    html+=`<div class="qc-cat-card ${cat}" onclick="playSound('menu');openQCSub('${cat}')">
+      <div class="qc-cat-header ${cat}">
+        <div class="qc-cat-icon" data-icon="${c.icon}"></div>
+        <div class="qc-cat-info"><div class="qc-cat-title"><b>${c.name}</b><small>${c.fullName}</small></div></div>
+        <span class="status-pill qc-pill">${subs.length} sub label</span>
+      </div>
+      <div class="qc-cat-foot">
+        <div class="qci-foot-row"><div><span class="qci-total-label">${total} soal · soal dipilih per sub label</span></div><span class="qci-go">Pilih ›</span></div>
+      </div>
+    </div>`;
+  });
+  grid.innerHTML=html;
+  fillIcons(grid);
+}
+function renderQCSubList(cat){
+  const c=QC_CATS[cat];const subs=getQCSubs(cat);
+  const pg=document.getElementById('quizCepatSubPage');if(pg)pg.dataset.cat=cat;
+  const intro=document.getElementById('qcSubIntro');
+  intro.innerHTML=`<div class="qc-intro-ic" data-icon="${c.icon}"></div><div class="qc-intro-txt"><b>${c.name} — ${c.fullName}</b><span>Pilih sub label. Soal yang muncul hanya dari sub label tersebut.</span></div>`;
+  fillIcons(intro);
+  let html='',lastGroup=null;
+  subs.forEach((x,i)=>{
+    if(cat==='tiu'){const g=qcSubGroup(x.sub);if(g!==lastGroup){html+=`<div class="qcs-group">${_mtEsc(g)}</div>`;lastGroup=g;}}
+    const best=Math.max(...[1,3,5,10].map(m=>getQCSubBest(cat,x.sub,m)));
+    html+=`<div class="qcs-row" onclick="playSound('menu');pilihQCSub('${cat}',${i})">
+      <div class="qcs-no">${i+1}</div>
+      <div class="qcs-info"><b>${_mtEsc(x.sub)}</b><small>${x.count} soal${best>0?` · 🏆 Rekor ${best}`:''}</small></div>
+      <span class="qcs-go">›</span>
+    </div>`;
+  });
+  document.getElementById('qcSubList').innerHTML=html;
+}
+function openQCSub(cat){
+  qcSubCat=cat;qcMode='sub';
+  renderQCSubList(cat);
+  goTo('quizCepatSubPage');
+}
+function pilihQCSub(cat,i){const x=getQCSubs(cat)[i];if(x)pilihanQC(cat,x.sub);}
+function qcBackToList(){
+  if(qcState.sub&&qcSubCat)openQCSub(qcSubCat);
+  else goTo('quizCepatPage');
+}
+
+
 // ========== PENCAPAIAN ==========
 const BADGE_TIERS=[
   {tier:1,label:'Tier 1 — Pemula',badges:[
     {id:'first_done',icon:'🎯',name:'Langkah Pertama',desc:'Selesaikan 1 paket soal',check:s=>s.totalDone>=1},
-    {id:'qc_first',icon:'⚡',name:'Pemula Cepat',desc:'Main Kuis Cepat pertama kali',check:s=>s.qcTotalSesi>=1},
+    {id:'qc_first',icon:'⚡',name:'Pemula Cepat',desc:'Main Latihan Cepat pertama kali',check:s=>s.qcTotalSesi>=1},
     {id:'kutu_buku',icon:'📖',name:'Kutu Buku',desc:'Buka semua materi TWK, TIU, TKP',check:s=>s.materiAll},
     {id:'penjelajah',icon:'🗺️',name:'Penjelajah',desc:'Kunjungi semua menu aplikasi',check:s=>s.menuAll},
     {id:'penasaran',icon:'🔍',name:'Penasaran',desc:'Kunjungi halaman Tentang',check:s=>s.menuVisitedTentang},
@@ -5555,9 +5770,9 @@ const BADGE_TIERS=[
   ]},
   {tier:2,label:'Tier 2 — Pemula Lanjut',badges:[
     {id:'qc_speed_5',icon:'🚀',name:'Kilat 1 Menit',desc:'5+ soal benar dalam QC 1 menit',check:s=>s.qcBest1m>=5},
-    {id:'qc_10twk',icon:'📚',name:'Pakar TWK',desc:'10 soal TWK benar di Kuis Cepat',check:s=>s.qcBestTWK>=10},
-    {id:'qc_10tiu',icon:'🧮',name:'Pakar TIU',desc:'10 soal TIU benar di Kuis Cepat',check:s=>s.qcBestTIU>=10},
-    {id:'qc_10tkp',icon:'🌈',name:'Pakar TKP',desc:'10 soal TKP benar di Kuis Cepat',check:s=>s.qcBestTKP>=10},
+    {id:'qc_10twk',icon:'📚',name:'Pakar TWK',desc:'10 soal TWK benar di Latihan Cepat',check:s=>s.qcBestTWK>=10},
+    {id:'qc_10tiu',icon:'🧮',name:'Pakar TIU',desc:'10 soal TIU benar di Latihan Cepat',check:s=>s.qcBestTIU>=10},
+    {id:'qc_10tkp',icon:'🌈',name:'Pakar TKP',desc:'10 soal TKP benar di Latihan Cepat',check:s=>s.qcBestTKP>=10},
     {id:'first_pass',icon:'✅',name:'Lulus Perdana',desc:'Lulus passing grade pertama kali',check:s=>s.totalLulus>=1},
     {id:'rajin',icon:'📓',name:'Rajin Berlatih',desc:'Selesaikan 3 paket soal berbeda',check:s=>s.totalDone>=3},
   ]},
@@ -5566,7 +5781,7 @@ const BADGE_TIERS=[
     {id:'simulasi_1',icon:'⏰',name:'Petarung Ujian',desc:'Selesaikan 1 simulasi ujian',check:s=>s.simulasiDone>=1},
     {id:'score_400',icon:'💪',name:'Pejuang SKD',desc:'Raih total skor 400+',check:s=>s.bestScore>=400},
     {id:'akurasi90',icon:'🎯',name:'Akurasi Tinggi',desc:'Akurasi 90%+ dalam satu sesi QC',check:s=>s.qcAkurasi90},
-    {id:'marathon',icon:'🏃',name:'Maraton Quiz',desc:'Main Kuis Cepat total 10 sesi',check:s=>s.qcTotalSesi>=10},
+    {id:'marathon',icon:'🏃',name:'Maraton Quiz',desc:'Main Latihan Cepat total 10 sesi',check:s=>s.qcTotalSesi>=10},
     {id:'simulasi_3',icon:'🏁',name:'Veteran Simulasi',desc:'Selesaikan 3 simulasi ujian',check:s=>s.simulasiDone>=3},
   ]},
   {tier:4,label:'Tier 4 — Mahir',badges:[
@@ -5582,7 +5797,7 @@ const BADGE_TIERS=[
     {id:'sim_pass',icon:'⚡',name:'Simulasi Lulus',desc:'Lulus PG di simulasi ujian',check:s=>s.simulasiLulus},
     {id:'qc_10m',icon:'👑',name:'Raja 10 Menit',desc:'30+ soal benar dalam QC 10 menit',check:s=>s.qcBest10m>=30},
     {id:'triple',icon:'🥇',name:'Triple Lulus',desc:'Lulus ketiga kategori sekaligus',check:s=>s.totalLulus>=1},
-    {id:'setia50',icon:'🏃',name:'Pemain Setia',desc:'Total 50 sesi Kuis Cepat',check:s=>s.qcTotalSesi>=50},
+    {id:'setia50',icon:'🏃',name:'Pemain Setia',desc:'Total 50 sesi Latihan Cepat',check:s=>s.qcTotalSesi>=50},
     {id:'master_speed',icon:'💨',name:'Master Kecepatan',desc:'20+ soal benar dalam QC 5 menit',check:s=>s.qcBest5m>=20},
   ]},
   {tier:6,label:'Tier 6 — Master',badges:[
@@ -5967,7 +6182,7 @@ function refreshStatistik(){
   else{hHtml+='<p class="stats-empty">Belum ada riwayat latihan.</p>';}
   hHtml+=renderAttemptList();
   document.getElementById('statsHistory').innerHTML=hHtml;
-  let qcHtml=`<h4 class="stats-title" style="margin-top:14px;"><span class="ic-inline">${IMAGES.icon_bolt}Rekor Kuis Cepat</span></h4>`;
+  let qcHtml=`<h4 class="stats-title" style="margin-top:14px;"><span class="ic-inline">${IMAGES.icon_bolt}Rekor Latihan Cepat</span></h4>`;
   qcHtml+=`<table class="stats-table"><tr><th>Kategori</th><th>1m</th><th>3m</th><th>5m</th><th>10m</th><th>Sesi</th></tr>`;
   ['twk','tiu','tkp'].forEach(cat=>{const c=QC_CATS[cat];const sesi=getQCTotalSesi(cat);const b1=getQCBestScore(cat,1)||'-';const b3=getQCBestScore(cat,3)||'-';const b5=getQCBestScore(cat,5)||'-';const b10=getQCBestScore(cat,10)||'-';qcHtml+=`<tr><td style="font-weight:700;"><span class="ic-inline">${IMAGES[c.icon]}${c.name}</span></td><td>${b1}</td><td>${b3}</td><td>${b5}</td><td>${b10}</td><td>${sesi}</td></tr>`;});
   qcHtml+='</table>';
@@ -6336,7 +6551,7 @@ function showNextAch(){
 // ========== BACKUP & PULIHKAN PROGRES ==========
 // Progres hanya ada di localStorage perangkat ini. Backup = salinan semua kunci progres
 // (bukan sesi login / cache kredensial) dalam satu file JSON atau satu kode teks.
-const BK_RE=/^(skor(TWK|TIU|TKP)_latihan\d+|bestScore_latihan\d+|evalData_latihan\d+|skorKat_(TWK|TIU|TKP)_latihan\d+|evalData_kat_(TWK|TIU|TKP)_\d+|latihanView|katTime_(TWK|TIU|TKP)|paketUlangi_\d+|riwayat_latihan\d+|simulasi_last|simulasiCount|simulasiLulusBerturut|materiOpened|menuVisited|qc(Best|TotalSesi|StreakMax|NoWrong|Akurasi90)_\w+|achUnlocked|skd_wrongBank|skd_bookmarkBank|skd_aktivitas_log|skd_studyDays|soundEnabled|timerEnabled|fontScale_\w+|lineHeight_\w+)$/;
+const BK_RE=/^(skor(TWK|TIU|TKP)_latihan\d+|bestScore_latihan\d+|evalData_latihan\d+|skorKat_(TWK|TIU|TKP)_latihan\d+|evalData_kat_(TWK|TIU|TKP)_\d+|latihanView|katTime_(TWK|TIU|TKP)|paketUlangi_\d+|riwayat_latihan\d+|simulasi_last|simulasiCount|simulasiLulusBerturut|materiOpened|menuVisited|qc(Best|SubBest|TotalSesi|StreakMax|NoWrong|Akurasi90)_\w+|achUnlocked|skd_wrongBank|skd_bookmarkBank|skd_aktivitas_log|skd_studyDays|soundEnabled|timerEnabled|fontScale_\w+|lineHeight_\w+)$/;
 const BK_PREFIX='SKDBACKUP1:';
 const BK_LAST_KEY='skd_lastBackup';
 function bkCollect(){const d={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(BK_RE.test(k))d[k]=localStorage.getItem(k);}return d;}
@@ -6436,6 +6651,7 @@ function resetAllProgress(){
   for(let i=1;i<=7;i++){['bestScore','skorTWK','skorTIU','skorTKP'].forEach(k=>localStorage.removeItem(`${k}_latihan${i}`));localStorage.removeItem(`evalData_latihan${i}`);localStorage.removeItem(`paketUlangi_${i}`);localStorage.removeItem(`riwayat_latihan${i}`);['TWK','TIU','TKP'].forEach(k=>{localStorage.removeItem(`skorKat_${k}_latihan${i}`);localStorage.removeItem(`evalData_kat_${k}_${i}`);});}
   localStorage.removeItem('simulasi_last');localStorage.removeItem('simulasiCount');localStorage.removeItem('simulasiLulusBerturut');localStorage.removeItem('materiOpened');localStorage.removeItem('menuVisited');
   ['twk','tiu','tkp'].forEach(cat=>{[1,3,5,10].forEach(m=>localStorage.removeItem(`qcBest_${cat}_${m}m`));localStorage.removeItem(`qcTotalSesi_${cat}`);localStorage.removeItem(`qcStreakMax_${cat}`);localStorage.removeItem(`qcNoWrong_${cat}`);localStorage.removeItem(`qcAkurasi90_${cat}`);});
+  Object.keys(localStorage).filter(k=>k.indexOf('qcSubBest_')===0).forEach(k=>localStorage.removeItem(k));
   localStorage.removeItem('achUnlocked');achUnlocked=[];
   localStorage.removeItem(WRONG_KEY);localStorage.removeItem(BOOKMARK_KEY);localStorage.removeItem(STUDY_KEY);
   syncProgressToServer();

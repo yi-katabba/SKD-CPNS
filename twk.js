@@ -408,7 +408,7 @@ var materiTWK = {
     },
     {
       id: "tema4",
-      nama: "Pilar NKRI",
+      nama: "Pilar Negara",
       konten: `
 <h3>1. SEJARAH KEMERDEKAAN NKRI</h3>
 <p>Pada tahun 1942, Penjajahan Belanda di Indonesia berakhir dengan Jepang menduduki wilayah tersebut. Namun, sejak tahun 1944, tentara Jepang mulai mengalami kekalahan dalam pertempuran melawan tentara Sekutu. Untuk mendapatkan dukungan dari bangsa Indonesia dalam melawan Sekutu, Jepang memberikan janji kemerdekaan yang pertama pada tanggal 7 September 1944, yang diucapkan oleh Perdana Menteri Kaiso. Namun, karena terus menerus terdesak oleh Sekutu, pada tanggal 29 April 1945, Jepang memberikan janji kemerdekaan yang kedua kepada bangsa Indonesia. Janji kemerdekaan ini dituangkan dalam Maklumat Gunseikan yang juga menetapkan pembentukan Badan Penyelidik Usaha-Usaha Persiapan Kemerdekaan Indonesia (BPUPKI). Tugas BPUPKI adalah menyelidiki dan mengumpulkan usul-usul yang akan dikemukakan kepada pemerintah Jepang untuk dipertimbangkan guna mencapai kemerdekaan Indonesia.</p>
