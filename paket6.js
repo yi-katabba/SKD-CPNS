@@ -2,37 +2,37 @@
 var paket6 = {
   twk: [
   { // No 1
-    sub: "Bahasa Indonesia", q: "Literasi digital bukan sekadar kemampuan mengoperasikan gawai dan mengakses internet. Literasi digital mencakup kemampuan menemukan, menilai, dan memanfaatkan informasi secara kritis, etis, dan bertanggung jawab. Tanpa kemampuan tersebut, pengguna internet mudah terjebak dalam arus informasi palsu yang beredar luas. Karena itu, pendidikan literasi digital perlu diberikan sejak dini, baik melalui sekolah, keluarga, maupun lingkungan masyarakat.\n\nIde pokok paragraf tersebut adalah ...",
+    sub: "Gagasan Utama", q: "Literasi digital bukan sekadar kemampuan mengoperasikan gawai dan mengakses internet. Literasi digital mencakup kemampuan menemukan, menilai, dan memanfaatkan informasi secara kritis, etis, dan bertanggung jawab. Tanpa kemampuan tersebut, pengguna internet mudah terjebak dalam arus informasi palsu yang beredar luas. Karena itu, pendidikan literasi digital perlu diberikan sejak dini, baik melalui sekolah, keluarga, maupun lingkungan masyarakat.\n\nIde pokok paragraf tersebut adalah ...",
     opt: ["Pengguna internet harus dibatasi agar tidak terjebak informasi palsu","Internet membuat informasi palsu beredar luas di masyarakat","Literasi digital mencakup kemampuan berpikir kritis, etis, dan bertanggung jawab dalam bermedia digital","Pendidikan literasi digital hanya menjadi tugas sekolah","Gawai adalah alat yang paling penting bagi anak-anak"],
     a: 2,
     pembahasan: "Ide pokok adalah gagasan utama yang dikembangkan seluruh kalimat dalam paragraf. Kalimat kedua menegaskan inti paragraf: literasi digital mencakup kemampuan menemukan, menilai, dan memanfaatkan informasi secara kritis, etis, dan bertanggung jawab. Kalimat-kalimat lain hanya menjelaskan akibat dan solusinya."
   },
   { // No 2
-    sub: "Bahasa Indonesia", q: "Kalimat berikut yang efektif adalah ...",
+    sub: "Kalimat Efektif", q: "Kalimat berikut yang efektif adalah ...",
     opt: ["Kepada para peserta rapat dimohon untuk segera menempati tempat duduk masing-masing.","Para peserta-peserta rapat dimohon segera menempati tempat duduknya.","Peserta rapat diharapkan agar segera menempati tempat duduk.","Para peserta rapat dimohon segera menempati tempat duduk masing-masing.","Rapat para peserta dimohon menempati tempat duduk segera."],
     a: 3,
     pembahasan: "Kalimat efektif tidak boros kata, tidak ambigu, dan memiliki subjek yang jelas. Opsi B memakai bentuk jamak ganda (para peserta-peserta). Opsi A tidak memiliki subjek karena didahului kata depan 'Kepada'. Opsi C memakai 'agar' yang tidak diperlukan, dan opsi E tidak logis. Opsi D sudah lugas, berstruktur lengkap, dan hemat kata."
   },
   { // No 3
-    sub: "Bahasa Indonesia", q: "Kelompok kata yang seluruhnya ditulis dengan baku adalah ...",
+    sub: "Kalimat Efektif", q: "Kelompok kata yang seluruhnya ditulis dengan baku adalah ...",
     opt: ["analisa, apotik, kwitansi","aktivitas, apotek, kuitansi","aktifitas, apotek, kwitansi","analisis, apotik, kuitansi","analisis, apotek, kwitansi"],
     a: 1,
     pembahasan: "Bentuk baku menurut KBBI: aktivitas (bukan aktifitas), apotek (bukan apotik), kuitansi (bukan kwitansi), dan analisis (bukan analisa). Hanya opsi B yang ketiga katanya baku."
   },
   { // No 4
-    sub: "Bahasa Indonesia", q: "Penulisan kata depan 'di' yang tepat terdapat pada kalimat ...",
+    sub: "Kalimat Efektif", q: "Penulisan kata depan 'di' yang tepat terdapat pada kalimat ...",
     opt: ["Dokumen itu diletakkan di atas meja kerja kepala bagian.","Dokumen itu di letakkan diatas meja kerja kepala bagian.","Dokumen itu diletakkan diatas meja kerja kepala bagian.","Dokumen itu di letakkan di atas meja kerja kepala bagian.","Dokumen itu diletakkan di-atas meja kerja kepala bagian."],
     a: 0,
     pembahasan: "Kata 'di' sebagai awalan ditulis serangkai dengan kata kerja (diletakkan). Kata 'di' sebagai kata depan ditulis terpisah dari kata yang mengikutinya (di atas). Hanya kalimat pada opsi A yang memenuhi kedua kaidah tersebut."
   },
   { // No 5
-    sub: "Bahasa Indonesia", q: "Rekan sekantor menyebut Dodi sebagai orang yang panjang tangan, sehingga barang berharga sebaiknya tidak ditinggalkan sembarangan di mejanya. Makna ungkapan 'panjang tangan' pada kalimat tersebut adalah ...",
+    sub: "Kalimat Efektif", q: "Rekan sekantor menyebut Dodi sebagai orang yang panjang tangan, sehingga barang berharga sebaiknya tidak ditinggalkan sembarangan di mejanya. Makna ungkapan 'panjang tangan' pada kalimat tersebut adalah ...",
     opt: ["suka mencuri","suka memerintah","rajin bekerja","suka memukul","suka membantu"],
     a: 0,
     pembahasan: "Idiom 'panjang tangan' berarti suka mencuri atau suka mengambil milik orang lain. Makna idiom tidak dapat ditafsirkan dari arti kata per kata."
   },
   { // No 6
-    sub: "Bahasa Indonesia", q: "(1) Banjir tahunan terus melanda sejumlah kota besar. (2) Penyebab utamanya adalah alih fungsi lahan resapan air menjadi kawasan permukiman. (3) Selain itu, kebiasaan membuang sampah ke sungai memperparah keadaan. (4) Upaya normalisasi sungai tidak akan efektif tanpa perubahan perilaku warga.\n\nSimpulan yang paling tepat dari paragraf tersebut adalah ...",
+    sub: "Gagasan Utama", q: "(1) Banjir tahunan terus melanda sejumlah kota besar. (2) Penyebab utamanya adalah alih fungsi lahan resapan air menjadi kawasan permukiman. (3) Selain itu, kebiasaan membuang sampah ke sungai memperparah keadaan. (4) Upaya normalisasi sungai tidak akan efektif tanpa perubahan perilaku warga.\n\nSimpulan yang paling tepat dari paragraf tersebut adalah ...",
     opt: ["Alih fungsi lahan tidak berpengaruh terhadap banjir","Banjir hanya terjadi di kota besar","Normalisasi sungai tidak diperlukan lagi","Penanggulangan banjir memerlukan penataan lahan dan perubahan perilaku warga","Warga adalah satu-satunya penyebab terjadinya banjir"],
     a: 3,
     pembahasan: "Paragraf menyebut dua penyebab banjir, yaitu alih fungsi lahan resapan dan kebiasaan membuang sampah, serta menegaskan bahwa normalisasi sungai saja tidak cukup. Simpulan yang sesuai adalah penanggulangan banjir memerlukan penataan lahan sekaligus perubahan perilaku warga."

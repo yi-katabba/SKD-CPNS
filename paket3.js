@@ -2,37 +2,37 @@
 var paket3 = {
   twk: [
   { // No 1
-    sub: "Bahasa Indonesia", q: "Kebiasaan menabung sejak dini membentuk sikap hemat dan disiplin dalam mengelola keuangan. Anak yang terbiasa menyisihkan uang saku akan lebih mudah membedakan kebutuhan dan keinginan. Selain itu, kebiasaan tersebut melatih kesabaran karena hasilnya baru terasa setelah waktu yang cukup lama. Oleh karena itu, orang tua perlu menanamkan budaya menabung kepada anak sedini mungkin.\n\nIde pokok paragraf tersebut adalah ...",
+    sub: "Gagasan Utama", q: "Kebiasaan menabung sejak dini membentuk sikap hemat dan disiplin dalam mengelola keuangan. Anak yang terbiasa menyisihkan uang saku akan lebih mudah membedakan kebutuhan dan keinginan. Selain itu, kebiasaan tersebut melatih kesabaran karena hasilnya baru terasa setelah waktu yang cukup lama. Oleh karena itu, orang tua perlu menanamkan budaya menabung kepada anak sedini mungkin.\n\nIde pokok paragraf tersebut adalah ...",
     opt: ["Anak yang menabung lebih mudah membedakan kebutuhan dan keinginan","Menabung melatih kesabaran karena hasilnya baru terasa setelah waktu yang lama","Kebiasaan menabung penting bagi anak dan perlu ditanamkan orang tua sejak dini","Orang tua sebaiknya memberi uang saku yang besar kepada anak","Kegiatan menabung hanya dapat dilakukan di bank"],
     a: 2,
     pembahasan: "Ide pokok adalah gagasan utama yang dikembangkan seluruh kalimat dalam paragraf. Kalimat pertama sampai ketiga menjelaskan manfaat menabung sejak dini, dan kalimat terakhir menegaskan bahwa kebiasaan itu perlu ditanamkan orang tua sejak dini. Pilihan A dan B hanya merupakan penjelasan pendukung, sedangkan D dan E tidak disebutkan dalam paragraf."
   },
   { // No 2
-    sub: "Bahasa Indonesia", q: "Penulisan nama dan gelar yang benar adalah...",
+    sub: "Kalimat Efektif", q: "Penulisan nama dan gelar yang benar adalah...",
     opt: ["Rusmin Hadiningrat. S. S","Muhammad Aldo, S. H.","Dr. Annisa Azkia Nafisa","Alamsiar Munir M. Pd.","Hj Farida Rusti."],
     a: 2,
     pembahasan: "Penulisan nama dan gelar yang benar: Huruf pertama tiap unsur diawali dengan huruf kapital, penulisan gelar yang diikuti nama disingkat, penulisan gelar yang tidak diikuti nama tidak diawali huruf kapital, singkatan nama, gelar, sapaan, jabatan, atau pangkat diikuti dengan tanda titik. Penulisan yang benar adalah Dr. Annisa Azkia Nafisa."
   },
   { // No 3
-    sub: "Bahasa Indonesia", q: "Bacalah kalimat berikut! \"Walikota Jakarta timur menghadiri peresmian kantor baru di kelurahan Rawamangun pada Hari Kamis.\" Kesalahan huruf kapital pada kalimat tersebut terdapat pada ...",
+    sub: "Kalimat Efektif", q: "Bacalah kalimat berikut! \"Walikota Jakarta timur menghadiri peresmian kantor baru di kelurahan Rawamangun pada Hari Kamis.\" Kesalahan huruf kapital pada kalimat tersebut terdapat pada ...",
     opt: ["Walikota, kantor baru, Kelurahan Rawamangun","Walikota, Jakarta timur, menghadiri, Hari Kamis","Jakarta timur, kantor, kelurahan Rawamangun, Kamis","Kantor baru, Hari Kamis, menghadiri, Jakarta Timur","Jakarta timur, kelurahan Rawamangun, Hari Kamis"],
     a: 4,
     pembahasan: "Analisis penggunaan huruf kapital: Walikota = benar (jabatan diikuti nama kota); Jakarta timur = SALAH (seharusnya Jakarta Timur); menghadiri = benar; kantor baru = benar; kelurahan Rawamangun = SALAH (seharusnya Kelurahan Rawamangun); Hari Kamis = SALAH (seharusnya hari Kamis)."
   },
   { // No 4
-    sub: "Bahasa Indonesia", q: "Kalimat yang tidak mengandung pemborosan kata (pleonasme) adalah ...",
+    sub: "Kalimat Efektif", q: "Kalimat yang tidak mengandung pemborosan kata (pleonasme) adalah ...",
     opt: ["Para hadirin sekalian dimohon untuk segera berdiri.","Mahasiswa itu sedang membaca buku di perpustakaan kampus.","Harga-harga barang kebutuhan pokok itu naik-naik semua.","Ia pergi ke pasar untuk membeli sayur dan juga membeli buah-buahan juga.","Adapun penelitian ini bertujuan untuk meneliti tentang hasil belajar siswa daripada kelas X."],
     a: 1,
     pembahasan: "Kalimat efektif tidak boros kata. Pilihan A memakai 'para' dan 'sekalian' sekaligus (pleonasme), C memakai bentuk jamak ganda ('harga-harga' dan 'naik-naik semua'), D mengulang 'dan juga ... juga', dan E memakai 'meneliti tentang' serta 'daripada' yang tidak tepat. Pilihan B singkat, jelas, dan tidak berlebihan sehingga merupakan kalimat efektif."
   },
   { // No 5
-    sub: "Bahasa Indonesia", q: "Suasana hati seseorang sesungguhnya berhubungan dengan makanan yang baru dikonsumsinya. Mengonsumsi makanan yang banyak mengandung karbohidrat akan memberikan perasaan nyaman dan meningkatkan kemampuan tubuh menahan rasa sakit. Tetapi jika berlebihan, akan membuat kita mudah mengantuk. Sementara itu, mengonsumsi makanan berprotein tinggi akan cenderung membuat badan segar dan penuh konsentrasi. Makan makanan tinggi protein juga akan membuat seseorang tidak mudah mengantuk. Dalam paragraf tersebut terdapat kalimat yang tidak baku, yaitu kalimat ...",
+    sub: "Kalimat Efektif", q: "Suasana hati seseorang sesungguhnya berhubungan dengan makanan yang baru dikonsumsinya. Mengonsumsi makanan yang banyak mengandung karbohidrat akan memberikan perasaan nyaman dan meningkatkan kemampuan tubuh menahan rasa sakit. Tetapi jika berlebihan, akan membuat kita mudah mengantuk. Sementara itu, mengonsumsi makanan berprotein tinggi akan cenderung membuat badan segar dan penuh konsentrasi. Makan makanan tinggi protein juga akan membuat seseorang tidak mudah mengantuk. Dalam paragraf tersebut terdapat kalimat yang tidak baku, yaitu kalimat ...",
     opt: ["Pertama","Kedua","Ketiga","Keempat","Kelima"],
     a: 2,
     pembahasan: "Kalimat yang tidak baku dalam paragraf tersebut adalah kalimat ketiga karena menggunakan konjungsi 'tetapi' di awal kalimat. Konjungsi 'tetapi' tidak boleh digunakan sebagai pembuka kalimat."
   },
   { // No 6
-    sub: "Bahasa Indonesia", q: "Penulisan nama dan gelar yang benar adalah ...",
+    sub: "Kalimat Efektif", q: "Penulisan nama dan gelar yang benar adalah ...",
     opt: ["Prof. DR. Aji Gumelar, SE., AK., MA.","Prof. Dr. Aji Gumelar, SE., Ak., MA.","Prof. Dr. Aji Gumelar, S.E., Ak., M.A.","Prof. DR. Aji Gumelar, S.E., Ak., M.A.","Prof. Dr., Aji Gumelar, S.E, Ak., M.A."],
     a: 2,
     pembahasan: "Huruf awal tiap kata menggunakan huruf kapital dan diakhiri dengan tanda titik. Untuk kata yang disingkat menjadi lebih dari satu huruf, huruf kedua menggunakan huruf kecil. Contohnya: S.Pd., Dr., Prof., dsb. Singkatan nama gelar, sapaan, jabatan, atau pangkat diikuti tanda titik di belakang tiap-tiap singkatan. 'DR' salah — yang benar 'Dr.'"

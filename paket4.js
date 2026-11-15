@@ -2,37 +2,37 @@
 var paket4 = {
   twk: [
   { // No 1
-    sub: "Bahasa Indonesia", q: "Membaca bukan hanya kegiatan mengeja huruf, tetapi proses memahami dan menafsirkan gagasan penulis. Kebiasaan membaca yang kuat membuat seseorang mampu berpikir runtut dan menyampaikan pendapat dengan baik. Sayangnya, minat baca masyarakat masih tergolong rendah karena waktu luang lebih banyak dihabiskan untuk hiburan di layar gawai. Oleh sebab itu, budaya membaca perlu dibiasakan sejak usia dini melalui keluarga dan sekolah.\n\nIde pokok paragraf tersebut adalah ...",
+    sub: "Gagasan Utama", q: "Membaca bukan hanya kegiatan mengeja huruf, tetapi proses memahami dan menafsirkan gagasan penulis. Kebiasaan membaca yang kuat membuat seseorang mampu berpikir runtut dan menyampaikan pendapat dengan baik. Sayangnya, minat baca masyarakat masih tergolong rendah karena waktu luang lebih banyak dihabiskan untuk hiburan di layar gawai. Oleh sebab itu, budaya membaca perlu dibiasakan sejak usia dini melalui keluarga dan sekolah.\n\nIde pokok paragraf tersebut adalah ...",
     opt: ["Waktu luang masyarakat lebih banyak dihabiskan untuk hiburan di layar gawai","Minat baca masyarakat masih tergolong rendah","Membaca hanya kegiatan mengeja huruf","Membaca penting bagi kemampuan berpikir dan perlu dibiasakan sejak usia dini","Sekolah bertanggung jawab penuh atas minat baca anak"],
     a: 3,
     pembahasan: "Ide pokok adalah gagasan utama yang dikembangkan seluruh paragraf. Kalimat pertama dan kedua menjelaskan pentingnya membaca, sedangkan kalimat terakhir menegaskan perlunya membiasakan membaca sejak dini. Opsi lain hanya merupakan penjelasan pendukung atau sebagian isi paragraf."
   },
   { // No 2
-    sub: "Bahasa Indonesia", q: "Kalimat berikut yang efektif adalah ...",
+    sub: "Kalimat Efektif", q: "Kalimat berikut yang efektif adalah ...",
     opt: ["Pemerintah daerah akan membangun jembatan baru untuk memperlancar arus lalu lintas.","Pemerintah daerah akan membangun jembatan baru yang bertujuan untuk memperlancar arus lalu lintas agar menjadi lancar.","Jembatan baru oleh pemerintah daerah akan dibangun supaya untuk lalu lintas lancar.","Pemerintah daerah akan membangun jembatan baru adalah untuk memperlancar arus lalu lintas.","Pembangunan jembatan baru, arus lalu lintas pemerintah daerah akan lancar."],
     a: 0,
     pembahasan: "Kalimat efektif memiliki struktur lengkap, hemat kata, dan tidak ambigu. Opsi B boros (pleonasme: 'memperlancar' dan 'agar menjadi lancar'). Opsi C menggabungkan 'supaya untuk'. Opsi D memakai 'adalah' yang tidak diperlukan. Opsi E tidak logis. Opsi A sudah lugas dan lengkap."
   },
   { // No 3
-    sub: "Bahasa Indonesia", q: "Kelompok kata yang seluruhnya ditulis dengan baku adalah ...",
+    sub: "Kalimat Efektif", q: "Kelompok kata yang seluruhnya ditulis dengan baku adalah ...",
     opt: ["resiko, obyek, teknik","risiko, objek, tehnik","risiko, objek, teknik","resiko, objek, teknik","risiko, obyek, tehnik"],
     a: 2,
     pembahasan: "Bentuk baku menurut KBBI adalah risiko (bukan resiko), objek (bukan obyek), dan teknik (bukan tehnik). Hanya opsi C yang ketiga katanya baku."
   },
   { // No 4
-    sub: "Bahasa Indonesia", q: "Penggunaan tanda koma yang tepat terdapat pada kalimat ...",
+    sub: "Kalimat Efektif", q: "Penggunaan tanda koma yang tepat terdapat pada kalimat ...",
     opt: ["Ibu membeli apel jeruk, dan pisang di pasar.","Ibu membeli apel, jeruk dan, pisang di pasar.","Ibu, membeli apel, jeruk, dan pisang di pasar.","Ibu membeli apel, jeruk, dan pisang, di pasar.","Ibu membeli apel, jeruk, dan pisang di pasar."],
     a: 4,
     pembahasan: "Tanda koma dipakai di antara unsur-unsur dalam pemerincian, dan sebelum kata 'dan' pada unsur terakhir. Koma tidak dipakai di antara subjek dan predikat (opsi C) serta tidak diletakkan sebelum keterangan tempat yang menyatu dengan predikat (opsi D). Opsi A dan B menempatkan koma pada posisi yang salah."
   },
   { // No 5
-    sub: "Bahasa Indonesia", q: "Antonim kata 'transparan' adalah ...",
+    sub: "Kalimat Efektif", q: "Antonim kata 'transparan' adalah ...",
     opt: ["jernih","buram","terang","bening","nyata"],
     a: 1,
     pembahasan: "Transparan berarti tembus cahaya/jelas terlihat. Lawan katanya adalah buram (tidak tembus pandang). Jernih, terang, bening, dan nyata justru bersinonim atau bermakna dekat dengan transparan."
   },
   { // No 6
-    sub: "Bahasa Indonesia", q: "(1) Sampah plastik menjadi masalah serius bagi lingkungan. (2) Plastik membutuhkan ratusan tahun untuk terurai di dalam tanah. (3) Sampah plastik yang terbuang ke laut mengancam kehidupan biota laut. (4) Harga bahan bakar minyak naik pada awal tahun. (5) Pengurangan penggunaan kantong plastik perlu terus digalakkan.\n\nKalimat yang tidak relevan dengan isi paragraf tersebut adalah kalimat nomor ...",
+    sub: "Gagasan Utama", q: "(1) Sampah plastik menjadi masalah serius bagi lingkungan. (2) Plastik membutuhkan ratusan tahun untuk terurai di dalam tanah. (3) Sampah plastik yang terbuang ke laut mengancam kehidupan biota laut. (4) Harga bahan bakar minyak naik pada awal tahun. (5) Pengurangan penggunaan kantong plastik perlu terus digalakkan.\n\nKalimat yang tidak relevan dengan isi paragraf tersebut adalah kalimat nomor ...",
     opt: ["(1)","(2)","(3)","(4)","(5)"],
     a: 3,
     pembahasan: "Paragraf membahas masalah sampah plastik beserta dampak dan solusinya. Kalimat (4) tentang kenaikan harga bahan bakar minyak tidak berhubungan dengan topik tersebut, sehingga tidak relevan."

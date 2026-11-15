@@ -2,34 +2,34 @@
 var paket5 = {
   twk: [
   { // No 1
-    sub: "Bahasa Indonesia", q: "Gotong royong merupakan nilai luhur yang telah mengakar dalam kehidupan bangsa Indonesia. Dahulu, warga bahu-membahu membangun rumah, membersihkan saluran air, dan menggarap sawah tanpa mengharapkan imbalan. Kini, bentuknya berkembang menjadi kerja bakti lingkungan, penggalangan dana untuk korban bencana, hingga aksi sukarela yang dikoordinasikan melalui media sosial. Nilai ini perlu terus dipelihara agar rasa persatuan dan kepedulian antarwarga tidak luntur oleh sikap individualistis.\n\nIde pokok paragraf tersebut adalah ...", opt: ["Penggalangan dana untuk korban bencana kini dilakukan melalui media sosial", "Gotong royong adalah nilai luhur bangsa yang bentuknya berkembang dan perlu terus dipelihara", "Warga zaman dahulu lebih peduli daripada warga zaman sekarang", "Kerja bakti lingkungan wajib dilakukan setiap warga", "Sikap individualistis hanya terjadi di perkotaan"], a: 1, pembahasan: "Ide pokok adalah gagasan utama yang dikembangkan seluruh kalimat dalam paragraf. Paragraf menjelaskan gotong royong sebagai nilai luhur, perkembangan bentuknya dari dulu hingga kini, dan perlunya dipelihara agar persatuan tidak luntur. Pilihan lain hanya menyebut sebagian contoh, membandingkan generasi, atau menambahkan hal yang tidak dinyatakan."
+    sub: "Gagasan Utama", q: "Gotong royong merupakan nilai luhur yang telah mengakar dalam kehidupan bangsa Indonesia. Dahulu, warga bahu-membahu membangun rumah, membersihkan saluran air, dan menggarap sawah tanpa mengharapkan imbalan. Kini, bentuknya berkembang menjadi kerja bakti lingkungan, penggalangan dana untuk korban bencana, hingga aksi sukarela yang dikoordinasikan melalui media sosial. Nilai ini perlu terus dipelihara agar rasa persatuan dan kepedulian antarwarga tidak luntur oleh sikap individualistis.\n\nIde pokok paragraf tersebut adalah ...", opt: ["Penggalangan dana untuk korban bencana kini dilakukan melalui media sosial", "Gotong royong adalah nilai luhur bangsa yang bentuknya berkembang dan perlu terus dipelihara", "Warga zaman dahulu lebih peduli daripada warga zaman sekarang", "Kerja bakti lingkungan wajib dilakukan setiap warga", "Sikap individualistis hanya terjadi di perkotaan"], a: 1, pembahasan: "Ide pokok adalah gagasan utama yang dikembangkan seluruh kalimat dalam paragraf. Paragraf menjelaskan gotong royong sebagai nilai luhur, perkembangan bentuknya dari dulu hingga kini, dan perlunya dipelihara agar persatuan tidak luntur. Pilihan lain hanya menyebut sebagian contoh, membandingkan generasi, atau menambahkan hal yang tidak dinyatakan."
   },
   { // No 2
-    sub: "Bahasa Indonesia", q: "Kalimat berikut yang efektif adalah ...",
+    sub: "Kalimat Efektif", q: "Kalimat berikut yang efektif adalah ...",
     opt: ["Pemerintah daerah meningkatkan kualitas layanan kesehatan di puskesmas.","Pemerintah daerah berupaya untuk meningkatkan kembali kualitas layanan kesehatan di puskesmas-puskesmas yang ada.","Kualitas layanan kesehatan di puskesmas oleh pemerintah daerah sedang ditingkatkan kualitasnya.","Pemerintah daerah-daerah meningkatkan layanan kesehatan yang ada di puskesmas tersebut itu.","Dalam rangka untuk meningkatkan kualitas layanan, maka pemerintah daerah melakukan peningkatan di puskesmas."],
     a: 0,
     pembahasan: "Kalimat efektif hemat kata, tidak mengulang makna, dan strukturnya jelas. Kalimat benar sudah bersubjek, berpredikat, dan berobjek tanpa kata mubazir. Pilihan lain memuat pemborosan, seperti 'kembali', 'kualitas' yang diulang, bentuk jamak ganda, 'tersebut itu', serta 'dalam rangka untuk ... maka' yang menjadikan kalimat tidak bersubjek."
   },
   { // No 3
-    sub: "Bahasa Indonesia", q: "Kelompok kata yang seluruhnya ditulis dengan baku adalah ...",
+    sub: "Kalimat Efektif", q: "Kelompok kata yang seluruhnya ditulis dengan baku adalah ...",
     opt: ["resiko, praktek, nasehat","resiko, praktik, nasihat","risiko, praktek, nasihat","risiko, praktik, nasihat","risiko, praktik, nasehat"],
     a: 3,
     pembahasan: "Bentuk baku menurut KBBI: risiko (bukan resiko), praktik (bukan praktek), dan nasihat (bukan nasehat). Hanya satu pilihan yang ketiga katanya baku."
   },
   { // No 4
-    sub: "Bahasa Indonesia", q: "Penulisan huruf kapital yang tepat terdapat pada kalimat ...",
+    sub: "Kalimat Efektif", q: "Penulisan huruf kapital yang tepat terdapat pada kalimat ...",
     opt: ["Dia berasal dari suku Jawa dan beragama islam.","Kami berlibur ke Pulau Belitung pada bulan Agustus.","Adik bertanya, \"Kapan Ayah pulang dari Kantor?\"","Surat itu ditujukan kepada Bapak Direktur utama.","Mereka berlayar ke arah Timur laut."],
     a: 1,
     pembahasan: "Huruf kapital dipakai pada nama geografi (Pulau Belitung) dan nama bulan (Agustus). Pada pilihan lain: 'islam' seharusnya Islam; 'Kantor' bukan nama diri sehingga ditulis kantor; 'Direktur utama' seharusnya Direktur Utama; dan arah mata angin yang bukan nama diri ditulis dengan huruf kecil (timur laut)."
   },
   { // No 5
-    sub: "Bahasa Indonesia", q: "Makna kata 'mitigasi' dalam kalimat 'Pemerintah menyusun program mitigasi bencana banjir' adalah ...",
+    sub: "Kalimat Efektif", q: "Makna kata 'mitigasi' dalam kalimat 'Pemerintah menyusun program mitigasi bencana banjir' adalah ...",
     opt: ["pemberian bantuan setelah bencana terjadi","pencarian korban yang hilang akibat bencana","pembangunan kembali daerah yang rusak karena bencana","peramalan waktu terjadinya bencana","upaya mengurangi risiko dan dampak bencana"],
     a: 4,
     pembahasan: "Menurut KBBI, mitigasi adalah tindakan mengurangi risiko bencana, baik melalui pembangunan fisik maupun penyadaran dan peningkatan kemampuan menghadapi ancaman. Tanggap darurat, pencarian korban, dan rehabilitasi adalah tahapan lain dalam penanggulangan bencana."
   },
   { // No 6
-    sub: "Bahasa Indonesia", q: "Kalimat yang menggunakan konjungsi dengan tepat adalah ...",
+    sub: "Kalimat Efektif", q: "Kalimat yang menggunakan konjungsi dengan tepat adalah ...",
     opt: ["Meskipun hujan deras, tetapi para petugas tetap melaksanakan upacara.","Hujan deras, sehingga para petugas tetap melaksanakan upacara.","Meskipun hujan deras, para petugas tetap melaksanakan upacara.","Para petugas melaksanakan upacara karena hujan deras sehingga.","Walaupun hujan deras, akan tetapi para petugas melaksanakan upacara tetap."],
     a: 2,
     pembahasan: "Konjungsi subordinatif 'meskipun' tidak boleh dipasangkan dengan konjungsi koordinatif 'tetapi' dalam satu kalimat (pleonasme). Kalimat benar memakai 'meskipun' saja dengan klausa utama yang jelas. Pilihan lain salah karena pemakaian 'sehingga' yang tidak logis atau pasangan konjungsi yang berlebihan."
